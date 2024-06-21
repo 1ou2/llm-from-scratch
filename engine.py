@@ -1,3 +1,7 @@
+
+from graphviz import Digraph
+
+
 # Gradient tutorial
 #
 # a value in the matrix
@@ -28,7 +32,11 @@ class Value:
 
     # override addition 
     # V1 + V2 is the same V1.__add__(V2)
+    # returns a new Value object
     def __add__(self,other):
+        # data value obtained by adding the two floats
+        # the children of this new value object are the current Value object and other
+        # operation is "+"
         v = Value(self.data + other.data,(self,other),'+')
         return v
     
