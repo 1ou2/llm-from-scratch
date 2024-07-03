@@ -30,3 +30,4 @@ Micrograd permet de travailler sur des scalaires (des floats), en production pou
 # Questions
 - différence entre un vecteur et un tensor : pourquoi deux noms différents
 - dans un réseau de neurone, on a les poids qui représentent les valeurs des opérations à effectuer mais où sont stockés les opérations. Ex je veux passer du layer 3 à 4. Et je dois faire 3x-7. Où est stocké cette équation ?
+- à quoi sert la "forward pass" vs la "backward pass" dans le gradient descent
