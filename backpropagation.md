@@ -6,6 +6,22 @@ Un réseau de neurone est expression mathématique :
 Pour  calculer les weigths on essaie de minimiser une fonction "loss function", car plus on minimise, et moins on a d’écart entre le résultat du réseau et le résultat attendu.
 L’algorithme qui permet itérativement de converger vers ce minimum s’appelle "backpropagation". C’est un algorithme efficace pour évaluer le grandient.
 
+## Forward pass
+Étant donné des poids (weights) et des donnés d’entrées (inputs), le cacul de la sortie (output) se fait en faisant une forward pass.
+On part des données d’entrées, et on calcule à chaque étape du réseau de neurones les valeurs intermédiaires jusqu’à arriver au résultat final.
+
+## Backpropagation vs Gradient descent
+- Gradient descent : algorithme d’optimisation général pour calculer les poids du modèle.
+- Backpropagation : c’est une étape de l’algorithme gradient descent, où on met à jour les poids du modèle en calculant des derivées partielles (le gradient) qui donne l’ajustement qu’on donne au poids pour converger vers un minimun.
+  
+À chaque itération, on a un ajustement des poids. 
+- Soit [W]^n les poids à l’étape n
+- Lr : learning rate - un paramètre qui dit à quelle vitesse on veut aller (si c’est trop petit, on converge tout doucement, si c’est trop grand on peut osciller et ne pas trouver le min)
+- [G]^n : le gradient - c’est à dire le petit ajusteemnt local des poids qui va permettre au modèle de se rapprocher de l’optimal
+ [W]^n+1 = [W]^n - Lr * [G]^n
+
+ 
+
 # Micrograd
 Bibliothèque python permenttant d’illustrer et de calculer des gradients
 - Encapsulation des valeurs dans des objets Value
@@ -25,7 +41,7 @@ Mais on peut aussi voir la dérivée, comme la pente locale de la fonction. Cela
 
 ## Scalar vs Tensor
 Micrograd permet de travailler sur des scalaires (des floats), en production pour des raisons de performances on parallélise les calculs et les bibliothèques telles que pytorch ne prennent pas en entrée des scalaires mais des Tensors. Un Tensor est un vecteur.
-
+Dans Pytorch, un Tensor est un objet qui a des méthodes, une représentation interne et qui a donc un ensemble d’opérations disponibles de façons optimisése.
 
 # Questions
 - différence entre un vecteur et un tensor : pourquoi deux noms différents
