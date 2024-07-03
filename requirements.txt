@@ -1,3 +1,5 @@
 matplotlib
 numpy
 graphviz
+# for plotting in ubuntu
+pyside2
