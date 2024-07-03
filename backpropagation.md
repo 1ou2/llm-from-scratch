@@ -13,6 +13,7 @@ On part des données d’entrées, et on calcule à chaque étape du réseau de 
 ## Backpropagation vs Gradient descent
 - Gradient descent : algorithme d’optimisation général pour calculer les poids du modèle.
 - Backpropagation : c’est une étape de l’algorithme gradient descent, où on met à jour les poids du modèle en calculant des derivées partielles (le gradient) qui donne l’ajustement qu’on donne au poids pour converger vers un minimun.
+On part de l’output node, et on remonte le graphe jusqu’aux inputs node. D’où le terme de backpropagation
   
 À chaque itération, on a un ajustement des poids. 
 - Soit [W]^n les poids à l’étape n
