@@ -3,7 +3,7 @@ Un réseau de neurone est expression mathématique :
 - une matrice dont on essaie de calculer les valeurs (weights) durant la phase d’entrainement
 - et on calcule un résultat : soit une prédiction soit une loss function
 
-Pour  calculer les weigths on essaie de minimiser une fonction "loss function", car plus on minimise, et moins on a d’écart entre le résultat du réseau et le résultat attendu.
+Pour  calculer les weigths on essaie de minimiser une fonction "loss function", car plus on minimise, et moins on a d’écart entre le résultat du réseau et le résultat attendu. Le calcul se fait sur des données d’entrées (inputs) qui servent à l’entrainement du modèle.
 L’algorithme qui permet itérativement de converger vers ce minimum s’appelle "backpropagation". C’est un algorithme efficace pour évaluer le grandient.
 
 ## Forward pass
@@ -21,7 +21,63 @@ On part de l’output node, et on remonte le graphe jusqu’aux inputs node. D�
 - [G]^n : le gradient - c’est à dire le petit ajusteemnt local des poids qui va permettre au modèle de se rapprocher de l’optimal
  [W]^n+1 = [W]^n - Lr * [G]^n
 
- 
+ Exemple manuel:
+ - Inputs : a , b ,c,f
+ - Opérations : e  = a * b ; d = e + c ; d * f = L
+ - Résultat : L
+
+ a --|
+     | (*) --> e --| 
+ b --|             | (+) --> d --|
+               c --|             | (*) --> L
+                             f --|
+
+On veut connaitre l’effet d’une variation de a sur L. Si on augmente un peu a, est-ce que L augmente ou diminue.
+Pour cela on doit calculer la dérivée de L par rapport à a, soit dL/da. Pour y arriver on va calculer les dérivées intermédiaires
+- dL/dd puis dL/de puis dL/da 
+Effectuons la backpropagation manuelle
+# 1
+dL/dL = 1 c’est le gradient local. 
+Notons la valeur du gradient sous la forme [gradient]
+a --|
+    | (*) --> e --| 
+b --|             | (+) --> d --|
+              c --|             | (*) --> L [1]
+                            f --|
+
+# 2
+Comme L = d*f
+dL/dd = f
+dL/df = d
+
+a --|
+    | (*) --> e --| 
+b --|             | (+) --> d --| [f]
+              c --|             | (*) --> L [1]
+                            f --| [d]
+
+# 3
+dL/de = dL/dd * dd/de
+d = e + c
+Sur une addition, cela correspond à faire une fois le gradient précédent
+dd/de = 1 * grad[d]
+
+
+a --|
+    | (*) --> e --| [f] 
+b --|             | (+)    --> d --| [f]
+              c --| [f]            | (*) --> L [1]
+                               f --| [d]
+
+# 3
+
+a --| [f*b]
+    | (*)      --> e --| [f] 
+b --| [f*a]            | (+)    --> d --| [f]
+                   c --| [f]            | (*) --> L [1]
+                                    f --| [d]
+
+
 
 # Micrograd
 Bibliothèque python permenttant d’illustrer et de calculer des gradients

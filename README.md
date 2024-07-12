@@ -14,5 +14,5 @@ source .venv/bin/activate
 pip install -r requirements.txt
 
 # Ubuntu
-In order to use the graphviz module, the graphviz package must be installed
+In order to use the graphviz module in Ubuntu, the graphviz package must be installed
 sudo apt-get install graphviz
