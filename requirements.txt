@@ -2,4 +2,4 @@ matplotlib
 numpy
 graphviz
 # for plotting in ubuntu
-pyside2
+#pyside2

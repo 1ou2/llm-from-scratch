@@ -69,22 +69,47 @@ class Value:
         # the children of this new value object are the current Value object and other
         # operation is "+"
         v = Value(self.data + other.data,(self,other),'+')
+        # TODO : check if self == other
+        v.grad += other.grad
         return v
     
     def __mul__(self,other):
         v = Value(self.data*other.data,(self,other),'*')
+        v.grad = self.grad * other.data + self.data * other.grad
         return v
+    
+    def backward(self):
+        self.grad = 1.0
+        visited = list()
+
+        def build_topo(v):
+            if v not in visited:
+    
+                for child in v._prev:
+                    build_topo(child)
+                # only append if all children are visited
+                visited.append(v)    
+
+        build_topo(self)
+        for node in reversed(visited):
+            #node.grad += node.grad * node.data
+            print(node)
+
 
 a = Value(3.0)
 b = Value(2.1)
 c = Value(10.0)
 d = a*b + c
+e = a + b
+f = d*e
+
+f.backward()
 #print(a,b)
 #print(a+b)
 #print(a*b)
 
-print(d)
-ddot = draw_dot(d)
+#print(d)
+ddot = draw_dot(f)
 ddot.render()
 #ddot
 #ddot.render('gout')
