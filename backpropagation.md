@@ -15,7 +15,7 @@ On part des données d’entrées, et on calcule à chaque étape du réseau de 
 - Backpropagation : c’est une étape de l’algorithme gradient descent, où on met à jour les poids du modèle en calculant des derivées partielles (le gradient) qui donne l’ajustement qu’on donne au poids pour converger vers un minimun.
 On part de l’output node, et on remonte le graphe jusqu’aux inputs node. D’où le terme de backpropagation
   
-À chaque itération, on a un ajustement des poids. 
+À chaque itération (backpass), on a un ajustement des poids. 
 - Soit [W]^n les poids à l’étape n
 - Lr : learning rate - un paramètre qui dit à quelle vitesse on veut aller (si c’est trop petit, on converge tout doucement, si c’est trop grand on peut osciller et ne pas trouver le min)
 - [G]^n : le gradient - c’est à dire le petit ajusteemnt local des poids qui va permettre au modèle de se rapprocher de l’optimal
@@ -102,5 +102,12 @@ Dans Pytorch, un Tensor est un objet qui a des méthodes, une représentation in
 
 # Questions
 - différence entre un vecteur et un tensor : pourquoi deux noms différents
+Un Tensor est un objet de la bibliothèque Pytorch. Il permet de réaliser plus d’opérations qu’un simple vecteur. On peut le convertir, changer sa taille, le multiplier, appliquer une fonction dessus. 
+
 - dans un réseau de neurone, on a les poids qui représentent les valeurs des opérations à effectuer mais où sont stockés les opérations. Ex je veux passer du layer 3 à 4. Et je dois faire 3x-7. Où est stocké cette équation ?
+Si on utilise une bibliothèque comme pytorch, et qu’on passe par des tensors, ceux-ci modélisent la structure complète du graph des opérations.
+Si T1 = log(T2*T3 + T4), alors quand on utilise la fonction 
+T1.backward(), pytorch "sait" que pour cela il faut calculer les dérivées de log (T2*T3 + T4)
 - à quoi sert la "forward pass" vs la "backward pass" dans le gradient descent
+Le forward pass sert à caculer la valeur de sortie du réseau et en particulier à calculer la fonction loss qu’on cherche à optimiser
+La backward pass sert à ajuster la valeur des poids du réseau en se servant du gradient. Via le gradiant on sait quels poids doivent être augmentés et lesquels doivent être diminuer afin de faire diminuer la fonction de perte (loss)
