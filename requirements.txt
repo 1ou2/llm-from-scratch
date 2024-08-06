@@ -1,5 +1,6 @@
 matplotlib
 numpy
 graphviz
+torch
 # for plotting in ubuntu
 #pyside2
