@@ -14,15 +14,31 @@ Si on veut un échantillon d'une distribution de probabilité, on utilise la fon
 ## Broadcasting 
 Attention, il faut se poser la question si une opération est possible. Par exemple est-ce que je peux diviser un Tensor P de dimension 27x27 par un Tensor de dimension 1x27.
 C'est ce qui s'appelle broadcasting.
+Soit P un tensor 27/27
+P.sum(0,keepdim=True).shape est un Tensor 1x27 -> c’est le résultat de la somme des colonnes. C’est donc comme si on rajoutait une ligne de somme après les colonnes.
+P.sum(1,keepdim=True).shape est un Tensor 27x1 -> c’est le résultat de la somme des lignes. C’est donc comme si on rajoutait une colonne de somme après la dernière ligne.
+Avec keepdim=False, on n’a plus un Tensor avec 2 dimensions, mais un Tensor de taille 27.
+C’est la même diff, en taille 3 que
+- [[1],[2],[3]] -> dimension = 3x1
+- [1,2,3]       -> dimension = 3
 
 
 # Bigram
 C'est un modèle prédictif simple où on calcule à partir d'un jeu de données, quelles sont les probabilités associés à chaque bigram, c'est à dire à chaque couple de deux lettres consécutives.
-
-
-
+On définit le token "." comme étant un token spécial marquant le début et la fin d’un mot.
 ## Probabilité
-Pour chaque mot, décomposer et caculer le nombre d'occurences du bigram
+Pour chaque mot, décomposer et caculer le nombre d'occurences du bigram. 
+Soit N, un Tensor 27x27 represantant toutes les occurences des bigrams dans notre jeu de données
+N[0] : represente les occurences des deux premières lettres .a, .b, .c etc...
+On calcule la probabilité, étant donné une lettre d’avoir la suivante.
+Soit P un Tensor 27x27 representant cette probabilité
+Pour calculer P, on parcourt N ligne par ligne et on normalise les lignes.
+P[i] = N[i] / sum(N[i])
+Attention avec cette méthode on peut avoir des 0. Par exemple on n’a pas jq dans le jeu de données. Donc dans N, le compte est à 0 est la probabilité est à zéro.
+Cela va poser problème quand on va calculer la fonction de perte (loss function), car on prend le log, et log(0) = - infinity.
+Pour résoudre ce problème on utilise une smoothing function.
+On rajoute articificiellement une valeur au comptage.
+On peut par exemple ajouter 1 à toutes les celles de N. 
 
 ## Calcul via des Tensors
 Attention, il faut se poser la question si une opération est possible. Par exemple est-ce que je peux diviser un Tensor P de dimension 27x27 par un Tensor de dimension 1x27.
@@ -31,6 +47,7 @@ Attention, il faut se poser la question si une opération est possible. Par exem
 Pour calculer la qualité de notre modèle il faut multiplier toutes les probabilités de chaque bigram entre elles.
 Ce nombre va tendre vers 0, car on mulitplie des probas p telles que 0 < p < 1
 loss = P[b1]*P[b2]*...P[bn] 
+
 ### Log
 Il est plus simple de calculer, le log de ce nombre, qui sera une somme.
 log(a*b*c) = log a + log b + log c
@@ -40,4 +57,8 @@ Ensuite, le log sera négatif car log tend vers -infini en 0, et vers 0 en +infi
 On utilise donc souvent le negative log likelyhood
 nll = - (logP[b1] +P[b2]+...P[bn] )/n
 L'avantage du nll est que c'est un nombre positif, et plus il tend vers 0 plus la prédiction de notre modèle est exacte.
+C’est en minimisant NLL qu’on évalue la qualité du modèle.
 
+# Bigram Language Model
+Réseau de neurone, qui à partir d’un caractère prédit le suivant.
+On va changer nos poids, via l’algo de la descente de gradient de façon à minimiser la loss function.
