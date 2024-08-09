@@ -54,15 +54,29 @@ if __name__ == "__main__":
 
     tx = torch.tensor(xs)
     ty = torch.tensor(ys)
-    print(tx,ty)
+    print(f"{tx=} {ty=}")
 
+    # Random initialization of weights
     g = torch.Generator().manual_seed(2147483647)
-    W = torch.randn((27,1),dtype=float,requires_grad=True,generator=g)
-    W = torch.randn((27,1))
-    #print(W)
+    W = torch.randn((27,27),dtype=torch.float32,requires_grad=True,generator=g)
 
+    # Forward pass
+    # encode input as a vector of zeros and 1 one. The only representing the input character
     xenc = F.one_hot(tx, num_classes=27).float()
-    #print(xenc,xenc.shape)
+
     # Matrix multiplication
-    res = xenc @ W
-    print(res)
+    # logits represents log(count)
+    # xenc is 5x27 (it depends on the length of the input word, len(word)+1) 
+    # W is 27x 27
+    # logits is 5x27
+
+    logits = xenc @ W
+
+    # use exponential to have an equivalents of counts (positive number)
+    counts = logits.exp()
+    # normalize so that we can interpret the weights as probabilities
+    probs = counts / counts.sum(1,keepdim=True)
+    print(probs)
+    print(probs[0].sum())
+
+

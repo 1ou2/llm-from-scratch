@@ -69,4 +69,30 @@ On va changer nos poids, via l’algo de la descente de gradient de façon à mi
 Quand on doit manipuler des integer, cela ne va pas trop faire de sens, dans nos calculs de descente de gradient où on fait des opérations qui s’appliquent plutôt à des float.
 une technique consiste à transforme un integer en un tensor.
 Si on a les nombres 0 à 5 et qu’on veut encoder le nombre 2, on utilisera le vecteur [0,0,1,0,0] où le chiffre 1 représente l’index du nombre à encoder.
+```python
+import torch.nn.functional as F
+xenc = F.one_hot(tx, num_classes=27).float()
+```
+
+## Tactique
+On veut mettre en place un réseau de 27 neurones, qui simule l'algorithme statistique calculé sur les bigram.
+On voudrait que le réseau donne une probabilité à un caractère donné.
+- Si, on veut que les Weights représentent la matrice P des bigram on n'y arrivera pas. Or on ne peut pas avec un réseau de neurone avoir une telle matrice directement. La matrice de stat, sont des nombres entre 0 et 1 tels que la somme des lignes vaut 1.
+- idem si on veut arriver à la matrice N de comptage des bigrams. Ce sont des entiers.
+
+
+Ces poids vont nous donner des logs counts.
+On va considérer que W représentent les outputs de la fonction log, et on va appliquer l'opération exponentielle.
+0 < exp(x) < 1 pour x < 0
+exp(x) > 1 pour x > 0
+
+Puis pour chaque ligne, on normalise.
+
+Cette opération s'appelle **softmax**:
+- à partir de nombre réel (float négatifs et positifs)
+- on applique exp(x)/(Sum(exp(x)))
+- on obtient une distribution de probabilité -> que des nombres entre 0 et 1 dont la somme fait 1
+
+[x] @ [W] + [b]= loss function 
+
 
