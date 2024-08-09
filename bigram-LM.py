@@ -4,6 +4,7 @@
 from string import ascii_lowercase
 import matplotlib.pyplot as plt
 import torch
+import torch.nn.functional as F
 
 # get all the names as a list
 # input data is stored in a file, with one name per line
@@ -54,3 +55,14 @@ if __name__ == "__main__":
     tx = torch.tensor(xs)
     ty = torch.tensor(ys)
     print(tx,ty)
+
+    g = torch.Generator().manual_seed(2147483647)
+    W = torch.randn((27,1),dtype=float,requires_grad=True,generator=g)
+    W = torch.randn((27,1))
+    #print(W)
+
+    xenc = F.one_hot(tx, num_classes=27).float()
+    #print(xenc,xenc.shape)
+    # Matrix multiplication
+    res = xenc @ W
+    print(res)

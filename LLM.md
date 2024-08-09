@@ -22,6 +22,8 @@ C’est la même diff, en taille 3 que
 - [[1],[2],[3]] -> dimension = 3x1
 - [1,2,3]       -> dimension = 3
 
+## Randn
+Génère des nombres aléatoires en utilisant une distribution normalisée (courbe en cloche)
 
 # Bigram
 C'est un modèle prédictif simple où on calcule à partir d'un jeu de données, quelles sont les probabilités associés à chaque bigram, c'est à dire à chaque couple de deux lettres consécutives.
@@ -62,3 +64,9 @@ C’est en minimisant NLL qu’on évalue la qualité du modèle.
 # Bigram Language Model
 Réseau de neurone, qui à partir d’un caractère prédit le suivant.
 On va changer nos poids, via l’algo de la descente de gradient de façon à minimiser la loss function.
+
+## One hot encoding
+Quand on doit manipuler des integer, cela ne va pas trop faire de sens, dans nos calculs de descente de gradient où on fait des opérations qui s’appliquent plutôt à des float.
+une technique consiste à transforme un integer en un tensor.
+Si on a les nombres 0 à 5 et qu’on veut encoder le nombre 2, on utilisera le vecteur [0,0,1,0,0] où le chiffre 1 représente l’index du nombre à encoder.
+
