@@ -92,7 +92,13 @@ Cette opération s'appelle **softmax**:
 - à partir de nombre réel (float négatifs et positifs)
 - on applique exp(x)/(Sum(exp(x)))
 - on obtient une distribution de probabilité -> que des nombres entre 0 et 1 dont la somme fait 1
+```math
+\frac{e^{x}}{\sum_{j=1}^n e^{x}}
+```
+
 
 [x] @ [W] + [b]= loss function 
+
+
 
 

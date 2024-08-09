@@ -54,8 +54,11 @@ if __name__ == "__main__":
 
     tx = torch.tensor(xs)
     ty = torch.tensor(ys)
-    print(f"{tx=} {ty=}")
+    # number of bigrams
+    num = tx.nelement()
 
+    print(f"{tx=}")
+    print(f"{ty=}")
     # Random initialization of weights
     g = torch.Generator().manual_seed(2147483647)
     W = torch.randn((27,27),dtype=torch.float32,requires_grad=True,generator=g)
@@ -76,7 +79,38 @@ if __name__ == "__main__":
     counts = logits.exp()
     # normalize so that we can interpret the weights as probabilities
     probs = counts / counts.sum(1,keepdim=True)
-    print(probs)
-    print(probs[0].sum())
+    # compute loss function
+    # mean value -> mean()
+    # of all the negative logs -> -.log()
+    # accross all probabilities
+    #   [torch.arange(num), ys] = [0,y0], [1,y1], ...[n,Yn] 
+    loss = -probs[torch.arange(num),ys].log().mean()
+    
+    # backward pass
+    W.grad = None
+    loss.backward()
 
+    # nudge data in opposite diretion of grandient
+    W.data += -0.1* W.grad
 
+    wsample = words[0]
+    wsize = len(wsample) +1
+    print(f"Sample word {wsample} - {wsize=}")
+    nlls = torch.zeros(wsize)
+    for i in range(wsize):
+        x = tx[i].item() # input character index
+        y = ty[i].item() # label character index
+        print("--------------")
+        print(f"Bigram example {i}: {itos(x)}{itos(y)} - indexes {x},{y}")
+        print(f"input : {x}")
+        print(f"probability: {probs[i]}")
+        print(f"label - actual next character: {y}")
+        p = probs[i,y]
+        print(f"probability assigned by network: {p}")
+        logp = torch.log(p)
+        nll = - logp.item()
+        print(f"Negative log likelihood {nll}")
+        print("--------------")
+        nlls[i] = nll
+    
+    print(f"GLOBAL Loss {nlls.mean().item()}")
