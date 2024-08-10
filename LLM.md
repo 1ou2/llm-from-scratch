@@ -24,7 +24,9 @@ C’est la même diff, en taille 3 que
 
 ## Randn
 Génère des nombres aléatoires en utilisant une distribution normalisée (courbe en cloche)
-
+```python
+W = torch.randn((27,27),generator=g,requires_grad=True)
+```
 # Bigram
 C'est un modèle prédictif simple où on calcule à partir d'un jeu de données, quelles sont les probabilités associés à chaque bigram, c'est à dire à chaque couple de deux lettres consécutives.
 On définit le token "." comme étant un token spécial marquant le début et la fin d’un mot.
@@ -65,6 +67,13 @@ C’est en minimisant NLL qu’on évalue la qualité du modèle.
 Réseau de neurone, qui à partir d’un caractère prédit le suivant.
 On va changer nos poids, via l’algo de la descente de gradient de façon à minimiser la loss function.
 
+## Inputs
+On calcule chaque bigram possible du jeu de données -> environ 20.000
+On transforme, ces données avec du *one hot encoding*, pour en faire un tensor (1,27).
+- c'est un tensor ne contenant que des 0, sauf une colonne où il y a un 1 pour identifier le caractère encodé.
+On crée un Tensor avec toutes les données d'entrées : xenc.shape = (20000, 27)
+
+
 ## One hot encoding
 Quand on doit manipuler des integer, cela ne va pas trop faire de sens, dans nos calculs de descente de gradient où on fait des opérations qui s’appliquent plutôt à des float.
 une technique consiste à transforme un integer en un tensor.
@@ -99,6 +108,74 @@ Cette opération s'appelle **softmax**:
 
 [x] @ [W] + [b]= loss function 
 
+si on calcule (x@W)[3,13] cela correspond au résultat du 13ème neurone pour la donnée d'entrée numéro 3.
+Le résultat est correspond au calcul de la multiplication de la 3 ème entrée avec la 13ème colonne
 
+## Algorithme
+1. Initialisation
+- Créer le vecteur **xenc** avec toutes les données d'entrées (20000x27)
+- Initialiser une matrice **W** de taille (27,27) avec des données aléatoires
+2. Calcul des probabilités
+- Multiplier xenc par W, pour modéliser le comptages du log des bigrams. Appliquer la fonction exponentielle de façon à modéliser un vrai comptage. La fonction log pouvant être négative. Ici exp va de 0 à + infini.
+```python
+# Matrix multiplication
+# xenc size is nb_bigrams x 27 ,  W size is 27x 27- >  logits size is nb_bigrams x 27
+# logits represents log(count)
+logits = xenc @ W
+# use exponential to have an equivalents of counts (positive number)
+counts = logits.exp()
+```
+- Il faut ensuite normaliser pour que chaque ligne corresponde à une distribution de probabilité
+`probs = counts / counts.sum(1,keepdim=True)`
+3. Calculer la **loss** function
+Pour toutes les probabilités on calcule le log (permet d'additionner au lieu de multiplier), on calcule ensuite la moyenne et on prend l'opposé.
+Cette fonction permet d'estimer la justesse du modèle, l'objectif est que cette fonction de perte soit la plus petite possible
+```loss = -probs[torch.arange(num),ty].log().mean()```
+4. Effectuer une descente de gradient
+Comme on a utiliser des Tensors, toutes les opérations sont "magiquement" enregistrées, et il suffit d'appeler la fonction ```backward``` pour que le gradient soit ajusté
+```python
+# reset gradient
+W.grad = None
+# backward pass, upgrade gradient
+loss.backward()
+```
+5. Ajuster le modèle en fonction du gradient
+Le gradient indique comment chaque poids doit être mis à jour pour diminuer la fonction de perte (loss). 
+```step``` est un paramètre à notre main pour définir la vitesse de convergence. Trop petit, il faudra beaucoup d'itérations. Trop grand on peut osciller sans gagner sur la loss function.
+```python
+# nudge data in opposite diretion of grandient
+W.data += -step* W.grad
+```
+6. On itère les étapes 2 à 6
 
-
+## Inférence
+Une fois le modèle calculé. On peut l'utiliser pour générer de nouveaux noms.
+```python
+# start token is 0
+ix = 0
+genword = []
+while True:
+    # our model takes a one hot vector as input
+    # xenc shape is [1, 27]
+    xenc = F.one_hot(torch.tensor([ix]), num_classes=27).float()
+    # (1,27)@(27,27) -> logits is (1,27)
+    logits = xenc @ W
+    counts = logits.exp()
+    # p shape is (1,27). It represents the probability of the next character
+    #
+    # # Example of p for index 10 (letter j)
+    # [[0.0158, 0.4935, 0.0105, 0.0043, 0.0058, 0.1269, 0.0037, 0.0064, 0.0040,
+    # 0.0296, 0.0070, 0.0076, 0.0051, 0.0124, 0.0043, 0.1470, 0.0040, 0.0113,
+    # 0.0020, 0.0115, 0.0036, 0.0497, 0.0070, 0.0098, 0.0037, 0.0073, 0.0060]]
+    #
+    # 0.0158 or 1.58% is the probability that the next character is 0 (end of sequence)
+    # 0.4935 or 49.35% is the probability that the next character is 1 (letter a)
+    p = counts / counts.sum(1,keepdim=True)
+    print(ix,itos(ix), p)
+    # sample one character using the probability distribution p 
+    ix = torch.multinomial(p,num_samples=1,replacement=True,generator=g).item()
+    genword.append(itos(ix))
+    # end token generated for this word
+    if ix == 0:
+        break
+print("".join(genword))```
