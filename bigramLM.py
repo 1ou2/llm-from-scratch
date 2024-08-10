@@ -133,8 +133,8 @@ if __name__ == "__main__":
     xenc = F.one_hot(tx, num_classes=27).float()
     
     
-    step = 20
-    iterations = 150
+    step = 25
+    iterations = 1000
     for _ in range(iterations):
 
 
@@ -169,7 +169,7 @@ if __name__ == "__main__":
         W.data += -step* W.grad
 
     print(f"{loss=} - saving model")
-    torch.save(W,"./W-bigram.model")
+    torch.save(W,"./W-bigram-"+str(step)+"-"+str(iterations)+"-"+str(f"{loss.item():.4f}")+"-"+".model")
 
     print("\nInferring some names----")
     g = torch.Generator().manual_seed(2147483647)

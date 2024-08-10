@@ -8,7 +8,7 @@ from bigramUtil import get_names, stoi, itos
 if __name__ == "__main__":
 
     model_file = "./W-bigram.model"
-    nb_words = 2
+    nb_words = 10
 
     # load previously saved model
     W = torch.load(model_file,weights_only=True)
@@ -36,7 +36,7 @@ if __name__ == "__main__":
             # 0.0158 or 1.58% is the probability that the next character is 0 (end of sequence)
             # 0.4935 or 49.35% is the probability that the next character is 1 (letter a)
             p = counts / counts.sum(1,keepdim=True)
-            print(ix,itos(ix), p)
+            
             # sample one character using the probability distribution p 
             ix = torch.multinomial(p,num_samples=1,replacement=True,generator=g).item()
             genword.append(itos(ix))
