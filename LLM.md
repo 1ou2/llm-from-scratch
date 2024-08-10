@@ -126,13 +126,17 @@ logits = xenc @ W
 counts = logits.exp()
 ```
 - Il faut ensuite normaliser pour que chaque ligne corresponde à une distribution de probabilité
-`probs = counts / counts.sum(1,keepdim=True)`
+```python
+probs = counts / counts.sum(1,keepdim=True)
+```
 3. Calculer la **loss** function
 Pour toutes les probabilités on calcule le log (permet d'additionner au lieu de multiplier), on calcule ensuite la moyenne et on prend l'opposé.
 Cette fonction permet d'estimer la justesse du modèle, l'objectif est que cette fonction de perte soit la plus petite possible
-```loss = -probs[torch.arange(num),ty].log().mean()```
+```python
+loss = -probs[torch.arange(num),ty].log().mean()
+```
 4. Effectuer une descente de gradient
-Comme on a utiliser des Tensors, toutes les opérations sont "magiquement" enregistrées, et il suffit d'appeler la fonction ```backward``` pour que le gradient soit ajusté
+Comme on a utilisé des Tensors, toutes les opérations sont "magiquement" enregistrées, et il suffit d'appeler la fonction ```backward``` pour que le gradient soit ajusté
 ```python
 # reset gradient
 W.grad = None
