@@ -1,10 +1,10 @@
 # Torch
 ## Generator
 Utilisation d'un generator permet d'avoir des résultats reproductibles même en cas d'utilisation de la fonction random.
-
+```python
 g = torch.Generator().manual_seed(213) 
 p = torch.rand(3,generator=g)
-
+```
 On est assuré de toujours avoir les 3 mêmes nombres pour p
 ## Multinomial
 Si on veut un échantillon d'une distribution de probabilité, on utilise la fonction torch.multinomial
@@ -178,4 +178,5 @@ while True:
     # end token generated for this word
     if ix == 0:
         break
-print("".join(genword))```
+print("".join(genword))
+```
