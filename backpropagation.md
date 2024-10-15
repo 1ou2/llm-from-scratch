@@ -1,5 +1,4 @@
-# Image
-Infographie :
+# Backpropagation - Descente de gradient
 
 [![](gradient.svg)](gradient.svg)
 
@@ -34,7 +33,7 @@ On part de l’output node, et on remonte le graphe jusqu’aux inputs node. D�
     a --|
         | (*) --> e --| 
     b --|             | (+) --> d --|
-                c --|             | (*) --> L
+                  c --|             | (*) --> L
                                 f --|
 ```
 On veut connaitre l’effet d’une variation de a sur L. Si on augmente un peu a, est-ce que L augmente ou diminue.
@@ -111,14 +110,14 @@ Micrograd permet de travailler sur des scalaires (des floats), en production pou
 Dans Pytorch, un Tensor est un objet qui a des méthodes, une représentation interne et qui a donc un ensemble d’opérations disponibles de façons optimisése.
 
 # Questions
-- différence entre un vecteur et un tensor : pourquoi deux noms différents
+- **différence entre un vecteur et un tensor : pourquoi deux noms différents ?**
 Un Tensor est un objet de la bibliothèque Pytorch. Il permet de réaliser plus d’opérations qu’un simple vecteur. On peut le convertir, changer sa taille, le multiplier, appliquer une fonction dessus. 
 
-- dans un réseau de neurone, on a les poids qui représentent les valeurs des opérations à effectuer mais où sont stockés les opérations. Ex je veux passer du layer 3 à 4. Et je dois faire 3x-7. Où est stocké cette équation ?
+- **dans un réseau de neurone, on a les poids qui représentent les valeurs des opérations à effectuer mais où sont stockés les opérations. Ex je veux passer du layer 3 à 4. Et je dois faire 3x-7. Où est stocké cette équation ?**
 Si on utilise une bibliothèque comme pytorch, et qu’on passe par des tensors, ceux-ci modélisent la structure complète du graph des opérations.
 Si T1 = log(T2*T3 + T4), alors quand on utilise la fonction 
 T1.backward(), pytorch "sait" que pour cela il faut calculer les dérivées de log (T2*T3 + T4)
-- à quoi sert la "forward pass" vs la "backward pass" dans le gradient descent
+- **à quoi sert la "forward pass" vs la "backward pass" dans le gradient descent**
 Le forward pass sert à caculer la valeur de sortie du réseau et en particulier à calculer la fonction loss qu’on cherche à optimiser
 La backward pass sert à ajuster la valeur des poids du réseau en se servant du gradient. Via le gradiant on sait quels poids doivent être augmentés et lesquels doivent être diminuer afin de faire diminuer la fonction de perte (loss)
 
