@@ -25,7 +25,6 @@ On part de l’output node, et on remonte le graphe jusqu’aux inputs node. D�
  - Inputs : a , b ,c,f
  - Opérations : e  = a * b ; d = e + c ; d * f = L
  - Résultat : L
-
     a --|
         | (*) --> e --| 
     b --|             | (+) --> d --|
@@ -34,7 +33,9 @@ On part de l’output node, et on remonte le graphe jusqu’aux inputs node. D�
 
 On veut connaitre l’effet d’une variation de a sur L. Si on augmente un peu a, est-ce que L augmente ou diminue.
 Pour cela on doit calculer la dérivée de L par rapport à a, soit dL/da. Pour y arriver on va calculer les dérivées intermédiaires
-- dL/dd puis dL/de puis dL/da 
+- dL/dd 
+- puis dL/de 
+- puis dL/da 
 Effectuons la backpropagation manuelle
 # 1
 dL/dL = 1 c’est le gradient local. 
@@ -69,7 +70,7 @@ dd/de = 1 * grad[d]
                 c --| [f]            | (*) --> L [1]
                                 f --| [d]
 
-# 3
+# 4
 
     a --| [f*b]
         | (*)      --> e --| [f] 
@@ -115,5 +116,5 @@ La backward pass sert à ajuster la valeur des poids du réseau en se servant du
 # Image
 Infographie :
 
-[![](backpropagation.svg)](backpropagation.svg)
+[![](grandient.svg)](gradient.svg)
 
