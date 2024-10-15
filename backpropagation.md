@@ -1,3 +1,8 @@
+# Image
+Infographie :
+
+[![](gradient.svg)](gradient.svg)
+
 Un réseau de neurone est expression mathématique :
 - On a des données d’entrée (inputs),
 - une matrice dont on essaie de calculer les valeurs (weights) durant la phase d’entrainement
@@ -25,19 +30,21 @@ On part de l’output node, et on remonte le graphe jusqu’aux inputs node. D�
  - Inputs : a , b ,c,f
  - Opérations : e  = a * b ; d = e + c ; d * f = L
  - Résultat : L
-    
+ ```   
     a --|
         | (*) --> e --| 
     b --|             | (+) --> d --|
                 c --|             | (*) --> L
                                 f --|
-
+```
 On veut connaitre l’effet d’une variation de a sur L. Si on augmente un peu a, est-ce que L augmente ou diminue.
 Pour cela on doit calculer la dérivée de L par rapport à a, soit dL/da. Pour y arriver on va calculer les dérivées intermédiaires
 - dL/dd 
 - puis dL/de 
 - puis dL/da 
+
 Effectuons la backpropagation manuelle
+
 # 1
 dL/dL = 1 c’est le gradient local. 
 Notons la valeur du gradient sous la forme [gradient]
@@ -115,8 +122,5 @@ T1.backward(), pytorch "sait" que pour cela il faut calculer les dérivées de l
 Le forward pass sert à caculer la valeur de sortie du réseau et en particulier à calculer la fonction loss qu’on cherche à optimiser
 La backward pass sert à ajuster la valeur des poids du réseau en se servant du gradient. Via le gradiant on sait quels poids doivent être augmentés et lesquels doivent être diminuer afin de faire diminuer la fonction de perte (loss)
 
-# Image
-Infographie :
 
-[![](gradient.svg)](gradient.svg)
 
