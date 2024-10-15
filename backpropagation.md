@@ -25,6 +25,7 @@ On part de l’output node, et on remonte le graphe jusqu’aux inputs node. D�
  - Inputs : a , b ,c,f
  - Opérations : e  = a * b ; d = e + c ; d * f = L
  - Résultat : L
+    
     a --|
         | (*) --> e --| 
     b --|             | (+) --> d --|
@@ -40,6 +41,7 @@ Effectuons la backpropagation manuelle
 # 1
 dL/dL = 1 c’est le gradient local. 
 Notons la valeur du gradient sous la forme [gradient]
+
     a --|
         | (*) --> e --| 
     b --|             | (+) --> d --|
@@ -116,5 +118,5 @@ La backward pass sert à ajuster la valeur des poids du réseau en se servant du
 # Image
 Infographie :
 
-[![](grandient.svg)](gradient.svg)
+[![](gradient.svg)](gradient.svg)
 
