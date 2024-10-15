@@ -26,11 +26,11 @@ On part de l’output node, et on remonte le graphe jusqu’aux inputs node. D�
  - Opérations : e  = a * b ; d = e + c ; d * f = L
  - Résultat : L
 
- a --|
-     | (*) --> e --| 
- b --|             | (+) --> d --|
-               c --|             | (*) --> L
-                             f --|
+    a --|
+        | (*) --> e --| 
+    b --|             | (+) --> d --|
+                c --|             | (*) --> L
+                                f --|
 
 On veut connaitre l’effet d’une variation de a sur L. Si on augmente un peu a, est-ce que L augmente ou diminue.
 Pour cela on doit calculer la dérivée de L par rapport à a, soit dL/da. Pour y arriver on va calculer les dérivées intermédiaires
@@ -39,22 +39,22 @@ Effectuons la backpropagation manuelle
 # 1
 dL/dL = 1 c’est le gradient local. 
 Notons la valeur du gradient sous la forme [gradient]
-a --|
-    | (*) --> e --| 
-b --|             | (+) --> d --|
-              c --|             | (*) --> L [1]
-                            f --|
+    a --|
+        | (*) --> e --| 
+    b --|             | (+) --> d --|
+                c --|             | (*) --> L [1]
+                                f --|
 
 # 2
 Comme L = d*f
 dL/dd = f
 dL/df = d
 
-a --|
-    | (*) --> e --| 
-b --|             | (+) --> d --| [f]
-              c --|             | (*) --> L [1]
-                            f --| [d]
+    a --|
+        | (*) --> e --| 
+    b --|             | (+) --> d --| [f]
+                c --|             | (*) --> L [1]
+                                f --| [d]
 
 # 3
 dL/de = dL/dd * dd/de
@@ -63,19 +63,19 @@ Sur une addition, cela correspond à faire une fois le gradient précédent
 dd/de = 1 * grad[d]
 
 
-a --|
-    | (*) --> e --| [f] 
-b --|             | (+)    --> d --| [f]
-              c --| [f]            | (*) --> L [1]
-                               f --| [d]
+    a --|
+        | (*) --> e --| [f] 
+    b --|             | (+)    --> d --| [f]
+                c --| [f]            | (*) --> L [1]
+                                f --| [d]
 
 # 3
 
-a --| [f*b]
-    | (*)      --> e --| [f] 
-b --| [f*a]            | (+)    --> d --| [f]
-                   c --| [f]            | (*) --> L [1]
-                                    f --| [d]
+    a --| [f*b]
+        | (*)      --> e --| [f] 
+    b --| [f*a]            | (+)    --> d --| [f]
+                    c --| [f]            | (*) --> L [1]
+                                        f --| [d]
 
 
 
@@ -111,3 +111,9 @@ T1.backward(), pytorch "sait" que pour cela il faut calculer les dérivées de l
 - à quoi sert la "forward pass" vs la "backward pass" dans le gradient descent
 Le forward pass sert à caculer la valeur de sortie du réseau et en particulier à calculer la fonction loss qu’on cherche à optimiser
 La backward pass sert à ajuster la valeur des poids du réseau en se servant du gradient. Via le gradiant on sait quels poids doivent être augmentés et lesquels doivent être diminuer afin de faire diminuer la fonction de perte (loss)
+
+# Image
+Infographie :
+
+[![](backpropagation.svg)](backpropagation.svg)
+
