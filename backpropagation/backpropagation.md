@@ -1,6 +1,6 @@
 # Backpropagation - Descente de gradient
 
-[![](gradient.svg)](gradient.svg)
+[![](gradient-descent.svg)](gradient-descent.svg)
 
 Un réseau de neurone est expression mathématique :
 - On a des données d’entrée (inputs),
@@ -13,6 +13,13 @@ L’algorithme qui permet itérativement de converger vers ce minimum s’appell
 ## Forward pass
 Étant donné des poids (weights) et des donnés d’entrées (inputs), le cacul de la sortie (output) se fait en faisant une forward pass.
 On part des données d’entrées, et on calcule à chaque étape du réseau de neurones les valeurs intermédiaires jusqu’à arriver au résultat final.
+On obtient pour chaque jeu de données en entrée [X1,...,Xi] la prédiction ŷi
+[![](forward.svg)](forward.svg)
+
+## Loss function
+On cherche un indicateur unique nous donnant la précision de notre modèle.
+On prend comme fonction de perte l'écart entre les valeurs prédites et les valeurs constatées
+[![](loss.svg)](loss.svg)
 
 ## Backpropagation vs Gradient descent
 - Gradient descent : algorithme d’optimisation général pour calculer les poids du modèle.

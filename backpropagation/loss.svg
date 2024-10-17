@@ -1,0 +1,4180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1920.0001"
+   height="1080"
+   viewBox="0 0 508.00001 285.74998"
+   version="1.1"
+   id="svg5"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <g
+     id="layer9"
+     style="display:inline"
+     transform="translate(-534.87957,-347.23655)">
+    <rect
+       style="display:inline;opacity:1;fill:#fefaff;fill-opacity:1;stroke:none;stroke-width:0.269881;stroke-linejoin:round;stroke-opacity:1"
+       id="rect101-7"
+       width="394.7616"
+       height="254.06639"
+       x="575.55334"
+       y="353.90854" />
+    <rect
+       style="display:inline;fill:#f0bdfd;fill-opacity:1;stroke:#fcd6bc;stroke-width:0.308376;stroke-linejoin:round;stroke-opacity:1"
+       id="rect26-6"
+       width="171.22899"
+       height="10.072119"
+       x="672.4353"
+       y="391.00101"
+       ry="0"
+       transform="matrix(0.9997903,-0.02047841,0.03603005,0.99935071,0,0)" />
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect3007-4-2-7"
+       width="5.0093565"
+       height="4.0236664"
+       x="602.26276"
+       y="427.83142" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.142156"
+       x="603.57306"
+       y="430.57285"
+       id="text3011-1-9-6"><tspan
+         id="tspan3009-4-6-1"
+         style="fill:#1a1a1a;stroke-width:0.142156"
+         x="603.57306"
+         y="430.57285">w1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="607.85004"
+       y="429.41537"
+       id="text3015-4-0-6"><tspan
+         id="tspan3013-3-9-1"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="607.85004"
+         y="429.41537">val:4</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="607.91583"
+       y="431.21451"
+       id="text3019-3-5-1"><tspan
+         id="tspan3017-2-2-9"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="607.91583"
+         y="431.21451">grad:0</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect3021-8-8-9"
+       width="8.9067926"
+       height="4.0228243"
+       x="607.45874"
+       y="427.83188" />
+    <g
+       id="g3031-7-2-6"
+       transform="matrix(0.51761429,0,0,0.51761429,620.11897,401.61938)"
+       style="display:inline">
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle3023-2-1-32"
+         cx="65.668121"
+         cy="59.400654"
+         r="4.1482" />
+      <g
+         id="g3029-9-1-9"
+         transform="translate(0.74835468,0.56126601)">
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 64.919767,56.500778 v 4.95785"
+           id="path3025-3-3-6" />
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 62.58116,58.839385 h 4.396583"
+           id="path3027-3-0-12" />
+      </g>
+    </g>
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect3033-6-9-6"
+       width="5.0093565"
+       height="4.0236664"
+       x="602.31116"
+       y="422.74741" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.142156"
+       x="603.62146"
+       y="425.48883"
+       id="text3037-7-6-6"><tspan
+         id="tspan3035-1-8-3"
+         style="fill:#1a1a1a;stroke-width:0.142156"
+         x="603.62146"
+         y="425.48883">x1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="608.17236"
+       y="424.74225"
+       id="text3041-6-0-9"><tspan
+         id="tspan3039-0-7-7"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="608.17236"
+         y="424.74225">val:0</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="607.96423"
+       y="426.13049"
+       id="text3045-4-4-8"><tspan
+         id="tspan3043-6-7-7"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="607.96423"
+         y="426.13049">grad:0</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect3047-8-2-8"
+       width="8.9067926"
+       height="4.0228243"
+       x="607.50714"
+       y="422.74786" />
+    <g
+       id="g3055-0-6-2"
+       transform="matrix(0.51761429,0,0,0.51761429,677.77515,413.38729)"
+       style="display:inline">
+      <text
+         xml:space="preserve"
+         style="font-size:3.1045px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:none;stroke:#1a1a1a;stroke-width:0.332625;stroke-dasharray:none"
+         x="61.817444"
+         y="48.385059"
+         id="text3051-6-0-3"><tspan
+           id="tspan3049-2-3-5"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.1045px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 100;stroke-width:0.332625"
+           x="61.817444"
+           y="48.385059">tanh</tspan></text>
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle3053-2-0-7"
+         cx="65.481033"
+         cy="47.707611"
+         r="4.1482" />
+    </g>
+    <g
+       id="g3065-5-0-1"
+       transform="matrix(0.51761429,0,0,0.51761429,589.83522,389.55325)"
+       style="display:inline">
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle3057-7-5-3"
+         cx="65.761665"
+         cy="71.374329"
+         r="4.1482" />
+      <g
+         id="g3063-4-3-2"
+         transform="translate(-10.851143,4.7707611)">
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.578744;stroke-dasharray:none"
+           d="m 74.968626,64.792545 3.387537,3.418039"
+           id="path3059-9-2-1" />
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.578744;stroke-dasharray:none"
+           d="m 78.251107,64.69447 -3.177425,3.614189"
+           id="path3061-5-9-4" />
+      </g>
+    </g>
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect3067-1-4-5"
+       width="5.0093565"
+       height="4.0236664"
+       x="602.16589"
+       y="441.96967" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.142156"
+       x="603.4762"
+       y="444.71115"
+       id="text3071-3-3-7"><tspan
+         id="tspan3069-6-5-8"
+         style="fill:#1a1a1a;stroke-width:0.142156"
+         x="603.4762"
+         y="444.71115">w2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="607.75323"
+       y="443.55365"
+       id="text3075-4-1-1"><tspan
+         id="tspan3073-5-9-7"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="607.75323"
+         y="443.55365">val:2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="607.81897"
+       y="445.35278"
+       id="text3079-6-3-1"><tspan
+         id="tspan3077-1-4-6"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="607.81897"
+         y="445.35278">grad:0</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect3081-6-8-9"
+       width="8.9067926"
+       height="4.0228243"
+       x="607.36188"
+       y="441.97009" />
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect3083-6-4-8"
+       width="5.0093565"
+       height="4.0236664"
+       x="602.21429"
+       y="436.88571" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.142156"
+       x="603.5246"
+       y="439.62714"
+       id="text3087-3-9-3"><tspan
+         id="tspan3085-8-5-3"
+         style="fill:#1a1a1a;stroke-width:0.142156"
+         x="603.5246"
+         y="439.62714">x2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="607.8017"
+       y="438.46964"
+       id="text3091-4-8-4"><tspan
+         id="tspan3089-4-9-2"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="607.8017"
+         y="438.46964">val:-2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="607.86743"
+       y="440.26871"
+       id="text3095-5-6-0"><tspan
+         id="tspan3093-9-3-1"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="607.86743"
+         y="440.26871">grad:0</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect3097-4-1-5"
+       width="8.9067926"
+       height="4.0228243"
+       x="607.41034"
+       y="436.88614" />
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect3099-9-6-1"
+       width="5.0093565"
+       height="4.0236664"
+       x="661.62543"
+       y="445.60117" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.142156"
+       x="662.93579"
+       y="448.34265"
+       id="text3103-5-8-6"><tspan
+         id="tspan3101-0-0-9"
+         style="fill:#1a1a1a;stroke-width:0.142156"
+         x="662.93579"
+         y="448.34265">b</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="667.21283"
+       y="447.18518"
+       id="text3107-1-7-2"><tspan
+         id="tspan3105-4-9-2"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="667.21283"
+         y="447.18518">val:3</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="667.27856"
+       y="448.98431"
+       id="text3111-2-7-7"><tspan
+         id="tspan3109-9-3-82"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="667.27856"
+         y="448.98431">grad:0</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect3113-2-6-4"
+       width="8.9067926"
+       height="4.0228243"
+       x="666.82147"
+       y="445.60162" />
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect3115-7-7-1"
+       width="5.0093565"
+       height="4.0236664"
+       x="718.33459"
+       y="436.06934" />
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="723.922"
+       y="437.67294"
+       id="text3123-4-2-7"><tspan
+         id="tspan3121-2-6-6"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="723.922"
+         y="437.67294">val:-0.76</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="723.98773"
+       y="439.47195"
+       id="text3127-0-2-4"><tspan
+         id="tspan3125-4-2-9"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="723.98773"
+         y="439.47195">grad:</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.30528;stroke-dasharray:none"
+       id="rect3129-5-9-66"
+       width="11.151152"
+       height="3.9914491"
+       x="723.54633"
+       y="436.08545" />
+    <g
+       id="g3139-2-5-0"
+       transform="matrix(0.51761429,0,0,0.51761429,589.01206,404.52319)"
+       style="display:inline">
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle3131-0-1-0"
+         cx="65.761665"
+         cy="71.374329"
+         r="4.1482" />
+      <g
+         id="g3137-2-6-5"
+         transform="translate(-10.851143,4.7707611)">
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.578744;stroke-dasharray:none"
+           d="m 74.968626,64.792545 3.387537,3.418039"
+           id="path3133-3-0-3" />
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.578744;stroke-dasharray:none"
+           d="m 78.251107,64.69447 -3.177425,3.614189"
+           id="path3135-8-9-8" />
+      </g>
+    </g>
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 616.6114,424.52066 5.22936,1.45263"
+       id="path3141-3-6-1" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 616.51456,429.84685 5.51989,-2.13045"
+       id="path3143-4-1-0" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 616.32087,438.65929 4.74518,2.13044"
+       id="path3145-4-3-9" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 616.03038,444.08228 4.84197,-1.54943"
+       id="path3147-7-2-66" />
+    <g
+       id="g3157-3-5-6"
+       transform="matrix(0.51761429,0,0,0.51761429,648.30105,407.53473)"
+       style="display:inline">
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle3149-6-3-9"
+         cx="65.668121"
+         cy="59.400654"
+         r="4.1482" />
+      <g
+         id="g3155-8-6-8"
+         transform="translate(0.74835468,0.56126601)">
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 64.919767,56.500778 v 4.95785"
+           id="path3151-1-8-8" />
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 62.58116,58.839385 h 4.396583"
+           id="path3153-5-4-9" />
+      </g>
+    </g>
+    <g
+       id="g3175-6-8-8"
+       transform="matrix(0.51761429,0,0,0.51761429,592.88567,404.16578)"
+       style="display:inline">
+      <rect
+         style="fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect3159-2-3-3"
+         width="9.6777792"
+         height="7.7734842"
+         x="75.888626"
+         y="39.25703" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.274637"
+         x="78.420082"
+         y="44.553341"
+         id="text3163-5-8-7"><tspan
+           id="tspan3161-8-9-1"
+           style="fill:#1a1a1a;stroke-width:0.274637"
+           x="78.420082"
+           y="44.553341">N1</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="87.212227"
+         y="43.110943"
+         id="text3167-6-9-7"><tspan
+           id="tspan3165-9-4-7"
+           style="fill:#000000;stroke-width:0.185463"
+           x="87.212227"
+           y="43.110943">val:0</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="86.810143"
+         y="45.792973"
+         id="text3171-3-4-73"><tspan
+           id="tspan3169-9-4-9"
+           style="fill:#000000;stroke-width:0.185463"
+           x="86.810143"
+           y="45.792973">grad:</tspan></text>
+      <rect
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect3173-3-6-1"
+         width="17.207394"
+         height="7.7718573"
+         x="85.927094"
+         y="39.257847" />
+    </g>
+    <g
+       id="g3193-9-9-49"
+       transform="matrix(0.51761429,0,0,0.51761429,592.59514,418.98234)"
+       style="display:inline">
+      <rect
+         style="fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect3177-6-9-53"
+         width="9.6777792"
+         height="7.7734842"
+         x="75.888626"
+         y="39.25703" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.274637"
+         x="78.420082"
+         y="44.553341"
+         id="text3181-3-2-28"><tspan
+           id="tspan3179-4-5-6"
+           style="fill:#1a1a1a;stroke-width:0.274637"
+           x="78.420082"
+           y="44.553341">N2</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="87.212227"
+         y="43.110943"
+         id="text3185-2-0-77"><tspan
+           id="tspan3183-3-6-7"
+           style="fill:#000000;stroke-width:0.185463"
+           x="87.212227"
+           y="43.110943">val:-4</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="86.810143"
+         y="45.792973"
+         id="text3189-8-1-9"><tspan
+           id="tspan3187-7-9-0"
+           style="fill:#000000;stroke-width:0.185463"
+           x="86.810143"
+           y="45.792973">grad:</tspan></text>
+      <rect
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect3191-7-7-2"
+         width="17.207394"
+         height="7.7718573"
+         x="85.927094"
+         y="39.257847" />
+    </g>
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 625.90801,426.748 h 6.10093"
+       id="path3195-2-6-8" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 625.1333,441.37081 h 6.77879"
+       id="path3197-7-7-2" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 646.34121,426.5543 5.61674,5.22936"
+       id="path3199-7-1-6" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 645.85704,441.75814 6.77877,-7.65034"
+       id="path3201-0-4-6" />
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect3203-4-8-7"
+       width="5.0093565"
+       height="4.0236664"
+       x="661.79956"
+       y="430.39297" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.142156"
+       x="663.10986"
+       y="433.13434"
+       id="text3207-6-4-5"><tspan
+         id="tspan3205-7-3-6"
+         style="fill:#1a1a1a;stroke-width:0.142156"
+         x="663.10986"
+         y="433.13434">N3</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="667.66089"
+       y="432.38773"
+       id="text3211-1-2-3"><tspan
+         id="tspan3209-5-9-1"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="667.66089"
+         y="432.38773">val:-4</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="667.45276"
+       y="433.77597"
+       id="text3215-2-4-7"><tspan
+         id="tspan3213-1-8-0"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="667.45276"
+         y="433.77597">grad:</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect3217-4-4-3"
+       width="8.9067926"
+       height="4.0228243"
+       x="666.99567"
+       y="430.3934" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 656.22603,432.48844 5.4096,-0.13695"
+       id="path3219-7-8-4" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 675.94714,432.62535 4.65635,4.17705"
+       id="path3221-2-8-0" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 675.7417,447.27927 5.2042,-7.2585"
+       id="path3223-7-1-4" />
+    <g
+       id="g3241-7-9-5"
+       transform="matrix(0.51761429,0,0,0.51761429,592.88567,403.65293)"
+       style="display:inline">
+      <rect
+         style="fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect3225-1-5-0"
+         width="9.6777792"
+         height="7.7734842"
+         x="184.99609"
+         y="62.626957" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.274637"
+         x="187.52754"
+         y="67.923271"
+         id="text3229-0-9-9"><tspan
+           id="tspan3227-4-1-8"
+           style="fill:#1a1a1a;stroke-width:0.274637"
+           x="187.52754"
+           y="67.923271">N4</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="196.31969"
+         y="66.480873"
+         id="text3233-8-4-5"><tspan
+           id="tspan3231-9-8-8"
+           style="fill:#000000;stroke-width:0.185463"
+           x="196.31969"
+           y="66.480873">val:-1</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="195.9176"
+         y="69.162903"
+         id="text3237-5-4-3"><tspan
+           id="tspan3235-7-3-8"
+           style="fill:#000000;stroke-width:0.185463"
+           x="195.9176"
+           y="69.162903">grad:</tspan></text>
+      <rect
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect3239-2-2-6"
+         width="17.207394"
+         height="7.7718573"
+         x="195.03456"
+         y="62.627773" />
+    </g>
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 684.39926,438.27191 h 4.06726"
+       id="path3243-6-5-4" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 702.6051,437.88458 6.77885,0.0968"
+       id="path3245-5-5-1" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 713.93538,437.98142 4.1641,0.0968"
+       id="path3247-7-1-2" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#ffb380;stroke:none;stroke-width:0.304342;stroke-dasharray:none"
+       id="rect3515-6-5-7"
+       width="2.2757347"
+       height="1.4041765"
+       x="639.94574"
+       y="425.19812" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#ffb380;stroke:none;stroke-width:0.304342;stroke-dasharray:none"
+       id="rect3621-6-0-4"
+       width="2.2757347"
+       height="1.4041765"
+       x="639.94574"
+       y="439.82053" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#ffb380;stroke:none;stroke-width:0.304342;stroke-dasharray:none"
+       id="rect3623-6-3-8"
+       width="2.2757347"
+       height="1.4041765"
+       x="669.8208"
+       y="431.10526" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#ffb380;stroke:none;stroke-width:0.304342;stroke-dasharray:none"
+       id="rect3625-0-9-84"
+       width="2.2757347"
+       height="1.4041765"
+       x="696.74225"
+       y="436.72174" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#ffb380;stroke:none;stroke-width:0.47606;stroke-dasharray:none"
+       id="rect3627-7-5-03"
+       width="5.5682869"
+       height="1.4041765"
+       x="726.03632"
+       y="436.38281" />
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect13546-6-3"
+       width="5.0093565"
+       height="4.0236664"
+       x="720.69769"
+       y="451.12103" />
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="726.28503"
+       y="452.70505"
+       id="text13554-8-2"><tspan
+         id="tspan13552-2-9"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="726.28503"
+         y="452.70505">val:-1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="726.35083"
+       y="454.50418"
+       id="text13558-9-5"><tspan
+         id="tspan13556-9-1"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="726.35083"
+         y="454.50418">grad:0</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect13560-8-1"
+       width="8.9067926"
+       height="4.0228243"
+       x="725.89374"
+       y="451.12149" />
+    <circle
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.240519;stroke-dasharray:none"
+       id="circle13562-5-2"
+       cx="741.36401"
+       cy="443.80115"
+       r="2.1471677" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 735.01937,438.14524 4.65634,4.17705"
+       id="path13572-5-6" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 734.81392,452.79911 5.2042,-7.25845"
+       id="path13574-4-9" />
+    <g
+       id="g13873-1-9"
+       transform="matrix(0.51761429,0,0,0.51761429,464.74598,143.55241)"
+       style="display:inline;fill:#ffccaa;stroke:#aa4400">
+      <circle
+         style="font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#aa4400;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1"
+         id="circle13861-4-2"
+         cx="195.9901"
+         cy="564.94531"
+         r="5.8208332"
+         transform="translate(297.81891,3.3315412)" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#aa4400;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1"
+         x="193.17821"
+         y="564.74994"
+         id="text13865-6-5"
+         transform="translate(297.81891,3.3315412)"><tspan
+           id="tspan13863-3-7"
+           style="fill:#ffccaa;stroke:#aa4400;stroke-width:0.529167;stroke-opacity:1"
+           x="193.17821"
+           y="564.74994"
+           dy="0 3">y1</tspan></text>
+      <g
+         id="g13871-2-8"
+         transform="translate(23.937946,15.348215)"
+         style="fill:#ffccaa;stroke:#aa4400">
+        <path
+           style="font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#aa4400;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 467.91562,549.24192 1.98437,-1.05833"
+           id="path13867-8-43" />
+        <path
+           style="font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#aa4400;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 469.64672,548.16857 1.92759,1.15853"
+           id="path13869-6-99" />
+      </g>
+    </g>
+    <g
+       id="g13933-7-0"
+       transform="matrix(0.51761429,0,0,0.51761429,621.00134,170.60095)"
+       style="display:inline">
+      <circle
+         style="font-variation-settings:'wght' 100;fill:#ffeeaa;stroke:#ffcc00;stroke-width:0.529167;stroke-dasharray:none"
+         id="circle13927-8-9"
+         cx="195.9901"
+         cy="545.64368"
+         r="5.8208332" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:none;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none"
+         x="193.54959"
+         y="545.4483"
+         id="text13931-0-4"><tspan
+           id="tspan13929-9-1"
+           style="stroke-width:0.529167"
+           x="193.54959"
+           y="545.4483"
+           dy="0 3">y1</tspan></text>
+    </g>
+    <path
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 740.21751,443.76773 h 2.27573"
+       id="path14016-3-7" />
+    <g
+       id="g14287-3-1"
+       transform="matrix(0.51761429,0,0,0.51761429,228.25031,-7.0707799)"
+       style="display:inline">
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle14012-5-1"
+         cx="1048.2102"
+         cy="870.33838"
+         r="4.1482" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.03492px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:#1a1a1a;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.432312;stroke-dasharray:none;stroke-opacity:1"
+         x="1044.4659"
+         y="871.64758"
+         id="text14082-7-6"><tspan
+           id="tspan14080-6-3"
+           style="fill:#1a1a1a;stroke:#1a1a1a;stroke-width:0.432312"
+           x="1044.4659"
+           y="871.64758">**2</tspan></text>
+    </g>
+    <g
+       id="g14174-4-5"
+       transform="matrix(0.51761429,0,0,0.51761429,652.15159,409.07597)"
+       style="display:inline">
+      <rect
+         style="fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect14158-6-3"
+         width="9.6777792"
+         height="7.7734842"
+         x="184.99609"
+         y="62.626957" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.274637"
+         x="187.52754"
+         y="67.923271"
+         id="text14162-1-6"><tspan
+           id="tspan14160-2-4"
+           style="fill:#1a1a1a;stroke-width:0.274637"
+           x="187.52754"
+           y="67.923271">D1</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="196.31969"
+         y="66.480873"
+         id="text14166-1-7"><tspan
+           id="tspan14164-6-1"
+           style="fill:#000000;stroke-width:0.185463"
+           x="196.31969"
+           y="66.480873">val:0.24</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="195.9176"
+         y="69.162903"
+         id="text14170-7-5"><tspan
+           id="tspan14168-7-4"
+           style="fill:#000000;stroke-width:0.185463"
+           x="195.9176"
+           y="69.162903">grad:</tspan></text>
+      <rect
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect14172-7-6"
+         width="17.207394"
+         height="7.7718573"
+         x="195.03456"
+         y="62.627773" />
+    </g>
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 743.66518,443.69495 h 4.06726"
+       id="path14176-9-1" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 761.87102,443.30757 6.77883,0.0968"
+       id="path14178-9-2" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#e580ff;stroke:none;stroke-width:0.53117;stroke-dasharray:none"
+       id="rect14180-0-4"
+       width="6.932106"
+       height="1.4041765"
+       x="754.84418"
+       y="442.07626" />
+    <g
+       id="g9143-5-0-8"
+       transform="matrix(0.38073849,0,0,0.38073849,609.87924,273.93756)"
+       style="display:inline">
+      <rect
+         style="font-variation-settings:'wght' 100;fill:#ffeeaa;stroke:#ffcc00;stroke-width:0.21501;stroke-dasharray:none"
+         id="rect9085-9-5-0"
+         width="13.085486"
+         height="10.791122"
+         x="-20.253487"
+         y="428.15262" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:none;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none"
+         x="-18.421211"
+         y="434.75345"
+         id="text9089-4-4-0"><tspan
+           id="tspan9087-6-2-8"
+           style="stroke-width:0.529167"
+           x="-18.421211"
+           y="434.75345"
+           dy="0 0 3"
+           rotate="0 0 0 0">X21</tspan></text>
+    </g>
+    <g
+       id="g9138-99-8-8"
+       transform="matrix(0.4243801,0,0,0.38032201,610.46877,265.62651)"
+       style="display:inline">
+      <rect
+         style="font-variation-settings:'wght' 100;fill:#ffeeaa;stroke:#ffcc00;stroke-width:0.21394;stroke-dasharray:none"
+         id="rect9091-8-5-17"
+         width="12.954265"
+         height="10.792192"
+         x="-20.497856"
+         y="413.18497" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:none;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none"
+         x="-17.672859"
+         y="419.78635"
+         id="text9095-1-7-09"><tspan
+           id="tspan9093-1-6-0"
+           style="stroke-width:0.529167"
+           x="-17.672859"
+           y="419.78635"
+           dy="0 0 3">X11</tspan></text>
+    </g>
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14482-2-9"
+       width="5.0093565"
+       height="4.0236664"
+       x="602.26276"
+       y="472.20459" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.142156"
+       x="603.57306"
+       y="474.94601"
+       id="text14486-8-7"><tspan
+         id="tspan14484-4-7"
+         style="fill:#1a1a1a;stroke-width:0.142156"
+         x="603.57306"
+         y="474.94601">w1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="607.85004"
+       y="473.78854"
+       id="text14490-1-9"><tspan
+         id="tspan14488-5-3"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="607.85004"
+         y="473.78854">val:4</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="607.91583"
+       y="475.58768"
+       id="text14494-6-5"><tspan
+         id="tspan14492-1-4"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="607.91583"
+         y="475.58768">grad:0</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14496-5-4"
+       width="8.9067926"
+       height="4.0228243"
+       x="607.45874"
+       y="472.20505" />
+    <g
+       id="g14506-5-1"
+       transform="matrix(0.51761429,0,0,0.51761429,620.11897,445.99181)"
+       style="display:inline">
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle14498-3-5"
+         cx="65.668121"
+         cy="59.400654"
+         r="4.1482" />
+      <g
+         id="g14504-3-0"
+         transform="translate(0.74835468,0.56126601)">
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 64.919767,56.500778 v 4.95785"
+           id="path14500-1-1" />
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 62.58116,58.839385 h 4.396583"
+           id="path14502-0-4" />
+      </g>
+    </g>
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14508-8-4"
+       width="5.0093565"
+       height="4.0236664"
+       x="602.31116"
+       y="467.12057" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.142156"
+       x="603.62146"
+       y="469.862"
+       id="text14512-0-1"><tspan
+         id="tspan14510-7-8"
+         style="fill:#1a1a1a;stroke-width:0.142156"
+         x="603.62146"
+         y="469.862">x1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="608.17236"
+       y="469.11542"
+       id="text14516-7-2"><tspan
+         id="tspan14514-9-3"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="608.17236"
+         y="469.11542">val:0.5</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="607.96423"
+       y="470.50366"
+       id="text14520-6-6"><tspan
+         id="tspan14518-8-4"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="607.96423"
+         y="470.50366">grad:0</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14522-1-7"
+       width="8.9067926"
+       height="4.0228243"
+       x="607.50714"
+       y="467.12103" />
+    <g
+       id="g14530-2-1"
+       transform="matrix(0.51761429,0,0,0.51761429,677.77515,457.75972)"
+       style="display:inline">
+      <text
+         xml:space="preserve"
+         style="font-size:3.1045px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:none;stroke:#1a1a1a;stroke-width:0.332625;stroke-dasharray:none"
+         x="61.817444"
+         y="48.385059"
+         id="text14526-1-6"><tspan
+           id="tspan14524-3-7"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.1045px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 100;stroke-width:0.332625"
+           x="61.817444"
+           y="48.385059">tanh</tspan></text>
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle14528-7-3"
+         cx="65.481033"
+         cy="47.707611"
+         r="4.1482" />
+    </g>
+    <g
+       id="g14540-9-7"
+       transform="matrix(0.51761429,0,0,0.51761429,589.83522,433.9257)"
+       style="display:inline">
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle14532-9-0"
+         cx="65.761665"
+         cy="71.374329"
+         r="4.1482" />
+      <g
+         id="g14538-8-4"
+         transform="translate(-10.851143,4.7707611)">
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.578744;stroke-dasharray:none"
+           d="m 74.968626,64.792545 3.387537,3.418039"
+           id="path14534-8-6" />
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.578744;stroke-dasharray:none"
+           d="m 78.251107,64.69447 -3.177425,3.614189"
+           id="path14536-1-7" />
+      </g>
+    </g>
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14542-6-6"
+       width="5.0093565"
+       height="4.0236664"
+       x="602.16589"
+       y="486.34283" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.142156"
+       x="603.4762"
+       y="489.08432"
+       id="text14546-5-9"><tspan
+         id="tspan14544-4-8"
+         style="fill:#1a1a1a;stroke-width:0.142156"
+         x="603.4762"
+         y="489.08432">w2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="607.75323"
+       y="487.92682"
+       id="text14550-9-5"><tspan
+         id="tspan14548-4-6"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="607.75323"
+         y="487.92682">val:2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="607.81897"
+       y="489.72595"
+       id="text14554-2-3"><tspan
+         id="tspan14552-8-9"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="607.81897"
+         y="489.72595">grad:0</tspan></text>
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#80ffb3;stroke:none;stroke-width:0.640149;stroke-dasharray:none"
+       id="rect49635-4"
+       width="8.4699383"
+       height="1.6691828"
+       x="606.7027"
+       y="488.35593" />
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14558-3-8"
+       width="5.0093565"
+       height="4.0236664"
+       x="602.21429"
+       y="481.25885" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.142156"
+       x="603.5246"
+       y="484.00027"
+       id="text14562-0-1"><tspan
+         id="tspan14560-4-5"
+         style="fill:#1a1a1a;stroke-width:0.142156"
+         x="603.5246"
+         y="484.00027">x2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="607.8017"
+       y="482.8428"
+       id="text14566-7-89"><tspan
+         id="tspan14564-8-1"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="607.8017"
+         y="482.8428">val:-1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="607.86743"
+       y="484.64185"
+       id="text14570-0-8"><tspan
+         id="tspan14568-6-2"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="607.86743"
+         y="484.64185">grad:0</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14572-9-2"
+       width="8.9067926"
+       height="4.0228243"
+       x="607.41034"
+       y="481.25931" />
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14574-5-8"
+       width="5.0093565"
+       height="4.0236664"
+       x="661.62543"
+       y="489.9744" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.142156"
+       x="662.93579"
+       y="492.71588"
+       id="text14578-1-1"><tspan
+         id="tspan14576-5-4"
+         style="fill:#1a1a1a;stroke-width:0.142156"
+         x="662.93579"
+         y="492.71588">b</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="667.21283"
+       y="491.55832"
+       id="text14582-2-6"><tspan
+         id="tspan14580-3-7"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="667.21283"
+         y="491.55832">val:3</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="667.27856"
+       y="493.35748"
+       id="text14586-7-0"><tspan
+         id="tspan14584-9-5"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="667.27856"
+         y="493.35748">grad:0</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14588-6-8"
+       width="8.9067926"
+       height="4.0228243"
+       x="666.82147"
+       y="489.97479" />
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14590-1-2"
+       width="5.0093565"
+       height="4.0236664"
+       x="718.33459"
+       y="480.4425" />
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="723.922"
+       y="482.04608"
+       id="text14594-2-2"><tspan
+         id="tspan14592-9-0"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="723.922"
+         y="482.04608">val:-0.99</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="723.98773"
+       y="483.84509"
+       id="text14598-8-5"><tspan
+         id="tspan14596-9-8"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="723.98773"
+         y="483.84509">grad:</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.30528;stroke-dasharray:none"
+       id="rect14600-0-6"
+       width="11.151152"
+       height="3.9914491"
+       x="723.54633"
+       y="480.45862" />
+    <g
+       id="g14610-5-1"
+       transform="matrix(0.51761429,0,0,0.51761429,589.01206,448.89562)"
+       style="display:inline">
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle14602-6-4"
+         cx="65.761665"
+         cy="71.374329"
+         r="4.1482" />
+      <g
+         id="g14608-5-7"
+         transform="translate(-10.851143,4.7707611)">
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.578744;stroke-dasharray:none"
+           d="m 74.968626,64.792545 3.387537,3.418039"
+           id="path14604-6-1" />
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.578744;stroke-dasharray:none"
+           d="m 78.251107,64.69447 -3.177425,3.614189"
+           id="path14606-5-8" />
+      </g>
+    </g>
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 616.6114,468.89308 5.22936,1.45264"
+       id="path14612-8-3" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 616.51456,474.21929 5.51989,-2.13045"
+       id="path14614-8-7" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 616.32087,483.03172 4.74518,2.13045"
+       id="path14616-5-4" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 616.03038,488.45476 4.84197,-1.54948"
+       id="path14618-3-9" />
+    <g
+       id="g14628-5-9"
+       transform="matrix(0.51761429,0,0,0.51761429,648.30105,451.90716)"
+       style="display:inline">
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle14620-4-4"
+         cx="65.668121"
+         cy="59.400654"
+         r="4.1482" />
+      <g
+         id="g14626-4-5"
+         transform="translate(0.74835468,0.56126601)">
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 64.919767,56.500778 v 4.95785"
+           id="path14622-0-6" />
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 62.58116,58.839385 h 4.396583"
+           id="path14624-3-7" />
+      </g>
+    </g>
+    <g
+       id="g14646-6-3"
+       transform="matrix(0.51761429,0,0,0.51761429,592.88567,448.53822)"
+       style="display:inline">
+      <rect
+         style="fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect14630-5-6"
+         width="9.6777792"
+         height="7.7734842"
+         x="75.888626"
+         y="39.25703" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.274637"
+         x="78.420082"
+         y="44.553341"
+         id="text14634-1-5"><tspan
+           id="tspan14632-5-4"
+           style="fill:#1a1a1a;stroke-width:0.274637"
+           x="78.420082"
+           y="44.553341">N1</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="87.212227"
+         y="43.110943"
+         id="text14638-8-9"><tspan
+           id="tspan14636-2-3"
+           style="fill:#000000;stroke-width:0.185463"
+           x="87.212227"
+           y="43.110943">val:2</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="86.810143"
+         y="45.792973"
+         id="text14642-7-3"><tspan
+           id="tspan14640-3-23"
+           style="fill:#000000;stroke-width:0.185463"
+           x="86.810143"
+           y="45.792973">grad:</tspan></text>
+      <rect
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect14644-2-2"
+         width="17.207394"
+         height="7.7718573"
+         x="85.927094"
+         y="39.257847" />
+    </g>
+    <g
+       id="g14664-4-7"
+       transform="matrix(0.51761429,0,0,0.51761429,592.59514,463.35482)"
+       style="display:inline">
+      <rect
+         style="fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect14648-2-6"
+         width="9.6777792"
+         height="7.7734842"
+         x="75.888626"
+         y="39.25703" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.274637"
+         x="78.420082"
+         y="44.553341"
+         id="text14652-2-3"><tspan
+           id="tspan14650-7-6"
+           style="fill:#1a1a1a;stroke-width:0.274637"
+           x="78.420082"
+           y="44.553341">N2</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="87.212227"
+         y="43.110943"
+         id="text14656-7-9"><tspan
+           id="tspan14654-3-1"
+           style="fill:#000000;stroke-width:0.185463"
+           x="87.212227"
+           y="43.110943">val:-2</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="86.810143"
+         y="45.792973"
+         id="text14660-5-0"><tspan
+           id="tspan14658-0-4"
+           style="fill:#000000;stroke-width:0.185463"
+           x="86.810143"
+           y="45.792973">grad:</tspan></text>
+      <rect
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect14662-4-6"
+         width="17.207394"
+         height="7.7718573"
+         x="85.927094"
+         y="39.257847" />
+    </g>
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 625.90801,471.12043 h 6.10093"
+       id="path14666-7-1" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 625.1333,485.74324 h 6.77879"
+       id="path14668-3-2" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 646.34121,470.92674 5.61674,5.22936"
+       id="path14670-0-1" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 645.85704,486.13057 6.77877,-7.65033"
+       id="path14672-7-2" />
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14674-1-4"
+       width="5.0093565"
+       height="4.0236664"
+       x="661.79956"
+       y="474.76614" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.142156"
+       x="663.10986"
+       y="477.50751"
+       id="text14678-7-4"><tspan
+         id="tspan14676-3-0"
+         style="fill:#1a1a1a;stroke-width:0.142156"
+         x="663.10986"
+         y="477.50751">N3</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="667.66089"
+       y="476.76089"
+       id="text14682-0-7"><tspan
+         id="tspan14680-0-3"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="667.66089"
+         y="476.76089">val:0</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="667.45276"
+       y="478.14914"
+       id="text14686-4-6"><tspan
+         id="tspan14684-9-4"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="667.45276"
+         y="478.14914">grad:</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14688-6-8"
+       width="8.9067926"
+       height="4.0228243"
+       x="666.99567"
+       y="474.7666" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 656.22603,476.86088 5.4096,-0.13696"
+       id="path14690-8-8" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 675.94714,476.99784 4.65635,4.17699"
+       id="path14692-4-6" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 675.7417,491.65166 5.2042,-7.25841"
+       id="path14694-9-7" />
+    <g
+       id="g14712-0-9"
+       transform="matrix(0.51761429,0,0,0.51761429,592.88567,448.02536)"
+       style="display:inline">
+      <rect
+         style="fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect14696-1-6"
+         width="9.6777792"
+         height="7.7734842"
+         x="184.99609"
+         y="62.626957" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.274637"
+         x="187.52754"
+         y="67.923271"
+         id="text14700-9-9"><tspan
+           id="tspan14698-9-8"
+           style="fill:#1a1a1a;stroke-width:0.274637"
+           x="187.52754"
+           y="67.923271">N4</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="196.31969"
+         y="66.480873"
+         id="text14704-5-9"><tspan
+           id="tspan14702-7-5"
+           style="fill:#000000;stroke-width:0.185463"
+           x="196.31969"
+           y="66.480873">val:3</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="195.9176"
+         y="69.162903"
+         id="text14708-7-8"><tspan
+           id="tspan14706-2-2"
+           style="fill:#000000;stroke-width:0.185463"
+           x="195.9176"
+           y="69.162903">grad:</tspan></text>
+      <rect
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect14710-8-1"
+         width="17.207394"
+         height="7.7718573"
+         x="195.03456"
+         y="62.627773" />
+    </g>
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 684.39926,482.64434 h 4.06726"
+       id="path14714-3-1" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 702.6051,482.257 6.77885,0.0969"
+       id="path14716-7-9" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 713.93538,482.35385 4.1641,0.0968"
+       id="path14718-7-2" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#ffb380;stroke:none;stroke-width:0.304342;stroke-dasharray:none"
+       id="rect14724-8-0"
+       width="2.2757347"
+       height="1.4041765"
+       x="641.10986"
+       y="469.4343" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#ffb380;stroke:none;stroke-width:0.304342;stroke-dasharray:none"
+       id="rect14726-3-4"
+       width="2.2757347"
+       height="1.4041765"
+       x="641.79462"
+       y="484.26221" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#ffb380;stroke:none;stroke-width:0.304342;stroke-dasharray:none"
+       id="rect14728-0-5"
+       width="2.2757347"
+       height="1.4041765"
+       x="671.7381"
+       y="475.47842" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#ffb380;stroke:none;stroke-width:0.304342;stroke-dasharray:none"
+       id="rect14730-8-1"
+       width="2.2757347"
+       height="1.4041765"
+       x="698.28296"
+       y="481.06073" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#ffb380;stroke:none;stroke-width:0.47606;stroke-dasharray:none"
+       id="rect14732-0-6"
+       width="5.5682869"
+       height="1.4041765"
+       x="727.67969"
+       y="480.75598" />
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14760-9-3"
+       width="5.0093565"
+       height="4.0236664"
+       x="720.69769"
+       y="495.4942" />
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="726.28503"
+       y="497.07822"
+       id="text14764-6-4"><tspan
+         id="tspan14762-4-1"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="726.28503"
+         y="497.07822">val:-1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="726.35083"
+       y="498.87735"
+       id="text14768-9-2"><tspan
+         id="tspan14766-8-3"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="726.35083"
+         y="498.87735">grad:0</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14770-1-3"
+       width="8.9067926"
+       height="4.0228243"
+       x="725.89374"
+       y="495.49466" />
+    <circle
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.240519;stroke-dasharray:none"
+       id="circle14772-9-4"
+       cx="741.36401"
+       cy="488.17432"
+       r="2.1471677" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 735.01937,482.51768 4.65634,4.17704"
+       id="path14774-5-9" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 734.81392,497.17149 5.2042,-7.25845"
+       id="path14776-7-8" />
+    <path
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 740.21751,488.14015 h 2.27573"
+       id="path14800-3-6" />
+    <g
+       id="g14808-0-1"
+       transform="matrix(0.51761429,0,0,0.51761429,228.25031,37.3017)"
+       style="display:inline">
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle14802-1-9"
+         cx="1048.2102"
+         cy="870.33838"
+         r="4.1482" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.03492px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:#1a1a1a;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.432312;stroke-dasharray:none;stroke-opacity:1"
+         x="1044.4659"
+         y="871.64758"
+         id="text14806-6-0"><tspan
+           id="tspan14804-3-9"
+           style="fill:#1a1a1a;stroke:#1a1a1a;stroke-width:0.432312"
+           x="1044.4659"
+           y="871.64758">**2</tspan></text>
+    </g>
+    <g
+       id="g14826-2-3"
+       transform="matrix(0.51761429,0,0,0.51761429,652.15159,453.48262)"
+       style="display:inline">
+      <rect
+         style="fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect14810-7-1"
+         width="9.6777792"
+         height="7.7734842"
+         x="184.99609"
+         y="62.626957" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.274637"
+         x="187.52754"
+         y="67.923271"
+         id="text14814-6-8"><tspan
+           id="tspan14812-2-9"
+           style="fill:#1a1a1a;stroke-width:0.274637"
+           x="187.52754"
+           y="67.923271">D2</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.01077px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.167419"
+         x="195.13556"
+         y="66.228477"
+         id="text14818-9-5"><tspan
+           id="tspan14816-8-7"
+           style="fill:#000000;stroke-width:0.167419"
+           x="195.13556"
+           y="66.228477">val:-0.01</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="195.9176"
+         y="69.162903"
+         id="text14822-4-2"><tspan
+           id="tspan14820-0-4"
+           style="fill:#000000;stroke-width:0.185463"
+           x="195.9176"
+           y="69.162903">grad:</tspan></text>
+      <rect
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect14824-4-8"
+         width="17.207394"
+         height="7.7718573"
+         x="195.03456"
+         y="62.627773" />
+    </g>
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 743.66518,488.06738 h 4.06726"
+       id="path14828-3-2" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 761.87102,487.67999 6.77883,0.0969"
+       id="path14830-9-7" />
+    <g
+       id="g14473-5-4"
+       transform="matrix(0.40748511,0,0,0.38542219,323.36434,108.2045)"
+       style="display:inline">
+      <rect
+         style="font-variation-settings:'wght' 100;fill:#ffeeaa;stroke:#ffcc00;stroke-width:0.21394;stroke-dasharray:none"
+         id="rect9077-5-6-4"
+         width="12.954265"
+         height="10.792192"
+         x="684.39355"
+         y="930.7323" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:none;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none"
+         x="687.21851"
+         y="937.33368"
+         id="text9081-4-4-1"><tspan
+           id="tspan9079-3-0-0"
+           style="stroke-width:0.529167"
+           x="687.21851"
+           y="937.33368"
+           dy="0 0 3">X12</tspan></text>
+    </g>
+    <g
+       id="g14478-2-8"
+       transform="matrix(0.38663838,0,0,0.37673887,337.66206,124.88156)"
+       style="display:inline">
+      <rect
+         style="font-variation-settings:'wght' 100;fill:#ffeeaa;stroke:#ffcc00;stroke-width:0.21501;stroke-dasharray:none"
+         id="rect9071-3-7-1"
+         width="13.085486"
+         height="10.791122"
+         x="684.63788"
+         y="945.69995" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:none;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none"
+         x="686.47015"
+         y="952.30078"
+         id="text9075-7-3-5"><tspan
+           id="tspan9073-7-3-7"
+           style="stroke-width:0.529167"
+           x="686.47015"
+           y="952.30078"
+           dy="0 0 3"
+           rotate="0 0 0 0">X22</tspan></text>
+    </g>
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14852-2-0"
+       width="5.0093565"
+       height="4.0236664"
+       x="603.08447"
+       y="519.45306" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.142156"
+       x="604.39478"
+       y="522.19446"
+       id="text14856-3-5"><tspan
+         id="tspan14854-8-4"
+         style="fill:#1a1a1a;stroke-width:0.142156"
+         x="604.39478"
+         y="522.19446">w1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="608.67181"
+       y="521.03705"
+       id="text14860-4-0"><tspan
+         id="tspan14858-4-3"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="608.67181"
+         y="521.03705">val:4</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="608.73755"
+       y="522.83612"
+       id="text14864-5-8"><tspan
+         id="tspan14862-7-2"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="608.73755"
+         y="522.83612">grad:0</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14866-5-6"
+       width="8.9067926"
+       height="4.0228243"
+       x="608.28046"
+       y="519.45355" />
+    <g
+       id="g14876-4-3"
+       transform="matrix(0.51761429,0,0,0.51761429,620.94068,493.24026)"
+       style="display:inline">
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle14868-4-8"
+         cx="65.668121"
+         cy="59.400654"
+         r="4.1482" />
+      <g
+         id="g14874-0-9"
+         transform="translate(0.74835468,0.56126601)">
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 64.919767,56.500778 v 4.95785"
+           id="path14870-2-2" />
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 62.58116,58.839385 h 4.396583"
+           id="path14872-9-26" />
+      </g>
+    </g>
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14878-1-0"
+       width="5.0093565"
+       height="4.0236664"
+       x="603.13287"
+       y="514.36908" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.142156"
+       x="604.44318"
+       y="517.11053"
+       id="text14882-5-3"><tspan
+         id="tspan14880-2-1"
+         style="fill:#1a1a1a;stroke-width:0.142156"
+         x="604.44318"
+         y="517.11053">x1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="608.99408"
+       y="516.36389"
+       id="text14886-9-2"><tspan
+         id="tspan14884-6-1"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="608.99408"
+         y="516.36389">val:-1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="608.78595"
+       y="517.75214"
+       id="text14890-8-8"><tspan
+         id="tspan14888-0-5"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="608.78595"
+         y="517.75214">grad:0</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14892-0-4"
+       width="8.9067926"
+       height="4.0228243"
+       x="608.32886"
+       y="514.36951" />
+    <g
+       id="g14900-0-5"
+       transform="matrix(0.51761429,0,0,0.51761429,678.59686,505.00817)"
+       style="display:inline">
+      <text
+         xml:space="preserve"
+         style="font-size:3.1045px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:none;stroke:#1a1a1a;stroke-width:0.332625;stroke-dasharray:none"
+         x="61.817444"
+         y="48.385059"
+         id="text14896-3-2"><tspan
+           id="tspan14894-1-5"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.1045px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 100;stroke-width:0.332625"
+           x="61.817444"
+           y="48.385059">tanh</tspan></text>
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle14898-0-0"
+         cx="65.481033"
+         cy="47.707611"
+         r="4.1482" />
+    </g>
+    <g
+       id="g14910-0-2"
+       transform="matrix(0.51761429,0,0,0.51761429,590.65693,481.17416)"
+       style="display:inline">
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle14902-2-4"
+         cx="65.761665"
+         cy="71.374329"
+         r="4.1482" />
+      <g
+         id="g14908-0-6"
+         transform="translate(-10.851143,4.7707611)">
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.578744;stroke-dasharray:none"
+           d="m 74.968626,64.792545 3.387537,3.418039"
+           id="path14904-1-1" />
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.578744;stroke-dasharray:none"
+           d="m 78.251107,64.69447 -3.177425,3.614189"
+           id="path14906-0-5" />
+      </g>
+    </g>
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14912-6-4"
+       width="5.0093565"
+       height="4.0236664"
+       x="602.98761"
+       y="533.59131" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.142156"
+       x="604.29791"
+       y="536.33276"
+       id="text14916-4-6"><tspan
+         id="tspan14914-8-7"
+         style="fill:#1a1a1a;stroke-width:0.142156"
+         x="604.29791"
+         y="536.33276">w2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="608.57495"
+       y="535.17529"
+       id="text14920-9-0"><tspan
+         id="tspan14918-2-1"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="608.57495"
+         y="535.17529">val:2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="608.64069"
+       y="536.97437"
+       id="text14924-6-2"><tspan
+         id="tspan14922-5-4"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="608.64069"
+         y="536.97437">grad:0</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14926-3-8"
+       width="8.9067926"
+       height="4.0228243"
+       x="608.18365"
+       y="533.59174" />
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14928-2-6"
+       width="5.0093565"
+       height="4.0236664"
+       x="603.03601"
+       y="528.50739" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.142156"
+       x="604.34631"
+       y="531.24872"
+       id="text14932-3-0"><tspan
+         id="tspan14930-6-8"
+         style="fill:#1a1a1a;stroke-width:0.142156"
+         x="604.34631"
+         y="531.24872">x2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="608.62341"
+       y="530.09131"
+       id="text14936-1-03"><tspan
+         id="tspan14934-9-5"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="608.62341"
+         y="530.09131">val:1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="608.68915"
+       y="531.89038"
+       id="text14940-7-7"><tspan
+         id="tspan14938-6-6"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="608.68915"
+         y="531.89038">grad:0</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14942-3-7"
+       width="8.9067926"
+       height="4.0228243"
+       x="608.23206"
+       y="528.50781" />
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14944-7-57"
+       width="5.0093565"
+       height="4.0236664"
+       x="662.4472"
+       y="537.22284" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.142156"
+       x="663.75745"
+       y="539.96423"
+       id="text14948-1-1"><tspan
+         id="tspan14946-7-8"
+         style="fill:#1a1a1a;stroke-width:0.142156"
+         x="663.75745"
+         y="539.96423">b</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="668.03455"
+       y="538.80682"
+       id="text14952-0-7"><tspan
+         id="tspan14950-1-5"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="668.03455"
+         y="538.80682">val:3</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="668.10034"
+       y="540.6059"
+       id="text14956-1-0"><tspan
+         id="tspan14954-8-0"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="668.10034"
+         y="540.6059">grad:0</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14958-9-15"
+       width="8.9067926"
+       height="4.0228243"
+       x="667.64319"
+       y="537.22321" />
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect14960-8-0"
+       width="5.0093565"
+       height="4.0236664"
+       x="719.15637"
+       y="527.69098" />
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="724.74371"
+       y="529.29449"
+       id="text14964-3-6"><tspan
+         id="tspan14962-9-7"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="724.74371"
+         y="529.29449">val:0.76</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="724.80945"
+       y="531.09363"
+       id="text14968-6-93"><tspan
+         id="tspan14966-8-7"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="724.80945"
+         y="531.09363">grad:</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.30528;stroke-dasharray:none"
+       id="rect14970-2-8"
+       width="11.151152"
+       height="3.9914491"
+       x="724.36804"
+       y="527.70703" />
+    <g
+       id="g14980-4-22"
+       transform="matrix(0.51761429,0,0,0.51761429,589.83377,496.14402)"
+       style="display:inline">
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle14972-3-3"
+         cx="65.761665"
+         cy="71.374329"
+         r="4.1482" />
+      <g
+         id="g14978-3-9"
+         transform="translate(-10.851143,4.7707611)">
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.578744;stroke-dasharray:none"
+           d="m 74.968626,64.792545 3.387537,3.418039"
+           id="path14974-0-5" />
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.578744;stroke-dasharray:none"
+           d="m 78.251107,64.69447 -3.177425,3.614189"
+           id="path14976-9-5" />
+      </g>
+    </g>
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 617.43312,516.14154 5.22935,1.45258"
+       id="path14982-6-0" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 617.33627,521.46773 5.51989,-2.13049"
+       id="path14984-7-8" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 617.14258,530.28012 4.74518,2.1305"
+       id="path14986-8-1" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 616.85209,535.70316 4.84198,-1.54942"
+       id="path14988-4-9" />
+    <g
+       id="g14998-8-9"
+       transform="matrix(0.51761429,0,0,0.51761429,649.12277,499.15556)"
+       style="display:inline">
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle14990-6-2"
+         cx="65.668121"
+         cy="59.400654"
+         r="4.1482" />
+      <g
+         id="g14996-5-2"
+         transform="translate(0.74835468,0.56126601)">
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 64.919767,56.500778 v 4.95785"
+           id="path14992-2-5" />
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 62.58116,58.839385 h 4.396583"
+           id="path14994-5-5" />
+      </g>
+    </g>
+    <g
+       id="g15016-1-3"
+       transform="matrix(0.51761429,0,0,0.51761429,593.70739,495.78666)"
+       style="display:inline">
+      <rect
+         style="fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect15000-7-2"
+         width="9.6777792"
+         height="7.7734842"
+         x="75.888626"
+         y="39.25703" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.274637"
+         x="78.420082"
+         y="44.553341"
+         id="text15004-0-6"><tspan
+           id="tspan15002-1-3"
+           style="fill:#1a1a1a;stroke-width:0.274637"
+           x="78.420082"
+           y="44.553341">N1</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="87.212227"
+         y="43.110943"
+         id="text15008-5-6"><tspan
+           id="tspan15006-3-2"
+           style="fill:#000000;stroke-width:0.185463"
+           x="87.212227"
+           y="43.110943">val:-4</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="86.810143"
+         y="45.792973"
+         id="text15012-1-6"><tspan
+           id="tspan15010-9-6"
+           style="fill:#000000;stroke-width:0.185463"
+           x="86.810143"
+           y="45.792973">grad:</tspan></text>
+      <rect
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect15014-7-1"
+         width="17.207394"
+         height="7.7718573"
+         x="85.927094"
+         y="39.257847" />
+    </g>
+    <g
+       id="g15034-9-5"
+       transform="matrix(0.51761429,0,0,0.51761429,593.41685,510.60322)"
+       style="display:inline">
+      <rect
+         style="fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect15018-5-1"
+         width="9.6777792"
+         height="7.7734842"
+         x="75.888626"
+         y="39.25703" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.274637"
+         x="78.420082"
+         y="44.553341"
+         id="text15022-6-59"><tspan
+           id="tspan15020-6-7"
+           style="fill:#1a1a1a;stroke-width:0.274637"
+           x="78.420082"
+           y="44.553341">N2</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="87.212227"
+         y="43.110943"
+         id="text15026-2-4"><tspan
+           id="tspan15024-0-1"
+           style="fill:#000000;stroke-width:0.185463"
+           x="87.212227"
+           y="43.110943">val:2</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="86.810143"
+         y="45.792973"
+         id="text15030-3-4"><tspan
+           id="tspan15028-0-9"
+           style="fill:#000000;stroke-width:0.185463"
+           x="86.810143"
+           y="45.792973">grad:</tspan></text>
+      <rect
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect15032-9-90"
+         width="17.207394"
+         height="7.7718573"
+         x="85.927094"
+         y="39.257847" />
+    </g>
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 626.72973,518.36883 h 6.10092"
+       id="path15036-1-3" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 625.95501,532.99164 h 6.77879"
+       id="path15038-2-5" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 647.16292,518.17519 5.61674,5.22935"
+       id="path15040-2-6" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 646.67874,533.37902 6.77879,-7.65034"
+       id="path15042-1-5" />
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect15044-8-3"
+       width="5.0093565"
+       height="4.0236664"
+       x="662.62134"
+       y="522.01465" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.142156"
+       x="663.93164"
+       y="524.75598"
+       id="text15048-5-1"><tspan
+         id="tspan15046-0-9"
+         style="fill:#1a1a1a;stroke-width:0.142156"
+         x="663.93164"
+         y="524.75598">N3</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="668.48254"
+       y="524.0094"
+       id="text15052-4-0"><tspan
+         id="tspan15050-4-9"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="668.48254"
+         y="524.0094">val:-2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="668.27448"
+       y="525.39764"
+       id="text15056-2-1"><tspan
+         id="tspan15054-7-1"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="668.27448"
+         y="525.39764">grad:</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect15058-9-6"
+       width="8.9067926"
+       height="4.0228243"
+       x="667.81744"
+       y="522.01501" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 657.04775,524.10928 5.40959,-0.13691"
+       id="path15060-3-1" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 676.76885,524.24624 4.65636,4.17704"
+       id="path15062-5-6" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 676.56341,538.9001 5.2042,-7.25844"
+       id="path15064-8-1" />
+    <g
+       id="g15082-6-2"
+       transform="matrix(0.51761429,0,0,0.51761429,593.70739,495.27381)"
+       style="display:inline">
+      <rect
+         style="fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect15066-5-6"
+         width="9.6777792"
+         height="7.7734842"
+         x="184.99609"
+         y="62.626957" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.274637"
+         x="187.52754"
+         y="67.923271"
+         id="text15070-5-8"><tspan
+           id="tspan15068-6-2"
+           style="fill:#1a1a1a;stroke-width:0.274637"
+           x="187.52754"
+           y="67.923271">N4</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="196.31969"
+         y="66.480873"
+         id="text15074-2-9"><tspan
+           id="tspan15072-9-7"
+           style="fill:#000000;stroke-width:0.185463"
+           x="196.31969"
+           y="66.480873">val:1</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="195.9176"
+         y="69.162903"
+         id="text15078-8-8"><tspan
+           id="tspan15076-1-4"
+           style="fill:#000000;stroke-width:0.185463"
+           x="195.9176"
+           y="69.162903">grad:</tspan></text>
+      <rect
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect15080-6-2"
+         width="17.207394"
+         height="7.7718573"
+         x="195.03456"
+         y="62.627773" />
+    </g>
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 685.22097,529.89279 h 4.06726"
+       id="path15084-4-08" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 703.42681,529.50541 6.77885,0.0968"
+       id="path15086-7-3" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 714.75709,529.60225 4.16411,0.0968"
+       id="path15088-5-3" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#ffb380;stroke:none;stroke-width:0.304342;stroke-dasharray:none"
+       id="rect15094-4-0"
+       width="2.2757347"
+       height="1.4041765"
+       x="642.99481"
+       y="516.62616" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#ffb380;stroke:none;stroke-width:0.304342;stroke-dasharray:none"
+       id="rect15096-6-7"
+       width="2.2757347"
+       height="1.4041765"
+       x="642.60742"
+       y="531.73273" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#ffb380;stroke:none;stroke-width:0.304342;stroke-dasharray:none"
+       id="rect15098-6-5"
+       width="2.2757347"
+       height="1.4041765"
+       x="672.19189"
+       y="522.43634" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#ffb380;stroke:none;stroke-width:0.304342;stroke-dasharray:none"
+       id="rect15100-6-9"
+       width="2.2757347"
+       height="1.4041765"
+       x="698.43549"
+       y="528.34344" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#ffb380;stroke:none;stroke-width:0.47606;stroke-dasharray:none"
+       id="rect15102-1-8"
+       width="5.5682869"
+       height="1.4041765"
+       x="726.85803"
+       y="528.00446" />
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect15130-6-4"
+       width="5.0093565"
+       height="4.0236664"
+       x="721.51941"
+       y="542.74274" />
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="727.10675"
+       y="544.32672"
+       id="text15134-3-3"><tspan
+         id="tspan15132-8-3"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="727.10675"
+         y="544.32672">val:1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="727.17255"
+       y="546.12573"
+       id="text15138-6-4"><tspan
+         id="tspan15136-5-0"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="727.17255"
+         y="546.12573">grad:0</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect15140-0-0"
+       width="8.9067926"
+       height="4.0228243"
+       x="726.71545"
+       y="542.7431" />
+    <circle
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.240519;stroke-dasharray:none"
+       id="circle15142-4-3"
+       cx="742.18579"
+       cy="535.42285"
+       r="2.1471677" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 735.84107,529.76613 4.65636,4.17704"
+       id="path15144-9-4" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 735.63564,544.41999 5.2042,-7.25845"
+       id="path15146-2-5" />
+    <path
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 741.03922,535.38861 h 2.27574"
+       id="path15170-6-8" />
+    <g
+       id="g15178-6-9"
+       transform="matrix(0.51761429,0,0,0.51761429,229.07202,84.55017)"
+       style="display:inline">
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle15172-9-9"
+         cx="1048.2102"
+         cy="870.33838"
+         r="4.1482" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.03492px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:#1a1a1a;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.432312;stroke-dasharray:none;stroke-opacity:1"
+         x="1044.4659"
+         y="871.64758"
+         id="text15176-9-6"><tspan
+           id="tspan15174-7-5"
+           style="fill:#1a1a1a;stroke:#1a1a1a;stroke-width:0.432312"
+           x="1044.4659"
+           y="871.64758">**2</tspan></text>
+    </g>
+    <g
+       id="g15196-3-2"
+       transform="matrix(0.51761429,0,0,0.51761429,652.9733,500.69681)"
+       style="display:inline">
+      <rect
+         style="fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect15180-5-9"
+         width="9.6777792"
+         height="7.7734842"
+         x="184.99609"
+         y="62.626957" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.274637"
+         x="187.52754"
+         y="67.923271"
+         id="text15184-0-4"><tspan
+           id="tspan15182-6-9"
+           style="fill:#1a1a1a;stroke-width:0.274637"
+           x="187.52754"
+           y="67.923271">D3</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="196.31969"
+         y="66.480873"
+         id="text15188-4-4"><tspan
+           id="tspan15186-9-6"
+           style="fill:#000000;stroke-width:0.185463"
+           x="196.31969"
+           y="66.480873">val:0.24</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="195.9176"
+         y="69.162903"
+         id="text15192-3-8"><tspan
+           id="tspan15190-0-8"
+           style="fill:#000000;stroke-width:0.185463"
+           x="195.9176"
+           y="69.162903">grad:</tspan></text>
+      <rect
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect15194-0-6"
+         width="17.207394"
+         height="7.7718573"
+         x="195.03456"
+         y="62.627773" />
+    </g>
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 744.48689,535.31583 h 4.06726"
+       id="path15198-5-6" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 762.69273,534.92845 6.77884,0.0969"
+       id="path15200-3-4" />
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect15222-8-5"
+       width="5.0093565"
+       height="4.0236664"
+       x="603.90619"
+       y="561.6344" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.142156"
+       x="605.21649"
+       y="564.37573"
+       id="text15226-7-86"><tspan
+         id="tspan15224-8-1"
+         style="fill:#1a1a1a;stroke-width:0.142156"
+         x="605.21649"
+         y="564.37573">w1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="609.49353"
+       y="563.21832"
+       id="text15230-2-7"><tspan
+         id="tspan15228-5-5"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="609.49353"
+         y="563.21832">val:4</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="609.55927"
+       y="565.0174"
+       id="text15234-6-4"><tspan
+         id="tspan15232-2-5"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="609.55927"
+         y="565.0174">grad:0</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect15236-0-7"
+       width="8.9067926"
+       height="4.0228243"
+       x="609.10223"
+       y="561.63477" />
+    <g
+       id="g15246-9-2"
+       transform="matrix(0.51761429,0,0,0.51761429,621.76239,535.42153)"
+       style="display:inline">
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle15238-3-1"
+         cx="65.668121"
+         cy="59.400654"
+         r="4.1482" />
+      <g
+         id="g15244-4-4"
+         transform="translate(0.74835468,0.56126601)">
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 64.919767,56.500778 v 4.95785"
+           id="path15240-4-1" />
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 62.58116,58.839385 h 4.396583"
+           id="path15242-5-2" />
+      </g>
+    </g>
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect15248-0-3"
+       width="5.0093565"
+       height="4.0236664"
+       x="603.95459"
+       y="556.55035" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.142156"
+       x="605.26489"
+       y="559.29169"
+       id="text15252-7-3"><tspan
+         id="tspan15250-7-2"
+         style="fill:#1a1a1a;stroke-width:0.142156"
+         x="605.26489"
+         y="559.29169">x1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="609.81586"
+       y="558.5451"
+       id="text15256-9-58"><tspan
+         id="tspan15254-1-6"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="609.81586"
+         y="558.5451">val:0.5</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="609.60767"
+       y="559.93335"
+       id="text15260-4-7"><tspan
+         id="tspan15258-6-5"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="609.60767"
+         y="559.93335">grad:0</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect15262-3-9"
+       width="8.9067926"
+       height="4.0228243"
+       x="609.15063"
+       y="556.55072" />
+    <g
+       id="g15270-7-0"
+       transform="matrix(0.51761429,0,0,0.51761429,679.41857,547.18939)"
+       style="display:inline">
+      <text
+         xml:space="preserve"
+         style="font-size:3.1045px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:none;stroke:#1a1a1a;stroke-width:0.332625;stroke-dasharray:none"
+         x="61.817444"
+         y="48.385059"
+         id="text15266-3-3"><tspan
+           id="tspan15264-9-29"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.1045px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 100;stroke-width:0.332625"
+           x="61.817444"
+           y="48.385059">tanh</tspan></text>
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle15268-9-9"
+         cx="65.481033"
+         cy="47.707611"
+         r="4.1482" />
+    </g>
+    <g
+       id="g15280-7-3"
+       transform="matrix(0.51761429,0,0,0.51761429,591.47864,523.35537)"
+       style="display:inline">
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle15272-7-4"
+         cx="65.761665"
+         cy="71.374329"
+         r="4.1482" />
+      <g
+         id="g15278-9-22"
+         transform="translate(-10.851143,4.7707611)">
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.578744;stroke-dasharray:none"
+           d="m 74.968626,64.792545 3.387537,3.418039"
+           id="path15274-6-9" />
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.578744;stroke-dasharray:none"
+           d="m 78.251107,64.69447 -3.177425,3.614189"
+           id="path15276-2-3" />
+      </g>
+    </g>
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect15282-5-5"
+       width="5.0093565"
+       height="4.0236664"
+       x="603.80933"
+       y="575.77258" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.142156"
+       x="605.11963"
+       y="578.51404"
+       id="text15286-7-8"><tspan
+         id="tspan15284-1-9"
+         style="fill:#1a1a1a;stroke-width:0.142156"
+         x="605.11963"
+         y="578.51404">w2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="609.39667"
+       y="577.35657"
+       id="text15290-8-7"><tspan
+         id="tspan15288-1-1"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="609.39667"
+         y="577.35657">val:2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="609.4624"
+       y="579.15564"
+       id="text15294-3-8"><tspan
+         id="tspan15292-4-80"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="609.4624"
+         y="579.15564">grad:0</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect15296-6-5"
+       width="8.9067926"
+       height="4.0228243"
+       x="609.00537"
+       y="575.77307" />
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect15298-2-6"
+       width="5.0093565"
+       height="4.0236664"
+       x="603.85773"
+       y="570.68866" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.142156"
+       x="605.16803"
+       y="573.42999"
+       id="text15302-4-3"><tspan
+         id="tspan15300-3-2"
+         style="fill:#1a1a1a;stroke-width:0.142156"
+         x="605.16803"
+         y="573.42999">x2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="609.44513"
+       y="572.27258"
+       id="text15306-7-8"><tspan
+         id="tspan15304-7-3"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="609.44513"
+         y="572.27258">val:-1.5</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="609.51093"
+       y="574.07166"
+       id="text15310-4-6"><tspan
+         id="tspan15308-5-4"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="609.51093"
+         y="574.07166">grad:0</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect15312-5-2"
+       width="8.9067926"
+       height="4.0228243"
+       x="609.05383"
+       y="570.68909" />
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect15314-0-54"
+       width="5.0093565"
+       height="4.0236664"
+       x="663.26892"
+       y="579.40411" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.142156"
+       x="664.57922"
+       y="582.14551"
+       id="text15318-1-90"><tspan
+         id="tspan15316-8-0"
+         style="fill:#1a1a1a;stroke-width:0.142156"
+         x="664.57922"
+         y="582.14551">b</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="668.85626"
+       y="580.9881"
+       id="text15322-5-4"><tspan
+         id="tspan15320-1-7"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="668.85626"
+         y="580.9881">val:3</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="668.92206"
+       y="582.78717"
+       id="text15326-3-7"><tspan
+         id="tspan15324-3-6"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="668.92206"
+         y="582.78717">grad:0</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect15328-2-7"
+       width="8.9067926"
+       height="4.0228243"
+       x="668.46497"
+       y="579.40448" />
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect15330-5-0"
+       width="5.0093565"
+       height="4.0236664"
+       x="719.97809"
+       y="569.87219" />
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="725.56543"
+       y="571.47583"
+       id="text15334-0-94"><tspan
+         id="tspan15332-0-5"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="725.56543"
+         y="571.47583">val:-0.96</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="725.63123"
+       y="573.2749"
+       id="text15338-2-2"><tspan
+         id="tspan15336-1-6"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="725.63123"
+         y="573.2749">grad:</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.30528;stroke-dasharray:none"
+       id="rect15340-4-50"
+       width="11.151152"
+       height="3.9914491"
+       x="725.18976"
+       y="569.88831" />
+    <g
+       id="g15350-4-8"
+       transform="matrix(0.51761429,0,0,0.51761429,590.65548,538.32529)"
+       style="display:inline">
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle15342-0-3"
+         cx="65.761665"
+         cy="71.374329"
+         r="4.1482" />
+      <g
+         id="g15348-8-9"
+         transform="translate(-10.851143,4.7707611)">
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.578744;stroke-dasharray:none"
+           d="m 74.968626,64.792545 3.387537,3.418039"
+           id="path15344-2-6" />
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.578744;stroke-dasharray:none"
+           d="m 78.251107,64.69447 -3.177425,3.614189"
+           id="path15346-6-6" />
+      </g>
+    </g>
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 618.25483,558.32281 5.22935,1.45257"
+       id="path15352-4-9" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 618.15798,563.649 5.51989,-2.13049"
+       id="path15354-8-4" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 617.96429,572.46139 4.74518,2.13049"
+       id="path15356-5-2" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 617.67381,577.88443 4.84197,-1.54943"
+       id="path15358-9-74" />
+    <g
+       id="g15368-2-2"
+       transform="matrix(0.51761429,0,0,0.51761429,649.94448,541.33683)"
+       style="display:inline">
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle15360-4-2"
+         cx="65.668121"
+         cy="59.400654"
+         r="4.1482" />
+      <g
+         id="g15366-6-3"
+         transform="translate(0.74835468,0.56126601)">
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 64.919767,56.500778 v 4.95785"
+           id="path15362-5-8" />
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 62.58116,58.839385 h 4.396583"
+           id="path15364-0-5" />
+      </g>
+    </g>
+    <g
+       id="g15386-8-9"
+       transform="matrix(0.51761429,0,0,0.51761429,594.5291,537.96793)"
+       style="display:inline">
+      <rect
+         style="fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect15370-9-7"
+         width="9.6777792"
+         height="7.7734842"
+         x="75.888626"
+         y="39.25703" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.274637"
+         x="78.420082"
+         y="44.553341"
+         id="text15374-2-8"><tspan
+           id="tspan15372-0-4"
+           style="fill:#1a1a1a;stroke-width:0.274637"
+           x="78.420082"
+           y="44.553341">N1</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="87.212227"
+         y="43.110943"
+         id="text15378-6-2"><tspan
+           id="tspan15376-3-2"
+           style="fill:#000000;stroke-width:0.185463"
+           x="87.212227"
+           y="43.110943">val:2</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="86.810143"
+         y="45.792973"
+         id="text15382-6-0"><tspan
+           id="tspan15380-0-7"
+           style="fill:#000000;stroke-width:0.185463"
+           x="86.810143"
+           y="45.792973">grad:</tspan></text>
+      <rect
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect15384-6-3"
+         width="17.207394"
+         height="7.7718573"
+         x="85.927094"
+         y="39.257847" />
+    </g>
+    <g
+       id="g15404-5-1"
+       transform="matrix(0.51761429,0,0,0.51761429,594.23856,552.78449)"
+       style="display:inline">
+      <rect
+         style="fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect15388-1-4"
+         width="9.6777792"
+         height="7.7734842"
+         x="75.888626"
+         y="39.25703" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.274637"
+         x="78.420082"
+         y="44.553341"
+         id="text15392-4-7"><tspan
+           id="tspan15390-7-0"
+           style="fill:#1a1a1a;stroke-width:0.274637"
+           x="78.420082"
+           y="44.553341">N2</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="87.212227"
+         y="43.110943"
+         id="text15396-3-2"><tspan
+           id="tspan15394-3-3"
+           style="fill:#000000;stroke-width:0.185463"
+           x="87.212227"
+           y="43.110943">val:-3</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="86.810143"
+         y="45.792973"
+         id="text15400-4-8"><tspan
+           id="tspan15398-4-2"
+           style="fill:#000000;stroke-width:0.185463"
+           x="86.810143"
+           y="45.792973">grad:</tspan></text>
+      <rect
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect15402-2-9"
+         width="17.207394"
+         height="7.7718573"
+         x="85.927094"
+         y="39.257847" />
+    </g>
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 627.55144,560.5501 h 6.10092"
+       id="path15406-0-5" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 626.77673,575.17291 h 6.77879"
+       id="path15408-1-6" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 647.98464,560.35646 5.61674,5.22935"
+       id="path15410-1-7" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 647.50046,575.56029 6.77878,-7.65034"
+       id="path15412-6-6" />
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect15414-1-6"
+       width="5.0093565"
+       height="4.0236664"
+       x="663.44305"
+       y="564.19592" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.142156"
+       x="664.75336"
+       y="566.93726"
+       id="text15418-4-5"><tspan
+         id="tspan15416-6-8"
+         style="fill:#1a1a1a;stroke-width:0.142156"
+         x="664.75336"
+         y="566.93726">N3</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="669.30426"
+       y="566.19067"
+       id="text15422-3-8"><tspan
+         id="tspan15420-2-2"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="669.30426"
+         y="566.19067">val:-1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="669.09619"
+       y="567.57892"
+       id="text15426-6-6"><tspan
+         id="tspan15424-9-1"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="669.09619"
+         y="567.57892">grad:</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect15428-9-9"
+       width="8.9067926"
+       height="4.0228243"
+       x="668.63922"
+       y="564.19629" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 657.86946,566.29055 5.40959,-0.13691"
+       id="path15430-1-4" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 677.59056,566.4275 4.65636,4.17705"
+       id="path15432-4-3" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 677.38512,581.08137 5.2042,-7.25845"
+       id="path15434-2-5" />
+    <g
+       id="g15452-2-5"
+       transform="matrix(0.51761429,0,0,0.51761429,594.5291,537.45503)"
+       style="display:inline">
+      <rect
+         style="fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect15436-0-3"
+         width="9.6777792"
+         height="7.7734842"
+         x="184.99609"
+         y="62.626957" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.274637"
+         x="187.52754"
+         y="67.923271"
+         id="text15440-6-41"><tspan
+           id="tspan15438-1-4"
+           style="fill:#1a1a1a;stroke-width:0.274637"
+           x="187.52754"
+           y="67.923271">N4</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="196.31969"
+         y="66.480873"
+         id="text15444-9-8"><tspan
+           id="tspan15442-2-7"
+           style="fill:#000000;stroke-width:0.185463"
+           x="196.31969"
+           y="66.480873">val:-2</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="195.9176"
+         y="69.162903"
+         id="text15448-2-0"><tspan
+           id="tspan15446-1-4"
+           style="fill:#000000;stroke-width:0.185463"
+           x="195.9176"
+           y="69.162903">grad:</tspan></text>
+      <rect
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect15450-0-2"
+         width="17.207394"
+         height="7.7718573"
+         x="195.03456"
+         y="62.627773" />
+    </g>
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 686.04269,572.07406 h 4.06726"
+       id="path15454-1-3" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 704.24853,571.68667 6.77884,0.0969"
+       id="path15456-7-8" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 715.5788,571.78352 4.16411,0.0968"
+       id="path15458-1-0" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#ffb380;stroke:none;stroke-width:0.304342;stroke-dasharray:none"
+       id="rect15464-4-6"
+       width="2.2757347"
+       height="1.4041765"
+       x="643.38074"
+       y="559.0495" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#ffb380;stroke:none;stroke-width:0.304342;stroke-dasharray:none"
+       id="rect15466-9-9"
+       width="2.2757347"
+       height="1.4041765"
+       x="643.526"
+       y="573.62347" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#ffb380;stroke:none;stroke-width:0.304342;stroke-dasharray:none"
+       id="rect15468-9-8"
+       width="2.2757347"
+       height="1.4041765"
+       x="673.5462"
+       y="564.85974" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#ffb380;stroke:none;stroke-width:0.304342;stroke-dasharray:none"
+       id="rect15470-7-2"
+       width="2.2757347"
+       height="1.4041765"
+       x="700.39502"
+       y="570.51031" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#ffb380;stroke:none;stroke-width:0.47606;stroke-dasharray:none"
+       id="rect15472-9-3"
+       width="5.5682869"
+       height="1.4041765"
+       x="729.66351"
+       y="570.21387" />
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect15500-6-5"
+       width="5.0093565"
+       height="4.0236664"
+       x="722.34113"
+       y="584.92401" />
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="727.92847"
+       y="586.508"
+       id="text15504-1-9"><tspan
+         id="tspan15502-0-3"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="727.92847"
+         y="586.508">val:1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="727.99426"
+       y="588.30707"
+       id="text15508-1-8"><tspan
+         id="tspan15506-8-4"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="727.99426"
+         y="588.30707">grad:0</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect15510-1-9"
+       width="8.9067926"
+       height="4.0228243"
+       x="727.53717"
+       y="584.92438" />
+    <circle
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.240519;stroke-dasharray:none"
+       id="circle15512-4-8"
+       cx="743.00751"
+       cy="577.60406"
+       r="2.1471677" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 736.66279,571.94739 4.65635,4.17705"
+       id="path15514-7-7" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 736.45734,586.60126 5.2042,-7.25845"
+       id="path15516-3-3" />
+    <path
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 741.86093,577.56988 h 2.27574"
+       id="path15540-8-1" />
+    <g
+       id="g15548-7-0"
+       transform="matrix(0.51761429,0,0,0.51761429,229.89374,126.73142)"
+       style="display:inline">
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle15542-9-6"
+         cx="1048.2102"
+         cy="870.33838"
+         r="4.1482" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.03492px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:#1a1a1a;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.432312;stroke-dasharray:none;stroke-opacity:1"
+         x="1044.4659"
+         y="871.64758"
+         id="text15546-1-1"><tspan
+           id="tspan15544-3-5"
+           style="fill:#1a1a1a;stroke:#1a1a1a;stroke-width:0.432312"
+           x="1044.4659"
+           y="871.64758">**2</tspan></text>
+    </g>
+    <g
+       id="g15566-8-0"
+       transform="matrix(0.51761429,0,0,0.51761429,653.79501,542.87808)"
+       style="display:inline">
+      <rect
+         style="fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect15550-4-7"
+         width="9.6777792"
+         height="7.7734842"
+         x="184.99609"
+         y="62.626957" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.274637"
+         x="187.52754"
+         y="67.923271"
+         id="text15554-2-9"><tspan
+           id="tspan15552-4-5"
+           style="fill:#1a1a1a;stroke-width:0.274637"
+           x="187.52754"
+           y="67.923271">D4</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="196.31969"
+         y="66.480873"
+         id="text15558-8-2"><tspan
+           id="tspan15556-7-3"
+           style="fill:#000000;stroke-width:0.185463"
+           x="196.31969"
+           y="66.480873">val:1.96</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:3.33526px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';fill:#000000;stroke:#1a1a1a;stroke-width:0.185463"
+         x="195.9176"
+         y="69.162903"
+         id="text15562-6-3"><tspan
+           id="tspan15560-1-9"
+           style="fill:#000000;stroke-width:0.185463"
+           x="195.9176"
+           y="69.162903">grad:</tspan></text>
+      <rect
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+         id="rect15564-6-1"
+         width="17.207394"
+         height="7.7718573"
+         x="195.03456"
+         y="62.627773" />
+    </g>
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 745.30861,577.4971 h 4.06725"
+       id="path15568-9-4" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       d="m 763.51445,577.10972 6.77882,0.0968"
+       id="path15570-2-9" />
+    <g
+       id="g17675-6-4"
+       transform="matrix(0.37201133,0,0,0.37201133,348.80881,138.25144)"
+       style="display:inline">
+      <rect
+         style="font-variation-settings:'wght' 100;fill:#ffeeaa;stroke:#ffcc00;stroke-width:0.21394;stroke-dasharray:none"
+         id="rect9063-0-1-6"
+         width="12.954265"
+         height="10.792192"
+         x="684.01935"
+         y="1011.1635" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:none;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none"
+         x="686.84436"
+         y="1017.7649"
+         id="text9067-5-9-5"><tspan
+           id="tspan9065-0-3-8"
+           style="stroke-width:0.529167"
+           x="686.84436"
+           y="1017.7649"
+           dy="0 0 3">X13</tspan></text>
+    </g>
+    <g
+       id="g17680-7-9"
+       transform="matrix(0.35585198,0,0,0.35585198,359.86012,163.35126)"
+       style="display:inline">
+      <rect
+         style="font-variation-settings:'wght' 100;fill:#ffeeaa;stroke:#ffcc00;stroke-width:0.21501;stroke-dasharray:none"
+         id="rect9057-8-8-94"
+         width="13.085486"
+         height="10.791122"
+         x="684.26373"
+         y="1026.1311" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:none;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none"
+         x="686.09601"
+         y="1032.7319"
+         id="text9061-1-0-6"><tspan
+           id="tspan9059-8-6-4"
+           style="stroke-width:0.529167"
+           x="686.09601"
+           y="1032.7319"
+           dy="0 0 3"
+           rotate="0 0 0 0">X23</tspan></text>
+    </g>
+    <g
+       id="g17691-1-5"
+       transform="matrix(0.38073849,0,0,0.38073849,341.68162,144.78615)"
+       style="display:inline">
+      <rect
+         style="font-variation-settings:'wght' 100;fill:#ffeeaa;stroke:#ffcc00;stroke-width:0.21394;stroke-dasharray:none"
+         id="rect9051-7-5-0"
+         width="12.954265"
+         height="10.792192"
+         x="689.40179"
+         y="1081.0479" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:none;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none"
+         x="692.22681"
+         y="1087.6493"
+         id="text9055-2-5-72"><tspan
+           id="tspan9053-4-7-7"
+           style="stroke-width:0.529167"
+           x="692.22681"
+           y="1087.6493"
+           dy="0 0 3">X14</tspan></text>
+    </g>
+    <g
+       id="g17696-9-6"
+       transform="matrix(0.39318174,0,0,0.39318174,332.57665,139.63488)"
+       style="display:inline">
+      <rect
+         style="font-variation-settings:'wght' 100;fill:#ffeeaa;stroke:#ffcc00;stroke-width:0.21501;stroke-dasharray:none"
+         id="rect9011-1-7-1"
+         width="13.085486"
+         height="10.791122"
+         x="689.64618"
+         y="1096.0155" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:none;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none"
+         x="691.47845"
+         y="1102.6163"
+         id="text9015-2-2-0"><tspan
+           id="tspan9013-2-7-74"
+           style="stroke-width:0.529167"
+           x="691.47845"
+           y="1102.6163"
+           dy="0 0 3">X24</tspan></text>
+    </g>
+    <g
+       id="g13925-9-7"
+       transform="matrix(0.51761429,0,0,0.51761429,473.4001,165.80282)"
+       style="display:inline;fill:#ffccaa;stroke:#aa4400">
+      <g
+         id="g13917-2-4"
+         transform="translate(281.28244,46.19404)"
+         style="fill:#ffccaa;stroke:#aa4400;stroke-opacity:1">
+        <circle
+           style="font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#aa4400;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1"
+           id="circle13911-0-7"
+           cx="195.9901"
+           cy="564.94531"
+           r="5.8208332" />
+        <text
+           xml:space="preserve"
+           style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#aa4400;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1"
+           x="193.17821"
+           y="564.74994"
+           id="text13915-9-3"><tspan
+             id="tspan13913-3-1"
+             style="fill:#ffccaa;stroke:#aa4400;stroke-width:0.529167;stroke-opacity:1"
+             x="193.17821"
+             y="564.74994"
+             dy="0 3">y2</tspan></text>
+      </g>
+      <g
+         id="g13923-3-9"
+         transform="translate(7.4014878,58.210714)"
+         style="fill:#ffccaa;stroke:#aa4400">
+        <path
+           style="font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#aa4400;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 467.91562,549.24192 1.98437,-1.05833"
+           id="path13919-7-6" />
+        <path
+           style="font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#aa4400;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 469.64672,548.16857 1.92759,1.15853"
+           id="path13921-9-2" />
+      </g>
+    </g>
+    <g
+       id="g13941-0-8"
+       transform="matrix(0.51761429,0,0,0.51761429,620.56963,204.55297)"
+       style="display:inline">
+      <circle
+         style="font-variation-settings:'wght' 100;fill:#ffeeaa;stroke:#ffcc00;stroke-width:0.529167;stroke-dasharray:none"
+         id="circle13935-4-8"
+         cx="195.9901"
+         cy="564.94531"
+         r="5.8208332" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:none;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none"
+         x="193.17821"
+         y="564.74994"
+         id="text13939-7-5"><tspan
+           id="tspan13937-1-7"
+           style="stroke-width:0.529167"
+           x="193.17821"
+           y="564.74994"
+           dy="0 3">y2</tspan></text>
+    </g>
+    <g
+       id="g13893-6-3"
+       transform="matrix(0.51761429,0,0,0.51761429,473.71656,191.8661)"
+       style="display:inline;fill:#ffccaa;stroke:#aa4400">
+      <g
+         id="g13885-6-49"
+         transform="translate(283.53141,168.69612)"
+         style="fill:#ffccaa;stroke:#aa4400;stroke-opacity:1">
+        <circle
+           style="font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#aa4400;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1"
+           id="circle13879-7-7"
+           cx="195.9901"
+           cy="564.94531"
+           r="5.8208332" />
+        <text
+           xml:space="preserve"
+           style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#aa4400;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1"
+           x="193.17821"
+           y="564.74994"
+           id="text13883-2-5"><tspan
+             id="tspan13881-4-0"
+             style="fill:#ffccaa;stroke:#aa4400;stroke-width:0.529167;stroke-opacity:1"
+             x="193.17821"
+             y="564.74994"
+             dy="0 3">y4</tspan></text>
+      </g>
+      <g
+         id="g13891-4-6"
+         transform="translate(9.6504457,180.71279)"
+         style="fill:#ffccaa;stroke:#aa4400">
+        <path
+           style="font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#aa4400;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 467.91562,549.24192 1.98437,-1.05833"
+           id="path13887-3-7" />
+        <path
+           style="font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#aa4400;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 469.64672,548.16857 1.92759,1.15853"
+           id="path13889-1-2" />
+      </g>
+    </g>
+    <g
+       id="g13909-9-3"
+       transform="matrix(0.51761429,0,0,0.51761429,474.22447,180.4564)"
+       style="display:inline;fill:#ffccaa;stroke:#aa4400">
+      <g
+         id="g13901-1-12"
+         transform="translate(281.67932,109.16487)"
+         style="fill:#ffccaa;stroke:#aa4400;stroke-opacity:1">
+        <circle
+           style="font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#aa4400;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1"
+           id="circle13895-6-9"
+           cx="195.9901"
+           cy="564.94531"
+           r="5.8208332" />
+        <text
+           xml:space="preserve"
+           style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#aa4400;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1"
+           x="193.17821"
+           y="564.74994"
+           id="text13899-3-7"><tspan
+             id="tspan13897-4-3"
+             style="fill:#ffccaa;stroke:#aa4400;stroke-width:0.529167;stroke-opacity:1"
+             x="193.17821"
+             y="564.74994"
+             dy="0 3">y3</tspan></text>
+      </g>
+      <g
+         id="g13907-2-3"
+         transform="translate(7.7983628,121.18155)"
+         style="fill:#ffccaa;stroke:#aa4400">
+        <path
+           style="font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#aa4400;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 467.91562,549.24192 1.98437,-1.05833"
+           id="path13903-9-5" />
+        <path
+           style="font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#aa4400;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 469.64672,548.16857 1.92759,1.15853"
+           id="path13905-2-7" />
+      </g>
+    </g>
+    <g
+       id="g13949-8-1"
+       transform="matrix(0.51761429,0,0,0.51761429,621.80485,244.47501)"
+       style="display:inline">
+      <circle
+         style="font-variation-settings:'wght' 100;fill:#ffeeaa;stroke:#ffcc00;stroke-width:0.529167;stroke-dasharray:none"
+         id="circle13943-1-9"
+         cx="195.9901"
+         cy="579.43744"
+         r="5.8208332" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:none;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none"
+         x="193.19629"
+         y="579.21796"
+         id="text13947-6-1"><tspan
+           id="tspan13945-9-8"
+           style="stroke-width:0.529167"
+           x="193.19629"
+           y="579.21796"
+           dy="0 3">y3</tspan></text>
+    </g>
+    <g
+       id="g13957-7-3"
+       transform="matrix(0.51761429,0,0,0.51761429,622.65271,278.36013)"
+       style="display:inline">
+      <circle
+         style="font-variation-settings:'wght' 100;fill:#ffeeaa;stroke:#ffcc00;stroke-width:0.529167;stroke-dasharray:none"
+         id="circle13951-2-8"
+         cx="195.9901"
+         cy="596.3775"
+         r="5.8208332" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:none;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none"
+         x="193.07451"
+         y="596.18213"
+         id="text13955-0-1"><tspan
+           id="tspan13953-6-7"
+           style="stroke-width:0.529167"
+           x="193.07451"
+           y="596.18213"
+           dy="0 3">y4</tspan></text>
+    </g>
+    <g
+       id="g19751-1-4"
+       transform="matrix(0.51761429,0,0,0.51761429,751.29378,475.14209)"
+       style="display:inline">
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.464669;stroke-dasharray:none"
+         id="circle19743-3-4"
+         cx="65.668121"
+         cy="59.400654"
+         r="4.1482" />
+      <g
+         id="g19749-2-2"
+         transform="translate(0.74835468,0.56126601)">
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 64.919767,56.500778 v 4.95785"
+           id="path19745-2-5" />
+        <path
+           style="fill:none;stroke:#1a1a1a;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 62.58116,58.839385 h 4.396583"
+           id="path19747-7-1" />
+      </g>
+    </g>
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none;stroke-opacity:1"
+       d="m 772.48972,442.94358 h 12.20183 v 60.81533"
+       id="path19807-9-7" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none;stroke-opacity:1"
+       d="m 770.35927,489.62038 v 16.07533 h 12.58915"
+       id="path19863-4-8" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none;stroke-opacity:1"
+       d="m 785.12272,507.93673 v 27.11652 h -11.50398"
+       id="path19865-3-4" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;fill-opacity:1;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none;stroke-opacity:1"
+       d="m 774.57742,577.23452 h 11.09309 v -69.16083"
+       id="path19867-8-4" />
+    <g
+       id="g25213-4-4"
+       transform="matrix(0.51761429,0,0,0.51761429,160.00658,-81.80986)"
+       style="display:inline">
+      <rect
+         style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#e580ff;stroke:none;stroke-width:4.38543;stroke-dasharray:none"
+         id="rect23026-4-3"
+         width="54.983845"
+         height="12.067219"
+         x="1080.2302"
+         y="961.52325" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.97181px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.639835;stroke-dasharray:none"
+         x="1086.6091"
+         y="969.03265"
+         id="text25206-2-6"><tspan
+           id="tspan25204-7-5"
+           style="stroke-width:0.639835"
+           x="1086.6091"
+           y="969.03265">Compute Loss</tspan></text>
+    </g>
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;fill-opacity:1;stroke:#dd55ff;stroke-width:0.290981;stroke-dasharray:1.16393, 0.290981;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect29630-5-5"
+       width="104.9059"
+       height="168.53917"
+       x="715.2204"
+       y="422.422" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#e580ff;stroke:none;stroke-width:0.53117;stroke-dasharray:none"
+       id="rect30211-9-3"
+       width="6.932106"
+       height="1.4041765"
+       x="726.35809"
+       y="451.45752" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#e580ff;stroke:none;stroke-width:0.53117;stroke-dasharray:none"
+       id="rect30213-9-0"
+       width="6.932106"
+       height="1.4041765"
+       x="726.42657"
+       y="495.65881" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#e580ff;stroke:none;stroke-width:0.53117;stroke-dasharray:none"
+       id="rect30215-4-4"
+       width="6.932106"
+       height="1.4041765"
+       x="755.52887"
+       y="486.58578" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#e580ff;stroke:none;stroke-width:0.561772;stroke-dasharray:none"
+       id="rect30217-9-2"
+       width="7.7538185"
+       height="1.4041765"
+       x="754.80994"
+       y="533.73151" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#e580ff;stroke:none;stroke-width:0.53117;stroke-dasharray:none"
+       id="rect30219-1-8"
+       width="6.932106"
+       height="1.4041765"
+       x="726.97443"
+       y="542.95007" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#e580ff;stroke:none;stroke-width:0.568796;stroke-dasharray:none"
+       id="rect30221-7-9"
+       width="7.9489236"
+       height="1.4041765"
+       x="755.63409"
+       y="576.02386" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#e580ff;stroke:none;stroke-width:0.53117;stroke-dasharray:none"
+       id="rect30223-6-8"
+       width="6.932106"
+       height="1.4041765"
+       x="727.80438"
+       y="585.32422" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#80ffb3;stroke:none;stroke-width:0.640149;stroke-dasharray:none"
+       id="rect44881-0"
+       width="8.4699383"
+       height="1.6691828"
+       x="753.23792"
+       y="443.51593" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#80ffb3;stroke:none;stroke-width:0.640149;stroke-dasharray:none"
+       id="rect46603-3"
+       width="8.4699383"
+       height="1.6691828"
+       x="723.10413"
+       y="438.38666" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#80ffb3;stroke:none;stroke-width:0.640149;stroke-dasharray:none"
+       id="rect46615-0"
+       width="8.4699383"
+       height="1.6691828"
+       x="607.67108"
+       y="429.86475" />
+    <g
+       id="g59639-6"
+       transform="matrix(0.51761429,0,0,0.51761429,142.06586,-98.107161)"
+       style="display:inline">
+      <g
+         id="g59696-6">
+        <rect
+           style="font-variation-settings:'wght' 100;display:inline;opacity:1;fill:#e580ff;stroke:none;stroke-width:1.60435;stroke-dasharray:none"
+           id="rect59633-2"
+           width="7.3588471"
+           height="12.067219"
+           x="1107.2178"
+           y="993.00867" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.97181px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.639835;stroke-dasharray:none"
+           x="1109.3633"
+           y="1000.5181"
+           id="text59637-3"><tspan
+             id="tspan59635-3"
+             style="stroke-width:0.639835"
+             x="1109.3633"
+             y="1000.5181">2</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g68974-0"
+       transform="matrix(0.51761429,0,0,0.51761429,285.51091,-37.26358)"
+       style="display:inline">
+      <rect
+         style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#e580ff;stroke:none;stroke-width:4.38543;stroke-dasharray:none"
+         id="rect68968-3"
+         width="54.983845"
+         height="12.067219"
+         x="1080.2302"
+         y="961.52325" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.97181px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.639835;stroke-dasharray:none"
+         x="1086.6091"
+         y="969.03265"
+         id="text68972-8"><tspan
+           id="tspan68970-8"
+           style="stroke-width:0.639835"
+           x="1086.6091"
+           y="969.03265">Compute Loss</tspan></text>
+    </g>
+    <g
+       id="g68984-7"
+       transform="matrix(0.51761429,0,0,0.51761429,267.57019,-53.56088)"
+       style="display:inline">
+      <g
+         id="g68982-0">
+        <rect
+           style="font-variation-settings:'wght' 100;display:inline;opacity:1;fill:#e580ff;stroke:none;stroke-width:1.60435;stroke-dasharray:none"
+           id="rect68976-7"
+           width="7.3588471"
+           height="12.067219"
+           x="1107.2178"
+           y="993.00867" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.97181px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.639835;stroke-dasharray:none"
+           x="1109.3633"
+           y="1000.5181"
+           id="text68980-2"><tspan
+             id="tspan68978-8"
+             style="stroke-width:0.639835"
+             x="1109.3633"
+             y="1000.5181">2</tspan></text>
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:1.15157px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0640351"
+       x="809.26996"
+       y="505.58554"
+       id="text72675-8"><tspan
+         id="tspan72673-6"
+         style="fill:#000000;stroke-width:0.0640351"
+         x="809.26996"
+         y="505.58554">val:3.96</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:1.72638px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, Normal';display:inline;fill:#000000;stroke:#1a1a1a;stroke-width:0.0959982"
+       x="808.47894"
+       y="507.33926"
+       id="text72679-7"><tspan
+         id="tspan72677-7"
+         style="fill:#000000;stroke-width:0.0959982"
+         x="808.47894"
+         y="507.33926">grad:</tspan></text>
+    <rect
+       style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.273904;stroke-dasharray:none"
+       id="rect72681-9"
+       width="8.9067926"
+       height="4.0228243"
+       x="808.02185"
+       y="503.95657" />
+    <path
+       style="font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#1a1a1a;stroke-width:0.406486;stroke-dasharray:none"
+       d="m 787.59153,505.91638 h 8.95768"
+       id="path72683-9" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#e580ff;stroke:none;stroke-width:0.500337;stroke-dasharray:none"
+       id="rect72685-8"
+       width="6.8564448"
+       height="1.2596339"
+       x="808.74261"
+       y="504.49661" />
+    <rect
+       style="display:inline;fill:#f9f9f9;stroke:#1a1a1a;stroke-width:0.397592;stroke-dasharray:none"
+       id="rect72687-8"
+       width="10.889735"
+       height="3.8999798"
+       x="796.88361"
+       y="504.01797" />
+    <rect
+       style="font-variation-settings:'wght' 100;display:inline;opacity:0.5;fill:#e580ff;stroke:none;stroke-width:1.03053;stroke-dasharray:none"
+       id="rect72689-0"
+       width="10.410275"
+       height="3.5194619"
+       x="797.11481"
+       y="504.14789" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.83098px;font-family:Roboto;-inkscape-font-specification:'Roboto, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.0718309px;display:inline;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.143617;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       x="797.7641"
+       y="507.30133"
+       id="text72693-6"><tspan
+         id="tspan72691-3"
+         style="stroke-width:0.143617"
+         x="797.7641"
+         y="507.30133">Loss </tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:19.1098px;font-family:'Patrick Hand';-inkscape-font-specification:'Patrick Hand, Normal';letter-spacing:0.358309px;display:inline;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.716394;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       x="695.46228"
+       y="380.71548"
+       id="text1"><tspan
+         id="tspan1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.1098px;font-family:Roboto;-inkscape-font-specification:'Roboto, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;stroke:#ffffff;stroke-width:0.716394"
+         x="695.46228"
+         y="380.71548">Fonction de perte</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:19.1098px;font-family:'Patrick Hand';-inkscape-font-specification:'Patrick Hand, Normal';letter-spacing:0.358309px;display:inline;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.716394;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       x="693.87476"
+       y="380.18631"
+       id="text15-8-4"><tspan
+         id="tspan15-1-9"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.1098px;font-family:Roboto;-inkscape-font-specification:'Roboto, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;stroke:#000000;stroke-width:0.716394"
+         x="693.87476"
+         y="380.18631">Fonction de perte</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;white-space:pre;inline-size:118.638;display:inline;opacity:1;fill:#efbcfc;fill-opacity:1;stroke:none;stroke-width:0.969698;stroke-dasharray:0.969698, 0.969698;stroke-dashoffset:0;stroke-opacity:1"
+       x="842.96246"
+       y="499.26874"
+       id="text112688"
+       transform="translate(5.3934716,-21.531718)"><tspan
+         x="842.96246"
+         y="499.26874"
+         id="tspan3"><tspan
+           style="font-size:7.05556px;-inkscape-font-specification:'Roboto Mono, @wght=700';font-variation-settings:'wght' 700;fill:#000000"
+           id="tspan2">Calcul de l’écart entre les </tspan></tspan><tspan
+         x="842.96246"
+         y="508.0882"
+         id="tspan5"><tspan
+           style="font-size:7.05556px;-inkscape-font-specification:'Roboto Mono, @wght=700';font-variation-settings:'wght' 700;fill:#000000"
+           id="tspan4">prédictions du modèle et les </tspan></tspan><tspan
+         x="842.96246"
+         y="516.90766"
+         id="tspan7"><tspan
+           style="font-size:7.05556px;-inkscape-font-specification:'Roboto Mono, @wght=700';font-variation-settings:'wght' 700;fill:#000000"
+           id="tspan6">valeurs d’entrainement</tspan></tspan></text>
+    <rect
+       style="display:inline;fill:none;fill-opacity:1;stroke:#e580ff;stroke-width:0.342606;stroke-linejoin:round;stroke-dasharray:0.342606, 0.342606;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect6-7-0-5-5"
+       width="110.75769"
+       height="65.126251"
+       x="843.2323"
+       y="466.61285" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.69272px;font-family:Roboto;-inkscape-font-specification:'Roboto, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.0879885px;display:inline;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.175922;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       x="871.64679"
+       y="512.81824"
+       id="text1346-9-3-3"><tspan
+         id="tspan1344-1-2-5"
+         style="stroke-width:0.175922"
+         x="871.64679"
+         y="512.81824"
+         dy="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.5361855 0 2.5361855 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.5361855 2.5361855 2.5361855"
+         rotate="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"> (      -      )2 + (      -      )2  </tspan></text>
+    <g
+       id="g1360-9-4-6"
+       transform="matrix(0.51761429,0,0,0.51761429,632.30598,217.35784)"
+       style="display:inline;fill:#ffccaa;stroke:#d45500">
+      <circle
+         style="font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#d45500;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1"
+         id="circle1348-4-5-2"
+         cx="195.9901"
+         cy="564.94531"
+         r="5.8208332"
+         transform="translate(297.81891,3.3315412)" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#d45500;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1"
+         x="193.17821"
+         y="564.74994"
+         id="text1352-5-1-9"
+         transform="translate(297.81891,3.3315412)"><tspan
+           id="tspan1350-1-6-1"
+           style="fill:#ffccaa;stroke:#d45500;stroke-width:0.529167;stroke-opacity:1"
+           x="193.17821"
+           y="564.74994"
+           dy="0 3">y1</tspan></text>
+      <g
+         id="g1358-3-8-2"
+         transform="translate(23.937946,15.348215)"
+         style="fill:#ffccaa;stroke:#d45500">
+        <path
+           style="font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#d45500;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 467.91562,549.24192 1.98437,-1.05833"
+           id="path1354-9-9-70" />
+        <path
+           style="font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#d45500;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 469.64672,548.16857 1.92759,1.15853"
+           id="path1356-3-9-93" />
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.83098px;font-family:Roboto;-inkscape-font-specification:'Roboto, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.0718309px;display:inline;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.143617;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       x="853.8764"
+       y="512.54547"
+       id="text1364-5-7-6"><tspan
+         id="tspan1362-2-3-0"
+         style="stroke-width:0.143617"
+         x="853.8764"
+         y="512.54547">Loss = </tspan></text>
+    <g
+       id="g2-6"
+       transform="translate(525.18099,374.68931)"
+       style="display:inline">
+      <g
+         id="g1372-5-9-2"
+         transform="matrix(0.51761429,0,0,0.51761429,288.66854,-146.78479)"
+         style="fill:#ffccaa;stroke:#d45500;stroke-opacity:1">
+        <circle
+           style="font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#d45500;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1"
+           id="circle1366-9-8-6"
+           cx="195.9901"
+           cy="564.94531"
+           r="5.8208332" />
+        <text
+           xml:space="preserve"
+           style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#d45500;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1"
+           x="193.17821"
+           y="564.74994"
+           id="text1370-1-7-1"><tspan
+             id="tspan1368-7-9-87"
+             style="fill:#ffccaa;stroke:#d45500;stroke-width:0.529167;stroke-opacity:1"
+             x="193.17821"
+             y="564.74994"
+             dy="0 3">y4</tspan></text>
+      </g>
+      <g
+         id="g1378-3-9-9"
+         transform="matrix(0.51761429,0,0,0.51761429,146.90381,-140.5648)"
+         style="stroke:#d45500;stroke-opacity:1">
+        <path
+           style="font-variation-settings:'wght' 100;fill:#ff0066;stroke:#d45500;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1"
+           d="m 467.91562,549.24192 1.98437,-1.05833"
+           id="path1374-8-0-2" />
+        <path
+           style="font-variation-settings:'wght' 100;fill:#ff0066;stroke:#d45500;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1"
+           d="m 469.64672,548.16857 1.92759,1.15853"
+           id="path1376-6-7-0" />
+      </g>
+    </g>
+    <g
+       id="g1388-3-0-2"
+       transform="matrix(0.51761429,0,0,0.51761429,786.7181,228.05542)"
+       style="display:inline;fill:#ffccaa;stroke:#d45500;stroke-opacity:1">
+      <circle
+         style="font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#d45500;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1"
+         id="circle1382-4-8-37"
+         cx="195.9901"
+         cy="564.94531"
+         r="5.8208332" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#d45500;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1"
+         x="193.17821"
+         y="564.74994"
+         id="text1386-4-1-5"><tspan
+           id="tspan1384-0-7-9"
+           style="fill:#ffccaa;stroke:#d45500;stroke-width:0.529167;stroke-opacity:1"
+           x="193.17821"
+           y="564.74994"
+           dy="0 3">y3</tspan></text>
+    </g>
+    <g
+       id="g1394-3-7-22"
+       transform="matrix(0.51761429,0,0,0.51761429,644.95341,234.27543)"
+       style="display:inline;stroke:#d45500;stroke-opacity:1">
+      <path
+         style="font-variation-settings:'wght' 100;fill:#ff0066;stroke:#d45500;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1"
+         d="m 467.91562,549.24192 1.98437,-1.05833"
+         id="path1390-8-1-8" />
+      <path
+         style="font-variation-settings:'wght' 100;fill:#ff0066;stroke:#d45500;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1"
+         d="m 469.64672,548.16857 1.92759,1.15853"
+         id="path1392-8-4-97" />
+    </g>
+    <g
+       id="g1412-0-1-3"
+       transform="matrix(0.51761429,0,0,0.51761429,668.41996,195.30191)"
+       style="display:inline;fill:#ffccaa;stroke:#d45500">
+      <g
+         id="g1404-5-4-6"
+         transform="translate(281.28244,46.19404)"
+         style="fill:#ffccaa;stroke:#d45500;stroke-opacity:1">
+        <circle
+           style="font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#d45500;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1"
+           id="circle1398-0-5-1"
+           cx="195.9901"
+           cy="564.94531"
+           r="5.8208332" />
+        <text
+           xml:space="preserve"
+           style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#d45500;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1"
+           x="193.17821"
+           y="564.74994"
+           id="text1402-7-3-2"><tspan
+             id="tspan1400-8-1-9"
+             style="fill:#ffccaa;stroke:#d45500;stroke-width:0.529167;stroke-opacity:1"
+             x="193.17821"
+             y="564.74994"
+             dy="0 3">y2</tspan></text>
+      </g>
+      <g
+         id="g1410-5-3-31"
+         transform="translate(7.4014878,58.210714)"
+         style="fill:#ffccaa;stroke:#d45500">
+        <path
+           style="font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#d45500;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 467.91562,549.24192 1.98437,-1.05833"
+           id="path1406-7-4-9" />
+        <path
+           style="font-variation-settings:'wght' 100;fill:#ffccaa;stroke:#d45500;stroke-width:0.529167;stroke-dasharray:none"
+           d="m 469.64672,548.16857 1.92759,1.15853"
+           id="path1408-7-0-47" />
+      </g>
+    </g>
+    <g
+       id="g1420-6-8-8"
+       transform="matrix(0.51761429,0,0,0.51761429,776.37259,229.06773)"
+       style="display:inline">
+      <circle
+         style="font-variation-settings:'wght' 100;fill:#ffeeaa;stroke:#ffcc00;stroke-width:0.529167;stroke-dasharray:none"
+         id="circle1414-1-4-4"
+         cx="195.9901"
+         cy="545.64368"
+         r="5.8208332" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:none;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none"
+         x="193.54959"
+         y="545.4483"
+         id="text1418-1-2-50"><tspan
+           id="tspan1416-3-2-3"
+           style="stroke-width:0.529167"
+           x="193.54959"
+           y="545.4483"
+           dy="0 3">y1</tspan></text>
+    </g>
+    <g
+       id="g1428-8-5-6"
+       transform="matrix(0.51761429,0,0,0.51761429,804.11702,218.92109)"
+       style="display:inline">
+      <circle
+         style="font-variation-settings:'wght' 100;fill:#ffeeaa;stroke:#ffcc00;stroke-width:0.529167;stroke-dasharray:none"
+         id="circle1422-9-5-1"
+         cx="195.9901"
+         cy="564.94531"
+         r="5.8208332" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.9389px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:none;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none"
+         x="193.17821"
+         y="564.74994"
+         id="text1426-1-6-06"><tspan
+           id="tspan1424-5-6-3"
+           style="stroke-width:0.529167"
+           x="193.17821"
+           y="564.74994"
+           dy="0 3">y2</tspan></text>
+    </g>
+    <circle
+       style="font-variation-settings:'wght' 100;display:inline;fill:#ffeeaa;stroke:#ffcc00;stroke-width:0.273904;stroke-dasharray:none"
+       id="circle1430-2-4-2"
+       cx="878.09607"
+       cy="520.81647"
+       r="3.0129466" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;display:inline;fill:none;stroke:#000000;stroke-width:0.273904;stroke-dasharray:none"
+       x="876.64996"
+       y="520.70288"
+       id="text1434-9-6-0"><tspan
+         id="tspan1432-8-2-6"
+         style="stroke-width:0.273904"
+         x="876.64996"
+         y="520.70288"
+         dy="0 1.5528429">y3</tspan></text>
+    <g
+       id="g3"
+       transform="translate(526.43776,374.35858)"
+       style="display:inline">
+      <circle
+         style="font-variation-settings:'wght' 100;fill:#ffeeaa;stroke:#ffcc00;stroke-width:0.273904;stroke-dasharray:none"
+         id="circle1438-6-9-1"
+         cx="379.70218"
+         cy="146.32561"
+         r="3.0129466" />
+      <text
+         xml:space="preserve"
+         style="font-size:2.55644px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=100';font-variation-settings:'wght' 100;fill:none;stroke:#000000;stroke-width:0.273904;stroke-dasharray:none"
+         x="378.19305"
+         y="146.22452"
+         id="text1442-0-6-5"><tspan
+           id="tspan1440-8-9-5"
+           style="stroke-width:0.273904"
+           x="378.19305"
+           y="146.22452"
+           dy="0 1.5528429">y4</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.68128px;font-family:Roboto;-inkscape-font-specification:'Roboto, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.087774px;display:inline;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.175493;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       x="866.70081"
+       y="519.64935"
+       id="text1448-2-0-4"><tspan
+         id="tspan1446-8-4-7"
+         style="stroke-width:0.175493"
+         x="866.70081"
+         y="519.64935"
+         dy="0 2.5300021 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.5300021 2.5300021 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.5300021 2.5300021"
+         rotate="0">  + (      -      )2 + (      -      )2 </tspan></text>
+  </g>
+</svg>
