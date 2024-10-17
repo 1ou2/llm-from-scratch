@@ -25,7 +25,8 @@ On prend comme fonction de perte l'écart entre les valeurs prédites et les val
 - Gradient descent : algorithme d’optimisation général pour calculer les poids du modèle.
 - Backpropagation : c’est une étape de l’algorithme gradient descent, où on met à jour les poids du modèle en calculant des derivées partielles (le gradient) qui donne l’ajustement qu’on donne au poids pour converger vers un minimun.
 On part de l’output node, et on remonte le graphe jusqu’aux inputs node. D’où le terme de backpropagation
-  
+[![](backprop.svg)](backprop.svg)
+
 À chaque itération (backpass), on a un ajustement des poids. 
 - Soit [W]^n les poids à l’étape n
 - Lr : learning rate - un paramètre qui dit à quelle vitesse on veut aller (si c’est trop petit, on converge tout doucement, si c’est trop grand on peut osciller et ne pas trouver le min)
@@ -51,7 +52,7 @@ Pour cela on doit calculer la dérivée de L par rapport à a, soit dL/da. Pour 
 
 Effectuons la backpropagation manuelle
 
-# 1
+### 1
 dL/dL = 1 c’est le gradient local. 
 Notons la valeur du gradient sous la forme [gradient]
 
@@ -61,7 +62,7 @@ Notons la valeur du gradient sous la forme [gradient]
                   c --|             | (*) --> L [1]
                                 f --|
 
-# 2
+### 2
 Comme L = d*f
 dL/dd = f
 dL/df = d
@@ -72,7 +73,7 @@ dL/df = d
                   c --|             | (*) --> L [1]
                                 f --| [d]
 
-# 3
+### 3
 dL/de = dL/dd * dd/de
 d = e + c
 Sur une addition, cela correspond à faire une fois le gradient précédent
@@ -85,7 +86,7 @@ dd/de = 1 * grad[d]
                   c --| [f]            | (*) --> L [1]
                                    f --| [d]
 
-# 4
+### 4
 
     a --| [f*b]
         | (*)      --> e --| [f] 
@@ -94,6 +95,9 @@ dd/de = 1 * grad[d]
                                         f --| [d]
 
 
+## Mise à jour des poids
+
+[![](update.svg)](update.svg)
 
 # Micrograd
 Bibliothèque python permenttant d’illustrer et de calculer des gradients
