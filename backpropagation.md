@@ -1,3 +1,7 @@
+# Backpropagation - Descente de gradient
+
+[![](gradient.svg)](gradient.svg)
+
 Un réseau de neurone est expression mathématique :
 - On a des données d’entrée (inputs),
 - une matrice dont on essaie de calculer les valeurs (weights) durant la phase d’entrainement
@@ -25,36 +29,41 @@ On part de l’output node, et on remonte le graphe jusqu’aux inputs node. D�
  - Inputs : a , b ,c,f
  - Opérations : e  = a * b ; d = e + c ; d * f = L
  - Résultat : L
-
- a --|
-     | (*) --> e --| 
- b --|             | (+) --> d --|
-               c --|             | (*) --> L
-                             f --|
-
+ ```   
+    a --|
+        | (*) --> e --| 
+    b --|             | (+) --> d --|
+                  c --|             | (*) --> L
+                                f --|
+```
 On veut connaitre l’effet d’une variation de a sur L. Si on augmente un peu a, est-ce que L augmente ou diminue.
 Pour cela on doit calculer la dérivée de L par rapport à a, soit dL/da. Pour y arriver on va calculer les dérivées intermédiaires
-- dL/dd puis dL/de puis dL/da 
+- dL/dd 
+- puis dL/de 
+- puis dL/da 
+
 Effectuons la backpropagation manuelle
+
 # 1
 dL/dL = 1 c’est le gradient local. 
 Notons la valeur du gradient sous la forme [gradient]
-a --|
-    | (*) --> e --| 
-b --|             | (+) --> d --|
-              c --|             | (*) --> L [1]
-                            f --|
+
+    a --|
+        | (*) --> e --| 
+    b --|             | (+) --> d --|
+                  c --|             | (*) --> L [1]
+                                f --|
 
 # 2
 Comme L = d*f
 dL/dd = f
 dL/df = d
 
-a --|
-    | (*) --> e --| 
-b --|             | (+) --> d --| [f]
-              c --|             | (*) --> L [1]
-                            f --| [d]
+    a --|
+        | (*) --> e --| 
+    b --|             | (+) --> d --| [f]
+                  c --|             | (*) --> L [1]
+                                f --| [d]
 
 # 3
 dL/de = dL/dd * dd/de
@@ -63,19 +72,19 @@ Sur une addition, cela correspond à faire une fois le gradient précédent
 dd/de = 1 * grad[d]
 
 
-a --|
-    | (*) --> e --| [f] 
-b --|             | (+)    --> d --| [f]
-              c --| [f]            | (*) --> L [1]
-                               f --| [d]
+    a --|
+        | (*) --> e --| [f] 
+    b --|             | (+)    --> d --| [f]
+                  c --| [f]            | (*) --> L [1]
+                                   f --| [d]
 
-# 3
+# 4
 
-a --| [f*b]
-    | (*)      --> e --| [f] 
-b --| [f*a]            | (+)    --> d --| [f]
-                   c --| [f]            | (*) --> L [1]
-                                    f --| [d]
+    a --| [f*b]
+        | (*)      --> e --| [f] 
+    b --| [f*a]            | (+)    --> d --| [f]
+                       c --| [f]            | (*) --> L [1]
+                                        f --| [d]
 
 
 
@@ -101,13 +110,16 @@ Micrograd permet de travailler sur des scalaires (des floats), en production pou
 Dans Pytorch, un Tensor est un objet qui a des méthodes, une représentation interne et qui a donc un ensemble d’opérations disponibles de façons optimisése.
 
 # Questions
-- différence entre un vecteur et un tensor : pourquoi deux noms différents
+- **différence entre un vecteur et un tensor : pourquoi deux noms différents ?**
 Un Tensor est un objet de la bibliothèque Pytorch. Il permet de réaliser plus d’opérations qu’un simple vecteur. On peut le convertir, changer sa taille, le multiplier, appliquer une fonction dessus. 
 
-- dans un réseau de neurone, on a les poids qui représentent les valeurs des opérations à effectuer mais où sont stockés les opérations. Ex je veux passer du layer 3 à 4. Et je dois faire 3x-7. Où est stocké cette équation ?
+- **dans un réseau de neurone, on a les poids qui représentent les valeurs des opérations à effectuer mais où sont stockés les opérations. Ex je veux passer du layer 3 à 4. Et je dois faire 3x-7. Où est stocké cette équation ?**
 Si on utilise une bibliothèque comme pytorch, et qu’on passe par des tensors, ceux-ci modélisent la structure complète du graph des opérations.
 Si T1 = log(T2*T3 + T4), alors quand on utilise la fonction 
 T1.backward(), pytorch "sait" que pour cela il faut calculer les dérivées de log (T2*T3 + T4)
-- à quoi sert la "forward pass" vs la "backward pass" dans le gradient descent
+- **à quoi sert la "forward pass" vs la "backward pass" dans le gradient descent**
 Le forward pass sert à caculer la valeur de sortie du réseau et en particulier à calculer la fonction loss qu’on cherche à optimiser
 La backward pass sert à ajuster la valeur des poids du réseau en se servant du gradient. Via le gradiant on sait quels poids doivent être augmentés et lesquels doivent être diminuer afin de faire diminuer la fonction de perte (loss)
+
+
+
