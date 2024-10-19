@@ -2,19 +2,41 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="1920.0001"
-   height="1080"
-   viewBox="0 0 508.00001 285.74998"
+   width="1500"
+   height="970"
+   viewBox="0 0 396.87498 256.64581"
    version="1.1"
    id="svg5"
+   sodipodi:docname="loss.svg"
+   inkscape:version="1.4 (1:1.4+202410161351+e7c3feb100)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.56979163"
+     inkscape:cx="959.12255"
+     inkscape:cy="540.54848"
+     inkscape:window-width="2494"
+     inkscape:window-height="1371"
+     inkscape:window-x="66"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg5" />
   <defs
      id="defs2" />
   <g
      id="layer9"
      style="display:inline"
-     transform="translate(-534.87957,-347.23655)">
+     transform="translate(-574.34941,-352.80876)">
     <rect
        style="display:inline;opacity:1;fill:#fefaff;fill-opacity:1;stroke:none;stroke-width:0.269881;stroke-linejoin:round;stroke-opacity:1"
        id="rect101-7"
@@ -3887,19 +3909,19 @@
        transform="translate(5.3934716,-21.531718)"><tspan
          x="842.96246"
          y="499.26874"
-         id="tspan3"><tspan
+         id="tspan9"><tspan
            style="font-size:7.05556px;-inkscape-font-specification:'Roboto Mono, @wght=700';font-variation-settings:'wght' 700;fill:#000000"
-           id="tspan2">Calcul de l’écart entre les </tspan></tspan><tspan
+           id="tspan8">Calcul de l’écart entre les </tspan></tspan><tspan
          x="842.96246"
          y="508.0882"
-         id="tspan5"><tspan
+         id="tspan11"><tspan
            style="font-size:7.05556px;-inkscape-font-specification:'Roboto Mono, @wght=700';font-variation-settings:'wght' 700;fill:#000000"
-           id="tspan4">prédictions du modèle et les </tspan></tspan><tspan
+           id="tspan10">prédictions du modèle et les </tspan></tspan><tspan
          x="842.96246"
          y="516.90766"
-         id="tspan7"><tspan
+         id="tspan13"><tspan
            style="font-size:7.05556px;-inkscape-font-specification:'Roboto Mono, @wght=700';font-variation-settings:'wght' 700;fill:#000000"
-           id="tspan6">valeurs d’entrainement</tspan></tspan></text>
+           id="tspan12">valeurs d’entrainement</tspan></tspan></text>
     <rect
        style="display:inline;fill:none;fill-opacity:1;stroke:#e580ff;stroke-width:0.342606;stroke-linejoin:round;stroke-dasharray:0.342606, 0.342606;stroke-dashoffset:0;stroke-opacity:1"
        id="rect6-7-0-5-5"
