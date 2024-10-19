@@ -1,4 +1,4 @@
-import torch
+#import torch
 from backpropagation import Value
 import random
 
@@ -6,9 +6,17 @@ import random
 class Neuron:
 
     # nin : number of inputs for the neuron
-    def __init__(self,nin) -> None:
-        self.w = [Value(random.uniform(-1,1)) for _ in range(nin)]
-        self.b = Value(random.uniform(-1, 1))
+    def __init__(self,nin,notrandom=False) -> None:
+        if notrandom:
+            self.w = []
+            for i in range(nin):
+                self.w.append(Value(0.11 + i*0.01))
+                self.w[-1].label = f"w{i}"
+            self.b = Value(0.22)
+            self.b.label = "b"
+        else:
+            self.w = [Value(random.uniform(-1,1)) for _ in range(nin)]
+            self.b = Value(random.uniform(-1, 1))
         self.nin = nin
         self.parameters = self.w + [self.b]
 
@@ -17,6 +25,7 @@ class Neuron:
     def __call__(self, x):
         # w*x + b
         act = sum((wi*xi for wi, xi in zip(self.w, x)), self.b)
+        act.label = "wixi"
         out = act.tanh()
         return out
 
@@ -101,31 +110,48 @@ def gradient_test():
 def neuron_test(slice=0):
     # sample x
     xs = [
-        [2.0, 3.0, -1.0],
-        [3.0, -1.0, 0.5],
-        [0.5, 1.0, 1.0],
-        [1.0, 1.0, -1.0],
+        [2.7, 37, -1.7],
+        [3.7, -1.7, 0.7],
+        [0.7, 1.7, 1.7],
+        [1.7, 1.7, -1.7],
     ]
     # target values
-    ys = [1.0, -1.0, -1.0, 1.0] # desired targets
+    ys = [1.9, -1.9, -1.9, 1.9] # desired targets
     xs =xs[slice:]
     ys =ys[slice:]
     print(xs)
     print(f"Value to predicts : {len(ys)}")
     #mlp = MLP(3, [4, 4, 1]) # 3 inputs, 2 hiddens layers of 4 neurons, 1 output
-    n = Neuron(3)
-    
+    n = Neuron(3,notrandom=True)
+    for i,p in enumerate(n.parameters):
+        print(p)
+
     epoch =2
     print_step = 1
     for i in range(epoch):
         # compute predictions for all our samples
         ypred = [n(x) for x in xs]
+        
+        for y in ypred:
+            print("\n\nBEFORE YPRED ---")
+            for node in y.get_topo_nodes():
+                print(node)
+            print("END YPRED --- \n\n")
+
         # compute loss
         # ygt : y ground truth
         loss = sum((yout - ygt)**2 for ygt, yout in zip(ys, ypred))
+        print("\n\nTOPO")
+        for node in loss.get_topo_nodes():
+            print(node)
+        print("END TOPO\n\n")
         if i % print_step ==0:
             print(f"{i:3}:{loss.data}")
         loss.backward()
+        print("\n\nAfter backward ---")
+        for node in loss.get_topo_nodes():
+            print(node)
+        print("END TOPO --- \n\n")
         lr = 0.01
 
         for p in n.parameters:
@@ -134,10 +160,13 @@ def neuron_test(slice=0):
 
     print(f"FINAL loss={loss}")
 
+
+
+
 if __name__ == '__main__':
     
     neuron_test(2)
-    neuron_test()
+    #neuron_test()
 
 
 

@@ -1,7 +1,7 @@
 import math
-import torch
 
 def torch_backpropagation():
+    import torch
     x1 = torch.Tensor([2.0]).double() ; x1.requires_grad = True
     x2 = torch.Tensor([0.0]).double() ; x2.requires_grad = True
     w1 = torch.Tensor([-3.0]).double() ; w1.requires_grad = True
@@ -60,7 +60,8 @@ class Value:
             other = Value(float(other))
         data = self.data + other.data
         out = Value(data,(self,other))
-
+        label = f"{self.label}+{other.label}"
+        out.label = label
         # in case of addition, the gradient flows unchanged from parent to child
         def _backward():
             self.grad += out.grad
@@ -90,6 +91,8 @@ class Value:
             other = Value(float(other))
         data = self.data * other.data
         out = Value(data,(self,other))
+        label = f"{self.label}*{other.label}"
+        out.label = label
 
         def _backward():
             self.grad += other.data * out.grad
