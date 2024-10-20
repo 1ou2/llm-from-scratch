@@ -25,7 +25,7 @@ On prend comme fonction de perte l'écart entre les valeurs prédites et les val
 - Gradient descent : algorithme d’optimisation général pour calculer les poids du modèle.
 - Backpropagation : c’est une étape de l’algorithme gradient descent, où on met à jour les poids du modèle en calculant des derivées partielles (le gradient) qui donne l’ajustement qu’on donne au poids pour converger vers un minimun.
 On part de l’output node, et on remonte le graphe jusqu’aux inputs node. D’où le terme de backpropagation
-[![](backprop.svg)](backprop.svg)
+[![](backpropagation.svg)](backpropagation.svg)
 
 À chaque itération (backpass), on a un ajustement des poids. 
 - Soit [W]^n les poids à l’étape n
@@ -93,6 +93,70 @@ dd/de = 1 * grad[d]
     b --| [f*a]            | (+)    --> d --| [f]
                        c --| [f]            | (*) --> L [1]
                                         f --| [d]
+
+### Mini-batch
+Le mécanisme général est 
+1. On utilise 1 jeu de donnée [X],[Y], on fait la forward pass, calcul de la fonction de perte puis backward pass et mise à jour des poids
+Pour optimiser on peut aussi, travailler sur un batch de donnée
+2. On a par exemple 2 données [X1] [X2]. 
+a. On fait en parallèle la forward pass (grâce aux GPU, on parallélise les calculs), 
+b. on obtient notre fonction de perte qui est fonction des deux jeux de données, pour une MSE : Loss = (o1-y0)² + (o2 -y1)². Avec o1, o2 les outputs du réseaux, c'est à dire les valeurs prédites.
+c. on fait la backward pass, en mettant à jour [W] et b.
+d. upgrade des valeurs de [W] et b
+La différence entre les méthodes 1 et 2, c'est que la mise à jour du gradient est mutualisée sur un ensemble de jeux de données. On prend un batch de donnée, on calcule le gradient et on mets à jours les poids
+
+### Exemple numérique
+Soit un réseau avec un neurone, 2 entrées (et donc un vecteur poids W[w1,w2]) et une fonction d'activation tanh.
+Soit X[x1,x2] une vecteur d'input, et y la valeur réelle attendue
+Soit o1 = tanh(X@W+b)
+n1 = X@W+b -> c'est un scalaire.
+
+    # L = (o1 -y)² = o1² + y² -2*o1*y
+    # dL/do1 = 2*o1 + 0 -2*y0 
+    dLdo1 = 2*o1 - 2*y
+    
+
+    # Calculons do1 / db
+    # g(x): x->tanh(x) // g'(x) = 1 - tanh(x)*tanh(x)
+    # o1 = tanh(n1)
+    do1db = 1- torch.tanh(n1)**2
+    print(f"{fo1b=}")
+
+    # dL/db = dL/o1 * do1/db
+    dLdb = dLdo1*do1db
+    print(f"Computed gradient: {dLdbitem()=}")
+
+Nouvel exemple avec :
+- 2 données d'entrée
+- 1 seul neurone
+- on va calculer le gradient de W[]
+```
+    # dL/dw1 = dL/do1 * do1/dw1
+    # - dL/do1 = 2*o1- 2*y[0]
+    # - do1/dw1 = d(tanh(x1*w1+b))/dw1
+    #       g(x) = tanh(ax+b) // g'(x) = a * tanh'(ax+b) = a * (1 - tanh(ax+b)*tanh(ax+b))
+    #       a -> x1 = x1[0]
+    dLdw11 = (2*o1- 2*y[0])*x1[0]*(1-torch.tanh(n1)**2)
+    print(f"{dLdw11=}")
+
+    #print(f"dL/dw12")
+    dLdw12 = (2*o1- 2*y[0])*x1[1]*(1-torch.tanh(n1)**2)
+    print(f"{dLdw12=}")
+
+
+    #print(f"dL/dw21")
+    dLdw21 = (2*o2- 2*y[1])*x2[0]*(1-torch.tanh(n2)**2)
+    print(f"{dLdw21=}")
+
+    #print(f"dL/dw22")
+    dLdw22 = (2*o2- 2*y[1])*x2[1]*(1-torch.tanh(n2)**2)
+    print(f"{dLdw22=}")
+    print(dLdw11+dLdw21)
+    print(dLdw12+dLdw22)
+    print(f"{w1.grad=}")
+```
+
+
 
 
 ## Mise à jour des poids

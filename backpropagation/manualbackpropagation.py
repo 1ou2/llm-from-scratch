@@ -164,55 +164,56 @@ def manualprop3():
 
     loss = (y[0]-o1)**2 + (y[1]-o2)**2
     loss.backward()
-    print(f"dL/do1")
+    
+    #print(f"dL/do1")
     print(f"{o1.grad=}") 
-    fo1 = 2*o1 - 2*y[0]
-    print(f"{fo1=}")
+    dLdo1 = 2*o1 - 2*y[0]
+    print(f"{dLdo1=}")
 
-    print(f"dL/do2")
+    #print(f"dL/do2")
     print(f"{o2.grad=}")
-    fo2 = 2*o2 - 2*y[1]
-    print(f"{fo2=}")
+    dLdo2 = 2*o2 - 2*y[1]
+    print(f"{dLdo2=}")
 
 
-    print(f"do1/db")
-    fo1b = 1- torch.tanh(n1)**2
-    print(f"{fo1b=}")
+    #print(f"do1/db")
+    do1db = 1- torch.tanh(n1)**2
+    print(f"{do1db=}")
 
-    print(f"do2/db")
-    fo2b = 1- torch.tanh(n2)**2
-    print(f"{fo2b=}")
+    #print(f"do2/db")
+    do2db = 1- torch.tanh(n2)**2
+    print(f"{do2db=}")
 
-    print(f"\ndL/db")
+    #print(f"\ndL/db")
     print(f"{b.grad=}")
     # dL/db = dL/o1 * do1/db + dL/o2 * do2/db
-    fb = fo1*fo1b + fo2*fo2b
-    print(f"{fb=}")
+    dLdb = dLdo1*do1db + dLdo2*do2db
+    print(f"{dLdb=}")
 
 
-    print(f"\ndL/dw11")
+    #print(f"\ndL/dw11")
     # dL/dw1 = dL/do1 * do1/dw1
     # - dL/do1 = 2*o1- 2*y[0]
     # - do1/dw1 = d(tanh(x1*w1+b))/dw1
     #       g(x) = tanh(ax+b) // g'(x) = a * tanh'(ax+b) = a * (1 - tanh(ax+b)*tanh(ax+b))
     #       a -> x1 = x1[0]
-    fw11 = (2*o1- 2*y[0])*x1[0]*(1-torch.tanh(n1)**2)
-    print(f"{fw11=}")
+    dLdw11 = (2*o1- 2*y[0])*x1[0]*(1-torch.tanh(n1)**2)
+    print(f"{dLdw11=}")
 
-    print(f"dL/dw12")
-    fw12 = (2*o1- 2*y[0])*x1[1]*(1-torch.tanh(n1)**2)
-    print(f"{fw12=}")
+    #print(f"dL/dw12")
+    dLdw12 = (2*o1- 2*y[0])*x1[1]*(1-torch.tanh(n1)**2)
+    print(f"{dLdw12=}")
 
 
-    print(f"dL/dw21")
-    fw21 = (2*o2- 2*y[1])*x2[0]*(1-torch.tanh(n2)**2)
-    print(f"{fw21=}")
+    #print(f"dL/dw21")
+    dLdw21 = (2*o2- 2*y[1])*x2[0]*(1-torch.tanh(n2)**2)
+    print(f"{dLdw21=}")
 
-    print(f"dL/dw22")
-    fw22 = (2*o2- 2*y[1])*x2[1]*(1-torch.tanh(n2)**2)
-    print(f"{fw22=}")
-    print(fw11+fw21)
-    print(fw12+fw22)
+    #print(f"dL/dw22")
+    dLdw22 = (2*o2- 2*y[1])*x2[1]*(1-torch.tanh(n2)**2)
+    print(f"{dLdw22=}")
+    print(dLdw11+dLdw21)
+    print(dLdw12+dLdw22)
     print(f"{w1.grad=}")
 
 def main():
