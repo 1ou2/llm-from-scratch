@@ -25,7 +25,7 @@ On prend comme fonction de perte l'écart entre les valeurs prédites et les val
 - Gradient descent : algorithme d’optimisation général pour calculer les poids du modèle.
 - Backpropagation : c’est une étape de l’algorithme gradient descent, où on met à jour les poids du modèle en calculant des derivées partielles (le gradient) qui donne l’ajustement qu’on donne au poids pour converger vers un minimun.
 On part de l’output node, et on remonte le graphe jusqu’aux inputs node. D’où le terme de backpropagation
-[![](backpropagation.svg)](backpropagation.svg)
+[![](backward.svg)](backward.svg)
 
 À chaque itération (backpass), on a un ajustement des poids. 
 - Soit [W]^n les poids à l’étape n
@@ -110,9 +110,9 @@ Soit un réseau avec un neurone, 2 entrées (et donc un vecteur poids W[w1,w2]) 
 Soit X[x1,x2] une vecteur d'input, et y la valeur réelle attendue
 Soit o1 = tanh(X@W+b)
 n1 = X@W+b -> c'est un scalaire.
-
+    # L = (ŷ -y)² = ŷ² + y² -2*ŷ*y
     # L = (o1 -y)² = o1² + y² -2*o1*y
-    # dL/do1 = 2*o1 + 0 -2*y0 
+    # dL/do1 = 2*o1 + 0 -2*y 
     dLdo1 = 2*o1 - 2*y
     
 

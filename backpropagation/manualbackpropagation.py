@@ -188,7 +188,8 @@ def manualprop3():
     print(f"{b.grad=}")
     # dL/db = dL/o1 * do1/db + dL/o2 * do2/db
     dLdb = dLdo1*do1db + dLdo2*do2db
-    print(f"{dLdb=}")
+    print("Gradient for bias b")
+    print(f"{dLdo1*do1db.item()} + {dLdo2*do2db.item()} = {dLdb.item()=}")
 
 
     #print(f"\ndL/dw11")
