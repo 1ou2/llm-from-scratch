@@ -2,26 +2,36 @@
 
 [![](gradient-descent.svg)](gradient-descent.svg)
 
-Un réseau de neurone est expression mathématique :
-- On a des données d’entrée (inputs),
-- une matrice dont on essaie de calculer les valeurs (weights) durant la phase d’entrainement
-- et on calcule un résultat : soit une prédiction soit une loss function
+Un réseau de neurone peut être vu comme une expression mathématique :
+- On a des données d’entrée (inputs) sous forme de vecteurs (appelés Tensor)
+- une matrice dont on essaie de calculer les valeurs (poids ou weights) durant la phase d’entrainement
+- et on calcule un résultat : cela peut être la prédiction d'une valeur numérique par notre réseau
 
-Pour  calculer les weigths on essaie de minimiser une fonction "loss function", car plus on minimise, et moins on a d’écart entre le résultat du réseau et le résultat attendu. Le calcul se fait sur des données d’entrées (inputs) qui servent à l’entrainement du modèle.
-L’algorithme qui permet itérativement de converger vers ce minimum s’appelle "backpropagation". C’est un algorithme efficace pour évaluer le grandient.
+Dans le cas où notre réseau essaie de prédire une valeur, il nous faut une métrique qu'on peut suivre et qui va nous permettre d'évaluer la pertinence de notre modèle. Cette métrique est mesurée par la fonction de perte.
+Pour  calculer les poids (weigths) on essaie de minimiser une fonction "loss function", car plus on minimise, et moins on a d’écart entre le résultat du réseau et le résultat attendu. Le calcul se fait sur des données d’entrées (inputs) qui servent à l’entrainement du modèle.
+L’algorithme qui permet itérativement de converger vers ce minimum s’appelle "la descente de gradient". 
+
+On a 4 étapes:
+1. Passage avant (forward pass)
+2. Évaluation de la fonction de perte (loss function)
+3. Rétropropagation (backward pass)
+4. Mise à jour du réseau
 
 ## Forward pass
+Lors du **passage avant**, les données d'entrée traversent le réseau pour générer des prédictions. Chaque neurone calcule une sortie en appliquant une fonction d'activation à la somme pondérée de ses entrées. La sortie de la dernière couche est ensuite comparée aux valeurs cibles à l'aide de la fonction de perte.
 Étant donné des poids (weights) et des donnés d’entrées (inputs), le cacul de la sortie (output) se fait en faisant une forward pass.
 On part des données d’entrées, et on calcule à chaque étape du réseau de neurones les valeurs intermédiaires jusqu’à arriver au résultat final.
 On obtient pour chaque jeu de données en entrée [X1,...,Xi] la prédiction ŷi
 [![](forward.svg)](forward.svg)
 
 ## Loss function
-On cherche un indicateur unique nous donnant la précision de notre modèle.
-On prend comme fonction de perte l'écart entre les valeurs prédites et les valeurs constatées
+On cherche un indicateur unique nous donnant la précision de notre modèle. La **fonction de perte** mesure l’écart entre les prédictions du modèle et les résultats réels.
+On prend comme fonction de perte l'écart entre les valeurs prédites et les valeurs constatées : MSE Mean Square Error
 [![](loss.svg)](loss.svg)
 
-## Backpropagation vs Gradient descent
+## Rétropropagation (backpropagation)
+La **rétropropagation** permet de calculer le gradient de la fonction de perte par rapport à chaque poids du réseau. L'idée clé est de propager l’erreur, à partir de la couche de sortie, vers l'entrée, en ajustant les poids à chaque étape.
+### Backpropagation vs Gradient descent
 - Gradient descent : algorithme d’optimisation général pour calculer les poids du modèle.
 - Backpropagation : c’est une étape de l’algorithme gradient descent, où on met à jour les poids du modèle en calculant des derivées partielles (le gradient) qui donne l’ajustement qu’on donne au poids pour converger vers un minimun.
 On part de l’output node, et on remonte le graphe jusqu’aux inputs node. D’où le terme de backpropagation
@@ -163,28 +173,16 @@ Nouvel exemple avec :
 
 [![](update.svg)](update.svg)
 
-# Micrograd
-Bibliothèque python permenttant d’illustrer et de calculer des gradients
-- Encapsulation des valeurs dans des objets Value
-- opération +,-,*,/ et puissance (**)
-- permet de calculer la backpropagation
-- fonction backward() : initie le calcul de backpropagation, on va calculer toutes les dérivées des expressions, qui ont amenées à cette valeur. Ex: si g dépend de a,b,c,d,e,f, avec a et b valeurs d’entrées et c,d,e, et f des valeurs intermédiaires on va pouvoir calculer la dérivée de g par rapport à a et donc savoir comment on doit faire évoluer a pour que g varie dans le "bon sens". Si on veut diminuer g, on saura comment modifier a et b pour diminuer g
 
-Exemple :
-Si dg/da = 130 alors une petite augmentation de a correspond à une augmentation avec une pente de 130
 
-# Dérivée
-Dans un réseau de neurone on ne cacule pas symboliquement le résulat des dérivés à l’aide d’équations. On a des dizaines de milliers de paramètres, on ne pose pas ces équations.
-Mais on peut aussi voir la dérivée, comme la pente locale de la fonction. Cela se calcule numériquement 
-- soit la fonction f(x)
-- soit h un incrément tendant vers 0
-- l’approximation de la dérivée est : (f(x+h) - f(x))/h quand h tend vers 0
 
-## Scalar vs Tensor
-Micrograd permet de travailler sur des scalaires (des floats), en production pour des raisons de performances on parallélise les calculs et les bibliothèques telles que pytorch ne prennent pas en entrée des scalaires mais des Tensors. Un Tensor est un vecteur.
-Dans Pytorch, un Tensor est un objet qui a des méthodes, une représentation interne et qui a donc un ensemble d’opérations disponibles de façons optimisése.
+
+
 
 # Questions
+-**Scalar vs Tensor**
+On pourrait travailler sur des scalaires (des floats), mais on ne le fait pas en production pour des raisons de performances. On parallélise les calculs et les bibliothèques telles que pytorch ne prennent pas en entrée des scalaires mais des Tensors. Un Tensor est un vecteur.
+Dans Pytorch, un Tensor est un objet qui a des méthodes, une représentation interne et qui a donc un ensemble d’opérations disponibles de façons optimisése.
 - **différence entre un vecteur et un tensor : pourquoi deux noms différents ?**
 Un Tensor est un objet de la bibliothèque Pytorch. Il permet de réaliser plus d’opérations qu’un simple vecteur. On peut le convertir, changer sa taille, le multiplier, appliquer une fonction dessus. 
 
