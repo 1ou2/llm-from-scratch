@@ -2,5 +2,13 @@ matplotlib
 numpy
 graphviz
 torch
+
+mkdocs
+mkdocs-material
+mkdocstrings
+mkdocstrings-python
+mkdocs-git-revision-date-localized-plugin
+pymdown-extensions
+
 # for plotting in ubuntu
 #pyside2
