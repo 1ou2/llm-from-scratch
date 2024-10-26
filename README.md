@@ -19,6 +19,7 @@ In order to use the graphviz module in Ubuntu, the graphviz package must be inst
 ```sudo apt-get install graphviz```
 
 # Structure
+```
 llm_from_scratch/                   # Root project directory
 ├── src/                           # Source code
 │   ├── __init__.py
@@ -112,6 +113,7 @@ llm_from_scratch/                   # Root project directory
 ├── setup.py                      # Package installation
 ├── README.md                     # Project README
 └── .gitignore                    # Git ignore file
+```
 
 # Mkdocs
 Start development server ```mkdocs serve```
