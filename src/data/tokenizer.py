@@ -1,5 +1,5 @@
 # import dataset
-from .dataset import Dataset
+from dataset import Dataset
 
 class Tokenizer:
     def __init__(self, text):
@@ -17,3 +17,20 @@ class Tokenizer:
         else:
             return None
         
+    def tokenize(self):
+        tokens = []
+        for c in self.text:
+            tokens.append(ord(c))
+
+        return tokens
+        
+if __name__ == "__main__":
+    text = "Hello, world!éèà\n"
+    japanese_text = "こんにちは、世界 ！!"
+    tokenizer = Tokenizer(text)
+
+
+    tokens = tokenizer.tokenize()
+    print(tokens)
+    jap_tokens = Tokenizer(japanese_text).tokenize()
+    print(jap_tokens)
