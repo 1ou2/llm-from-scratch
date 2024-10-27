@@ -9,6 +9,7 @@ mkdocstrings
 mkdocstrings-python
 mkdocs-git-revision-date-localized-plugin
 pymdown-extensions
+regex
 
 # for plotting in ubuntu
 #pyside2
