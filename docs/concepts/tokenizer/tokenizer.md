@@ -4,6 +4,23 @@ Un tokenizer a 2 fonctions
 - l'encodeur ```tokenizer.encode(str) -> list(int)```
 - le décodeur ```tokenizer.decode(list(int)) -> str```
 
+Exemple avec le tokenizer d’Openai qui s’appelle ```tiktoken```.
+```python
+text = "hello123!!!? (안녕하세요!) 😉"
+
+# tiktoken
+import tiktoken
+# use GPT-4 encoder
+enc = tiktoken.get_encoding("cl100k_base")
+print(enc.encode(text))
+# [15339, 4513, 12340, 30, 320, 31495, 230, 75265, 243, 92245, 16715, 57037]
+
+text = "<|endoftext|>hello world"
+enc = tiktoken.get_encoding("cl100k_base")
+print(enc.encode(text, allowed_special="all"))
+# [100257, 15339, 1917]
+```
+
 # Implémentations naïves
 
 ## Character level 
@@ -48,15 +65,18 @@ Analyse :
 Il s'agit de l'encodage utilisé dans GPT-4. On peut le tester avec la bibliothèque tiktoken publiée par OpenAI
 ## Principe
 L'encodage fonctionne au niveau de la représentation binaire du texte. Il s'appuie sur l'encodage UTF-8, du texte et va chercher à compresser l'information en cherchant quelles sont les séquences les plus fréquentes.
-Étapes
+Étapes :
+
 - pre-processing : séparer le texte en mots
-- encoder les mots en tokens. 
-- construire une liste avec tous les tokens par concaténation
+- encoder les mots en tokens
+- générer des tokens pour les paires les plus fréquentes
+
 Propriétés :
+
 - On ne veut pas que notre encodage dépende de la ponctuation. Il ne faut pas que les termes ```maison```, ```maison.```, ```maison?``` fassent changer l'encodage du mot ```maison```.
 - on veut pouvoir encoder des mots qu’on n’a jamais vu
 - on veut pouvoir choisir la taille de notre vocabulaire
-### 1 Pre-processing
+### 1/ Pre-processing
 On commence par découper le texte d’entrée en mots. Voici les expressions régulières utilisées par GPT2 et GPT4
 
 #### GPT2
@@ -74,7 +94,7 @@ On commence par découper le texte d’entrée en mots. Voici les expressions r�
 - ?i: - case insensitive
 - \p{N}{1,3}+ : les chiffres sont fusionnés par paquet de 3 maximum
 
-### 2 Encodage
+### 2/ Encodage
 On part de la représentation de chaque caractère dans l’encodage UTF-8. On a pour un caractère un encodage entre 1 et 4 octets:
 
     a      U+0061   lettre a    01100001                               91
@@ -87,7 +107,7 @@ On va prendre un des mots de l’étape 1, et le convertir dans la représentati
 Le mot ```Maison``` devient ```[77,97,105,115,111,110]```. À ce stade le mot ```Maison``` est représenté par 6 tokens. Et on a chaque token qui est un chiffre entre 0 et 255.
 On fait cela pour tous les mots de notre dataset.
 
-### 3 Appariement et création de token
+### 3/ Appariement et création de token
 On va ensuite chercher la paire de chiffre la plus fréquente. Si on suppose que dans notre jeu de données c’est ```le``` -> ```[108,101]```, alors on créer un nouveau token le numéro 256 qui va représenter ```le```.
 On a maintenanant un vocabulaire de 257 tokens (0 à 256), on remplace tous les occurrences de la paire ```[108,101]```par ce token ```256```, et on recommence.
 Recherche de la paire la plus fréquente, création du token ```257``` et remplacement de cette paire par le nouveau token.
