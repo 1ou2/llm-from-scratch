@@ -115,19 +115,29 @@ Il est possible d'étendre le vocabulaire et de rajouter des specials tokens.
 - dans la librairie tiktoken c'est prévu
 - attention cela a un impact sur l'architecture de transformer. Il faut rajouter une ligne dans les embeddings, et rajouter une sortie dans l'output layer car on a un token de plus dans la liste des probabilités
 
-## vocab_size
-token_embedding_table = nn. Embeddding(vocab_size, n_embd) : 
+# Impact sur l’architecture du LLM
+Le nombre de tokens qu’on a c’est à dire la taille de notre vocabulaire ```vocab_size``` a un impact sur l’architecture du LLM. Si on prend l’exemple de GPT-2, on a un ```vocab_size=50256```
+Ce nombre ```50256``` se retrouve dans deux endroits :
+- la table d’embedding
+- le neurone de sortie
+## Embedding table
+```token_embedding_table = nn. Embeddding(vocab_size, n_embd) : ```
 - 2-dim array. 
-- nombre de lignes est notre vocabulaire, chaque token est associé à un vecteur qu'on entraine durant la backpropagation,
+- nombre de lignes est notre vocabulaire, chaque token est associé à un vecteur d’embedding qu'on entraine durant la backpropagation,
 - n_embd : nbre de channels dans notre transformer
-lm_head = nn.Linear(n_embd, vocab_size)
+
+## Neurone de sortie
+```lm_head = nn.Linear(n_embd, vocab_size)```
 - linear layer
 - produce logits
 - probability of every single tokens
+Le neurone de sortie donne pour chacun des tokens du vocabulaire qu’elle est la probabilité qu’il soit le prochain. 
 
+## Taille du vocabulaire
+Plus on a de tokens, plus la représentation du texte est dense. Or il faut considérer le fait que dans l’architecture de transformer on a un contexte qui est de taille fixe. Si on a un contexte de 1024, cela veut dire que le LLM va pouvoir manipuler 1024 tokens à la fois.  
 Si on augmente trop le nombre de tokens, par exemple on dit qu'on a un vocab_size = 1 million. 
-- Alors dans les données d'entrainements on aura des tokens très rares, et l'entrainement ne pas pouvoir créer un embedding sera sous-entrainé.
-- on va compresser énormément d'info dans un seul token (on aura des tokens très longs), et lors de la forward pass on ne va pas bien entrainé le réseau. Le réseau ne pourra pas ajuster les poids.
+- Alors dans les données d'entrainement on aura des tokens très rares, et l'entrainement ne pas voir beaucoup de données sur certains tokens ce qui va faire que les embeddings seront sous-entrainé. Les tokens vont être mal représentés dans notre espace vectoriel d’embedding.
+- on va compresser énormément d'info dans un seul token (on aura des tokens très longs), et lors de la forward pass on ne va pas bien entrainer le réseau. Le réseau ne pourra pas ajuster les poids de façon optimale
 
 ### ajouter un token lors du fine-tuning
 On doit créer un embedding initialié au hasard pour ce nouveau token
