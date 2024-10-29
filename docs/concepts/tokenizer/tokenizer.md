@@ -48,39 +48,58 @@ Analyse :
 Il s'agit de l'encodage utilisé dans GPT-4. On peut le tester avec la bibliothèque tiktoken publiée par OpenAI
 ## Principe
 L'encodage fonctionne au niveau de la représentation binaire du texte. Il s'appuie sur l'encodage UTF-8, du texte et va chercher à compresser l'information en cherchant quelles sont les séquences les plus fréquentes.
-
-## Technique avancée
-On ne veut pas que notre encodage dépende de la ponctuation. Il ne faut pas que les termes ```maison```, ```maison.```, ```maison?``` fassent changer l'encodage du mot ```maison```.
-Préprocessing
-
-Étape 1
-- séparer le texte en mots
-- encoder les mots en tokens. On ne fait le merge que à l'intérieur d'un mot.
+Étapes
+- pre-processing : séparer le texte en mots
+- encoder les mots en tokens. 
 - construire une liste avec tous les tokens par concaténation
+Propriétés :
+- On ne veut pas que notre encodage dépende de la ponctuation. Il ne faut pas que les termes ```maison```, ```maison.```, ```maison?``` fassent changer l'encodage du mot ```maison```.
+- on veut pouvoir encoder des mots qu’on n’a jamais vu
+- on veut pouvoir choisir la taille de notre vocabulaire
+### 1 Pre-processing
+On commence par découper le texte d’entrée en mots. Voici les expressions régulières utilisées par GPT2 et GPT4
 
-
-### GPT2
+#### GPT2
 ```r"""'s|'t|'re|'ve|'m|'ll|'d| ?\p{L}+| ?\p{N}+| ?[^\s\p{L}\p{N}]+|\s+(?!\S)|\s+"""```
 - R1 : ``` ?\p{L}+``` : un espace optionnel suivi, d'une ou plusieurs lettres
-- R2 : ``` ?\p{L}+``` : un espace optionnel suivi, d'une ou plusieurs chiffres
+- R2 : ``` ?\p{N}+``` : un espace optionnel suivi, d'une ou plusieurs chiffres
 - R3 : ```'s``` : exactement la chaîne "'s"
 - R4 à R9 : idem avec 't 're 'ev 'm 'll et 'd
 - R10: ``` ?[^\s\p{L}\p{N}]+```si les règles suivantes ne s'appliquent pas, un espace optionnel suivi un caractère qui n'est pas ni un espace, ni une lettre, ni un chiffre -> la ponctuation
 - R11 : ```\s+(?!\S)``` : une série d'espace sans prendre le dernier espace. Utile car dans le reste de la tokenization on a souvent <ESPACE>Token, donc on garde ce dernier espace pour le mot suivant.
 - R12 : ```\s+``` : une suite de plusieurs espaces consécutifs, les derniers espaces à la fin de la phrase
 
-### GPT4
+#### GPT4
 "pat_str": r"""'(?i:[sdmt]|ll|ve|re)|[^\r\n\p{L}\p{N}]?+\p{L}++|\p{N}{1,3}+| ?[^\s\p{L}\p{N}]++[\r\n]*+|\s++$|\s*[\r\n]|\s+(?!\S)|\s""",
 - ?i: - case insensitive
-- \p{N}{1,3}+ : les chiffres sont hfusionnés par paquet de 3 maximum
+- \p{N}{1,3}+ : les chiffres sont fusionnés par paquet de 3 maximum
 
-Exemple :
-"ine" est le token 500
-"ice" est le token 501
-"against" -> 32826
-" against" -> 1028
+### 2 Encodage
+On part de la représentation de chaque caractère dans l’encodage UTF-8. On a pour un caractère un encodage entre 1 et 4 octets:
 
-Sentence piece, essai de compenser le fait que deux fois le meme mot avec un espace devant ont un encodage différent en ajoutant un espace au début de la phrase.
+    a      U+0061   lettre a    01100001                               91
+    [SP]   U+0020   espace      00100000                               20
+    é      U+00E9   e accentué  11000011 10101001                      195 169
+    ぁ     U+3041   Hiragana    11100011 10000001 10000001             227 129 129 
+    😅    U+1F605  smiley      11110000 10011111 10011000 10000101    240 159 152 133
+
+On va prendre un des mots de l’étape 1, et le convertir dans la représentation décimale de son encodage UTF-8.
+Le mot ```Maison``` devient ```[77,97,105,115,111,110]```. À ce stade le mot ```Maison``` est représenté par 6 tokens. Et on a chaque token qui est un chiffre entre 0 et 255.
+On fait cela pour tous les mots de notre dataset.
+
+### 3 Appariement et création de token
+On va ensuite chercher la paire de chiffre la plus fréquente. Si on suppose que dans notre jeu de données c’est ```le``` -> ```[108,101]```, alors on créer un nouveau token le numéro 256 qui va représenter ```le```.
+On a maintenanant un vocabulaire de 257 tokens (0 à 256), on remplace tous les occurrences de la paire ```[108,101]```par ce token ```256```, et on recommence.
+Recherche de la paire la plus fréquente, création du token ```257``` et remplacement de cette paire par le nouveau token.
+On continue jusqu’à soit qu’il n’y ait plas de paire, soit qu’on ait atteint le vocabulaire max qu’on s’est fixé.
+
+Exemples issus de GPT:
+- "ine" est le token 500
+- "ice" est le token 501
+- "against" est le token 32826
+- " against" est le token 1028
+
+Note: Sentence piece, essaie de compenser le fait que deux fois le meme mot avec un espace devant ont un encodage différent en ajoutant un espace au début de la phrase.
 
 ### Special tokens
 dans GPT2, encoder('<|endoftext|>) = 50256, c'est le dernier token encodé. Il sert à délimiter les documents. Cela permet au modèle d'apprendre qu'il doit repartir à zéro quand il voit ce token
