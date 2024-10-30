@@ -21,6 +21,8 @@ print(enc.encode(text, allowed_special="all"))
 # [100257, 15339, 1917]
 ```
 
+[![](./images/LLM-tokens.svg)](./images/LLM-tokens.svg)
+
 # Implémentations naïves
 
 ## Character level 
@@ -65,6 +67,7 @@ Analyse :
 Il s'agit de l'encodage utilisé dans GPT-4. On peut le tester avec la bibliothèque tiktoken publiée par OpenAI
 ## Principe
 L'encodage fonctionne au niveau de la représentation binaire du texte. Il s'appuie sur l'encodage UTF-8, du texte et va chercher à compresser l'information en cherchant quelles sont les séquences les plus fréquentes.
+
 Étapes :
 
 - pre-processing : séparer le texte en mots
