@@ -21,7 +21,7 @@ print(enc.encode(text, allowed_special="all"))
 # [100257, 15339, 1917]
 ```
 
-[![](./images/LLM-tokens.svg)](./images/LLM-tokens.svg)
+[![](./images/LLM-tokens.png)](./images/LLM-tokens.png)
 
 # Implémentations naïves
 
