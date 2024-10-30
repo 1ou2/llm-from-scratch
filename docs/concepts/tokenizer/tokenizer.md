@@ -59,9 +59,10 @@ zythum -> 30.000
 , -> 30.002
 ```
 Exemple : ```encode("salut toi !") -> [21458,27551,30001]```
+
 Analyse :
 - on doit d'abord traiter le texte, pour le découper en mot : il faut donc gérer les espaces, les tabulations
-- on doit avoir un dictionnaire de tous les mots possibles à encoder. Mais alors comment encoder les fautes j'écris ```maiston``` au lieu de ```maison```.
+- on doit avoir un dictionnaire de tous les mots possibles à encoder. Mais alors comment encoder les fautes j'écris ```maiston``` au lieu de ```maison```. Comment gérer les langues qu'on a pas vu (javanais, arabe, ...)
 
 # Byte pair encoding
 Il s'agit de l'encodage utilisé dans GPT-4. On peut le tester avec la bibliothèque tiktoken publiée par OpenAI
@@ -79,6 +80,8 @@ Propriétés :
 - On ne veut pas que notre encodage dépende de la ponctuation. Il ne faut pas que les termes ```maison```, ```maison.```, ```maison?``` fassent changer l'encodage du mot ```maison```.
 - on veut pouvoir encoder des mots qu’on n’a jamais vu
 - on veut pouvoir choisir la taille de notre vocabulaire
+
+[![](./images/tokens.png)](./images/tokens.png)
 ### 1/ Pre-processing
 On commence par découper le texte d’entrée en mots. Voici les expressions régulières utilisées par GPT2 et GPT4
 
@@ -93,7 +96,7 @@ On commence par découper le texte d’entrée en mots. Voici les expressions r�
 - R12 : ```\s+``` : une suite de plusieurs espaces consécutifs, les derniers espaces à la fin de la phrase
 
 #### GPT4
-"pat_str": r"""'(?i:[sdmt]|ll|ve|re)|[^\r\n\p{L}\p{N}]?+\p{L}++|\p{N}{1,3}+| ?[^\s\p{L}\p{N}]++[\r\n]*+|\s++$|\s*[\r\n]|\s+(?!\S)|\s""",
+```r"""'(?i:[sdmt]|ll|ve|re)|[^\r\n\p{L}\p{N}]?+\p{L}++|\p{N}{1,3}+| ?[^\s\p{L}\p{N}]++[\r\n]*+|\s++$|\s*[\r\n]|\s+(?!\S)|\s"""```
 - ?i: - case insensitive
 - \p{N}{1,3}+ : les chiffres sont fusionnés par paquet de 3 maximum
 

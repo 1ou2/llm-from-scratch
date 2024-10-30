@@ -8,7 +8,10 @@
    version="1.1"
    id="svg5"
    inkscape:version="1.4 (1:1.4+202410161351+e7c3feb100)"
-   sodipodi:docname="LLM-tokens2.svg"
+   sodipodi:docname="LLM-tokens.svg"
+   inkscape:export-filename="LLM-tokens.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -24,15 +27,15 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      showgrid="false"
-     inkscape:zoom="0.52724989"
-     inkscape:cx="605.97452"
-     inkscape:cy="540.54065"
+     inkscape:zoom="5.9651516"
+     inkscape:cx="670.14224"
+     inkscape:cy="1260.1524"
      inkscape:window-width="2494"
      inkscape:window-height="1371"
      inkscape:window-x="66"
      inkscape:window-y="32"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer3" />
+     inkscape:current-layer="layer10" />
   <defs
      id="defs2">
     <marker
@@ -112,78 +115,84 @@
          id="path1367" />
     </marker>
   </defs>
-  <rect
-     style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#ff6600;stroke-width:0.938879;stroke-dasharray:none"
-     id="rect8305"
-     width="251.81363"
-     height="24.040293"
-     x="132.87138"
-     y="66.906296"
-     rx="2.0816102"
-     ry="2.6466844" />
-  <rect
-     style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#ff6600;stroke-width:0.938879;stroke-dasharray:none"
-     id="rect8307"
-     width="251.63489"
-     height="35.358555"
-     x="132.96074"
-     y="111.19408"
-     rx="2.0801327"
-     ry="3.8927543" />
-  <rect
-     style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#ff6600;stroke-width:0.938879;stroke-dasharray:none"
-     id="rect9083"
-     width="251.32066"
-     height="60.559986"
-     x="132.72308"
-     y="154.06189"
-     rx="2.0775354"
-     ry="6.667273" />
-  <rect
-     style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#ff6600;stroke-width:0.938879;stroke-dasharray:none"
-     id="rect9085"
-     width="251.36156"
-     height="54.588234"
-     x="133.09741"
-     y="224.81496"
-     rx="2.0778732"
-     ry="6.0098209" />
-  <rect
-     style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#ff6600;stroke-width:0.938879;stroke-dasharray:none"
-     id="rect9087"
-     width="251.42352"
-     height="46.133362"
-     x="134.25085"
-     y="303.08472"
-     rx="2.0783856"
-     ry="5.0789924" />
-  <rect
-     style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#ff6600;stroke-width:0.938879;stroke-dasharray:none"
-     id="rect9089"
-     width="251.6783"
-     height="18.848492"
-     x="133.72865"
-     y="374.7338"
-     rx="2.0804918"
-     ry="2.0750999" />
-  <rect
-     style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#ff6600;stroke-width:0.938879;stroke-dasharray:none"
-     id="rect9091"
-     width="251.81363"
-     height="24.040293"
-     x="132.47656"
-     y="20.222218"
-     rx="2.0816102"
-     ry="2.6466844" />
-  <rect
-     style="display:inline;fill:#ff6600;fill-opacity:1;stroke-width:0.969698;stroke-dasharray:0.969698, 0.969698"
-     id="rect6609-0"
-     width="72.763565"
-     height="24.589067"
-     x="28.503212"
-     y="169.33807"
-     rx="7.9375"
-     ry="7.9375" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer10"
+     inkscape:label="background boxes"
+     style="display:inline">
+    <rect
+       style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#ff6600;stroke-width:0.938879;stroke-dasharray:none"
+       id="rect8305"
+       width="251.81363"
+       height="24.040293"
+       x="132.87138"
+       y="66.906296"
+       rx="2.0816102"
+       ry="2.6466844" />
+    <rect
+       style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#ff6600;stroke-width:0.938879;stroke-dasharray:none"
+       id="rect8307"
+       width="251.63489"
+       height="35.358555"
+       x="132.96074"
+       y="111.19408"
+       rx="2.0801327"
+       ry="3.8927543" />
+    <rect
+       style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#ff6600;stroke-width:0.938879;stroke-dasharray:none"
+       id="rect9083"
+       width="251.32066"
+       height="60.559986"
+       x="132.72308"
+       y="154.06189"
+       rx="2.0775354"
+       ry="6.667273" />
+    <rect
+       style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#ff6600;stroke-width:0.938879;stroke-dasharray:none"
+       id="rect9085"
+       width="251.36156"
+       height="54.588234"
+       x="133.09741"
+       y="224.81496"
+       rx="2.0778732"
+       ry="6.0098209" />
+    <rect
+       style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#ff6600;stroke-width:0.938879;stroke-dasharray:none"
+       id="rect9087"
+       width="251.42352"
+       height="46.133362"
+       x="134.25085"
+       y="303.08472"
+       rx="2.0783856"
+       ry="5.0789924" />
+    <rect
+       style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#ff6600;stroke-width:0.938879;stroke-dasharray:none"
+       id="rect9089"
+       width="251.6783"
+       height="18.848492"
+       x="133.72865"
+       y="374.7338"
+       rx="2.0804918"
+       ry="2.0750999" />
+    <rect
+       style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#ff6600;stroke-width:0.938879;stroke-dasharray:none"
+       id="rect9091"
+       width="251.81363"
+       height="24.040293"
+       x="132.47656"
+       y="20.222218"
+       rx="2.0816102"
+       ry="2.6466844" />
+    <rect
+       style="display:inline;fill:#ff6600;fill-opacity:1;stroke-width:0.969698;stroke-dasharray:0.969698, 0.969698"
+       id="rect6609-0"
+       width="72.763565"
+       height="24.589067"
+       x="28.503212"
+       y="169.33807"
+       rx="7.9375"
+       ry="7.9375" />
+  </g>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
@@ -232,133 +241,129 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.17222px;font-family:Sans;-inkscape-font-specification:'Sans, Normal ';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:1.24872"
          x="166.99937"
          y="387.37387">Ô rage ! Ô désespoir ! Ô vieillesse ennemie !</tspan></text>
-    <g
-       id="g1"
-       transform="translate(-67.188746,-8.7708259)">
-      <rect
-         style="font-variation-settings:'wght' 700;display:inline;fill:#afc6e9;stroke-width:0.969698;stroke-dasharray:0.969698, 0.969698"
-         id="rect3915"
-         width="7.0967741"
-         height="9.935483"
-         x="246.77031"
-         y="345.9693" />
-      <rect
-         style="font-variation-settings:'wght' 700;display:inline;fill:#ff8080;fill-opacity:1;stroke-width:1.44137;stroke-dasharray:1.44137, 1.44137"
-         id="rect4077"
-         width="15.679957"
-         height="9.935483"
-         x="253.65984"
-         y="345.9693" />
-      <rect
-         style="font-variation-settings:'wght' 700;display:inline;fill:#ffe680;stroke-width:0.977628;stroke-dasharray:0.977628, 0.977628"
-         id="rect4289"
-         width="7.2133126"
-         height="9.935483"
-         x="273.06616"
-         y="345.9693" />
-      <rect
-         style="font-variation-settings:'wght' 700;display:inline;fill:#c8c4b7;stroke-width:1.35693;stroke-dasharray:1.35693, 1.35693"
-         id="rect4291"
-         width="13.896531"
-         height="9.935483"
-         x="280.25107"
-         y="345.9693" />
-      <rect
-         style="font-variation-settings:'wght' 700;display:inline;fill:#d7d7f4;stroke-width:0.977628;stroke-dasharray:0.977628, 0.977628"
-         id="rect4293"
-         width="7.2133126"
-         height="9.935483"
-         x="294.03497"
-         y="345.9693" />
-      <rect
-         style="font-variation-settings:'wght' 700;display:inline;fill:#afe9dd;stroke-width:1.036;stroke-dasharray:1.036, 1.036"
-         id="rect4295"
-         width="8.1004095"
-         height="9.935483"
-         x="301.26114"
-         y="345.9693" />
-      <rect
-         style="font-variation-settings:'wght' 700;display:inline;fill:#ffd5d5;stroke-width:0.876181;stroke-dasharray:0.876181, 0.876181"
-         id="rect4297"
-         width="5.7939577"
-         height="9.935483"
-         x="309.31171"
-         y="345.9693" />
-      <rect
-         style="font-variation-settings:'wght' 700;display:inline;fill:#aaffcc;stroke-width:0.729805;stroke-dasharray:0.729805, 0.729805"
-         id="rect4299"
-         width="4.0197644"
-         height="9.935483"
-         x="314.89993"
-         y="345.9693" />
-      <rect
-         style="font-variation-settings:'wght' 700;display:inline;fill:#ffe680;stroke-width:0.953279;stroke-dasharray:0.953279, 0.953279"
-         id="rect5027"
-         width="6.8584743"
-         height="9.935483"
-         x="318.83942"
-         y="345.9693" />
-      <rect
-         style="font-variation-settings:'wght' 700;display:inline;fill:#8080ff;stroke-width:1.21777;stroke-dasharray:1.21777, 1.21777"
-         id="rect5029"
-         width="11.192191"
-         height="9.935483"
-         x="325.84702"
-         y="345.9693" />
-      <rect
-         style="font-variation-settings:'wght' 700;display:inline;fill:#55ddff;stroke-width:1.28348;stroke-dasharray:1.28348, 1.28348"
-         id="rect5031"
-         width="12.432597"
-         height="9.935483"
-         x="336.93738"
-         y="345.9693" />
-      <rect
-         style="font-variation-settings:'wght' 700;display:inline;fill:#ffeeaa;stroke-width:1.01376;stroke-dasharray:1.01376, 1.01376"
-         id="rect5033"
-         width="7.7563334"
-         height="9.935483"
-         x="349.4975"
-         y="345.9693" />
-      <rect
-         style="font-variation-settings:'wght' 700;display:inline;fill:#e3e2db;stroke-width:1.37416;stroke-dasharray:1.37416, 1.37416"
-         id="rect5035"
-         width="14.251369"
-         height="9.935483"
-         x="357.39221"
-         y="345.9693" />
-      <rect
-         style="font-variation-settings:'wght' 700;display:inline;fill:#f4d7d7;stroke-width:1.47323;stroke-dasharray:1.47323, 1.47323"
-         id="rect5037"
-         width="16.380402"
-         height="9.935483"
-         x="371.64569"
-         y="345.9693" />
-      <rect
-         style="font-variation-settings:'wght' 700;display:inline;fill:#aaffcc;stroke-width:0.820769;stroke-dasharray:0.820769, 0.820769"
-         id="rect5039"
-         width="5.0842805"
-         height="9.935483"
-         x="387.86154"
-         y="345.9693" />
-      <rect
-         style="font-variation-settings:'wght' 700;display:inline;fill:#aaffcc;stroke-width:0.745736;stroke-dasharray:0.745736, 0.745736"
-         id="rect5041"
-         width="4.1971836"
-         height="9.935483"
-         x="268.8616"
-         y="345.9693" />
-      <text
-         xml:space="preserve"
-         style="font-size:7.05556px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=700';font-variation-settings:'wght' 700;fill:#000000;stroke-width:0.969698;stroke-dasharray:0.969698, 0.969698"
-         x="246.69685"
-         y="354.15305"
-         id="text1"><tspan
-           sodipodi:role="line"
-           id="tspan1"
-           style="stroke-width:0.969698"
-           x="246.69685"
-           y="354.15305">Ô rage ! Ô désespoir ! Ô vieillesse ennemie !</tspan></text>
-    </g>
+    <rect
+       style="font-variation-settings:'wght' 700;display:inline;fill:#afc6e9;stroke-width:0.836277;stroke-dasharray:0.836277, 0.836277"
+       id="rect3915"
+       width="5.2782259"
+       height="9.935483"
+       x="179.58156"
+       y="332.96515" />
+    <rect
+       style="font-variation-settings:'wght' 700;display:inline;fill:#ff8080;fill-opacity:1;stroke-width:1.51298;stroke-dasharray:1.51298, 1.51298"
+       id="rect4077"
+       width="17.276731"
+       height="9.935483"
+       x="184.87431"
+       y="332.96515" />
+    <rect
+       style="font-variation-settings:'wght' 700;display:inline;fill:#ffe680;stroke-width:0.977628;stroke-dasharray:0.977628, 0.977628"
+       id="rect4289"
+       width="7.2133126"
+       height="9.935483"
+       x="205.87741"
+       y="332.96515" />
+    <rect
+       style="font-variation-settings:'wght' 700;display:inline;fill:#c8c4b7;stroke-width:1.35693;stroke-dasharray:1.35693, 1.35693"
+       id="rect4291"
+       width="13.896531"
+       height="9.935483"
+       x="213.06232"
+       y="332.96515" />
+    <rect
+       style="font-variation-settings:'wght' 700;display:inline;fill:#d7d7f4;stroke-width:0.977628;stroke-dasharray:0.977628, 0.977628"
+       id="rect4293"
+       width="7.2133126"
+       height="9.935483"
+       x="226.84622"
+       y="332.96515" />
+    <rect
+       style="font-variation-settings:'wght' 700;display:inline;fill:#afe9dd;stroke-width:1.036;stroke-dasharray:1.036, 1.036"
+       id="rect4295"
+       width="8.1004095"
+       height="9.935483"
+       x="234.07239"
+       y="332.96515" />
+    <rect
+       style="font-variation-settings:'wght' 700;display:inline;fill:#ffd5d5;stroke-width:0.876181;stroke-dasharray:0.876181, 0.876181"
+       id="rect4297"
+       width="5.7939577"
+       height="9.935483"
+       x="242.12296"
+       y="332.96515" />
+    <rect
+       style="font-variation-settings:'wght' 700;display:inline;fill:#aaffcc;stroke-width:0.729805;stroke-dasharray:0.729805, 0.729805"
+       id="rect4299"
+       width="4.0197644"
+       height="9.935483"
+       x="247.71118"
+       y="332.96515" />
+    <rect
+       style="font-variation-settings:'wght' 700;display:inline;fill:#ffe680;stroke-width:0.953279;stroke-dasharray:0.953279, 0.953279"
+       id="rect5027"
+       width="6.8584743"
+       height="9.935483"
+       x="251.65067"
+       y="332.96515" />
+    <rect
+       style="font-variation-settings:'wght' 700;display:inline;fill:#8080ff;stroke-width:1.21777;stroke-dasharray:1.21777, 1.21777"
+       id="rect5029"
+       width="11.192191"
+       height="9.935483"
+       x="258.65826"
+       y="332.96515" />
+    <rect
+       style="font-variation-settings:'wght' 700;display:inline;fill:#55ddff;stroke-width:1.28348;stroke-dasharray:1.28348, 1.28348"
+       id="rect5031"
+       width="12.432597"
+       height="9.935483"
+       x="269.74863"
+       y="332.96515" />
+    <rect
+       style="font-variation-settings:'wght' 700;display:inline;fill:#ffeeaa;stroke-width:1.01376;stroke-dasharray:1.01376, 1.01376"
+       id="rect5033"
+       width="7.7563334"
+       height="9.935483"
+       x="282.30875"
+       y="332.96515" />
+    <rect
+       style="font-variation-settings:'wght' 700;display:inline;fill:#e3e2db;stroke-width:1.37416;stroke-dasharray:1.37416, 1.37416"
+       id="rect5035"
+       width="14.251369"
+       height="9.935483"
+       x="290.20346"
+       y="332.96515" />
+    <rect
+       style="font-variation-settings:'wght' 700;display:inline;fill:#f4d7d7;stroke-width:1.47323;stroke-dasharray:1.47323, 1.47323"
+       id="rect5037"
+       width="16.380402"
+       height="9.935483"
+       x="304.45694"
+       y="332.96515" />
+    <rect
+       style="font-variation-settings:'wght' 700;display:inline;fill:#aaffcc;stroke-width:0.820769;stroke-dasharray:0.820769, 0.820769"
+       id="rect5039"
+       width="5.0842805"
+       height="9.935483"
+       x="320.67279"
+       y="332.96515" />
+    <rect
+       style="font-variation-settings:'wght' 700;display:inline;fill:#aaffcc;stroke-width:0.745736;stroke-dasharray:0.745736, 0.745736"
+       id="rect5041"
+       width="4.1971836"
+       height="9.935483"
+       x="201.67285"
+       y="332.96515" />
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;font-family:'Roboto Mono';-inkscape-font-specification:'Roboto Mono, @wght=700';font-variation-settings:'wght' 700;fill:#000000;stroke-width:0.969698;stroke-dasharray:0.969698, 0.969698"
+       x="179.5081"
+       y="341.1489"
+       id="text1"><tspan
+         sodipodi:role="line"
+         id="tspan1"
+         style="stroke-width:0.969698"
+         x="179.5081"
+         y="341.1489">Ô rage ! Ô désespoir ! Ô vieillesse ennemie !</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -933,34 +938,30 @@
          id="path7272" />
     </g>
     <path
-       style="font-variation-settings:'wght' 700;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.766648;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#RoundedArrow)"
+       style="font-variation-settings:'wght' 700;fill:#000000;fill-opacity:1;stroke:#ff6600;stroke-width:0.766648;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#RoundedArrow)"
        d="M 65.712375,372.78163 V 341.41666"
        id="path7477" />
     <path
-       style="font-variation-settings:'wght' 700;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.928783;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#RoundedArrow)"
+       style="font-variation-settings:'wght' 700;fill:#000000;fill-opacity:1;stroke:#ff6600;stroke-width:0.928783;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#RoundedArrow)"
        d="M 65.712375,311.81079 V 265.77647"
        id="path7702" />
     <path
-       style="font-variation-settings:'wght' 700;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.85667;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#RoundedArrow)"
+       style="font-variation-settings:'wght' 700;fill:#000000;fill-opacity:1;stroke:#ff6600;stroke-width:0.85667;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#RoundedArrow)"
        d="M 65.712375,236.78905 V 197.62563"
        id="path7714" />
     <path
-       style="font-variation-settings:'wght' 700;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.79375;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#marker7846)"
+       style="font-variation-settings:'wght' 700;fill:#000000;fill-opacity:1;stroke:#ff6600;stroke-width:0.79375;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#marker7846)"
        d="M 65.712375,115.85097 V 98.789095"
        id="path7842" />
     <path
-       style="font-variation-settings:'wght' 700;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.79375;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#marker7914)"
+       style="font-variation-settings:'wght' 700;fill:#000000;fill-opacity:1;stroke:#ff6600;stroke-width:0.79375;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#marker7914)"
        d="M 65.712375,69.934576 V 49.10914"
        id="path7910" />
     <path
-       style="font-variation-settings:'wght' 700;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.79375;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#marker8022)"
+       style="font-variation-settings:'wght' 700;fill:#000000;fill-opacity:1;stroke:#ff6600;stroke-width:0.79375;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#marker8022)"
        d="M 65.712375,169.04365 V 146.71276"
        id="path8018" />
   </g>
-  <g
-     inkscape:groupmode="layer"
-     id="layer9"
-     inkscape:label="boxes" />
   <g
      inkscape:groupmode="layer"
      id="layer5"
