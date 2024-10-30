@@ -2,6 +2,7 @@
 from dataset import Dataset
 import regex as re
 import json
+import tiktoken
 
 class Tokenizer:
     def __init__(self, text):
@@ -143,7 +144,7 @@ def main():
 
     tokenizer.test_preprocess()
 
-if __name__ == "__main__":
+def gpt2_test():
     gpt2 = GPT2Tokenizer()
     gpt2.load_vocab()
     print(f"{len(gpt2.merges)=}")
@@ -199,3 +200,34 @@ if __name__ == "__main__":
         if v == 160:
             print(f"{k=}")
             break
+
+def utf8_test():
+    text = "こんにちは、世界 ！"
+    c = "Ô"
+    print(f"{ord(c)=}")
+    print(f"{len(c)=}")
+    text_bytes = c.encode("utf-8") # raw bytes
+    print(text_bytes)
+    ids = list(text_bytes) # list of integers in range 0..255
+    print(ids)
+    text_to_bits = list(map(bin, bytearray(c, encoding="utf-8")))
+    print(f"{text_to_bits=}")
+
+def tiktoken_test():
+    text = "Ô rage !"
+    enc = tiktoken.get_encoding("cl100k_base")
+    print(enc.encode(text))
+    # [127, 242, 34049, 758]
+
+    text = "<|endoftext|>hello world"
+    enc = tiktoken.get_encoding("cl100k_base")
+    print(enc.encode(text, allowed_special="all"))
+    print(enc.decode([100257, 15339, 1917]))
+
+    print(enc.decode([127, 242, 34049, 758]))
+    print(enc.decode([127, 242]))
+    print(enc.decode([195,248]))
+    
+if __name__ == "__main__":
+    #utf8_test()
+    tiktoken_test() 

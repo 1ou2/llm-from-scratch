@@ -10,6 +10,7 @@ mkdocstrings-python
 mkdocs-git-revision-date-localized-plugin
 pymdown-extensions
 regex
+tiktoken
 
 # for plotting in ubuntu
 #pyside2
