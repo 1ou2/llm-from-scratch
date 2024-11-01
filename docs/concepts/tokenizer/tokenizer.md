@@ -83,7 +83,8 @@ Propriétés :
 
 [![](./images/tokens.png)](./images/tokens.png)
 ### 1/ Pre-processing
-On commence par découper le texte d’entrée en mots. Voici les expressions régulières utilisées par GPT2 et GPT4
+On commence par découper le texte d’entrée en mots. Voici les expressions régulières utilisées par GPT2 et GPT4.
+Le fait de découper en mots fait que les tokens ne peuvent pas correspondrent à plusieurs mots. On ne peut pas avoir un seul token pour l’expression ```il y a```, même si cette expression apparait très souvent dans notre corpus d’entrainement.
 
 #### GPT2
 ```r"""'s|'t|'re|'ve|'m|'ll|'d| ?\p{L}+| ?\p{N}+| ?[^\s\p{L}\p{N}]+|\s+(?!\S)|\s+"""```

@@ -16,6 +16,7 @@ from .data.dataset import Dataset
 __all__ = [
     "Tokenizer",
     "Dataset",
+    "DatasetFactory"
 ]
 
 # Package metadata
