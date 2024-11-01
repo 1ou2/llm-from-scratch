@@ -11,6 +11,8 @@ mkdocs-git-revision-date-localized-plugin
 pymdown-extensions
 regex
 tiktoken
+tokenizers
+chardet
 
 # for plotting in ubuntu
 #pyside2
