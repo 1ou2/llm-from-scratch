@@ -9,18 +9,15 @@ if src_path not in sys.path:
     
 from data import DatasetFactory
 
-def training_data():
+def training_data(block_size,nb_batches):
     gutenberg_dataset = DatasetFactory.create_dataset("gutenberg")
     gutenberg_dataset.load()
-    x_batches, y_batches = gutenberg_dataset.batch_data(type="train", batch_size=10, nb_batches=20)
-    print(len(x_batches), len(y_batches))
-    print(y_batches)
-    for y in y_batches:
-        print([y])
+    x_batches, y_batches = gutenberg_dataset.batch_data( block_size=block_size, nb_batches=nb_batches,type="train",)
 
     tokenizer = Tokenizer.from_file("data/tokenizer.json")
     for i,x in enumerate(x_batches):
         print(f"{tokenizer.decode(x)} --> {tokenizer.decode([y_batches[i]])}")
+        print(f"{x=} ++> {y_batches[i]}")
         
     return x_batches, y_batches
 
@@ -37,9 +34,11 @@ def train_model():
     # how many training steps to perform?
     max_iters = 5000
     # size of our embedding vector space
-    embed_size = 30
+    embed_size = 20
     # number of hidden layers
     n_hidden = 64
+    # number of batches
+    nb_batches = 32
 
     # create embedding 
     C = torch.randn((vocab_size, embed_size), generator=g)
@@ -52,10 +51,29 @@ def train_model():
     parameters = [C, W1, b1, W2, b2]
     for p in parameters:
         p.requires_grad = True
+    print(sum(p.nelement() for p in parameters)) # number of parameters in total
+    print(f"{C.shape=}")
+    print(f"{W1.shape=}")
+    print(f"{b1.shape=}")
+    print(f"{W2.shape=}")
+    print(f"{b2.shape=}")
+
+    X, Y = training_data(block_size, nb_batches)
+    X = torch.tensor(X) # [32,10] -- [nb_batches , block_size]
+    print(f"{X.shape=}")
+    print(f"{C.shape=}")
+    # we have a batch of 32 elements
+    # the block_size is 10 - we have 10 tokens of context
+    # the embedding vector space size is 20
+    emb = C[X] # [32,10, 20]
+    print(f"{emb.shape=}")
+    print(emb.view(-1, block_size * embed_size).shape) # [32, 10*20]
+    print(f"{emb.shape=}")
+
 
 
 if __name__ == "__main__":
-    x_batches, y_batches = training_data()
+    
     train_model()
 
 

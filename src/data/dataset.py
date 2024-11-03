@@ -83,10 +83,10 @@ class _GutenbergDataset(Dataset):
             with open(f, "r") as f:
                 self.test_corpus += f.read()
 
-    def batch_data(self, type="train", batch_size=10,nb_batches=-1):
+    def batch_data(self, type="train", block_size=10,nb_batches=-1):
         """return two list of batches x and y (the ground truth)
         type : train, valid, or test
-        batch_size : number of elements in the batch
+        block_size : number of elements in the batch
         nb_batches : maximum number of batches to return, -1 means no limit, process all the data
         """
         if type == "train":
@@ -97,7 +97,39 @@ class _GutenbergDataset(Dataset):
             corpus = self.test_corpus
         else:
             raise ValueError(f"Unknown type: {type}")
-        # split the corpus into batches of size batch_size
+
+        corpus = """
+C'était pendant la soirée du 10 mars 1793. Dix heures venaient de tinter
+à Notre-Dame, et chaque heure, se détachant l'une après l'autre comme un
+oiseau nocturne élancé d'un nid de bronze, s'était envolée triste,
+monotone et vibrante.
+
+La nuit était descendue sur Paris, non pas bruyante, orageuse et
+entrecoupée d'éclairs, mais froide et brumeuse.
+
+Paris lui-même n'était point ce Paris que nous connaissons, éblouissant
+le soir de mille feux qui se reflètent dans sa fange dorée, le Paris aux
+promeneurs affairés, aux chuchotements joyeux, aux faubourgs bachiques,
+pépinière de querelles audacieuses, de crimes hardis, fournaise aux
+mille rugissements: c'était une citée honteuse, timide, affairée, dont
+les rares habitants couraient pour traverser d'une rue à l'autre, et se
+précipitaient dans leurs allées ou sous leurs portes cochères, comme des
+bêtes fauves traquées par les chasseurs s'engloutissent dans leurs
+terriers.
+C'était enfin, comme nous l'avons dit, le Paris du 10 mars 1793.
+
+Quelques mots sur la situation extrême qui avait amené ce changement
+dans l'aspect de la capitale, puis nous entamerons les événements dont
+le récit fera l'objet de cette histoire.
+
+La France, par la mort de Louis XVI, avait rompu avec toute l'Europe.
+Aux trois ennemis qu'elle avait d'abord combattus, c'est-à-dire à la
+Prusse, à l'Empire, au Piémont, s'étaient jointes l'Angleterre, la
+Hollande et l'Espagne. La Suède et le Danemark seuls conservaient leur
+vieille neutralité, occupés qu'ils étaient, du reste, à regarder
+Catherine y déchirant la Pologne.
+        """ 
+        # split the corpus into batches of size block_size
         x_batches = []
         y_batches = []
         batches = []
@@ -109,17 +141,17 @@ class _GutenbergDataset(Dataset):
                 line_tokens = tokenizer.encode(line)
                 tokens.extend(line_tokens.ids)
                 if nb_batches != -1:
-                    if len(tokens) >= batch_size*nb_batches +1:
+                    if len(tokens) >= block_size + nb_batches +1:
                         break
 
         if nb_batches == -1:
-            nb_batches = len(tokens) // batch_size
+            nb_batches = len(tokens) // block_size
 
-        for i in range(0, len(tokens), batch_size):
+        for i in range(0, len(tokens) - block_size -1):
             if nb_batches != -1 and len(y_batches) >= nb_batches:
                 break
-            x_batch = tokens[i:i+batch_size]
-            y = tokens[i+batch_size]
+            x_batch = tokens[i:i+block_size]
+            y = tokens[i+block_size]
             x_batches.append(x_batch)
             y_batches.append(y)
                    
