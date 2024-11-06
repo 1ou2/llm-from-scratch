@@ -142,50 +142,8 @@ def main():
                 hex_val = hex(ord(char))
                 f.write(f"{char}\t{hex_val}\n")
 
-def preprocess():
-    # Define files to check
-    files_to_check = list(Path("data/raw/gutenberg").glob("*.txt"))
-    preprocessed_dir = Path("data/preprocessed/gutenberg")
-    # create preprocessed dir if it doesn't exist
-    if not os.path.exists(preprocessed_dir):
-        os.makedirs(preprocessed_dir)
-
-    for file_path in files_to_check:
-        print(f"Preprocessing {file_path}...")
-        startline = 0
-        with open(file_path, 'r', encoding='utf-8') as f:
-            lines = f.readlines()
-            for i, line in enumerate(lines):
-                if line.startswith("***"):
-                    startline = i +1
-                    break
-
-            if startline != 0:
-                headers = ["produced", "distributed", "proofreading","etext","file","by","http","is","mobipocket"
-                "online","available","e-text","the", "Bibliothèque",
-                "from","(http","of","at","you","before","whatsoever", "Text", "and the", "we",
-                "this", "is", "made","encoded", "note:"]
-                for i, line in enumerate(lines[startline:]):
-                    if line.strip() == "":
-                        startline += 1
-                    else:
-                        start_with_header = False
-                        # check if line starts with any of the headers
-                        for header in headers:
-                            if line.lower().startswith(header):
-                                startline += 1
-                                start_with_header = True
-                        if not start_with_header:
-                            break
-
-                    
-            # write all lines after startline to file
-            # get basename of file and write to "preprocessed" dir
-            basename = file_path.name
-            preprocessed_path = Path(preprocessed_dir) / basename
-            with open(preprocessed_path, 'w', encoding='utf-8') as f:
-                f.writelines(lines[startline:])                    
+     
 
 if __name__ == "__main__":
     #main()
-    preprocess()
+    #preprocess()

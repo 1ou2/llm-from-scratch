@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 # get book files from project gutenberg
 monte_cristo = [17989,17990,17991,17992]
@@ -81,13 +82,73 @@ def save_dumas_id(book_ids):
         for book_id in book_ids:
             f.write(f"{book_id}\n")
 
+def preprocess():
+    # Define files to check
+    files_to_check = list(Path("data/raw/gutenberg").glob("*.txt"))
+    preprocessed_dir = Path("data/preprocessed/gutenberg")
+    # create preprocessed dir if it doesn't exist
+    if not os.path.exists(preprocessed_dir):
+        os.makedirs(preprocessed_dir)
+
+    for file_path in files_to_check:
+        print(f"Preprocessing {file_path}...")
+        startline = 0
+        endline = -1
+        with open(file_path, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+            # only keep lines that are not empty
+            lines = [line for line in lines if line.strip() != ""]
+
+            # looking for line : *** START OF THE PROJECT GUTENBERG EBOOK
+            for i, line in enumerate(lines):
+                if line.startswith("***"):
+                    startline = i +1
+                    break
+
+            if startline != 0:
+                # after what should be the start line we still have other comments in the subsequent lines
+                headers = ["produced", "distributed", "proofreading","etext","file","by","http","is","mobipocket"
+                "online","available","e-text","the", "Bibliothèque",
+                "from","(http","of","at","you","before","whatsoever", "Text", "and the", "we",
+                "this", "is", "made","encoded", "note:"]
+                for i, line in enumerate(lines[startline:]):
+                    if line.strip() == "":
+                        startline += 1
+                    else:
+                        start_with_header = False
+                        # check if line starts with any of the headers
+                        for header in headers:
+                            if line.lower().startswith(header):
+                                startline += 1
+                                start_with_header = True
+                        # did not find a line starting with a header, nor an empty line
+                        # we should be at the start of the book
+                        if not start_with_header:
+                            break
+
+                # looking for line : *** END OF THE PROJECT GUTENBERG EBOOK
+                for i, line in enumerate(lines[startline:]):
+                    if line.startswith("***"):
+                        endline = i
+                        break
+
+
+            # write all lines after startline to file
+            # get basename of file and write to "preprocessed" dir
+            basename = file_path.name
+            preprocessed_path = Path(preprocessed_dir) / basename
+            with open(preprocessed_path, 'w', encoding='utf-8') as f:
+                f.writelines(lines[startline:endline])               
+
 if __name__ == "__main__":
     #
 
-    data_dir = "./data/raw"
+    data_dir = "./data/raw/gutenberg"
     if not os.path.exists(data_dir):
         os.makedirs(data_dir)
-    #book_ids = get_dumas_id("./data/resources/dumas.txt")
-   
-    for book_id in non_fiction:
-        download_gutenberg_book(book_id, "./data/tmp")
+    book_ids = get_dumas_id("./data/resources/dumas.txt")
+    
+    for book_id in book_ids:
+        download_gutenberg_book(book_id, data_dir)
+
+    preprocess()

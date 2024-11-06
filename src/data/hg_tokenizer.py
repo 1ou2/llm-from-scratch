@@ -46,7 +46,7 @@ def test_tokenizer():
 
 
 if __name__ == "__main__":
-    #gutenberg_dataset = DatasetFactory.create_dataset("gutenberg")
-    #train_files = gutenberg_dataset.all_files()
-    #train_tokenizer(train_files, vocab_size=1000)
+    gutenberg_dataset = DatasetFactory.create_dataset("gutenberg")
+    train_files = gutenberg_dataset.all_files()
+    train_tokenizer(train_files, vocab_size=1024)
     test_tokenizer()
