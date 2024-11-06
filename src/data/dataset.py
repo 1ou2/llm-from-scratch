@@ -86,7 +86,7 @@ class _GutenbergDataset(Dataset):
             with open(f, "r") as f:
                 self.test_corpus += f.read()
 
-    def batch_data(self, type="train", block_size=10,nb_batches=-1):
+    def batch_data(self, type="train", block_size=8,nb_batches=-1):
         """return two list of batches x and y (the ground truth)
         type : train, valid, test or mini
         block_size : number of elements in the batch
@@ -135,6 +135,7 @@ Catherine y déchirant la Pologne.
 
         
         # split the corpus into batches of size block_size
+        # all tokens in the corpus
         tokens = []
         tokenizer = Tokenizer.from_file("data/tokenizer.json")
         for line in corpus.splitlines():
