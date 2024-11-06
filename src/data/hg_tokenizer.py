@@ -29,7 +29,7 @@ def split_files():
     
     return train_files, val_files, test_files
 """
-def train_tokenizer(train_files,vocab_size=1000):
+def train_tokenizer(train_files,vocab_size=1024):
     tokenizer = Tokenizer(BPE(unk_token="[UNK]"))
     trainer = BpeTrainer(special_tokens=["[UNK]", "[CLS]", "[SEP]", "[PAD]", "[MASK]"],vocab_size=vocab_size)
     tokenizer.pre_tokenizer = Whitespace()

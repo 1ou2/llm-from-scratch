@@ -12,15 +12,14 @@ from data import DatasetFactory
 def training_data(block_size,nb_batches):
     gutenberg_dataset = DatasetFactory.create_dataset("gutenberg")
     gutenberg_dataset.load()
-    x_batches, y_batches = gutenberg_dataset.batch_data( block_size=block_size, nb_batches=nb_batches,type="train",)
+    gutenberg_dataset.batch_data( block_size=block_size, nb_batches=nb_batches,type="mini",)
 
     tokenizer = Tokenizer.from_file("data/tokenizer.json")
-    for i,x in enumerate(x_batches):
-        print(f"{tokenizer.decode(x)} --> {tokenizer.decode([y_batches[i]])}")
-        print(f"{x=} ++> {y_batches[i]}")
-        
-    return x_batches, y_batches
+    for i,x in enumerate(gutenberg_dataset.x_batch):
+        print(f"{tokenizer.decode(x)} --> {tokenizer.decode([gutenberg_dataset.y_batch[i]])}")
+        print(f"{x=} ++> {gutenberg_dataset.y_batch[i]}")
 
+    return gutenberg_dataset.x_batch, gutenberg_dataset.y_batch
 
 def train_model():
 

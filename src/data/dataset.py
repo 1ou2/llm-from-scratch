@@ -73,6 +73,9 @@ class _GutenbergDataset(Dataset):
         self.train_corpus = ""
         self.val_corpus = ""
         self.test_corpus = ""
+        self.x_batch = []
+        self.y_batch = []
+        self.current_batch = 0
         for f in train_files:
             with open(f, "r") as f:
                 self.train_corpus += f.read()
@@ -85,7 +88,7 @@ class _GutenbergDataset(Dataset):
 
     def batch_data(self, type="train", block_size=10,nb_batches=-1):
         """return two list of batches x and y (the ground truth)
-        type : train, valid, or test
+        type : train, valid, test or mini
         block_size : number of elements in the batch
         nb_batches : maximum number of batches to return, -1 means no limit, process all the data
         """
@@ -95,10 +98,8 @@ class _GutenbergDataset(Dataset):
             corpus = self.val_corpus
         elif type == "test":
             corpus = self.test_corpus
-        else:
-            raise ValueError(f"Unknown type: {type}")
-
-        corpus = """
+        elif type == "mini":
+            corpus = """
 C'était pendant la soirée du 10 mars 1793. Dix heures venaient de tinter
 à Notre-Dame, et chaque heure, se détachant l'une après l'autre comme un
 oiseau nocturne élancé d'un nid de bronze, s'était envolée triste,
@@ -129,10 +130,11 @@ Hollande et l'Espagne. La Suède et le Danemark seuls conservaient leur
 vieille neutralité, occupés qu'ils étaient, du reste, à regarder
 Catherine y déchirant la Pologne.
         """ 
+        else:
+            raise ValueError(f"Unknown type: {type}")
+
+        
         # split the corpus into batches of size block_size
-        x_batches = []
-        y_batches = []
-        batches = []
         tokens = []
         tokenizer = Tokenizer.from_file("data/tokenizer.json")
         for line in corpus.splitlines():
@@ -148,14 +150,13 @@ Catherine y déchirant la Pologne.
             nb_batches = len(tokens) // block_size
 
         for i in range(0, len(tokens) - block_size -1):
-            if nb_batches != -1 and len(y_batches) >= nb_batches:
+            if nb_batches != -1 and len(self.y_batch) >= nb_batches:
                 break
             x_batch = tokens[i:i+block_size]
             y = tokens[i+block_size]
-            x_batches.append(x_batch)
-            y_batches.append(y)
-                   
-        return x_batches, y_batches
+            self.x_batch.append(x_batch)
+            self.y_batch.append(y)
+
 
     def all_files(self):
         file_dir = "data/preprocessed/gutenberg"
