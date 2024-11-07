@@ -185,8 +185,11 @@ def head():
     wei = F.softmax(wei, dim=-1) # (B, T, T) = (4, 8, 8)
     print(f"{wei.shape=}")
     print(wei[-1])
+    torch.set_printoptions(precision=4,sci_mode=False)
+    print(f"{v[-1]}")
     out = wei @ v # (B, T, T) @ (B, T, 16) -> (B,T,16) = (4,8,16)
     print(f"{out.shape=}")
+    print(out[-1])
     
 
 if __name__ == "__main__":
