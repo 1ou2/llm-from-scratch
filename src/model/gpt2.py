@@ -3,6 +3,25 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as F
 
+# hyperparameters
+batch_size = 32 # how many independent sequences will we process in parallel?
+block_size = 8 # what is the maximum context length for predictions?
+max_iters = 3000
+eval_interval = 300
+learning_rate = 1e-2
+eval_iters = 200
+n_embed = 32
+vocab_size = 1024
+head_size = 16
+
+if torch.cuda.is_available():
+    device = torch.device("cuda")
+elif torch.backends.mps.is_available():
+    device = torch.device("mps")
+else:
+    device = torch.device("cpu")
+torch.manual_seed(1337)
+
 class CharacterTokenizer():
     def __init__(self, chars):
         self.chars = chars
@@ -38,14 +57,16 @@ class DataManager():
         x = torch.stack([data[i:i+self.block_size] for i in ix]) # [4,8]
         # do the same for the target
         y = torch.stack([data[i+1:i+self.block_size+1] for i in ix]) #[4,8]
-       
+        x, y = x.to(device), y.to(device)
         return x, y
 
 class BigramLanguageModel(nn.Module):
-    def __init__(self,vocab_size) -> None:
+    def __init__(self,) -> None:
         super().__init__()
         torch.manual_seed(1337)
-        self.token_embedding_table = nn.Embedding(vocab_size, vocab_size)
+        self.token_embedding_table = nn.Embedding(vocab_size, n_embed)
+        self.position_embedding_table = nn.Embedding(block_size, n_embed)
+        self.lm_head = nn.Linear(n_embed, vocab_size)
 
     def forward(self, idx, targets=None):
 
@@ -54,7 +75,10 @@ class BigramLanguageModel(nn.Module):
         # B : batch -> nombre d’inputs en parallèle
         # T : time -> longueur max du contexte
         # C : channels -> dimension de l’embedding
-        logits = self.token_embedding_table(idx) # (B,T,C) = (4,8,65)
+        tok_emb = self.token_embedding_table(idx) # (B,T,C) = (4,8,65)
+        pos_emb = self.position_embedding_table(torch.arange(block_size, device=device)) # (T, C) = (8, 65)
+        x = tok_emb + pos_emb # (B, T, C) = (4, 8, 65)
+        logits = self.lm_head(x) # (B, T, vocab_size) = (4, 8, 65)
         if targets is None:
             loss = None
         else:
@@ -85,6 +109,20 @@ class BigramLanguageModel(nn.Module):
             # append sampled index to the running sequence
             idx = torch.cat((idx, idx_next), dim=1) # (B, T+1)
         return idx
+
+@torch.no_grad()
+def estimate_loss(model):
+    out = {}
+    model.eval()
+    for split in ["train", "val"]:
+        losses = torch.zeros(eval_iters)
+        for k in range(eval_iters):
+            X, Y = data.get_batch(split)
+            logits, loss = model(X, Y)
+            losses[k] = loss.item()
+        out[split] = losses.mean()
+    model.train()
+    return out
 
 def get_text():
     with open("data/raw/shakespeare.txt", "r") as f:
@@ -124,9 +162,37 @@ def lecture():
             target = yb[b,t]
             print(f"when input is {context.tolist()} the target is {target}")
 
+def head():
+    torch.manual_seed(1337)
+    B,T,C = 4,8,32 # batch, time, channels
+    x = torch.randn(B,T,C)
+    head_size = 16
+    key = nn.Linear(C, head_size, bias=False)
+    query = nn.Linear(C, head_size, bias=False)
+    k = key(x) # (B, T, 16)
+    q = query(x) # (B, T, 16)
+    #print(k)
+    print(f"{k.shape=}")
+    print(f"{k.transpose(-2, -1).shape=}") # transpose(B, T, 16) ->  (B, 16, T) = (4, 16, 8)
+    wei = q @ k.transpose(-2, -1) # (B, T, 16) @ (B, 16, T) = (B, T, T) = (4, 8, 8)
+    print(f"{wei.shape=}")
+    print(wei[-1])
+    tril = torch.tril(torch.ones(T, T))
+    wei = wei.masked_fill(tril == 0, float("-inf"))
+    print(wei[-1])
+    wei = F.softmax(wei, dim=-1) # (B, T, T) = (4, 8, 8)
+    print(f"{wei.shape=}")
+    print(wei[-1])
+    out = wei @ x # (B, T, T) @ (B, T, C) -> (B,T,C) = (4,8,32)
+    print(f"{out.shape=}")
+    
+
 if __name__ == "__main__":
+    head()
+    import sys;sys.exit(0)
     text = get_text()
     chars = get_vocab(text)
+    vocab_size=len(chars)
     tokenizer = CharacterTokenizer(chars)
     block_size = 8
     batch_size = 4
@@ -138,7 +204,8 @@ if __name__ == "__main__":
 
     xb,yb = data.get_batch("train")
 
-    m = BigramLanguageModel(len(chars))
+    model = BigramLanguageModel()
+    m = model.to(device)
     out, loss = m(xb,yb)
     print(f"{out.shape=}")
     print(f"{loss=}")
@@ -147,5 +214,25 @@ if __name__ == "__main__":
     print(f"{tokens=}")
     tokens = tokens[0].tolist() # flatten to a python list
     print(tokenizer.decode(tokens))
+    # create a PyTorch optimizer
+    optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3)
+    batch_size = 32
+    for iter in range(1000):
 
+        # every once in a while evaluate the loss on train and val sets
+        if iter % 100 == 0:
+            losses = estimate_loss(model)
+            print(f"step {iter}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
 
+        # sample a batch of data
+        xb, yb = data.get_batch("train")
+
+        # evaluate the loss
+        logits, loss = m(xb, yb)
+        optimizer.zero_grad(set_to_none=True)
+        loss.backward()
+        optimizer.step()
+
+    print(loss.item())
+    tokens = m.generate(torch.zeros((1, 1), dtype=torch.long), max_new_tokens=300)[0].tolist()
+    print(tokenizer.decode(tokens))
