@@ -15,4 +15,4 @@ def download_shakespeare():
 
 
 if __name__ == "__main__":
-    download_shakespeare()
+    #download_shakespeare()
