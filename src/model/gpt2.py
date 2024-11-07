@@ -169,8 +169,10 @@ def head():
     head_size = 16
     key = nn.Linear(C, head_size, bias=False)
     query = nn.Linear(C, head_size, bias=False)
+    value = nn.Linear(C, head_size, bias=False)
     k = key(x) # (B, T, 16)
     q = query(x) # (B, T, 16)
+    v = value(x) # (B, T, 16)
     #print(k)
     print(f"{k.shape=}")
     print(f"{k.transpose(-2, -1).shape=}") # transpose(B, T, 16) ->  (B, 16, T) = (4, 16, 8)
@@ -183,7 +185,7 @@ def head():
     wei = F.softmax(wei, dim=-1) # (B, T, T) = (4, 8, 8)
     print(f"{wei.shape=}")
     print(wei[-1])
-    out = wei @ x # (B, T, T) @ (B, T, C) -> (B,T,C) = (4,8,32)
+    out = wei @ v # (B, T, T) @ (B, T, 16) -> (B,T,16) = (4,8,16)
     print(f"{out.shape=}")
     
 

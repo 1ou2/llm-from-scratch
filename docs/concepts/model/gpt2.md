@@ -70,6 +70,13 @@ On fait donc (B, T, 16) @ (B , 16, T) -> (B, T, T)
 Enfin, une fois qu’on connait le poids relatif des tokens les uns par rapport aux autres on peut multiplier par la valeur du token
 out = wei @ x # (B, T, T) @ (B, T, C) -> (B,T,C) = (4,8,32)
 
+Interpretation
+x est l’embedding du mot + sa position.
+Une fois passé par le mécanisme d’attention, on a un nouvel embedding qui represente le mot + un delta issuu de sa relation avec les autres mots.
+Exemple: si on le mot ```avocat```, et que dans la phrase il y a le mot ```assiette```, on peut imaginer que l’embedding du mot va être modifié dans la direction du sens nourriture.
+Alors que si on a ce mot avec le mot ```tribunal``` a côté, alors l’embedding vectoriel sera modifié dans le sens de la justice et du droit.
+
+## code
 ```
     torch.manual_seed(1337)
     B,T,C = 4,8,32 # batch, time, channels
@@ -77,22 +84,19 @@ out = wei @ x # (B, T, T) @ (B, T, C) -> (B,T,C) = (4,8,32)
     head_size = 16
     key = nn.Linear(C, head_size, bias=False)
     query = nn.Linear(C, head_size, bias=False)
-    k = key(x) # (B, T, 16)
+    value = nn.Linear(C, head_size, bias=False)
+    k = key(x)   # (B, T, 16)
     q = query(x) # (B, T, 16)
-    print(k)
-    print(f"{k.shape=}")
-    print(f"{k.transpose(-2, -1).shape=}") # transpose(B, T, 16) ->  (B, 16, T) = (4, 16, 8)
+    v = value(x) # (B, T, 16)
     wei = q @ k.transpose(-2, -1) # (B, T, 16) @ (B, 16, T) = (B, T, T) = (4, 8, 8)
-    print(f"{wei.shape=}")
+
     tril = torch.tril(torch.ones(T, T))
     wei = wei.masked_fill(tril == 0, float("-inf"))
     wei = F.softmax(wei, dim=-1) # (B, T, T) = (4, 8, 8)
-    print(f"{wei.shape=}")
-    out = wei @ x # (B, T, T) @ (B, T, C) -> (B,T,C) = (4,8,32)
-    print(f"{out.shape=}")
+    out = wei @ v # (B, T, T) @ (B, T, 16) -> (B,T,16) = (4,8,16)
 ```
 
-Matrice d’attention
+## Matrice d’attention
 ```
        [[ 0.4516,  0.3215, -3.1926,  0.3077, -0.6161,  0.2563, -0.2989, -2.1917],
         [-0.4001, -0.9621,  1.9568,  0.6661, -0.3263,  0.2626, -1.3973, -0.8945],
