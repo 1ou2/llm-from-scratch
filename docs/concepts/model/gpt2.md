@@ -70,11 +70,31 @@ On fait donc (B, T, 16) @ (B , 16, T) -> (B, T, T)
 Enfin, une fois qu’on connait le poids relatif des tokens les uns par rapport aux autres on peut multiplier par la valeur du token
 out = wei @ x # (B, T, T) @ (B, T, C) -> (B,T,C) = (4,8,32)
 
+## Normalisation
+On divise le résultat de q.k par racine carrée(head_size).
+Si on ne le fait pas, la multiplication va produire de plus grosse valeurs et ces valeurs vont ensuite passer dans une fonction softmax qui va accroitre les écarts. Sans cette normalisation, au fur et à mesure on ne va plus avoir une distribution de probabilité bien diffuse et répartie sur les valeurs, mais on aura plutôt une valeur à 1 et les autres à 0 (cela va tendre vers un vecteur de type one-hot encoding)
+
 Interpretation
 x est l’embedding du mot + sa position.
 Une fois passé par le mécanisme d’attention, on a un nouvel embedding qui represente le mot + un delta issuu de sa relation avec les autres mots.
 Exemple: si on le mot ```avocat```, et que dans la phrase il y a le mot ```assiette```, on peut imaginer que l’embedding du mot va être modifié dans la direction du sens nourriture.
 Alors que si on a ce mot avec le mot ```tribunal``` a côté, alors l’embedding vectoriel sera modifié dans le sens de la justice et du droit.
+
+
+## Decoder - Encoder
+On est dans le cas particulier d’une architecture de decoder.
+- On masque les tokens futurs car on veut faire de la prédiction
+- on utilise uniquement de self-attention.
+
+On parle ici de self-attention, car la tête d’attention a été créée à partir du même ensemble de tokens. C’est le même x qui est donnée en entrée des matrices K, Q et V
+    k = key(x)   # (B, T, 16)
+    q = query(x) # (B, T, 16)
+    v = value(x) # (B, T, 16)
+
+Dans le cas d’un encoder/decoder qui est utilisé par exemple pour de la traduction ou de l’analyse de sentiment :
+- On ne va pas masquer les tokens futurs
+- on fait de la cross attention. Q va provenir de l’encoder, alors que q et v seront générés par le décoder. On va chercher des informations d’attention sur d’autres noeuds.
+
 
 ## code
 ```
@@ -97,6 +117,10 @@ Alors que si on a ce mot avec le mot ```tribunal``` a côté, alors l’embeddin
 ```
 
 ## Matrice d’attention
+Un token ne "voit" que les tokens précédents. Dans l’exemple ci-dessous, j’ai mis en couleur Orange ce que voit le ```token 4```. Il ne voit que lui-même ainsi que les tokens 0, 1, 2 et 3.
+
+[![](images/token-attention.png)](images/token-attention.png)
+
 ```
        [[ 0.4516,  0.3215, -3.1926,  0.3077, -0.6161,  0.2563, -0.2989, -2.1917],
         [-0.4001, -0.9621,  1.9568,  0.6661, -0.3263,  0.2626, -1.3973, -0.8945],
@@ -118,8 +142,6 @@ Alors que si on a ce mot avec le mot ```tribunal``` a côté, alors l’embeddin
         [-0.5028,  1.6844, -0.4185,  1.0239,  1.0275,  0.1398,  0.4882,  1.5573]]
 
 
-
-
        [[1.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000],
         [0.6369, 0.3631, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000],
         [0.2586, 0.7376, 0.0038, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000],
@@ -130,37 +152,10 @@ Alors que si on a ce mot avec le mot ```tribunal``` a côté, alors l’embeddin
         [0.0306, 0.2728, 0.0333, 0.1409, 0.1414, 0.0582, 0.0825, 0.2402]]
 ```
 
-
-
-[[0.0972, 0.0573,     -0.1047,     -0.0467,     -0.1401,
-             -0.8413,     -0.1362,     -0.6747,     -0.2154,      1.0993,
-              0.2343,      0.0326,     -0.1852,      0.1478,     -0.6104,
-              1.5391],
-        [     0.3612,     -0.6797,     -0.7709,      0.6483,     -0.2445,
-             -0.5790,     -1.5354,     -0.7219,     -0.1883,      0.0109,
-              0.2399,     -0.0545,     -0.1437,      0.0493,     -0.8864,
-              0.7240],
-        [    -0.1098,      0.8060,      0.8114,     -0.3400,     -0.4584,
-              0.0054,      1.3075,     -0.7778,     -0.6282,      0.0742,
-             -0.2187,      0.1813,     -0.2085,      0.6720,      0.0694,
-              0.9866],
-        [     0.3043,      1.1563,      0.1380,     -2.0818,     -0.1047,
-              0.5229,      1.2301,      0.5365,     -0.9001,     -1.0794,
-             -0.2433,      0.0010,      0.2483,      0.0442,     -0.6785,
-             -0.3334],
-        [    -0.5300,     -0.9214,      0.3791,     -0.0207,      0.3733,
-             -0.1613,     -0.7093,      0.0420,      0.1615,      0.1662,
-              0.5669,      0.5506,     -0.0711,     -0.5554,     -0.1208,
-             -0.4528],
-        [    -0.6965,      0.4446,      0.8095,     -0.6036,      0.0479,
-             -0.4640,     -0.2097,      0.5598,      0.5720,      0.3643,
-              0.0594,     -1.3565,      0.6867,      0.5451,     -0.6737,
-              0.6352],
-        [     0.3546,      0.1157,     -0.4229,     -0.4704,     -0.2267,
-              0.1567,     -0.2100,     -1.0505,     -1.0665,     -0.8319,
-              0.1989,      0.9078,      0.3519,      0.0566,     -0.6488,
-              0.0551],
-        [    -1.7223,      0.5108,      0.2968,      0.2329,      0.2418,
-              0.3372,     -0.2523,      0.6476,     -1.4068,     -0.6438,
-              0.0745,     -0.5873,      0.1296,     -0.2159,     -0.7506,
-              0.3231]]
+# Multihead attention
+Dans l’architecture des Transformers, on a plusieurs Attention Head.
+Le résultat du multi-head est juste la concatenation des différente Head.
+```     out = torch.cat([h(x) for h in self.heads], dim=-1)
+        # project the layer so that we can add it to the residual connection neuron
+        out = self.proj(out)```
+Comme chaque attention head, est de dimension, ```(B,T,Head_size)``` on projete le résulat via un réseau de neurone feedforward
