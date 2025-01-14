@@ -59,7 +59,7 @@ llm_from_scratch/                   # Root project directory
 │       ├── valid/
 │       └── test/
 │
-├── docs/                          # Documentation root
+├── docs/                         # Documentation root
 │   ├── stylesheets/              # Custom CSS for docs
 │   │   └── extra.css
 │   ├── javascripts/              # Custom JS for docs

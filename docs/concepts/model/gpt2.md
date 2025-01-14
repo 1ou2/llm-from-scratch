@@ -47,24 +47,31 @@ self.lm_head = nn.Linear(n_embed, vocab_size)
 # Tête d’attention - mécanisme de sef attention
 On a un paramètre qui est la ```head_size = 16```. C’est la taille que l’on donne à notre matrice d’attention.
 Dans notre transformer, on a en entrée un matrice x de taille (B,T,C)
+
 - B : taille du batch, combien d’éléments sont traités en parallèle
 - T : nombre de tokens du block
 - C : nombre de channels par token, correspond à la dimension de l’embedding
 Création de deux couches de neurones :
+```
 key = nn.Linear(C,head_size, bias=False) # (C,16)
 query = nn.Linear(C,head_size, bias=False) # (C,16)
-
+```
 Pour chaque batch, on calcule deux vecteurs
+
 - k = key(x)
 - q = query(y)
+
 On a alors pour k, et q des tenseurs de taille (B, T, 16). On a B tenseurs dans notre batch. Et chaque tenseur a pour taille (T,16).
 On commence par calculer leur produit scalaire. Cela donne la proximité entre k et q.
+```
 wei = q. transpose(k)
+```
 Puis on fait un masque sur tous les éléments du tensor qui sont dans la diagonale supérieure.
 On ne veut pas calculer la relation entre un token, et token d’un indice plus grand, car les tokens ont un ordre et un token de plus grand indice arrive plus tard dans la phrase. Si on calcule son impact/sa relation sur un mot cela revient à dire qu’on connait le mot suivant et donc il est facile de le prédire !
 Techniquement on positionne à -infini la valeur car on va appliquer un softmax qui va donc passer cette valeur à 0.
 wei = 
 La matrice d’attention A se calcule alors par :
+
 - A = softmax(q . transpose(k))
 On fait donc (B, T, 16) @ (B , 16, T) -> (B, T, T)
 Enfin, une fois qu’on connait le poids relatif des tokens les uns par rapport aux autres on peut multiplier par la valeur du token
@@ -83,6 +90,7 @@ Alors que si on a ce mot avec le mot ```tribunal``` a côté, alors l’embeddin
 
 ## Decoder - Encoder
 On est dans le cas particulier d’une architecture de decoder.
+
 - On masque les tokens futurs car on veut faire de la prédiction
 - on utilise uniquement de self-attention.
 
@@ -92,9 +100,9 @@ On parle ici de self-attention, car la tête d’attention a été créée à pa
     v = value(x) # (B, T, 16)
 
 Dans le cas d’un encoder/decoder qui est utilisé par exemple pour de la traduction ou de l’analyse de sentiment :
+
 - On ne va pas masquer les tokens futurs
 - on fait de la cross attention. Q va provenir de l’encoder, alors que q et v seront générés par le décoder. On va chercher des informations d’attention sur d’autres noeuds.
-
 
 ## code
 ```

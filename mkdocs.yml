@@ -45,18 +45,20 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - def_list
-  - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
   - attr_list
   - md_in_html
 
 nav:
   - Home: index.md
   - Concepts:
-    - Attention: concepts/dataset/dataset.md
+    - Dataset: concepts/dataset/dataset.md
+    - Tokenization: concepts/tokenizer/tokenizer.md
     - Transformers: concepts/transformers/transformers.md
     - Backpropagation: concepts/backprop/backpropagation.md
+    - Models:
+      - GPT2: concepts/model/gpt2.md
+      - N-Gram: concepts/model/probabilistic-neural.md
+      
   - Tutorials:
     - Getting Started: tutorials/getting_started/getting_started.md
   - API Reference:

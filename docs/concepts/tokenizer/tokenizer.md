@@ -1,6 +1,7 @@
 # Objectif
 Étant donné un texte d'entrée, on veut le représenter par une sequence numérique.
 Un tokenizer a 2 fonctions
+
 - l'encodeur ```tokenizer.encode(str) -> list(int)```
 - le décodeur ```tokenizer.decode(list(int)) -> str```
 
@@ -42,7 +43,9 @@ b -> 98
 
 ```
 Exemple :  ```encode("salut toi !") -> [115, 97, 108, 117, 116, 32, 116, 111, 105, 32, 33]```
+
 Cette implémentation est simple, mais a des limitations:
+
 - il faut définir à l'avance tout notre vocabulaire, il faut tous les caractères spéciaux, mais il faut aussi penser aux autres langues. Les kanjis, les émojis.
 - cela revient à encoder l'information lettre par lettre, intuitivement on peut se dire que ce nn'est pas très efficace et qu'on pourrait travailler au niveau des mots. C'est à dire associer à un mot, un code.
 
@@ -61,6 +64,7 @@ zythum -> 30.000
 Exemple : ```encode("salut toi !") -> [21458,27551,30001]```
 
 Analyse :
+
 - on doit d'abord traiter le texte, pour le découper en mot : il faut donc gérer les espaces, les tabulations
 - on doit avoir un dictionnaire de tous les mots possibles à encoder. Mais alors comment encoder les fautes j'écris ```maiston``` au lieu de ```maison```. Comment gérer les langues qu'on a pas vu (javanais, arabe, ...)
 
@@ -88,6 +92,7 @@ Le fait de découper en mots fait que les tokens ne peuvent pas correspondrent �
 
 #### GPT2
 ```r"""'s|'t|'re|'ve|'m|'ll|'d| ?\p{L}+| ?\p{N}+| ?[^\s\p{L}\p{N}]+|\s+(?!\S)|\s+"""```
+
 - R1 : ``` ?\p{L}+``` : un espace optionnel suivi, d'une ou plusieurs lettres
 - R2 : ``` ?\p{N}+``` : un espace optionnel suivi, d'une ou plusieurs chiffres
 - R3 : ```'s``` : exactement la chaîne "'s"
@@ -98,6 +103,7 @@ Le fait de découper en mots fait que les tokens ne peuvent pas correspondrent �
 
 #### GPT4
 ```r"""'(?i:[sdmt]|ll|ve|re)|[^\r\n\p{L}\p{N}]?+\p{L}++|\p{N}{1,3}+| ?[^\s\p{L}\p{N}]++[\r\n]*+|\s++$|\s*[\r\n]|\s+(?!\S)|\s"""```
+
 - ?i: - case insensitive
 - \p{N}{1,3}+ : les chiffres sont fusionnés par paquet de 3 maximum
 
@@ -121,6 +127,7 @@ Recherche de la paire la plus fréquente, création du token ```257``` et rempla
 On continue jusqu’à soit qu’il n’y ait plas de paire, soit qu’on ait atteint le vocabulaire max qu’on s’est fixé.
 
 Exemples issus de GPT:
+
 - "ine" est le token 500
 - "ice" est le token 501
 - "against" est le token 32826
@@ -133,28 +140,33 @@ dans GPT2, encoder('<|endoftext|>) = 50256, c'est le dernier token encodé. Il s
 Dans le fine-tuning on utilise aussi des tokens spéciaux comme
 ```<|im_start|>system<|im_sep|>You are a helpful assistant<|im_end|><|im_start|>user<|im_sep|><|im_end|><|im_start|>assistant<|im_sep|>```
 Ici ces tokens servent à séparer les éléments du dialogue:
+
 - im_start : imaginary dialog start
 
 Le traitement de ces tokens est fait dans l'algorithme par des traitements spéciaux. Ce n'est pas BPE qui gère ces cas.
 FIM : fill in the middle
 
 Il est possible d'étendre le vocabulaire et de rajouter des specials tokens. 
+
 - dans la librairie tiktoken c'est prévu
 - attention cela a un impact sur l'architecture de transformer. Il faut rajouter une ligne dans les embeddings, et rajouter une sortie dans l'output layer car on a un token de plus dans la liste des probabilités
 
 # Impact sur l’architecture du LLM
 Le nombre de tokens qu’on a c’est à dire la taille de notre vocabulaire ```vocab_size``` a un impact sur l’architecture du LLM. Si on prend l’exemple de GPT-2, on a un ```vocab_size=50256```
 Ce nombre ```50256``` se retrouve dans deux endroits :
+
 - la table d’embedding
 - le neurone de sortie
 ## Embedding table
 ```token_embedding_table = nn. Embeddding(vocab_size, n_embd) : ```
+
 - 2-dim array. 
 - nombre de lignes est notre vocabulaire, chaque token est associé à un vecteur d’embedding qu'on entraine durant la backpropagation,
 - n_embd : nbre de channels dans notre transformer
 
 ## Neurone de sortie
 ```lm_head = nn.Linear(n_embd, vocab_size)```
+
 - linear layer
 - produce logits
 - probability of every single tokens
@@ -163,6 +175,7 @@ Le neurone de sortie donne pour chacun des tokens du vocabulaire qu’elle est l
 ## Taille du vocabulaire
 Plus on a de tokens, plus la représentation du texte est dense. Or il faut considérer le fait que dans l’architecture de transformer on a un contexte qui est de taille fixe. Si on a un contexte de 1024, cela veut dire que le LLM va pouvoir manipuler 1024 tokens à la fois.  
 Si on augmente trop le nombre de tokens, par exemple on dit qu'on a un vocab_size = 1 million. 
+
 - Alors dans les données d'entrainement on aura des tokens très rares, et l'entrainement ne pas voir beaucoup de données sur certains tokens ce qui va faire que les embeddings seront sous-entrainé. Les tokens vont être mal représentés dans notre espace vectoriel d’embedding.
 - on va compresser énormément d'info dans un seul token (on aura des tokens très longs), et lors de la forward pass on ne va pas bien entrainer le réseau. Le réseau ne pourra pas ajuster les poids de façon optimale
 
