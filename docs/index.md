@@ -6,3 +6,5 @@ La construction d’un LLM se fait en plusieurs étapes
 - tokenization : mise en place d’une tokenizer pour transformer le texte en tokens
 - embedding : embedding des tokens dans un espace vectoriel
 - attention : mécanisme d’attention pour ajouter du contexte aux embeddings de mots
+
+[![](./overview.png)](./overview.png)
