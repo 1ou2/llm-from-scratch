@@ -52,6 +52,11 @@ def tiktok():
 
 class GPTDatasetV1(Dataset):
     def __init__(self, text, tokenizer, max_length, stride):
+        """Create a Sample dataset
+        text : input text
+        tokenizer : tokenizer object that converts string to tokens
+        max_length : number of tokens to use as input
+        stride : offset used when iterating over the inputs tokens """
         self.tokenizer = tokenizer
         self.input_ids = []
         self.target_ids = []
@@ -75,15 +80,39 @@ class GPTDatasetV1(Dataset):
         return self.input_ids[idx], self.target_ids[idx]
 
 
-def create_dataloader_v1(text, batch_size=4, max_length=256,stride=128, 
+def create_dataloader_v1(text, batch_size=8, max_length=8,stride=8, 
                          shuffle=True,drop_last=True, num_workers=0):
-    
+    """Create a dataloader from a text file
+    text : the content of the file
+    batch_size : how many elements per batch
+    max_length : how many tokens per inputs (the context length)
+    stride : how we iterate on the tokens
+    shuffle: should we shuffle the inputs
+    drop_last : drop last batch if we don't have enough tokens
+    num_workers : number of parallel processes to launch
+    """
     tokenizer = tiktoken.get_encoding("gpt2")
     dataset = GPTDatasetV1(text, tokenizer, max_length,stride)
     dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=shuffle,
                             drop_last=drop_last, num_workers=num_workers)
     return dataloader
 
+def load_data():
+    with open("./data/raw/the-verdict.txt", "r", encoding="utf-8") as f:
+        text = f.read()
+        dataloader = create_dataloader_v1(text, batch_size=3, max_length=5,
+                                          stride=2, shuffle=False)
+        tokenizer = tiktoken.get_encoding("gpt2")
+
+        for i, batch in enumerate(dataloader):
+            x, y = batch
+            print(f"{i=} {x.shape=} {y.shape=}")
+            print(f"{x=}")
+            print(f"{y=}")
+            if i == 3:
+                break
+
 if __name__ == "__main__":
     #explore()
-    tiktok()
+    #tiktok()
+    load_data()

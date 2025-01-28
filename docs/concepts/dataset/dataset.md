@@ -1,3 +1,76 @@
+# Pytorch dataset et dataloader
+Le module pytorch propose un modèle pour modéliser les données et les charger :
+- `Dataset` : classe générique dont on va hériter et qui représente notre jeu de données
+- `DataLoader` : classe qui permet de créer des batchs : sous-ensemble du jeu de données qui vont nous servir lors d'une boucle d'entrainement.
+
+Pour utiliser ces deux classe il faut les importer: `from torch.utils.data import Dataset, DataLoader`
+Notre sous-classe héritant de Dataset a 3 méthodes
+- __init__ : chargement des données
+- __len__ : retourne la longueur totale de notre Dataset
+- __getitem__ (idx): étant donné un index retour un tuple (X,Y) avec X données d'entrées, et Y ground truth
+
+```python
+class GPTDatasetV1(Dataset):
+    def __init__(self, text, tokenizer, max_length, stride):
+        """Create a Sample dataset
+        text : input text
+        tokenizer : tokenizer object that converts string to tokens
+        max_length : number of tokens to use as input
+        stride : offset used when iterating over the inputs tokens """
+        self.tokenizer = tokenizer
+        self.input_ids = []
+        self.target_ids = []
+
+        # encode the text with tiktoken
+        token_ids = tokenizer.encode(text)
+
+        # split the text into chunks of max_length with stride stride
+        for i in range(0, len(token_ids) - max_length, stride):
+            input_chunk = token_ids[i:i+max_length]
+            target_chunk = token_ids[i+1:i+max_length+1]
+            self.input_ids.append(torch.tensor(input_chunk))
+            self.target_ids.append(torch.tensor(target_chunk))
+        self.enc_text = token_ids
+
+
+    def __len__(self):
+        return len(self.input_ids)
+
+    def __getitem__(self, idx):
+        return self.input_ids[idx], self.target_ids[idx]
+```
+
+Le fait de redéfinir len et getitem permet de créer un itérateur sur notre dataset. On peut itérer séquentiellement sans charger toute nos données.
+```python
+def create_dataloader_v1(text, batch_size=8, max_length=8,stride=8, 
+                         shuffle=True,drop_last=True, num_workers=0):
+    """Create a dataloader from a text file
+    text : the content of the file
+    batch_size : how many elements per batch
+    max_length : how many tokens per inputs (the context length)
+    stride : how we iterate on the tokens
+    shuffle: should we shuffle the inputs
+    drop_last : drop last batch if we don't have enough tokens
+    num_workers : number of parallel processes to launch
+    """
+    tokenizer = tiktoken.get_encoding("gpt2")
+    dataset = GPTDatasetV1(text, tokenizer, max_length,stride)
+    dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=shuffle,
+                            drop_last=drop_last, num_workers=num_workers)
+    return dataloader
+```
+
+On peut ensuite itérer sur le dataloader.
+```python
+dataloader = create_dataloader_v1(text)
+data_iter = iter(dataloader)
+first_batch = next(data_iter)
+second_batch = next(data_iter)
+# we can also use a loop
+for i, batch in enumerate(dataloader):
+    x, y = batch
+```
+
 # FSQUAD
 
 https://fquad.illuin.tech/
