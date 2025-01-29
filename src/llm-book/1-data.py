@@ -112,7 +112,34 @@ def load_data():
             if i == 3:
                 break
 
+def embed():
+    vocab_size = 50256 # GPT-3 vocab size
+    output_dim = 256 # embedding size
+    context_length = 4 # context length
+    # create a random embedding matrix
+    token_embedding_layer = torch.nn.Embedding(vocab_size, output_dim)
+
+    # load the model
+    with open("./data/raw/the-verdict.txt", "r", encoding="utf-8") as f:
+        text = f.read()
+    dataloader = create_dataloader_v1(text, batch_size=8, max_length=4,
+                                          stride=4, shuffle=False)
+
+    x,y = next(iter(dataloader))
+    print(f"{x.shape=}")
+    token_embedding = token_embedding_layer(x)
+    print(f"{token_embedding.shape=}")
+
+    # position embedding
+    pos_embedding_layer = torch.nn.Embedding(context_length, output_dim)
+    pos_embddings = pos_embedding_layer(torch.arange(context_length))
+    print(f"{pos_embddings.shape=}")
+
+    input_embedding = token_embedding + pos_embddings
+    print(f"{input_embedding.shape=}")
+
 if __name__ == "__main__":
     #explore()
     #tiktok()
-    load_data()
+    #load_data()
+    embed()
