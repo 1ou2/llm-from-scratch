@@ -71,6 +71,29 @@ for i, batch in enumerate(dataloader):
     x, y = batch
 ```
 
+# EPOCH
+Une epoch correspond à l'utilisation de l'ensemble des données à notre disposition pour réaliser l'entrainement.
+On a réalisé une `epoch`, quand dans l'entrainement, on a fait le cycle forward pass, loss, backward sur toutes nos données d'entrainements.
+Habituellement, un entrainement est composé de plusieurs epochs. On peut réaliser ce cycle 40 fois par exemple. 
+Une implémentation naïve serait de prendre toutes nos données, faire une forward pass, calculer la loss function, accumuler le gradient et ne mettre les poids à jour qu'une fois toutes les données d'entrainements vues.
+Dans la pratique cette approche n'est pas performante.
+
+# BATCH
+Lors de l'entrainement d'un LLM, on prend une phrase, on la transforme en tokens et on entraine le modèle à essayer de prédire le token suivant.
+En supposant que :
+  - un mot = un token
+  - texte = "il était une fois un prince"
+Alors 
+    il --> était
+    il était --> une
+    il était une --> fois
+    il était une fois --> un
+    il était une fois un --> prince
+On pourrait prendre ses paires [input tokens] --> predicted_token, les utiliser une à une lors de l'entrainement, mais cela ne serait pas efficace.
+Dans la pratique on crée des batchs de X jeux de données, et on va en parallèle les charger, faire la forward pass, calculer la fonction de perte, et faire la backward pass.
+La taille optimale d'un batch dépend de la mémoire disponible sur le GPU. Mais en simplifiant, tant qu'on peut charger la mémoire du GPU en augmentant la taille du batch il faut le faire car le temps de traitement du batch et donc de X jeu de données est constant et le même que pour une unique entrée.
+ 
+
 # FSQUAD
 
 https://fquad.illuin.tech/
