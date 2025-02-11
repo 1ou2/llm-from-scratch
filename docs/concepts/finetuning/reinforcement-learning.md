@@ -98,3 +98,4 @@ loss = -nn.functional.logsimoid(rewards_chosen - rewards_rejected).mean()
  5. Retour au point 2.
 
 En pratique, dans notre réseau de neurones on va utiliser le dernier output layer pour obtenir pour chaque token généré la logprob de ce token et la reward associée.
+En échantillonnant, on a un problème, on augmente la variance, et on n’est psa sûr d’aller dans la direction du gradient. Si on ne choisit pas assez d’échantillons, on risque de partir en erreur. 

@@ -91,7 +91,7 @@ def train_model(use_gpu=True, use_checkpoint=False):
     gutenberg = DatasetFactory.create_dataset("gutenberg")
     gutenberg.load()
     #gutenberg.batch_data( block_size=block_size, nb_batches=batch_size,type="mini",)
-    gutenberg.batch_data(block_size=block_size, type="train")
+    gutenberg.batch_data(block_size=block_size, type="val")
     print("gutenberg size ", len(gutenberg.y_batch))
 
 
@@ -172,7 +172,7 @@ def inference(use_gpu,block_size):
 
 if __name__ == "__main__":
     use_gpu = True  # Set this to False to use CPU
-    train_model(use_gpu,use_checkpoint=True)
+    train_model(use_gpu,use_checkpoint=False)
     inference(use_gpu, block_size=8)
 
 
