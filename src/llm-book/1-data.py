@@ -139,6 +139,7 @@ def embed():
     print(f"{input_embedding.shape=}")
 
 if __name__ == "__main__":
+    #download()
     #explore()
     #tiktok()
     #load_data()
