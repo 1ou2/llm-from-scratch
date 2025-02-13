@@ -51,6 +51,7 @@ Dans notre transformer, on a en entrée un matrice x de taille (B,T,C)
 - B : taille du batch, combien d’éléments sont traités en parallèle
 - T : nombre de tokens du block
 - C : nombre de channels par token, correspond à la dimension de l’embedding
+
 Création de deux couches de neurones :
 ```
 key = nn.Linear(C,head_size, bias=False) # (C,16)
@@ -73,7 +74,9 @@ wei =
 La matrice d’attention A se calcule alors par :
 
 - A = softmax(q . transpose(k))
-On fait donc (B, T, 16) @ (B , 16, T) -> (B, T, T)
+
+On fait donc `(B, T, 16) @ (B , 16, T) -> (B, T, T)`
+
 Enfin, une fois qu’on connait le poids relatif des tokens les uns par rapport aux autres on peut multiplier par la valeur du token
 out = wei @ x # (B, T, T) @ (B, T, C) -> (B,T,C) = (4,8,32)
 
@@ -163,7 +166,11 @@ Un token ne "voit" que les tokens précédents. Dans l’exemple ci-dessous, j�
 # Multihead attention
 Dans l’architecture des Transformers, on a plusieurs Attention Head.
 Le résultat du multi-head est juste la concatenation des différente Head.
-```     out = torch.cat([h(x) for h in self.heads], dim=-1)
-        # project the layer so that we can add it to the residual connection neuron
-        out = self.proj(out)```
+```python     
+out = torch.cat([h(x) for h in self.heads], dim=-1)
+# project the layer so that we can add it to the residual connection neuron
+out = self.proj(out)
+```
+
+
 Comme chaque attention head, est de dimension, ```(B,T,Head_size)``` on projete le résulat via un réseau de neurone feedforward
