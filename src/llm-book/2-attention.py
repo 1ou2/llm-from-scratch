@@ -56,9 +56,12 @@ def self_attention():
     print(f"{context_vector[3]=}")
 
 def trainable_self_attention():
-    embedding_dim = 3
+    embedding_dim = 3 # input dimensiom
+    context_dim = 2 # output dimensiom
     vocab_size = 50257 # GPT-2 vocab size
     input_sentence = "For sale: baby shoes, never worn"
+
+
 
     # for reproducibility
     torch.manual_seed(1234)
@@ -80,17 +83,36 @@ def trainable_self_attention():
     print(f"{inputs_embedding.shape=}")
     print(f"input_embedding=\n{inputs_embedding.data}")
 
-    # trainable query for the token number 3, which represents the word baby
-    query_baby = torch.nn.Parameter(torch.randn(embedding_dim, dtype=torch.float32)) # 1x3
-    attn_scores_baby = torch.empty(inputs_embedding.shape[0], dtype=torch.float32) # 1x8
+    query_params = torch.nn.Parameter(torch.randn(embedding_dim, context_dim,dtype=torch.float32))  # 3x2
+    key_params = torch.nn.Parameter(torch.randn(embedding_dim, context_dim, dtype=torch.float32))   # 3x2
+    value_params = torch.nn.Parameter(torch.randn(embedding_dim, context_dim, dtype=torch.float32)) # 3x2
 
-    for i, input_embedding in enumerate(inputs_embedding):
-        attn_scores_baby[i] = torch.dot(query_baby, input_embedding) # attn[i] = dot(1x3, 1x3) = scalar
-    print(f"{attn_scores_baby.data=}")
-    attn_weights_baby = torch.nn.functional.softmax(attn_scores_baby, dim=0) # 1x8
+    query_baby = inputs_embedding[3] @ query_params # 1x3 @ 3x2 -> 1x2
+    key_baby = inputs_embedding[3] @ key_params # 1x3 @ 3x2 -> 1x2
+    value_baby = inputs_embedding[3] @ value_params # 1x3 @ 3x2 -> 1x2
+
+    print(f"{query_baby.shape=}")
+    keys = inputs_embedding @ key_params # 8x3 @ 3x2 -> 8x2
+    values = inputs_embedding @ value_params # 8x3 @ 3x2 -> 8x2
+    print(f"{keys.shape=}")
+
+
+    attn_scores_baby = torch.empty(inputs_embedding.shape[0], dtype=torch.float32)
+    for i, key in enumerate(keys):
+        attn_scores_baby[i] = torch.dot(query_baby, key) # attn[i] = dot(1x2, 1x2) = scalar
+    
+    print(f"{attn_scores_baby.data=}") # 8x1
+
+    attn_scores_3 = query_baby @ keys.T # 1x2 @ 2x8 -> 1x8
+    print(f"{attn_scores_3.data=}") # 8x1
+    print(f"{attn_scores_3.shape=}") # 8x1
+
+    d_k = keys.shape[-1]
+    attn_weights_baby = torch.nn.functional.softmax(attn_scores_baby / torch.sqrt(torch.tensor(d_k)), dim=-1) # 1x8
+    
     print(f"{attn_weights_baby=}")
 
-    context_vector_baby = torch.matmul(attn_weights_baby, inputs_embedding) # matmul(1x8, 8x3) -> 1x3
+    context_vector_baby = torch.matmul(attn_weights_baby, values) # matmul(1x8, 8x2) -> 1x2
     print(f"{context_vector_baby.data=}")
 
 if __name__ == "__main__":
