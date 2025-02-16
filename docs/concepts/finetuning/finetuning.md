@@ -5,6 +5,34 @@ Nouveaux jeu de données, modifications des poids.
 1. on prend un foundation model
 2. finetuning avec des données spécifiques -> cela va changer un nombre réduit de poids dans le modèle, ou ajout d’un nombre réduit de paramètres
 
+# Fine-tuning - mode assistant
+La première phase de l'entrainement permet d'obtenir un base model. C'est un modèle qui peut prédire le prochain token mais qui n'est pas un assistant.
+Pour que ce modèle soit plus utile on va faire une étape de finetuning.
+On introduit de nouveaux tokens qui permettent de marquer des séquences de dialogues et on refait un entrainement avec un jeu de données qui contient des questions réponses.
+
+On introduit des tokens 
+```<|im_start|>system<|im_sep|>You are a helpful assistant<|im_end|><|im_start|>user<|im_sep|>what is 2+2 ?<|im_end|><|im_start|>assistant<|im_sep|>The answer is 4<|im_end|><|im_start|>assistant<|im_sep|>```
+
+On représente ces tokens par des tags ou balises mais ce sont vraiment de nouveaux tokens spécifiques
+```
+<|im_start|> = 200264
+<|im_end|> = 200265
+<|im_sep|> = 200266
+```
+On a des jeux de données de questions et de réponses contenant ces tokens spécifiques. Ensuite, pour déclencher ce mode, l'ihm prend la question de l'utilisateur et insère ces tokens spéciaux
+```<|im_start|>system<|im_sep|>You are a helpful assistant<|im_end|><|im_start|>user<|im_sep|>what is 2+2 ?<|im_end|><|im_start|>assistant<|im_sep|>```
+Le modèle va donc compléter en s'inspirant du style de réponse avec lequel il a été entrainé.
+
+# Fine-tuning - gestion des hallucinations
+On doit entrainer le modèle à répondre "je ne sais pas" quand il n'a pas la réponse.
+Pour cela:
+- on genère des questions dont on connait la réponse
+- on interroge le modèle 3 fois et on voit s'il répond correctement
+- s'il n'a pas la réponse, on enregistre la question et crée un jeu de données avec "question inconnue" / "je ne sais pas"
+
+Une autre technique est d'invoquer des tools. De la même façon, on crée un jeu de données où on veut que le modèle ne réponde pas directement mais demande à utiliser un outil. Par exemple faire une recherche web, ou lancer du code python.
+Pour cela on va créer de nouveaux tokens <SEARCH-TOOL></SEARCH-TOOL>, et les mettre dans nos données. Quand le LLM va retourner : <SEARCH-TOOL>Quel est le cours du bitcoin aujourd'hui</SEARCH-TOOL>, c'est le backend qui va faire la recherche, puis passer en contexte la réponse dans une deuxième requête.
+
 # Distillation
 Utilisation d’un large modèle, on le combine avec un dataset spécifique.
 On génère un student model.

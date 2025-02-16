@@ -1,5 +1,7 @@
 import torch
 import tiktoken
+import torch.nn as nn
+
 
 def self_attention():
     embedding_dim = 3
@@ -115,5 +117,95 @@ def trainable_self_attention():
     context_vector_baby = torch.matmul(attn_weights_baby, values) # matmul(1x8, 8x2) -> 1x2
     print(f"{context_vector_baby.data=}")
 
+class SelfAttentionV1(nn.Module):
+    def __init__(self, d_in, d_out):
+        super().__init__()
+        self.W_query = nn.Parameter(torch.randn(d_in, d_out))
+        self.W_key = nn.Parameter(torch.randn(d_in, d_out))
+        self.W_value = nn.Parameter(torch.randn(d_in, d_out))
+
+    def forward(self, x):
+        keys = x @ self.W_key
+        queries = x @ self.W_query
+        values = x @ self.W_value
+        attn_scores = queries @ keys.T
+        d_k = keys.shape[-1]
+        attn_weights = torch.nn.functional.softmax(attn_scores / torch.sqrt(torch.tensor(d_k)), dim=-1)
+        context_vec = attn_weights @ values
+        return context_vec
+
+class SelfAttentionV2(nn.Module):
+    def __init__(self, d_in, d_out, qkv_bias=False):
+        super().__init__()
+        self.W_query = nn.Linear(d_in, d_out, bias=qkv_bias)
+        self.W_key   = nn.Linear(d_in, d_out, bias=qkv_bias)
+        self.W_value = nn.Linear(d_in, d_out, bias=qkv_bias)
+
+    def forward(self, x):
+        keys = self.W_key(x)
+        queries = self.W_query(x)
+        values = self.W_value(x)
+        attn_scores = queries @ keys.T
+        d_k = keys.shape[-1]
+        attn_weights = torch.nn.functional.softmax(attn_scores / torch.sqrt(torch.tensor(d_k)), dim=-1)
+        context_vec = attn_weights @ values
+        return context_vec
+
+
+class CausalAttention(nn.Module):
+    def __init__(self, d_in, d_out, context_len, dropout, qkv_bias=False):
+        super().__init__()
+        self.d_out = d_out
+        self.W_query = nn.Linear(d_in, d_out, bias=qkv_bias)
+        self.W_key   = nn.Linear(d_in, d_out, bias=qkv_bias)
+        self.W_value = nn.Linear(d_in, d_out, bias=qkv_bias)
+        self.dropout = nn.Dropout(dropout)
+        # create an upper triangle mask of ones (excluding diagonal), and register as "mask", can be accessed using self.mask
+        self.register_buffer("mask", torch.triu(torch.ones(context_len, context_len),diagonal=1))
+
+    def forward(self, x):
+        # batch, number of tokens, input embedding dimension
+        b, num_tokens, d_in = x.shape
+        keys    = self.W_key(x)
+        queries = self.W_query(x)
+        values  = self.W_value(x)
+
+        # dimension 0 is the batch, transpose along dimension 1 and 2
+        attn_scores = queries @ keys.transpose(1, 2)
+        d_k = keys.shape[-1]
+        # if mask value is true, fill with -infinity
+        # [:num_tokens, :num_tokens] : is used to handle smaller input size 
+        # The syntax [:num_tokens] means "take all elements from the start up to num_tokens". It's equivalent to [0:num_tokens]
+        attn_scores.masked_fill_(self.mask.bool()[:num_tokens, :num_tokens], float('-inf'))
+
+        attn_weights = torch.nn.functional.softmax(attn_scores / torch.sqrt(torch.tensor(d_k)), dim=-1)
+        attn_weights = self.dropout(attn_weights)
+        context_vec = attn_weights @ values
+        return context_vec
+
 if __name__ == "__main__":
-    trainable_self_attention()
+    #trainable_self_attention()
+    torch.manual_seed(123)
+    # print options : use 2 digits only
+    torch.set_printoptions(precision=2, sci_mode=False)
+    sa_v1 = SelfAttentionV1(3, 2)
+    input_sentence = "For sale: baby shoes, never worn"
+    tokenizer = tiktoken.get_encoding("gpt2")
+    tokens = tokenizer.encode(input_sentence)
+    input_tokens = torch.tensor(tokens)
+    embedding_layer = torch.nn.Embedding(50257, 3)
+    inputs_embedding = embedding_layer(input_tokens)
+    print(f"{inputs_embedding=}")
+
+    context_vec = sa_v1(inputs_embedding)
+    print(f"{context_vec=}")
+
+    batch = torch.stack((inputs_embedding, inputs_embedding), dim=0)
+    print(f"{batch.shape=}")
+
+    torch.manual_seed(123)
+    context_length = batch.shape[1]
+    ca = CausalAttention(3, 2, context_length, 0.0)
+    context_vecs = ca(batch)
+    print(f"{context_vecs.shape=}")
+    print(f"{context_vecs=}")

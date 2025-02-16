@@ -2,7 +2,9 @@
 L’attention est le mécanisme qui permet à un réseau de neurones de donner du poids, de porter de l’attention à certaines parties de la phrase.
 1. "Alice a mangé une pizza et elle était délicieuse"
 2. "Alice a mangé une pizza et elle était contente"
-Dans la phrase 1 le mot elle fait référence a la pizza, alors que dans la phrase 2, le mot elle fait référence à Alice. Pour transmettre ce type de subtilités on a inventé le concept d’attention. Le mot "elle" va porter attention à "pizza" dans la phrase 1, alors que l’attention portera sur Alice dans la phrase 2
+Dans la phrase 1 le mot elle fait référence a la pizza, alors que dans la phrase 2, le mot elle fait référence à Alice. Pour transmettre ce type de subtilités on a inventé le concept d’attention. Le mot "elle" va porter attention à "pizza" dans la phrase 1, alors que l’attention portera sur Alice dans la phrase 2.
+
+Le mécanisme d'attention prend en entrée une séquence de tokens et génère un vecteur de contexte représentant les informations de la phrase d'entrée. Cette sortie est un embedding qui n'est pas necessairement de la même taille que l'input embedding des tokens d'entrée.
 
 # Self attention
 Il s’agit de chercher la simalirité entre chaque mot de la phrase et tous les autres mots (incluant lui-même).
@@ -149,4 +151,26 @@ Notre embedding a été initialisé au hasard dans cet exemple.
 embedding_layer = torch.nn.Embedding(vocab_size, embedding_dim)
 Il faut maintenant arriver à apprendre à partir des données. Pour cela, les paramètres query, key et value seront issus de matrice Q,K et V avec des paramètres entrainables via descente de gradient.
 
+# Causal attention
+L'objectif ici est de masquer les tokens suivants afin que le vecteur de contexte ne connaisse que les informations venant des tokens précédents. En effet comme on veut prédire le prochain il ne faut pas que cette information soit présente.
+Pour cela 
+```python
+# create an per triangle mask of ones (excluding diagonal), and register as "mask", can be accessed using self.mask
+    self.register_buffer("mask", torch.triu(torch.ones(context_len, context_len),diagonal=1))
+```
+Exemple :
+```
+Mask for sequence length 4:
+tensor([[0., 1., 1., 1.],
+        [0., 0., 1., 1.],
+        [0., 0., 0., 1.],
+        [0., 0., 0., 0.]])
+```
+Ensuite dans la matrice des scores on va remplacer les valeurs des tokens futurs par -infinity afin que leur probabilité et donc leur influence sur les poids soit de zéro.
+```python
+# if mask value is true, fill with -infinity
+# [:num_tokens, :num_tokens] : is used to handle smaller input size 
+# The syntax [:num_tokens] means "take all elements from the start up to num_tokens". It's equivalent to [0:num_tokens]
+attn_scores.masked_fill_(self.mask.bool()[:num_tokens, :num_tokens], float('-inf'))
+```
 
