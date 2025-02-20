@@ -2,6 +2,7 @@ import tiktoken
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import matplotlib.pyplot as plt
 
 GPT_CONFIG_1 = {
     "vocab_size": 50257,
@@ -97,6 +98,19 @@ class DummyLayerNorm(nn.Module):
 
     def forward(self, x):
         return x
+    
+class LayerNorm(nn.Module):
+    def __init__(self, emb_dim, eps=1e-5):
+        super().__init__()
+        self.scale = nn.Parameter(torch.ones(emb_dim))
+        self.shift = nn.Parameter(torch.zeros(emb_dim))
+        self.eps = eps
+
+    def forward(self, x):
+        mean = x.mean(dim=-1, keepdim=True)
+        var = x.var(dim=-1, keepdim=True, unbiased=False)
+        norm_x = (x - mean) / torch.sqrt(var + self.eps)
+        return norm_x * self.scale + self.shift
 
 class DummyGPTModel(nn.Module):
     def __init__(self, config):
@@ -121,25 +135,56 @@ class DummyGPTModel(nn.Module):
         logits = self.out_head(x)
         return logits
 
+class GELU(nn.Module):
+    def __init__(self):
+        super().__init__()
+
+
+    def forward(self, x):
+        return 0.5 * x * (1 + torch.tanh(torch.sqrt(torch.tensor(2.0 / torch.pi)) * (x + 0.044715 * torch.pow(x, 3))))
+
+
+class FeedForward(nn.Module):
+    def __init__(self, config):
+        super().__init__()
+        self.layers = nn.Sequential(
+            nn.Linear(config["embed_dim"], 4 * config["embed_dim"]),
+            GELU(),
+            nn.Linear(4 * config["embed_dim"], config["embed_dim"]),
+        )
+
+    def forward(self, x):
+        return self.layers(x)
+
 
 if __name__ == "__main__":
-    torch.manual_seed(123)
+    
     # print options : use 2 digits only
     torch.set_printoptions(precision=2, sci_mode=False)
 
-    input_sentence = "For sale: baby shoes, never worn"
+    
     tokenizer = tiktoken.get_encoding("gpt2")
-    tokens = tokenizer.encode(input_sentence)
-    input_tokens = torch.tensor(tokens)
-    embedding_layer = torch.nn.Embedding(50257, 3)
-    inputs_embedding = embedding_layer(input_tokens)
-    print(f"{inputs_embedding=}")
+    
+    batch = []
+    txt1 = "Every effort moves you"
+    txt2 = "Every day holds a"
+    batch.append(torch.tensor(tokenizer.encode(txt1)))
+    batch.append(torch.tensor(tokenizer.encode(txt2)))
 
-    batch = torch.stack((inputs_embedding, inputs_embedding), dim=0)
-    print(f"{batch.shape=}")
+    print(f"{batch=}")
+    batch = torch.stack(batch,dim=0)
+    print(f"Stack:\n{batch}")
 
-    batch_size, context_length, d_in = batch.shape
-    d_out = 2
-    mha = MultiHeadAttention(d_in, d_out, context_length, 0.0, 2)
-    context_vec = mha(batch)
-    print(f"{context_vec=}")
+    torch.manual_seed(123)
+    model = DummyGPTModel(GPT_CONFIG_1)
+    logits = model(batch)
+    print(f"output shape: {logits.shape}")
+    print(f"output:\n{logits}")
+
+    batch = torch.randn(2,5)
+    ln = LayerNorm(emb_dim=5)
+    out_ln = ln(batch)
+    mean = out_ln.mean(dim=-1, keepdim=True)
+    var = out_ln.var(dim=-1, keepdim=True,unbiased=False)
+    print(f"mean:\n{mean}")
+    print(f"var:\n{var}")
