@@ -156,7 +156,26 @@ class FeedForward(nn.Module):
     def forward(self, x):
         return self.layers(x)
 
+class TransformerBlock(nn.Module):
+    def __init__(self, config):
+        super().__init__()
+        self.att = MultiHeadAttention(d_in=config["embed_dim"],
+                                      d_out=config["embed_dim"],
+                                      context_length=config["context_length"],
+                                      dropout=config["drop_rate"],
+                                      num_heads=config["n_heads"],
+                                      qkv_bias=config["qkv_bias"])
+        
+        self.ff = FeedForward(config)
+        self.norm1 = LayerNorm(config["embed_dim"])
+        self.norm2 = LayerNorm(config["embed_dim"])
+        self.drop_shortcut = nn.Dropout(config["drop_rate"])
 
+    def forward(self, x):
+        # pre-norm
+        x = x + self.attn(self.ln1(x))
+        x = x + self.ff(self.ln2(x))
+        return x
 if __name__ == "__main__":
     
     # print options : use 2 digits only
