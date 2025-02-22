@@ -172,13 +172,23 @@ class TransformerBlock(nn.Module):
         self.drop_shortcut = nn.Dropout(config["drop_rate"])
 
     def forward(self, x):
-        # pre-norm
-        x = x + self.attn(self.ln1(x))
-        x = x + self.ff(self.ln2(x))
+        # attention block
+        shortcut = x
+        x = self.norm1(x)
+        x = self.att(x)
+        x = self.drop_shortcut(x)
+        x = x + shortcut
+
+        # feed forward
+        shortcut = x
+        x = self.norm2(x)
+        x = self.ff(x)
+        x = self.drop_shortcut(x)
+        x = x + shortcut
         return x
-if __name__ == "__main__":
     
-    # print options : use 2 digits only
+def dummy_gpt2():
+        # print options : use 2 digits only
     torch.set_printoptions(precision=2, sci_mode=False)
 
     
@@ -199,6 +209,26 @@ if __name__ == "__main__":
     logits = model(batch)
     print(f"output shape: {logits.shape}")
     print(f"output:\n{logits}")
+
+
+if __name__ == "__main__":
+    
+    # print options : use 2 digits only
+    torch.set_printoptions(precision=2, sci_mode=False)
+
+    
+    tokenizer = tiktoken.get_encoding("gpt2")
+    
+    batch = []
+    txt1 = "Every effort moves you"
+    txt2 = "Every day holds a"
+    batch.append(torch.tensor(tokenizer.encode(txt1)))
+    batch.append(torch.tensor(tokenizer.encode(txt2)))
+
+    print(f"{batch=}")
+    batch = torch.stack(batch,dim=0)
+    print(f"Stack:\n{batch}")
+
 
     batch = torch.randn(2,5)
     ln = LayerNorm(emb_dim=5)

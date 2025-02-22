@@ -12,12 +12,12 @@ def gelurelu():
     y_softmax = torch.softmax(x, dim=-1)
     plt.figure(figsize=(8, 6))
     plt.plot(x, y_gelu, label='GELU')
-    plt.plot(x, y_relu, label='ReLU')
+    #plt.plot(x, y_relu, label='ReLU')
     plt.legend()  # Add this to show the labels
     plt.tight_layout()
-    plt.savefig('activation_functions.png', bbox_inches='tight')
+    plt.savefig('gelu.png', bbox_inches='tight')
     plt.close()  # Close the figure to free memory
-    print("Plot 1 saved as activation_functions.png")
+    print("Plot 1 saved as gelu.png")
 
     # Create a figure with two subplots side by side
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
@@ -45,6 +45,51 @@ def gelurelu():
     plt.savefig('softmax.png', bbox_inches='tight')
     plt.close()  # Close the figure to free memory
     print("Plot 1 saved as softmax.png")
+def plot_activation_functions():
+    x = torch.linspace(-5, 5, 100)
+    
+    # Define activation functions
+    gelu = GELU()
+    relu = nn.ReLU()
+    leaky_relu = nn.LeakyReLU(negative_slope=0.01)
+    
+    # Calculate outputs
+    y_gelu = gelu(x)
+    y_relu = relu(x)
+    y_sigmoid = torch.sigmoid(x)
+    y_tanh = torch.tanh(x)
+    y_leaky_relu = leaky_relu(x)
+    
+    # Create subplot grid
+    fig, ((ax1, ax2, ax3), (ax4, ax5, ax6)) = plt.subplots(2, 3, figsize=(15, 10))
+    
+    # Plot each activation function
+    ax1.plot(x, y_gelu, 'b-')
+    ax1.set_title('GELU')
+    ax1.grid(True)
+    
+    ax2.plot(x, y_relu, 'r-')
+    ax2.set_title('ReLU')
+    ax2.grid(True)
+    
+    ax3.plot(x, y_sigmoid, 'g-')
+    ax3.set_title('Sigmoid')
+    ax3.grid(True)
+    
+    ax4.plot(x, y_tanh, 'c-')
+    ax4.set_title('Tanh')
+    ax4.grid(True)
+    
+    ax5.plot(x, y_leaky_relu, 'm-')
+    ax5.set_title('Leaky ReLU')
+    ax5.grid(True)
+    
+    # Keep one subplot empty or use it for something else
+    ax6.set_visible(False)
+    
+    plt.tight_layout()
+    plt.savefig('all_activation_functions.png', bbox_inches='tight')
+    plt.close()
 
 def matrix():
     # Example with context_len = 4
@@ -75,5 +120,5 @@ def layer_norm():
     print(f"{var=}")
 
 if __name__ == "__main__":
-    gelurelu()
+    plot_activation_functions()
     print("done")
