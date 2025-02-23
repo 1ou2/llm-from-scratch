@@ -1,3 +1,20 @@
+# Hugging Face
+Hugging face met à disposition de nombreux datasets.
+- se créer un compte
+- créer un token d'accès depuis https://huggingface.co/settings/tokens
+- installer via pip les modules `huggingface_hub` et `datasets`
+- se logguer en ligne de commande `huggingface-cli login`
+Puis on peut charger un dataset 
+```python
+# download french wikipedia dataset from hugging face
+from datasets import load_dataset
+
+ds = load_dataset("wikimedia/wikipedia", "20231101.fr")
+print(ds["train"][0])
+```
+Note sous ubuntu les fichiers sont téléchargés dans `/home/USER/.cache/huggingface/`
+
+
 # Pytorch dataset et dataloader
 Le module pytorch propose un modèle pour modéliser les données et les charger :
 - `Dataset` : classe générique dont on va hériter et qui représente notre jeu de données
