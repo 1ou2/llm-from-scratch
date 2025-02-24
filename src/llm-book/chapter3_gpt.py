@@ -41,7 +41,11 @@ class MultiHeadAttention(nn.Module):
         self.register_buffer("mask", torch.triu(torch.ones(context_length, context_length), diagonal=1))
 
 
-    def forward(self, x):
+    def forward(self, x, endoftext_mask=None):
+        """
+        x : input batch
+        endoftext_mask : Apply custom mask to ignore <|endoftext|> tokens (if provided)
+        """
         # batch, number of tokens, input embedding dimension
         b, num_tokens, d_in = x.shape
         keys = self.W_key(x)
@@ -64,6 +68,14 @@ class MultiHeadAttention(nn.Module):
         # [:num_tokens, :num_tokens] : is used to handle smaller input size
         # The syntax [:num_tokens] means "take all elements from the start up to num_tokens". It's equivalent to [0:num_tokens]
         attn_scores.masked_fill_(self.mask.bool()[:num_tokens, :num_tokens], float('-inf'))
+
+        # Apply custom mask to ignore <|endoftext|> tokens (if provided)
+        # mask is a tensor of ones and zeros. If zeros it means the input token was endoftext and should not be attended to.
+        if endoftext_mask is not None:
+            # Expand mask to match attention dimensions (batch, num_heads, num_tokens, num_tokens)
+            attn_mask_expanded = endoftext_mask.unsqueeze(1).unsqueeze(2)  # [batch, 1, 1, num_tokens]
+            attn_mask_expanded = attn_mask_expanded.expand(b, self.num_heads, num_tokens, num_tokens)
+            attn_scores.masked_fill_(attn_mask_expanded == 0, float('-inf'))
 
         d_k = keys.shape[-1]
         attn_weights = torch.nn.functional.softmax(attn_scores / torch.sqrt(torch.tensor(d_k)), dim=-1)
@@ -137,11 +149,11 @@ class TransformerBlock(nn.Module):
         self.norm2 = LayerNorm(config["embed_dim"])
         self.drop_shortcut = nn.Dropout(config["drop_rate"])
 
-    def forward(self, x):
+    def forward(self, x,endoftext_mask=None):
         # attention block
         shortcut = x
         x = self.norm1(x)
-        x = self.att(x)
+        x = self.att(x,endoftext_mask)
         x = self.drop_shortcut(x)
         x = x + shortcut
 
@@ -160,17 +172,22 @@ class GPTModel(nn.Module):
         self.tok_emb = nn.Embedding(config["vocab_size"], config["embed_dim"])
         self.pos_emb = nn.Embedding(config["context_length"],config["embed_dim"])
         self.drop_emb = nn.Dropout(config["drop_rate"])
-        self.trf_blocks = nn.Sequential(*[TransformerBlock(config) for _ in range(config["n_layers"])])
+        #self.trf_blocks = nn.Sequential(*[TransformerBlock(config) for _ in range(config["n_layers"])])
+        self.trf_blocks = nn.ModuleList([TransformerBlock(config) for _ in range(config["n_layers"])])
         self.final_norm = LayerNorm(config["embed_dim"])
         self.out_head = nn.Linear(config["embed_dim"], config["vocab_size"],bias=False)
 
     def forward(self, in_idx):
         batch_size, seq_len = in_idx.shape
+        # Create endoftext mask here where we have access to raw tokens
+        endoftext_mask = (in_idx != 50256).float()  # [batch_size, seq_len]
+
         tok_embeds = self.tok_emb(in_idx)
         pos_embeds = self.pos_emb(torch.arange(seq_len, device=in_idx.device))
         x = tok_embeds + pos_embeds
         x = self.drop_emb(x)
-        x = self.trf_blocks(x)
+        for block in self.trf_blocks:
+            x = block(x, endoftext_mask)
         x = self.final_norm(x)
         logits = self.out_head(x)
         return logits
@@ -206,8 +223,10 @@ if __name__ == "__main__":
     batch = []
     txt1 = "Every effort moves you"
     txt2 = "Every day holds a"
-    batch.append(torch.tensor(tokenizer.encode(txt1)))
-    batch.append(torch.tensor(tokenizer.encode(txt2)))
+    txt1 = "Every effort moves<|endoftext|><|endoftext|>"
+    txt2 = "Every day holds a<|endoftext|>"
+    batch.append(torch.tensor(tokenizer.encode(txt1,allowed_special={"<|endoftext|>"})))
+    batch.append(torch.tensor(tokenizer.encode(txt2,allowed_special={"<|endoftext|>"})))
 
     print(f"{batch=}")
     batch = torch.stack(batch,dim=0)
@@ -225,8 +244,8 @@ if __name__ == "__main__":
     total_size_mb = total_size_bytes / (1024 * 1024)
     print(f"{total_size_mb=}")
 
-    start_content = "Hello, I am"
-    encoded = tokenizer.encode(start_content)
+    start_content = "Hello, I am<|endoftext|><|endoftext|>"
+    encoded = tokenizer.encode(start_content,allowed_special={"<|endoftext|>"})
     print(f"{encoded=}")
     encoded_tensor = torch.tensor(encoded).unsqueeze(0)
     print(f"{encoded_tensor.shape=}")
