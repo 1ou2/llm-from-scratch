@@ -30,6 +30,7 @@ def token_ids_to_text(token_ids, tokenizer):
 
 
 class WikiDataset(Dataset):
+    """Naive approach. It fails because the whole dataset is loaded and tokenized in the init -> out of memory issue."""
     def __init__(self, dataset, tokenizer, seq_length):
         """
         dataset: Hugging Face dataset (Wikipedia)
@@ -66,7 +67,15 @@ class WikiDataset(Dataset):
         return torch.tensor(self.data[start:end], dtype=torch.long)
 
 class TokenizedWikiDataset(Dataset):
+    """Dataset of precomputed tokens loaded from a set of files
+    files : list of file names. Tokens were serialized in theses files
+    split : train or valid
+    """
     def __init__(self, files, split="train"):
+        """
+    files : list of file names. Tokens were serialized in theses files
+    split : train or valid
+    """
         self.files = files
         self.NB_SEQ_PER_FILE = 10000 # FIXED number of sequences per chunk file
         self.split = split
@@ -76,6 +85,8 @@ class TokenizedWikiDataset(Dataset):
         
 
     def load_chunk_file(self,file_index):
+        """Lazy load. Only load tokens from file if required
+        file_index : index of the file to load"""
         if file_index == self.current_file_index:
             return # already loaded
 

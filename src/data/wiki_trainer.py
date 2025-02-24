@@ -1,4 +1,6 @@
-"""Train a GPT model using data from wikipedia"""
+"""Train a GPT model using data from wikipedia
+Tokenize data and store it to file
+"""
 import torch
 import tiktoken
 from datasets import load_dataset
