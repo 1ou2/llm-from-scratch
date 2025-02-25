@@ -1,0 +1,2 @@
+Quelle que soit la longueur de la séquence d’entrée le modèle génère content_length tokens.
+Dans GPT-2 on a un un token <|endoftext|> qui marque la fin des séquences. Mais mêne après qu’il soit généré le modèle génère d’autres tokens. C’est au niveau applicatif qu’on identifie ce token et qu’on tronque la réponse.
