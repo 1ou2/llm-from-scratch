@@ -1,20 +1,6 @@
-import tiktoken
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import matplotlib.pyplot as plt
-
-
-GPT_CONFIG_124M = {
-    "vocab_size": 50257,
-    "context_length": 1024,
-    "embed_dim": 768,
-    "n_layers": 12,
-    "n_heads": 12,
-    "drop_rate": 0.1,
-    "qkv_bias": False
-}
-
 
 class MultiHeadAttention(nn.Module):
     def __init__(self, d_in, d_out, context_length, dropout, num_heads, qkv_bias=False):
@@ -104,22 +90,12 @@ class LayerNorm(nn.Module):
         norm_x = (x - mean) / torch.sqrt(var + self.eps)
         return norm_x * self.scale + self.shift
 
-
-class GELU(nn.Module):
-    def __init__(self):
-        super().__init__()
-
-
-    def forward(self, x):
-        return 0.5 * x * (1 + torch.tanh(torch.sqrt(torch.tensor(2.0 / torch.pi)) * (x + 0.044715 * torch.pow(x, 3))))
-
-
 class FeedForward(nn.Module):
     def __init__(self, config):
         super().__init__()
         self.layers = nn.Sequential(
             nn.Linear(config["embed_dim"], 4 * config["embed_dim"]),
-            GELU(),
+            nn.GELU(),
             nn.Linear(4 * config["embed_dim"], config["embed_dim"]),
         )
 
@@ -171,8 +147,6 @@ class GPTModel(nn.Module):
 
     def forward(self, in_idx):
         batch_size, seq_len = in_idx.shape
-        
-
         tok_embeds = self.tok_emb(in_idx)
         pos_embeds = self.pos_emb(torch.arange(seq_len, device=in_idx.device))
         x = tok_embeds + pos_embeds
@@ -201,48 +175,3 @@ def generate_text_simple(model, idx, max_new_tokens, context_size):
             idx = torch.cat((idx, idx_next), dim=1)
     
     return idx
-
-
-
-if __name__ == "__main__":
-    
-    # print options : use 2 digits only
-    torch.set_printoptions(precision=2, sci_mode=False)
-    tokenizer = tiktoken.get_encoding("gpt2")
-    
-    batch = []
-    txt1 = "Every effort moves you"
-    txt2 = "Every day holds a"
-    txt1 = "Every effort moves<|endoftext|><|endoftext|>"
-    txt2 = "Every day holds a<|endoftext|>"
-    batch.append(torch.tensor(tokenizer.encode(txt1,allowed_special={"<|endoftext|>"})))
-    batch.append(torch.tensor(tokenizer.encode(txt2,allowed_special={"<|endoftext|>"})))
-
-    print(f"{batch=}")
-    batch = torch.stack(batch,dim=0)
-    print(f"Stack:\n{batch}")
-
-    torch.manual_seed(123)
-    model = GPTModel(GPT_CONFIG_124M)
-    #logits = model(batch)
-    #print(f"{logits.shape=}")
-    #print(f"{logits=}")
-
-    total_params = sum(p.numel() for p in model.parameters())
-    print(f"{total_params=}")
-    total_size_bytes = total_params * 4
-    total_size_mb = total_size_bytes / (1024 * 1024)
-    print(f"{total_size_mb=}")
-
-    start_content = "Hello, I am<|endoftext|><|endoftext|>"
-    encoded = tokenizer.encode(start_content,allowed_special={"<|endoftext|>"})
-    print(f"{encoded=}")
-    encoded_tensor = torch.tensor(encoded).unsqueeze(0)
-    print(f"{encoded_tensor.shape=}")
-    print(f"{encoded_tensor=}")
-    model.eval()
-    out = generate_text_simple(model, encoded_tensor, max_new_tokens=6, context_size=GPT_CONFIG_124M["context_length"])
-    print(f"{out=}")
-    print(f"output length {len(out[0])}")
-    decoded_text = tokenizer.decode(out[0].tolist())
-    print(f"{decoded_text=}")
