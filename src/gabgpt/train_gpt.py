@@ -1,6 +1,7 @@
 
 from model_gpt import GPTModel
 from dataloader import DataLoaderLite
+from stats_training import TrainingStats
 from transformers import get_linear_schedule_with_warmup
 import torch
 import tiktoken
@@ -63,12 +64,12 @@ def generate_text_completion(model, text):
     
     return tokenizer.decode(idx.squeeze().tolist())
 
-def save_checkpoint(model, optimizer, scheduler, train_loader, config, epoch, step, loss, save_dir):
+def save_checkpoint(model, optimizer, scheduler, train_loader, config, epoch, step, loss, stats, save_dir):
     """
     Save the model, optimizer, scheduler, and epoch to a file.
     """
     os.makedirs(save_dir, exist_ok=True)
-    path = f"{save_dir}/checkpoint_{epoch}_{step}_{loss}.pt"
+    path = f"{save_dir}/checkpoint_{epoch}_{step}_{loss:.2f}.pt"
     checkpoint = {
         'epoch': epoch,
         'step': step,
@@ -77,24 +78,25 @@ def save_checkpoint(model, optimizer, scheduler, train_loader, config, epoch, st
         'scheduler_state_dict': scheduler.state_dict(),
         'loss': loss,
         'config': config,
-        'train_loader_state': train_loader.get_state()
+        'train_loader_state': train_loader.get_state(),
+        "stats_file": stats.save_stats(save_dir)
     }
     torch.save(checkpoint, path)
 
 
-def load_checkpoint(path, model, optimizer=None, scheduler=None, device=device):
+def load_checkpoint(path, model, optimizer=None, scheduler=None, device="cpu"):
     """
     Load the model, optimizer, scheduler, from a file.
-    Returns (epoch, step, loss, train_loader_state)
+    Returns (epoch, step, loss, train_loader_state,stats)
     Raises ValueError in case of error
     """
-    checkpoint = torch.load(path,map_location=device)
+    checkpoint = torch.load(path,map_location=device,weights_only=True)
     model.load_state_dict(checkpoint['model_state_dict'])
 
     if optimizer is not None and 'optimizer_state_dict' in checkpoint:
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         # If using GPU, move optimizer states to GPU
-        if device.type == 'cuda':
+        if device == 'cuda':
             for state in optimizer.state.values():
                 for k, v in state.items():
                     if isinstance(v, torch.Tensor):
@@ -106,11 +108,27 @@ def load_checkpoint(path, model, optimizer=None, scheduler=None, device=device):
     else:
         raise ValueError("Scheduler state dict not found in checkpoint. Unable to load scheduler.")
     
-    return checkpoint['epoch'],checkpoint['step'], checkpoint['loss'], checkpoint['train_loader_state']
+    
+    # Load statistics if they exist
+    stats = TrainingStats()
+    if 'stats_file' in checkpoint and os.path.exists(checkpoint['stats_file']):
+        stats.load_stats(checkpoint['stats_file'])
+    
+    return checkpoint['epoch'], checkpoint['step'], checkpoint['loss'], checkpoint['train_loader_state'], stats
 
+def get_last_checkpoint(save_dir):
+    """
+    Get the last checkpoint file in the given directory.
+    Returns the path to the last checkpoint file.
+    """
+    checkpoints = sorted([f for f in os.listdir(save_dir) if f.startswith("checkpoint_")])
 
+    return os.path.join(save_dir, checkpoints[-1])
 
 # -------------------------------------------------------------
+
+
+
 device = "cpu"
 if torch.cuda.is_available():
     device = "cuda"
@@ -123,8 +141,9 @@ B = 8
 T = GPT_CONFIG["context_length"]
 start_epoch = 0
 start_step = 0
-checkpoint = "checkpoint_1_1000_9.pt"
-useCheckpoint = False
+checkpoint = "checkpoints/checkpoint_0_3000_5.50.pt"
+useCheckpoint = True
+stats = TrainingStats()
 
 val_loader = DataLoaderLite(B, T, "valid")
 train_loader = DataLoaderLite(B, T, "train")
@@ -146,14 +165,20 @@ optimizer = torch.optim.AdamW(model.parameters(), lr=HYPERS["lr"])
 scheduler = get_linear_schedule_with_warmup(optimizer, warmup_steps, total_steps)
 
 if useCheckpoint:
-    start_epoch, start_step, loss, train_state = load_checkpoint(checkpoint, model, optimizer, scheduler)
-    print(f"Loaded checkpoint: epoch {epoch}, step {step}, loss {loss}")
+    checkpoint = get_last_checkpoint("checkpoints")
+    if checkpoint is None:
+        raise ValueError("No checkpoint found")
+    start_epoch, start_step, loss, train_state, stats = load_checkpoint(checkpoint, model, optimizer, scheduler,device=device)
+    shard_index = train_state["shard_index"]
+    print(f"Loaded checkpoint: epoch {start_epoch}, step {start_step}, loss {loss} - shard: {shard_index}")
     train_loader.set_state(train_state)
 
 t0 = time.time()
-for epoch in range(HYPERS["epochs"]-start_epoch):
-    for step in range(nb_train_steps-start_step):
-        if step > 50:
+for epoch in range(start_epoch,HYPERS["epochs"]):
+    for step in range(start_step, nb_train_steps):
+        if step > 6000:
+            break
+        if step > start_step + 1000:
             break
         model.train()
         x, y = train_loader.next_batch()
@@ -165,14 +190,25 @@ for epoch in range(HYPERS["epochs"]-start_epoch):
         scheduler.step() # update learning rate
         optimizer.zero_grad() # reset gradients
 
-        if step % 10 == 0:
+        
+        if step % 50 == 0:
             print(f"step: {step}, loss: {loss.item()}")
+            stats.update(
+                step=step,
+                loss=loss.item(),
+                lr=scheduler.get_last_lr()[0],
+                shard_index=train_loader.current_shard_index
+            )
+        if step % 500 == 0:
             text = generate_text_completion(model, "Je suis")
             print(f"text: ///{text}///")
-        if step % 100 == 0:
-            save_checkpoint(model, optimizer, scheduler, train_loader, GPT_CONFIG, epoch, step, loss.item(), "checkpoints")
+            stats.update(step=step, generated_text=text)
+        if step % 500 == 0:
+            save_checkpoint(model, optimizer, scheduler, train_loader, GPT_CONFIG, epoch, step, loss.item(), stats,"checkpoints")
         
 t1 = time.time()
 print(f"Time: {t1-t0}")
 print(f"Tokens: {B}*{T}*{step} = {B*T*step}")
 print(f"Tokens/s: {(B*T*step)/(t1-t0)}")
+print(f"Loss: {loss.item()}")
+print(f"Shard index {train_loader.current_shard_index}")
