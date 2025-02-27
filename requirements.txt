@@ -15,5 +15,6 @@ tokenizers
 chardet
 huggingface_hub
 datasets
+transformers
 # for plotting in ubuntu
 #pyside2

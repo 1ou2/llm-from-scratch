@@ -39,6 +39,17 @@ class DataLoaderLite:
                 self.shards.pop()
         self.reset()
 
+    def get_state(self):
+        return {
+            "shard_index": self.current_shard_index,
+            "token_index": self.current_token_index,
+        }
+
+    def set_state(self, state):
+        self.reset()
+        self.current_shard_index = state["shard_index"]
+        self.current_token_index = state["token_index"]
+
     def reset(self):
         self.current_shard_index = 0
         # each process has a different offset in the shard

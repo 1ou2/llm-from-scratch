@@ -1,3 +1,8 @@
+# Data pipeline
+Pour créer notre modèle, il nous faut des données, beaucoup de données.
+L’objectif de la phase 1 est de créer un dataset composé de tokens.
+[![](images/data-pipeline.png)](images/data-pipeline.png)
+
 # Hugging Face
 Hugging face met à disposition de nombreux datasets.
 - se créer un compte
