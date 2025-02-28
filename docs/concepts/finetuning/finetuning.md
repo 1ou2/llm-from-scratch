@@ -85,6 +85,18 @@ Pour deepseek R1, le principe utilisé est
     - reward : il y a deux types de reward, est-ce que la syntaxe de la réponse contient des balises <think> et est-ce que la réponse est correcte. Dans leur cas, ils donnent au modèle des problèmes de mathématique (on connait la réponse), et des problèmes de codage (type leetcode), et alors le code produit est exécuté et on exécute des tests unitaires pour vérifier que le code est correct.
 
 # Quantization
-
+on convertit les floats de 4 octets en 2 octets par exemple
 
 # Lora
+On utilise deux matrices de taille plus petites 
+
+# Supervised fine tuning
+## links
+Toutes les étapes pour faire un llama, pre-train, sft, qlora, reward
+https://github.com/michaelnny/InstructLLaMA?tab=readme-ov-file
+
+sft explained
+https://cameronrwolfe.substack.com/p/understanding-and-using-supervised
+
+finetuning with hugging face
+https://huggingface.co/blog/dvgodoy/fine-tuning-llm-hugging-face
