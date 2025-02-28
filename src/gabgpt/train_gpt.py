@@ -39,7 +39,7 @@ HYPERS = {
     "tokens_per_shard": int(1e6)
 }
 
-
+MAX_STEPS = 6000
 
 def generate_text_completion(model, text):
     encoded = tokenizer.encode(text, allowed_special={"<|endoftext|>"})
@@ -80,6 +80,7 @@ def save_checkpoint(model, optimizer, scheduler, train_loader, config, epoch, st
         'train_loader_state': train_loader.get_state()
     }
     torch.save(checkpoint, path)
+    log_print(f"Saved checkpoint to {path}")
 
 
 def load_checkpoint(path, model, optimizer=None, scheduler=None, device="cpu"):
@@ -215,12 +216,12 @@ if useCheckpoint:
         log_print(f"Loaded checkpoint: epoch {start_epoch}, step {start_step}, loss {loss} - shard: {shard_index}")
         train_loader.set_state(train_state)
 
-model = torch.compile(model, backend=backend)
+#model = torch.compile(model, backend=backend)
 
 t0 = time.time()
 for epoch in range(start_epoch,HYPERS["epochs"]):
     for step in range(start_step, nb_train_steps):
-        if step > start_step + 2000:
+        if step > start_step + MAX_STEPS:
             break
         model.train()
         x, y = train_loader.next_batch()
@@ -232,7 +233,7 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
         scheduler.step() # update learning rate
         optimizer.zero_grad() # reset gradients
         
-        if step % 50 == 0:
+        if step % 200 == 0:
             log_msg = f"step: {step}, loss: {loss.item()}"
             log_print(log_msg)  
             
@@ -262,9 +263,11 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
                     loss = loss / val_loss_steps
                     val_loss_accum += loss.detach()
                 log_print(f"Validation loss: {val_loss_accum.item()}")
-        if step % 500 == 0 and step > 0:
+        if step % (int(MAX_STEPS/5)) == 0 and step > 0:
             save_checkpoint(model, optimizer, scheduler, train_loader, GPT_CONFIG, epoch, step, loss.item(), "checkpoints")
-        
+
+save_checkpoint(model, optimizer, scheduler, train_loader, GPT_CONFIG, epoch, step, loss.item(), "checkpoints")
+
 t1 = time.time()
 wrapup_message = f"""
 Time: {t1-t0}
