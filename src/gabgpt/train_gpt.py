@@ -181,6 +181,7 @@ log_print("---------------------------------------------------------------------
 log_print(f"Date - time : {time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime())}")
 log_print(f"using device: {device}")
 log_print(f"using backend: {backend}")
+
 B = 8
 T = GPT_CONFIG["context_length"]
 start_epoch = 0
