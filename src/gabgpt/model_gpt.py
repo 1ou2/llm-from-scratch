@@ -23,6 +23,9 @@ class MultiHeadAttention(nn.Module):
         self.W_value = nn.Linear(d_in, d_out, bias=qkv_bias)
         self.out_proj = nn.Linear(d_out, d_out)
         self.dropout = nn.Dropout(dropout)
+        self.dropout_rate = dropout
+        # check if flash attention is available
+        self.flash = hasattr(torch.nn.functional, 'scaled_dot_product_attention')
         # create an upper triangle mask of ones (excluding diagonal), and register as "mask", can be accessed using self.mask
         self.register_buffer("mask", torch.triu(torch.ones(context_length, context_length), diagonal=1))
 
@@ -38,35 +41,42 @@ class MultiHeadAttention(nn.Module):
         queries = self.W_query(x)
         values = self.W_value(x)
 
-        # reshape keys, queries, values
-        # we have concatenated all heads in big matrixes
-        # we need to unroll and split the d_out dimension into num_heads * head_dim
-        # view :(b, num_tokens, d_out) -> (b,num_tokens, num_heads, head_dim)
-        # transpose(1,2) : (b,num_tokens, num_heads, head_dim) -> (b,num_heads,num_tokens, head_dim)
-        keys = keys.view(b, num_tokens, self.num_heads, self.head_dim).transpose(1, 2)
-        queries = queries.view(b, num_tokens, self.num_heads, self.head_dim).transpose(1, 2)
-        values = values.view(b, num_tokens, self.num_heads, self.head_dim).transpose(1, 2)
+        if self.flash:
+            # efficient attention using Flash Attention CUDA kernels
+            # scaled_dot_product_attention is a function from PyTorch that implements Flash Attention
 
-        # compute dot product for each head
-        attn_scores = queries @ keys.transpose(2, 3)
-        
-        # if mask value is true, fill with -infinity
-        # [:num_tokens, :num_tokens] : is used to handle smaller input size
-        # The syntax [:num_tokens] means "take all elements from the start up to num_tokens". It's equivalent to [0:num_tokens]
-        attn_scores.masked_fill_(self.mask.bool()[:num_tokens, :num_tokens], float('-inf'))
+            context_vec = torch.nn.functional.scaled_dot_product_attention(queries, keys, values, attn_mask=None, dropout_p=self.dropout_rate if self.training else 0, is_causal=True)
+            context_vec = context_vec.transpose(1, 2).contiguous().view(b, num_tokens, self.d_out)
+        else:
+            # reshape keys, queries, values
+            # we have concatenated all heads in big matrixes
+            # we need to unroll and split the d_out dimension into num_heads * head_dim
+            # view :(b, num_tokens, d_out) -> (b,num_tokens, num_heads, head_dim)
+            # transpose(1,2) : (b,num_tokens, num_heads, head_dim) -> (b,num_heads,num_tokens, head_dim)
+            keys = keys.view(b, num_tokens, self.num_heads, self.head_dim).transpose(1, 2)
+            queries = queries.view(b, num_tokens, self.num_heads, self.head_dim).transpose(1, 2)
+            values = values.view(b, num_tokens, self.num_heads, self.head_dim).transpose(1, 2)
 
-        d_k = keys.shape[-1]
-        attn_weights = torch.nn.functional.softmax(attn_scores / torch.sqrt(torch.tensor(d_k)), dim=-1)
-        # dropout some weights to prevent overfitting
-        attn_weights = self.dropout(attn_weights)
+            # compute dot product for each head
+            attn_scores = queries @ keys.transpose(2, 3)
+            
+            # if mask value is true, fill with -infinity
+            # [:num_tokens, :num_tokens] : is used to handle smaller input size
+            # The syntax [:num_tokens] means "take all elements from the start up to num_tokens". It's equivalent to [0:num_tokens]
+            attn_scores.masked_fill_(self.mask.bool()[:num_tokens, :num_tokens], float('-inf'))
 
-        # combine heads
-        # (b, num_heads, num_tokens, head_dim) -> (b, num_tokens, num_heads, head_dim)
-        # transpose(1, 2) : (b, num_tokens, num_heads, head_dim) -> (b, num_heads, num_tokens, head_dim)
-        # contiguous() : to avoid error when using view() later
-        # view : (b, num_tokens, num_heads, head_dim) -> (b, num_tokens, d_out)
-   
-        context_vec = (attn_weights @ values).transpose(1, 2).contiguous().view(b, num_tokens, self.d_out)
+            d_k = keys.shape[-1]
+            attn_weights = torch.nn.functional.softmax(attn_scores / torch.sqrt(torch.tensor(d_k)), dim=-1)
+            # dropout some weights to prevent overfitting
+            attn_weights = self.dropout(attn_weights)
+
+            # combine heads
+            # (b, num_heads, num_tokens, head_dim) -> (b, num_tokens, num_heads, head_dim)
+            # transpose(1, 2) : (b, num_tokens, num_heads, head_dim) -> (b, num_heads, num_tokens, head_dim)
+            # contiguous() : to avoid error when using view() later
+            # view : (b, num_tokens, num_heads, head_dim) -> (b, num_tokens, d_out)
+    
+            context_vec = (attn_weights @ values).transpose(1, 2).contiguous().view(b, num_tokens, self.d_out)
 
         # add a linear projection
         # After concatenating all the attention heads together, we need to project the concatenated vector back to the expected output dimension
