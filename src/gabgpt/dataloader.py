@@ -11,33 +11,27 @@ def load_tokens(filename):
     return torch.tensor(nptokens,dtype=torch.long)
 
 class DataLoaderLite:
-    def __init__(self, B, T, split, process_rank =0, num_processes=1):
+    def __init__(self, B, T, split, token_dir, process_rank =0, num_processes=1):
         assert split in ["train", "valid"]
         self.B = B
         self.T = T
+        self.split = split
         self.shards = []
         self.process_rank = process_rank
         self.num_processes = num_processes
-        DATA_TOKENIZED_DIR = "data/tokenized/wikipedia_fr/"
-        shards = sorted([os.path.join(DATA_TOKENIZED_DIR, f) for f in os.listdir(DATA_TOKENIZED_DIR) if f.endswith(".npy")])
-        assert(len(shards) > 2)
+        self.token_dir = token_dir # DATA_TOKENIZED_DIR = "data/tokenized/wikipedia_fr/"
+        self.update_shard_list()
+        self.reset()
 
-        for shard in shards:
-            filename = os.path.splitext(os.path.basename(shard))[0]
-            # filename is shard_{index:06d}.npy
-            index = int(filename.split("_")[1])
-            if split == "valid" and index == 0:
-                self.shards = [shard]
-                break
-            elif split == "train" and index > 0:
-                self.shards.append(shard)
-        if split == "train":
-            self.shards = sorted(self.shards)
+    def update_shard_list(self):
+        self.shards = sorted([os.path.join(self.token_dir, f) for f in os.listdir(self.token_dir) if f.endswith(".npy")])
+
+        if self.split == "train":
             # remove the last shard
             if len(self.shards) > 1:
                 # last shard may not be full
                 self.shards.pop()
-        self.reset()
+
 
     def get_state(self):
         return {
@@ -71,6 +65,12 @@ class DataLoaderLite:
         self.current_token_index += self.B * self.T
         # check if we need to load the next shard
         if self.current_token_index + (self.B * self.T + 1) > len(self.tokens):
+            # check if we ran out of shards
+            if self.current_shard_index + 1 >= len(self.shards):
+                # try checking if a new shard is available
+                # for optimization reasons, we might still be sending new shards to a remote GPU server
+                self.update_shard_list()
+
             # cycle through the shards, enables to continue get batches for more than one epoch
             self.current_shard_index = (self.current_shard_index + 1) % len(self.shards)
             self.tokens = load_tokens(self.shards[self.current_shard_index])

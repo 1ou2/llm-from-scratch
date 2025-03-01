@@ -19,8 +19,19 @@ GPT_CONFIG = {
     "qkv_bias": False
 }
 
+GPT_CONFIG2 = {
+    "vocab_size": 32768,
+    "context_length": 1024,
+    "embed_dim": 1024,
+    "n_layers": 16,
+    "n_heads": 16,
+    "drop_rate": 0.1,
+    "qkv_bias": False
+    }
+
 def generate_text_completion(model, text):
     encoded = tokenizer.encode(text, allowed_special={"<|endoftext|>"})
+    #encoded = [2132, 5555, 21455]
     # model expects an input in batch format
     idx = torch.tensor(encoded).unsqueeze(0).to(device)
 

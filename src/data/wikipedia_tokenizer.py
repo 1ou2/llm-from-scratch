@@ -7,41 +7,47 @@ import multiprocess as mp
 import numpy as np
 from datasets import load_dataset
 from tqdm import tqdm
+from tokenizers import ByteLevelBPETokenizer
 
-# Load tokenizer
-tokenizer = tiktoken.get_encoding("gpt2")
+# Custom tokenizer for french language
+use_custom_tokenizer = True
+
+if use_custom_tokenizer:
+    tokenizer = ByteLevelBPETokenizer(
+        "french_tokenizer/gabgpt-vocab.json",
+        "french_tokenizer/gabgpt-merges.txt"
+    )
+    # we do not add special tokens because we cannot trust the source dataset
+    DATA_TOKENIZED_DIR = "data/tokenized/gabwikifr/"
+    eot = tokenizer.token_to_id("<|endoftext|>")
+else:
+    tokenizer = tiktoken.get_encoding("gpt2")
+    DATA_TOKENIZED_DIR = "data/tokenized/wikipedia_fr/"
+    eot = tokenizer._special_tokens["<|endoftext|>"]
+
+print(f"eot: {eot}")
 
 # Load Wikipedia dataset in streaming mode (no full memory load)
 dataset = load_dataset("wikimedia/wikipedia", "20231101.fr")
 
-DATA_TOKENIZED_DIR = "data/tokenized/wikipedia_fr/"
+DATA_TOKENIZED_DIR = "data/tokenized/gabwikifr/"
 os.makedirs(DATA_TOKENIZED_DIR, exist_ok=True)
 
 shard_size = int(1e6)  # 1 million tokens per shard
 
-encoder = tiktoken.get_encoding("gpt2")
-eot = encoder._special_tokens["<|endoftext|>"]
-print(f"eot: {eot}")
-
 def tokenize(article):
     # all documents start with end of sequence token
     tokens = [eot]
-    # disallow special tokens in the article
-    tokens.extend(encoder.encode_ordinary(article["text"]))
+    if use_custom_tokenizer:
+        tokens.extend(tokenizer.encode(article["text"]).ids)
+    else:
+        # disallow special tokens in the article
+        tokens.extend(tokenizer.encode_ordinary(article["text"]))
     # convert to a uint16 numpy array - 2 bits per token
     return np.array(tokens, dtype=np.uint16)
-    
-warticle = {"text": "Hello world!"}
-tokens = tokenize(warticle)
-print(f"{tokens=}")
-print(f"{tokens.dtype}")
 
 nprocs = max(1, mp.cpu_count() - 1)
 print(f"Using {nprocs} processes")
-
-import sys
-sys.exit(0)
-
 
 with mp.Pool(nprocs) as pool:
     shard_index = 0

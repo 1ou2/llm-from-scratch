@@ -1,0 +1,35 @@
+[model]
+vocab_size = 32768
+context_length = 1024
+embed_dim = 768
+n_layers = 12
+n_heads = 12
+drop_rate = 0.1
+qkv_bias = False
+tokenizer = custom
+
+[hypers]
+epochs = 1
+lr = 6e-4
+beta1 = 0.9
+beta2 = 0.95
+eps = 1e-8
+weight_decay = 0.1
+grad_clip = 1.0
+tokens_per_shard = 1000000
+
+[training]
+max_steps = 5000
+batch_size = 2
+use_checkpoint = False
+log_interval = 200
+gen_text_interval = 500
+eval_interval = 1000
+checkpoint_interval = 1000
+
+[files]
+log_file = logs.txt
+stat_file = stats.txt
+checkpoint_dir = checkpoints/
+token_dir = data/tokenized/gabwikifr/
+tokenizer_dir = data/tokenizer/

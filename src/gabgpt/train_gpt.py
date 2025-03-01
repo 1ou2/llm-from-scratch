@@ -2,47 +2,60 @@
 from model_gpt import GPTModel
 from dataloader import DataLoaderLite
 from transformers import get_linear_schedule_with_warmup
+from tokenizers import ByteLevelBPETokenizer
 import torch
 import tiktoken
 import torch.nn.functional as F
 import time
 import os
+import configparser
+import ast
 
-GPT_CONFIG_124M = {
-    "vocab_size": 50257,
-    "context_length": 1024,
-    "embed_dim": 768,
-    "n_layers": 12,
-    "n_heads": 12,
-    "drop_rate": 0.1,
-    "qkv_bias": False
-}
+def load_config(config_file="config.txt"):
+    config = configparser.ConfigParser()
+    config.read(config_file)
+    # Convert string values to appropriate Python types
+    def parse_value(value):
+        try:
+            # Try to evaluate as literal (for boolean, None, etc)
+            return ast.literal_eval(value)
+        except (ValueError, SyntaxError):
+            # If it fails, return as string
+            return value
 
-GPT_CONFIG = {
-    "vocab_size": 50257,
-    "context_length": 256,
-    "embed_dim": 768,
-    "n_layers": 12,
-    "n_heads": 12,
-    "drop_rate": 0.1,
-    "qkv_bias": False
-}
+    # Create configuration dictionaries
+    GPT_CONFIG = {
+        key: parse_value(value)
+        for key, value in config['model'].items()
+    }
+    
+    HYPERS = {
+        key: parse_value(value)
+        for key, value in config['hypers'].items()
+    }
+    
+    #
+    FILES = {
+        key: parse_value(value)
+        for key, value in config['files'].items()
+    }
 
-HYPERS = {
-    "epochs": 1,
-    "lr": 6e-4,
-    "beta1": 0.9,
-    "beta2": 0.95,
-    "eps": 1e-8,
-    "weight_decay": 0.1,
-    "grad_clip": 1.0,
-    "tokens_per_shard": int(1e6)
-}
+    TRAINING = {
+        key: parse_value(value)
+        for key, value in config['training'].items()
+    }
+    
+    return GPT_CONFIG, HYPERS, FILES, TRAINING
 
-MAX_STEPS = 6000
 
 def generate_text_completion(model, text):
-    encoded = tokenizer.encode(text, allowed_special={"<|endoftext|>"})
+    if tokenizerType == "custom":
+        encoded = tokenizer.encode(text).ids
+    elif tokenizerType == "gpt2":
+        encoded = tokenizer.encode(text, allowed_special={"<|endoftext|>"})
+    else:
+        raise ValueError(f"Unknown tokenizer type: {tokenizerType}")
+
     # model expects an input in batch format
     idx = torch.tensor(encoded).unsqueeze(0).to(device)
 
@@ -153,6 +166,8 @@ def log_print(msg):
     log_file.flush()
 
 
+GPT_CONFIG, HYPERS, FILES, TRAINING = load_config()
+
 device = "cpu"
 backend = "inductor"
 if torch.cuda.is_available():
@@ -169,8 +184,8 @@ device_type = "cuda" if device.startswith("cuda") else "cpu"
 # trying to not get out of memory error
 os.environ["PYTORCH_CUDA_ALLOC_CONF"]="expandable_segments:True"
 
-log_file = open("logs.txt", "a")
-stats_file = open("stats.txt", "a")
+log_file = open(FILES["log_file"], "a")
+stats_file = open(FILES["stat_file"], "a")
 
 # Write header for stats file (if it's empty)
 if stats_file.tell() == 0:
@@ -182,17 +197,31 @@ log_print(f"Date - time : {time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime())}
 log_print(f"using device: {device}")
 log_print(f"using backend: {backend}")
 
-B = 8
+B = TRAINING["batch_size"]
 T = GPT_CONFIG["context_length"]
 start_epoch = 0
 start_step = 0
 
-useCheckpoint = True
+useCheckpoint = TRAINING["use_checkpoint"]
+tokenizerType = GPT_CONFIG["tokenizer"]
+valid_token_dir = FILES["token_dir"] + "valid/"
+train_token_dir = FILES["token_dir"] + "train/"
+val_loader = DataLoaderLite(B, T, split="valid",token_dir=valid_token_dir)
+train_loader = DataLoaderLite(B, T, "train", token_dir=train_token_dir)
 
+if tokenizerType == "custom":
+    special_tokens = ["<|endoftext|>", "<|user|>", "<|bot|>", "<|sys|>","<|gab1|>", "<|gab2|>", "<|gab3|>","<|gab4|>", "<|gab5|>"]
 
-val_loader = DataLoaderLite(B, T, "valid")
-train_loader = DataLoaderLite(B, T, "train")
-tokenizer = tiktoken.get_encoding("gpt2")
+    # Load the trained tokenizer
+    tokenizer = ByteLevelBPETokenizer(
+        FILES["tokenizer_dir"] + "gabgpt-vocab.json",
+        FILES["tokenizer_dir"] + "gabgpt-merges.txt"
+    )
+
+    # Add special tokens to the loaded tokenizer
+    tokenizer.add_special_tokens(special_tokens)
+elif tokenizerType == "gpt2":
+    tokenizer = tiktoken.get_encoding("gpt2")
 
 # number of batches in one epoch
 nb_train_steps = int(HYPERS["tokens_per_shard"] / (B * T)) * len(train_loader.shards)
@@ -210,19 +239,19 @@ optimizer = torch.optim.AdamW(model.parameters(), lr=HYPERS["lr"])
 scheduler = get_linear_schedule_with_warmup(optimizer, warmup_steps, total_steps)
 
 if useCheckpoint:
-    checkpoint = get_last_checkpoint("checkpoints")
+    checkpoint = get_last_checkpoint(FILES["checkpoint_dir"])
     if checkpoint is not None:
         start_epoch, start_step, loss, train_state = load_checkpoint(checkpoint, model, optimizer, scheduler,device=device)
         shard_index = train_state["shard_index"]
         log_print(f"Loaded checkpoint: epoch {start_epoch}, step {start_step}, loss {loss} - shard: {shard_index}")
         train_loader.set_state(train_state)
 
-#model = torch.compile(model, backend=backend)
+model = torch.compile(model, backend=backend)
 
 t0 = time.time()
 for epoch in range(start_epoch,HYPERS["epochs"]):
     for step in range(start_step, nb_train_steps):
-        if step > start_step + MAX_STEPS:
+        if step > start_step + TRAINING["max_steps"]:
             break
         model.train()
         x, y = train_loader.next_batch()
@@ -234,7 +263,7 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
         scheduler.step() # update learning rate
         optimizer.zero_grad() # reset gradients
         
-        if step % 200 == 0:
+        if step % TRAINING["log_interval"] == 0:
             log_msg = f"step: {step}, loss: {loss.item()}"
             log_print(log_msg)  
             
@@ -243,12 +272,12 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
             stats_file.write(stats_msg)
             stats_file.flush()
         
-        if step % 500 == 0:
+        if step % TRAINING["gen_text_interval"] == 0:
             text = generate_text_completion(model, "Je suis")
             log_msg = f"{step}: Generated text: ///{text.strip()}///"
             log_print(log_msg)
         # evaluate validation loss
-        if step % 1000 == 0 and step > 0:
+        if step % TRAINING["eval_interval"] == 0 and step > 0:
             model.eval()
             val_loader.reset()
             with torch.no_grad():
@@ -264,10 +293,10 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
                     loss = loss / val_loss_steps
                     val_loss_accum += loss.detach()
                 log_print(f"Validation loss: {val_loss_accum.item()}")
-        if step % (int(MAX_STEPS/5)) == 0 and step > 0:
-            save_checkpoint(model, optimizer, scheduler, train_loader, GPT_CONFIG, epoch, step, loss.item(), "checkpoints")
+        if step %  TRAINING["checkpoint_interval"]  == 0 and step > 0:
+            save_checkpoint(model, optimizer, scheduler, train_loader, GPT_CONFIG, epoch, step, loss.item(), FILES["checkpoint_dir"])
 
-save_checkpoint(model, optimizer, scheduler, train_loader, GPT_CONFIG, epoch, step, loss.item(), "checkpoints")
+save_checkpoint(model, optimizer, scheduler, train_loader, GPT_CONFIG, epoch, step, loss.item(), FILES["checkpoint_dir"])
 
 t1 = time.time()
 wrapup_message = f"""

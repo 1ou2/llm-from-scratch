@@ -202,10 +202,59 @@ def generate_text_simple(model, idx, max_new_tokens, context_size):
     
     return idx
 
+def model_size():
+    GPT_CONFIG_SMALL = {
+    "vocab_size": 32768,
+    "context_length": 1024,
+    "embed_dim": 768,
+    "n_layers": 12,
+    "n_heads": 12,
+    "drop_rate": 0.1,
+    "qkv_bias": False
+    }
 
+    GPT_CONFIG_MEDIUM = {
+    "vocab_size": 32768,
+    "context_length": 1024,
+    "embed_dim": 1024,
+    "n_layers": 16,
+    "n_heads": 16,
+    "drop_rate": 0.1,
+    "qkv_bias": False
+    }
+
+    GPT_CONFIG_MODEL_1 = {
+    "vocab_size": 50257,
+    "context_length": 256,
+    "embed_dim": 768,
+    "n_layers": 12,
+    "n_heads": 12,
+    "drop_rate": 0.1,
+    "qkv_bias": False
+    }   
+    print("")
+    for config in [GPT_CONFIG_124M,  GPT_CONFIG_SMALL, GPT_CONFIG_MEDIUM, GPT_CONFIG_MODEL_1]:
+
+        model = GPTModel(config)
+        print(f"{config=}")
+        total_params = sum(p.numel() for p in model.parameters())
+        print(f"{total_params=}") # total_params=136146432
+        total_size_bytes = total_params * 4
+        total_size_mb = total_size_bytes / (1024 * 1024) #total_size_mb=519.357421875
+        print(f"{total_size_mb=}")
+        print("------\n")
+
+    print(model)
+    print("Model size, exiting ...")
+
+    import sys
+    sys.exit(0)
+    
 
 if __name__ == "__main__":
     
+    model_size()
+
     # print options : use 2 digits only
     torch.set_printoptions(precision=2, sci_mode=False)
     tokenizer = tiktoken.get_encoding("gpt2")

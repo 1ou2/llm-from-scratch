@@ -18,51 +18,54 @@ Tokens/s: 3920.892649233775
 
 B = 16 -> out of memory
 
-# RUN 1000
-step: 1000, loss: 7.5749430656433105
-text: ///Je suis de la de la
+# Torch.compile
+RuntimeError: Found NVIDIA GeForce GTX 1070 Ti which is too old to be supported by the triton GPU compiler, which is used as the backend. Triton only supports devices of CUDA Capability >= 7.0, but your device is of CUDA capability 6.1
 
-step: 1500, loss: 8.27348804473877
-text: ///Je suisé de la de la de la de la de la de la de la de la de la de la de la de la de la de la de la de la de la de la de la de la de la de la de la de la de///
-Time: 239.3150019645691
-Tokens: 8*256*1501 = 3074048
-Tokens/s: 12845.195557172454
-Loss: 8.27348804473877
-Shard index 3
-
-step: 2000, loss: 6.4244842529296875
-text: ///Je suis, le 
-
-step: 2500, loss: 5.838445663452148
-text: ///Je suis, le étées                                            ///
-
-step: 3000, loss: 5.503025531768799
-text: ///Je suis de la ville de la ville de la ville de la ville de la ville de la ville de la ville de la ville de la ville de la ville de la ville de la ville de la///
-Time: 711.5944271087646
-Tokens: 8*256*3001 = 6146048
-Tokens/s: 8637.009742995919
-Loss: 5.503025531768799
-Shard index 6
-
-step: 3500, loss: 5.280482292175293
-text: ///Je suisées de la commune de la ville de la ville de la commune de la ville de la vie de la commune de la commune de la commune de la vie de la ville de la ville///
-
-step: 6000, loss: 4.819955348968506
-text: ///Je suis, il est un nombre de la ville de la ville de la ville de la ville de la ville de la ville.
+Set TORCH_LOGS="+dynamo" and TORCHDYNAMO_VERBOSE=1 for more information
 
 
+You can suppress this exception and fall back to eager by setting:
+    import torch._dynamo
+    torch._dynamo.config.suppress_errors = True
 
+# Tokenizer
+# tiktoken gpt-2
+Premier essai, utilisation du tokenizer de GPT-2
+tokenizer = tiktoken.get_encoding("gpt2")
+Le vocabulaire est 50256 mots.
+Lors du pre-processing, on transforme notre dataset wikipedia français en shards de taille de taille 1 million.
+À l'issue de cette phase on obtient 2663 shards.
 
+# custom tokenizer
+On entraine un tokenizer sur notre dataset avec un vocabulaire taille de 32768 
+```python
+def train():
+    # Define special tokens
+    special_tokens = ["<|endoftext|>", "<|user|>", "<|bot|>", "<|sys|>","<|gab1|>", "<|gab2|>", "<|gab3|>","<|gab4|>", "<|gab5|>", ]
 
+    # Initialize the tokenizer
+    tokenizer = ByteLevelBPETokenizer()
 
+    # Load the dataset
+    dataset = load_dataset("wikimedia/wikipedia", "20231101.fr")
 
+    # Get 10% of the training split
+    texts = dataset["train"].select(range(len(dataset["train"]) // 10))["text"]
 
+    # Train on your dataset while adding special tokens
+    tokenizer.train_from_iterator(
+        texts, 
+        vocab_size=32768, 
+        min_frequency=2, 
+        special_tokens=special_tokens
+    )
 
+    # Save the tokenizer
+    # ls french_tokenizer/
+    # gabgpt-merges.txt  gabgpt-vocab.json
+    tokenizer.save_model("french_tokenizer",prefix="gabgpt")
+```
 
-Liens externes 
-///
-Time: 475.173109292984
-Tokens: 8*256*6001 = 12290048
-Tokens/s: 25864.35924012307
-Loss: 4.819955348968506
-Shard index 12
+Alors qu'on a un plus petit nombre de tokens à notre disposition, le pre-processing va donner 1892 shards.
+On a donc un gain de `28.9%` !
+L'explication est que le tokenizer de gpt-2 n'a pas été optimisé pour le français contrairement à celui qu'on a mis en place
