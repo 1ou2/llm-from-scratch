@@ -574,7 +574,7 @@ if master_process:
     wrapup_message = f"""
     Time: {start_time - end_time}
     Processed Tokens: {B}*{T}*{step - start_step} = {B*T*(step - start_step)}
-    Tokens/s: {(B*T*(step - start_step))/(t1-t0)}
+    Tokens/s: {(B*T*(step - start_step))/(start_time-end_time)}
     Loss: {loss.item()}
     Total Tokens: {B}*{T}*{step} = {B*T*step}
     Shard index: {train_loader.current_shard_index}
