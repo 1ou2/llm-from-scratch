@@ -149,7 +149,7 @@ def load_tokens(filename):
     return ptt
 
 class DataLoaderLite:
-    def __init__(self, B, T, split, token_dir, process_rank =0, num_processes=1):
+    def __init__(self, B, T, split, token_dir, process_rank=0, num_processes=1):
         assert split in ["train", "valid"]
         self.B = B
         self.T = T
@@ -157,7 +157,7 @@ class DataLoaderLite:
         self.shards = []
         self.process_rank = process_rank
         self.num_processes = num_processes
-        self.token_dir = token_dir # DATA_TOKENIZED_DIR = "data/tokenized/wikipedia_fr/"
+        self.token_dir = token_dir 
         self.update_shard_list()
         self.reset()
 
@@ -204,12 +204,6 @@ class DataLoaderLite:
         self.current_token_index += self.B * self.T * self.num_processes
         # check if we need to load the next shard
         if self.current_token_index + (self.B * self.T * self.num_processes + 1) > len(self.tokens):
-            # check if we ran out of shards
-            if self.current_shard_index + 1 >= len(self.shards):
-                # try checking if a new shard is available
-                # for optimization reasons, we might still be sending new shards to a remote GPU server
-                self.update_shard_list()
-
             # cycle through the shards, enables to continue get batches for more than one epoch
             self.current_shard_index = (self.current_shard_index + 1) % len(self.shards)
             self.tokens = load_tokens(self.shards[self.current_shard_index])
@@ -250,12 +244,12 @@ def load_checkpoint(path, model, optimizer=None, scheduler=None, device="cpu"):
     """
     checkpoint = torch.load(path,map_location=device,weights_only=True)
     # Create a new state dict removing '_orig_mod' prefix from checkpoint
-    # when using torch.compile with aot_eager backend, the keys have a prefix '_orig_mod.'
+    # when using torch.compile with aot_eager backend, the keys have a prefix '_orig_mod.module.'
     # we need, to remov this prefix to be able to load the model otherwise we have a mismatch
     fixed_state_dict = {}
     for key, value in checkpoint['model_state_dict'].items():
-        if key.startswith('_orig_mod.'):
-            new_key = key.replace('_orig_mod.', '')
+        if key.startswith('_orig_mod.module.'):
+            new_key = key.replace('_orig_mod.module.', '')
             fixed_state_dict[new_key] = value
         else:
             fixed_state_dict[key] = value
@@ -388,15 +382,14 @@ val_loader = DataLoaderLite(B, T, split="valid",token_dir=valid_token_dir, proce
 train_loader = DataLoaderLite(B, T, split="train", token_dir=train_token_dir, process_rank=ddp_rank, num_processes=ddp_world_size)
 
 nb_train_steps = (HYPERS["tokens_per_shard"] // (B * T * ddp_world_size)) * len(train_loader.shards)
-grad_accum_steps = nb_train_steps // (B * T * ddp_world_size)
 total_steps = nb_train_steps * HYPERS["epochs"]
 warmup_steps = total_steps // 10 # use 10% for warmup
 
 if master_process:
     logger.log_print(f"nb_train_steps: {nb_train_steps}")
-    logger.log_print(f"grad_accum_steps: {grad_accum_steps}")
     logger.log_print(f"total_steps: {total_steps}")
     logger.log_print(f"warmup_steps: {warmup_steps}")
+    logger.log_print(f"B: {B} | T: {T} | W: {ddp_world_size} : {B * T * ddp_world_size} tokens")
 
 # Big optimization here !
 # change format from float32 to tf32 (tensor float32)
@@ -449,11 +442,32 @@ use_compile = TRAINING["use_compile"]
 if use_compile:
     model = torch.compile(model)
 
-# Training Loop
 
+nb_train_steps = (HYPERS["tokens_per_shard"] // (B * T * ddp_world_size)) * (len(train_loader.shards)-train_loader.current_shard_index)
+total_steps = nb_train_steps * HYPERS["epochs"]
+warmup_steps = total_steps // 10 # use 10% for warmup
+
+continue_epoch = True
+step = start_step
+# Training Loop
 t0 = time.time()
 for epoch in range(start_epoch,HYPERS["epochs"]):
-    for step in range(start_step, nb_train_steps):
+    while continue_epoch:
+        step = step +1
+        # last step
+        if step == (nb_train_steps-1):
+            old_shard_count = len(train_loader.shards)
+            train_loader.update_shard_list()
+            # no new shards available
+            if len(train_loader.shards) == old_shard_count:
+                continue_epoch = False
+                break
+
+            nb_train_steps = (HYPERS["tokens_per_shard"] // (B * T * ddp_world_size)) * (len(train_loader.shards)-train_loader.current_shard_index)
+            if nb_train_steps -1 <= step:
+                continue_epoch = False
+                break
+        
         if step > start_step + TRAINING["max_steps"]:
             break
 
@@ -551,6 +565,10 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
 
         norm = torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
         optimizer.step()
+
+# save final checkpoint
+if master_process:
+    save_checkpoint(model, optimizer, scheduler, train_loader, GPT_CONFIG, epoch, step, loss.item(), FILES["checkpoint_dir"])
 
 if ddp:
     destroy_process_group()
