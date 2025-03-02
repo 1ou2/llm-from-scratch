@@ -249,7 +249,28 @@ def load_checkpoint(path, model, optimizer=None, scheduler=None, device="cpu"):
     Raises ValueError in case of error
     """
     checkpoint = torch.load(path,map_location=device,weights_only=True)
-    model.load_state_dict(checkpoint['model_state_dict'])
+    # Create a new state dict removing '_orig_mod' prefix from checkpoint
+    # when using torch.compile with aot_eager backend, the keys have a prefix '_orig_mod.'
+    # we need, to remov this prefix to be able to load the model otherwise we have a mismatch
+    fixed_state_dict = {}
+    for key, value in checkpoint['model_state_dict'].items():
+        if key.startswith('_orig_mod.'):
+            new_key = key.replace('_orig_mod.', '')
+            fixed_state_dict[new_key] = value
+        else:
+            fixed_state_dict[key] = value
+
+    # Compare the shapes of tensors
+    for key in fixed_state_dict:
+        if key in model.state_dict():
+            ckpt_shape = fixed_state_dict[key].shape
+            model_shape = model.state_dict()[key].shape
+            if ckpt_shape != model_shape:
+                print(f"Shape mismatch for {key}: checkpoint {ckpt_shape} vs model {model_shape}")
+        else:
+            print(f"Key {key} not found in model state dict")
+
+    model.load_state_dict(fixed_state_dict)
 
     if optimizer is not None and 'optimizer_state_dict' in checkpoint:
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
