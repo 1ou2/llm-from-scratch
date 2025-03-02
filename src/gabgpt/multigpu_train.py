@@ -428,6 +428,15 @@ start_step = 0
 checkpoint = get_last_checkpoint(FILES["checkpoint_dir"])
 if checkpoint is not None:
     start_epoch, start_step, loss, train_state = load_checkpoint(checkpoint, model, optimizer, scheduler,device=device)
+    if scheduler.get_last_lr()[0] == 0:
+        if master_process:
+            logger.log_print("Scheduler has no learning rate, setting to default")
+        scheduler = get_linear_schedule_with_warmup(
+            optimizer,
+            num_warmup_steps=warmup_steps,
+            num_training_steps=total_steps
+        )
+
     shard_index = train_state["shard_index"]
     if master_process:
         logger.log_print(f"Loaded checkpoint: epoch {start_epoch}, step {start_step}, loss {loss} - shard: {shard_index}")
@@ -478,7 +487,7 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
             tokens_processed = B * T * ddp_world_size * TRAINING["log_interval"]
             tokens_per_sec = tokens_processed / dt
 
-            logger.log_print(f"step {step:5d} | loss: {loss.item():.6f} | lr: {scheduler.get_last_lr()[0]} | norm: {norm:.4f} | dt: {dt*1000:.2f}ms | tok/sec: {tokens_per_sec:.2f}")
+            logger.log_print(f"step {step:5d} | loss: {loss.item():.6f} | lr: {scheduler.get_last_lr()[0]:.7f} | norm: {norm:.4f} | dt: {dt*1000:.2f}ms | tok/sec: {tokens_per_sec:.2f}")
             
             # Write stats in CSV format for easy parsing
             stats_msg = f"{epoch},{step},{loss.item()},{scheduler.get_last_lr()[0]}\n"
@@ -566,6 +575,7 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
 
         norm = torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
         optimizer.step()
+        scheduler.step()
 
 # save final checkpoint
 if master_process:
