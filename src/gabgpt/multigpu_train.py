@@ -572,9 +572,9 @@ if master_process:
     save_checkpoint(model, optimizer, scheduler, train_loader, GPT_CONFIG, epoch, step, loss.item(), FILES["checkpoint_dir"])
     end_time = time.time()
     wrapup_message = f"""
-    Time: {start_time - end_time}
+    Time: {end_time - start_time }
     Processed Tokens: {B}*{T}*{step - start_step} = {B*T*(step - start_step)}
-    Tokens/s: {(B*T*(step - start_step))/(start_time-end_time)}
+    Tokens/s: {(B*T*(step - start_step))/(end_time - start_time)}
     Loss: {loss.item()}
     Total Tokens: {B}*{T}*{step} = {B*T*step}
     Shard index: {train_loader.current_shard_index}
