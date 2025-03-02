@@ -381,7 +381,7 @@ train_token_dir = FILES["token_dir"] + "train/"
 val_loader = DataLoaderLite(B, T, split="valid",token_dir=valid_token_dir, process_rank=ddp_rank, num_processes=ddp_world_size)
 train_loader = DataLoaderLite(B, T, split="train", token_dir=train_token_dir, process_rank=ddp_rank, num_processes=ddp_world_size)
 
-nb_train_steps = (HYPERS["tokens_per_shard"] // (B * T * ddp_world_size)) * len(train_loader.shards)
+nb_train_steps = (HYPERS["tokens_per_shard"] // (B * T * ddp_world_size)) * (len(train_loader.shards)-train_loader.current_shard_index)
 total_steps = nb_train_steps * HYPERS["epochs"]
 warmup_steps = total_steps // 10 # use 10% for warmup
 
@@ -431,6 +431,13 @@ if checkpoint is not None:
     if scheduler.get_last_lr()[0] == 0:
         if master_process:
             logger.log_print("Scheduler has no learning rate, setting to default")
+        # Explicitly set a lower LR for continued training
+        new_lr = 1e-6  
+        
+        for param_group in optimizer.param_groups:
+            param_group['lr'] = new_lr
+        
+        # Create new scheduler with the lower LR
         scheduler = get_linear_schedule_with_warmup(
             optimizer,
             num_warmup_steps=warmup_steps,
@@ -450,11 +457,6 @@ if ddp:
 use_compile = TRAINING["use_compile"] 
 if use_compile:
     model = torch.compile(model)
-
-
-nb_train_steps = (HYPERS["tokens_per_shard"] // (B * T * ddp_world_size)) * (len(train_loader.shards)-train_loader.current_shard_index)
-total_steps = nb_train_steps * HYPERS["epochs"]
-warmup_steps = total_steps // 10 # use 10% for warmup
 
 continue_epoch = True
 step = start_step
