@@ -53,3 +53,6 @@ class LogPrinter:
         print(msg)
         self.log_file.write(msg + "\n")
         self.log_file.flush()
+
+    def close(self):
+        self.log_file.close()

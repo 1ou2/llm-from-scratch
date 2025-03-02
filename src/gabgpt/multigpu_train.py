@@ -450,6 +450,7 @@ warmup_steps = total_steps // 10 # use 10% for warmup
 continue_epoch = True
 step = start_step
 # Training Loop
+start_time = time.time()
 t0 = time.time()
 for epoch in range(start_epoch,HYPERS["epochs"]):
     while continue_epoch:
@@ -569,7 +570,18 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
 # save final checkpoint
 if master_process:
     save_checkpoint(model, optimizer, scheduler, train_loader, GPT_CONFIG, epoch, step, loss.item(), FILES["checkpoint_dir"])
-
+    end_time = time.time()
+    wrapup_message = f"""
+    Time: {start_time - end_time}
+    Processed Tokens: {B}*{T}*{step - start_step} = {B*T*(step - start_step)}
+    Tokens/s: {(B*T*(step - start_step))/(t1-t0)}
+    Loss: {loss.item()}
+    Total Tokens: {B}*{T}*{step} = {B*T*step}
+    Shard index: {train_loader.current_shard_index}
+    """
+    logger.log_print(wrapup_message)
+    logger.close()
+    stats_file.close()
 if ddp:
     destroy_process_group()
 
