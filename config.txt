@@ -19,15 +19,19 @@ grad_clip = 1.0
 tokens_per_shard = 1000000
 
 [training]
-max_steps = 500
 batch_size = 2
+max_steps = 5000
+validation_steps = 2
+num_generation_sequences = 1
 use_checkpoint = True
 log_interval = 200
 gen_text_interval = 500
 eval_interval = 1000
-checkpoint_interval = 1000
+checkpoint_interval = 2000
+use_compile = False
 
 [files]
+log_dir = logs/
 log_file = logs.txt
 stat_file = stats.txt
 checkpoint_dir = checkpoints/

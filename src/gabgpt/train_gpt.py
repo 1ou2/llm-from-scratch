@@ -283,7 +283,7 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
             with torch.no_grad():
                 val_loss_accum = 0.0
                 # average loss 
-                val_loss_steps = 2
+                val_loss_steps = TRAINING["validation_steps"]
                 for _ in range(val_loss_steps):
                     x, y = val_loader.next_batch()
                     x, y = x.to(device), y.to(device)

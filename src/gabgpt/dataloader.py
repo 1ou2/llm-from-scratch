@@ -62,9 +62,9 @@ class DataLoaderLite:
         y = (buffer[1:]).view(self.B, self.T)
 
         # advance index
-        self.current_token_index += self.B * self.T
+        self.current_token_index += self.B * self.T * self.num_processes
         # check if we need to load the next shard
-        if self.current_token_index + (self.B * self.T + 1) > len(self.tokens):
+        if self.current_token_index + (self.B * self.T * self.num_processes + 1) > len(self.tokens):
             # check if we ran out of shards
             if self.current_shard_index + 1 >= len(self.shards):
                 # try checking if a new shard is available
