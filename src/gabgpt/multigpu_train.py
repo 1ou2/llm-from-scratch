@@ -378,18 +378,23 @@ T = GPT_CONFIG["context_length"]
 
 valid_token_dir = FILES["token_dir"] + "valid/"
 train_token_dir = FILES["token_dir"] + "train/"
-val_loader = DataLoaderLite(B, T, split="valid",token_dir=valid_token_dir, process_rank=ddp_rank, num_processes=ddp_world_size)
-train_loader = DataLoaderLite(B, T, split="train", token_dir=train_token_dir, process_rank=ddp_rank, num_processes=ddp_world_size)
+#val_loader = DataLoaderLite(B, T, split="valid",token_dir=valid_token_dir, process_rank=ddp_rank, num_processes=ddp_world_size)
+#train_loader = DataLoaderLite(B, T, split="train", token_dir=train_token_dir, process_rank=ddp_rank, num_processes=ddp_world_size)
+#nb_train_steps = (HYPERS["tokens_per_shard"] // (B * T * ddp_world_size)) * (len(train_loader.shards)-train_loader.current_shard_index)
+#total_steps = nb_train_steps * HYPERS["epochs"]
+#warmup_steps = total_steps // 10 
 
-nb_train_steps = (HYPERS["tokens_per_shard"] // (B * T * ddp_world_size)) * (len(train_loader.shards)-train_loader.current_shard_index)
-total_steps = nb_train_steps * HYPERS["epochs"]
-warmup_steps = total_steps // 10 # use 10% for warmup
 
-if master_process:
-    logger.log_print(f"nb_train_steps: {nb_train_steps}")
-    logger.log_print(f"total_steps: {total_steps}")
-    logger.log_print(f"warmup_steps: {warmup_steps}")
-    logger.log_print(f"B: {B} | T: {T} | W: {ddp_world_size} : {B * T * ddp_world_size} tokens")
+from dataloader import IndexedDataLoader
+val_loader = IndexedDataLoader(B, T, split="valid", token_dir=valid_token_dir, process_rank=ddp_rank, num_processes=ddp_world_size)
+train_loader = IndexedDataLoader(B, T, split="train", token_dir=train_token_dir, process_rank=ddp_rank, num_processes=ddp_world_size)
+
+NB_SHARDS = 1892
+epoch_train_steps = (HYPERS["tokens_per_shard"] // (B * T * ddp_world_size)) * NB_SHARDS
+warmup_steps = epoch_train_steps // 10 # 10% of one epoch
+
+
+
 
 # Big optimization here !
 # change format from float32 to tf32 (tensor float32)
@@ -415,9 +420,12 @@ tokenizer.add_special_tokens(special_tokens)
 model = GPT(GPTConfig())
    
 from transformers import get_linear_schedule_with_warmup
+from torch.optim.lr_scheduler import LambdaLR
+
 # fused = True -> performance improvement
 optimizer = torch.optim.AdamW(model.parameters(), lr=HYPERS["lr"],fused=True)
-scheduler = get_linear_schedule_with_warmup(optimizer, warmup_steps, total_steps)
+scheduler = get_linear_schedule_with_warmup(optimizer=optimizer, num_warmup_steps=warmup_steps, 
+                                            num_training_steps=epoch_train_steps*HYPERS["epochs"],last_epoch=-1)
 
 # 2. move to the correct GPU
 model.to(device)
@@ -431,23 +439,27 @@ if checkpoint is not None:
     if scheduler.get_last_lr()[0] == 0:
         if master_process:
             logger.log_print("Scheduler has no learning rate, setting to default")
-        # Explicitly set a lower LR for continued training
-        new_lr = 1e-6  
-        
-        for param_group in optimizer.param_groups:
-            param_group['lr'] = new_lr
-        
-        # Create new scheduler with the lower LR
-        scheduler = get_linear_schedule_with_warmup(
-            optimizer,
-            num_warmup_steps=warmup_steps,
-            num_training_steps=total_steps
-        )
+        # Set fixed learning rate - min rate
+        fixed_lr = HYPERS["lr"]*0.1
+
+        # Create optimizer with your desired fixed rate
+        optimizer = torch.optim.AdamW(model.parameters(), lr=fixed_lr)
+
+        # Create a constant scheduler (returns multiplier of 1.0)
+        scheduler = LambdaLR(optimizer, lr_lambda=lambda _: 1.0)
 
     shard_index = train_state["shard_index"]
+    # assume shards were processed in order
+    start_step = (HYPERS["tokens_per_shard"] // (B * T * ddp_world_size)) * shard_index
     if master_process:
         logger.log_print(f"Loaded checkpoint: epoch {start_epoch}, step {start_step}, loss {loss} - shard: {shard_index}")
-    train_loader.set_state(train_state)
+    train_loader.set_state(train_state,fill_processed=True)
+
+
+# remaining training steps
+nb_train_steps = (HYPERS["tokens_per_shard"] // (B * T * ddp_world_size)) * (len(train_loader.shard_pool))
+total_steps = nb_train_steps + epoch_train_steps * (HYPERS["epochs"]-1)
+
 
 # 4. Wrap model in DDP to enable synchronization
 if ddp:
@@ -457,6 +469,17 @@ if ddp:
 use_compile = TRAINING["use_compile"] 
 if use_compile:
     model = torch.compile(model)
+
+
+if master_process:
+    logger.log_print(f"total_steps: {total_steps}")
+    logger.log_print(f"nb_train_steps: {nb_train_steps}")
+    logger.log_print(f"warmup_steps: {warmup_steps}")
+    logger.log_print(f"start_step: {start_step}")
+    logger.log_print(f"B: {B} | T: {T} | W: {ddp_world_size} : {B * T * ddp_world_size} tokens")
+
+assert start_step < nb_train_steps, f"start_step {start_step} >= nb_train_steps {nb_train_steps}"
+assert start_step + TRAINING["max_steps"] <= nb_train_steps, f"start_step {start_step} + max_steps {TRAINING['max_steps']} > nb_train_steps {nb_train_steps}"
 
 continue_epoch = True
 step = start_step
