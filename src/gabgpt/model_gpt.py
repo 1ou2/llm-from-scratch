@@ -151,7 +151,6 @@ class GPTModel(nn.Module):
         self.pos_emb = nn.Embedding(config["context_length"],config["embed_dim"])
         self.drop_emb = nn.Dropout(config["drop_rate"])
         self.trf_blocks = nn.Sequential(*[TransformerBlock(config) for _ in range(config["n_layers"])])
-        #self.trf_blocks = nn.ModuleList([TransformerBlock(config) for _ in range(config["n_layers"])])
         self.final_norm = LayerNorm(config["embed_dim"])
         self.out_head = nn.Linear(config["embed_dim"], config["vocab_size"],bias=False)
 

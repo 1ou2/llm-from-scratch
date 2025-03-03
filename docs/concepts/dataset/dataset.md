@@ -25,25 +25,26 @@ Référence : https://discuss.huggingface.co/t/how-does-gpt-decide-to-stop-gen
 
 Dans GPT-2 il n’y a qu’un seul token spécial il s’agit de` <|endoftext|>` qui a pour valeur `50256`.
 Il s’agit d’un token qu’on ajoute pour délimiter des documents. Prenons l’exemple d’un dataset d’article wikipedia, à la fin de chaque article on ajoute ce token. Appellons ce token `EOT`.
-Dans le modèle, il n’y a aucun traitement spécial de ce token. On pourrait penser qu’on va ajouter un masque d’attention spécifique qui va masquer les tokens suivants le token `EOT`. Il n’en ait rien. C’est le modèle qui va apprendre que quand il y a ce token EOT, les tokens précédents ne sont pas necessaires pour prédire le prochain token.
+Dans le modèle, il n’y a aucun traitement spécial de ce token. On pourrait penser qu’on va ajouter un masque d’attention spécifique qui va masquer les tokens suivants le token `EOT`. Il n’en ait rien. C’est le modèle qui va apprendre que quand il y a ce token `EOT`, les tokens précédents ne sont pas necessaires pour prédire le prochain token.
 
 Ce token est un indicateur qui marque le fait qu’on change de contexte, et qu’il ne faut pas regarder les tokens précédents.
 
 # Stratégie de chunking 
-Pour pouvoir paralléliser les calculs, notre architecture s’appuie sur la notion de batch où on paralliles X exemples. Si on a un context de 1024 tokens avec un batch de 8, on passe en entrée un tensor (8,1024). Cette taille est fixe, et il faut absolument qu’elle soit respectée. On ne peut pas envoyer une séquence avec moins de tokens par exemples.
+Pour pouvoir paralléliser les calculs, notre architecture s’appuie sur la notion de batch où on paralliles X exemples. Si on a un context de `1024` tokens avec un batch de 8, on passe en entrée un tensor `(8,1024)`. Cette taille est fixe, et il faut absolument qu’elle soit respectée. On ne peut pas envoyer une séquence avec moins de tokens par exemples.
+
 On a 2 stratégies :
 - Utilisation du EOT 
 - Utilisation du Padding
 
 ## EOT
-À chaque fin de document on ajoute un token spécial EOT. La stratégie de chunking est alors très simple, on prend nos données d’entrée par paquets de taille fixe sans s’occuper des tokens dedans. Si on a des séquences de 1024, on prend 1024 tokens, qui peuvent contenir ou ne pas contenir le token EOT.
+À chaque fin de document on ajoute un token spécial `EOT`. La stratégie de chunking est alors très simple, on prend nos données d’entrée par paquets de taille fixe sans s’occuper des tokens dedans. Si on a des séquences de `1024`, on prend `1024` tokens, qui peuvent contenir ou ne pas contenir le token `EOT`.
 
 ## Padding
 On peut décider que chaque séquence de notre batch représente une entrée différente et un jeu de données spécifiques. 
 Mais texte peut être tokenizé en 123 tokens, un deuxième en 555 etc...
 Dans cas là pour respecter la contrainte de 1024, on rajoute un token spécial de padding `PAD` pour arriver à la longueur de notre contexte.
-Avantage : c’est l’approche la plus naturelle, le LLM voit des séquences qui font du sens ensemble ce qui permet de mieux appréander le contexte, car chaque sample est vu séparément.
-Inconvénient : l’entrainement est plus lent car on "gache" du calcul a essayer de prédire des tokens `PAD`.
+- *Avantage* : c’est l’approche la plus naturelle, le LLM voit des séquences qui font du sens ensemble ce qui permet de mieux appréander le contexte, car chaque sample est vu séparément.
+- *Inconvénient* : l’entrainement est plus lent car on "gache" du calcul a essayer de prédire des tokens `PAD`.
 
 # Pytorch dataset et dataloader
 Le module pytorch propose un modèle pour modéliser les données et les charger :
@@ -52,9 +53,9 @@ Le module pytorch propose un modèle pour modéliser les données et les charger
 
 Pour utiliser ces deux classe il faut les importer: `from torch.utils.data import Dataset, DataLoader`
 Notre sous-classe héritant de Dataset a 3 méthodes
-- __init__ : chargement des données
-- __len__ : retourne la longueur totale de notre Dataset
-- __getitem__ (idx): étant donné un index retour un tuple (X,Y) avec X données d'entrées, et Y ground truth
+- `__init__ `: chargement des données
+- ` __len__ `: retourne la longueur totale de notre Dataset
+- `__getitem__` (idx): étant donné un index retour un tuple (X,Y) avec X données d'entrées, et Y ground truth
 
 ```python
 class GPTDatasetV1(Dataset):
@@ -131,12 +132,14 @@ En supposant que :
   - un mot = un token
   - texte = "il était une fois un prince"
 Alors 
+```
     il --> était
     il était --> une
     il était une --> fois
     il était une fois --> un
     il était une fois un --> prince
-On pourrait prendre ses paires [input tokens] --> predicted_token, les utiliser une à une lors de l'entrainement, mais cela ne serait pas efficace.
+```
+On pourrait prendre ses paires` [input tokens] --> predicted_token`, les utiliser une à une lors de l'entrainement, mais cela ne serait pas efficace.
 Dans la pratique on crée des batchs de X jeux de données, et on va en parallèle les charger, faire la forward pass, calculer la fonction de perte, et faire la backward pass.
 La taille optimale d'un batch dépend de la mémoire disponible sur le GPU. Mais en simplifiant, tant qu'on peut charger la mémoire du GPU en augmentant la taille du batch il faut le faire car le temps de traitement du batch et donc de X jeu de données est constant et le même que pour une unique entrée.
  
