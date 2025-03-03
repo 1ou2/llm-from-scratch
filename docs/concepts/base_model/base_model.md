@@ -42,6 +42,42 @@ class GPTModel(nn.Module):
         logits = self.out_head(x)
         return logits
 ```
+Si on affiche notre modèle avec la commande `print(model)`
+
+```
+GPTModel(
+  (tok_emb): Embedding(50257, 768)
+  (pos_emb): Embedding(1024, 768)
+  (drop_emb): Dropout(p=0.1, inplace=False)
+  (trf_blocks): Sequential(
+    (0): TransformerBlock(
+      (att): MultiHeadAttention(
+        (W_query): Linear(in_features=768, out_features=768, bias=False)
+        (W_key): Linear(in_features=768, out_features=768, bias=False)
+        (W_value): Linear(in_features=768, out_features=768, bias=False)
+        (out_proj): Linear(in_features=768, out_features=768, bias=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+      )
+      (ff): FeedForward(
+        (layers): Sequential(
+          (0): Linear(in_features=768, out_features=3072, bias=True)
+          (1): GELU()
+          (2): Linear(in_features=3072, out_features=768, bias=True)
+        )
+      )
+      (norm1): LayerNorm()
+      (norm2): LayerNorm()
+      (drop_shortcut): Dropout(p=0.1, inplace=False)
+    )
+    (x): TransformerBlock(
+
+        << on a des TransformeBloc de (1) à (11) identiques au Bloc (0) >>
+
+    )
+    (final_norm): LayerNorm()
+    (out_head): Linear(in_features=768, out_features=50257, bias=False)
+)
+```
 
 Détaillons ligne par ligne:
 ## Module
