@@ -2,8 +2,8 @@
 Custom Tokenizer created from french dataset.
 """
 from tokenizers import ByteLevelBPETokenizer
-#from datasets import load_dataset
-#import multiprocess as mp
+from datasets import load_dataset
+import multiprocess as mp
 import os
 import numpy as np
 from tqdm import tqdm
