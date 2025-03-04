@@ -3,6 +3,10 @@ Custom Tokenizer created from french dataset.
 """
 from tokenizers import ByteLevelBPETokenizer, Tokenizer
 from datasets import load_dataset
+import multiprocess as mp
+import os
+import numpy as np
+from tqdm import tqdm
 
 def train():
     # Define special tokens
@@ -28,16 +32,40 @@ def train():
     # Save the tokenizer
     # ls french_tokenizer/
     # gabgpt-merges.txt  gabgpt-vocab.json
-    tokenizer.save_model("french_tokenizer",prefix="gabgpt")
+    tokenizer.save_model("wiki_tokenizer",prefix="gabgpt")
 
-def use_tokenizer():
-    # Define special tokens
+def use_special_tokens():
+        # Define special tokens
     special_tokens = ["<|endoftext|>", "<|user|>", "<|bot|>", "<|sys|>","<|gab1|>", "<|gab2|>", "<|gab3|>","<|gab4|>", "<|gab5|>"]
 
     # Load the trained tokenizer
     tokenizer = ByteLevelBPETokenizer(
         "french_tokenizer/gabgpt-vocab.json",
         "french_tokenizer/gabgpt-merges.txt"
+    )
+
+    # Add special tokens to the loaded tokenizer
+    tokenizer.add_special_tokens(special_tokens)
+    txt = "Bonjour<|endoftext|>"
+    encoded = tokenizer.encode(txt)
+    print(encoded.ids)
+    decoded_text = tokenizer.decode(encoded.ids)
+    print(decoded_text)
+    print(tokenizer.encode(decoded_text).ids)
+    # print also special tokens
+    eot = tokenizer.token_to_id("<|endoftext|>")
+    print(f"{eot=}")
+    
+
+
+def use_tokenizer(dir):
+    # Define special tokens
+    special_tokens = ["<|endoftext|>", "<|user|>", "<|bot|>", "<|sys|>","<|gab1|>", "<|gab2|>", "<|gab3|>","<|gab4|>", "<|gab5|>"]
+    dir = "data/tokenizer/"
+    # Load the trained tokenizer
+    tokenizer = ByteLevelBPETokenizer(
+        f"{dir}" + "gabgpt-vocab.json",
+        f"{dir}" + "gabgpt-merges.txt"
     )
 
     # Add special tokens to the loaded tokenizer
@@ -83,27 +111,69 @@ def use_tokenizer():
     for token, id in list(vocab.items())[-10:]:
         print(f"Token: {token:20} ID: {id}")
 
-if __name__ == "__main__":
-
+def tokenize_wikipedia(tokenizer_dir, output_dir,shard_size=1048576):
 
     # Define special tokens
     special_tokens = ["<|endoftext|>", "<|user|>", "<|bot|>", "<|sys|>","<|gab1|>", "<|gab2|>", "<|gab3|>","<|gab4|>", "<|gab5|>"]
-
+   
     # Load the trained tokenizer
     tokenizer = ByteLevelBPETokenizer(
-        "french_tokenizer/gabgpt-vocab.json",
-        "french_tokenizer/gabgpt-merges.txt"
+        f"{tokenizer_dir}" + "gabgpt-vocab.json",
+        f"{tokenizer_dir}" + "gabgpt-merges.txt"
     )
-
-    # Add special tokens to the loaded tokenizer
-    tokenizer.add_special_tokens(special_tokens)
-    txt = "Bonjour<|endoftext|>"
-    encoded = tokenizer.encode(txt)
-    print(encoded.ids)
-    decoded_text = tokenizer.decode(encoded.ids)
-    print(decoded_text)
-    print(tokenizer.encode(decoded_text).ids)
-    # print also special tokens
     eot = tokenizer.token_to_id("<|endoftext|>")
-    print(f"{eot=}")
-    
+    print("Using custom tokenizer from {tokenizer_dir}")
+    print(f"eot: {eot}")
+
+    dataset = load_dataset("wikimedia/wikipedia", "20231101.fr")
+    os.makedirs(output_dir, exist_ok=True)
+
+
+    def tokenize(article):
+        # all documents start with end of sequence token
+        tokens = [eot]
+        tokens.extend(tokenizer.encode(article["text"]).ids)
+
+        # convert to a uint16 numpy array - 2 bits per token
+        return np.array(tokens, dtype=np.uint16)
+
+    nprocs = max(1, mp.cpu_count() - 1)
+    print(f"Using {nprocs} processes")
+
+    with mp.Pool(nprocs) as pool:
+        shard_index = 0
+        # pre-allocate memory for tokens in a shard
+        all_tokens_np = np.empty((shard_size,),dtype=np.uint16)
+        token_count = 0
+        progress_bar = None
+
+        for tokens in pool.imap(tokenize, dataset["train"].shuffle(),chunksize=16):
+            if token_count + len(tokens) < shard_size:
+                # add tokens to current shard
+                all_tokens_np[token_count:token_count + len(tokens)] = tokens
+                token_count += len(tokens)
+                if progress_bar is None:
+                    progress_bar = tqdm(total=shard_size, desc=f"Tokenizing shard {shard_index}")
+                progress_bar.update(len(tokens))
+            else:
+                filename = os.path.join(output_dir, f"shard_{shard_index:06d}.npy")
+                # split the document into whatever fits in the shard
+                remainder = shard_size - token_count
+                all_tokens_np[token_count:token_count + remainder] = tokens[:remainder]
+                # save the shard
+                np.save(filename, all_tokens_np)
+                shard_index += 1
+                progress_bar = None
+                # populate the shard with the remaining tokens
+                all_tokens_np[0:len(tokens)-remainder] = tokens[remainder:]
+                token_count = len(tokens) - remainder
+        
+        # write the last shard
+        if token_count > 0:
+            filename = os.path.join(output_dir, f"shard_{shard_index:06d}.npy")
+            np.save(filename, all_tokens_np[:token_count])
+
+if __name__ == "__main__":
+    tokenize_wikipedia("data/tokenizer", "data/tokenized/gabwikifr", shard_size=1048576)
+
+
