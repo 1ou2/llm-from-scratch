@@ -1,9 +1,9 @@
 """
 Custom Tokenizer created from french dataset.
 """
-from tokenizers import ByteLevelBPETokenizer, Tokenizer
-from datasets import load_dataset
-import multiprocess as mp
+from tokenizers import ByteLevelBPETokenizer
+#from datasets import load_dataset
+#import multiprocess as mp
 import os
 import numpy as np
 from tqdm import tqdm
@@ -115,14 +115,17 @@ def tokenize_wikipedia(tokenizer_dir, output_dir,shard_size=1048576):
 
     # Define special tokens
     special_tokens = ["<|endoftext|>", "<|user|>", "<|bot|>", "<|sys|>","<|gab1|>", "<|gab2|>", "<|gab3|>","<|gab4|>", "<|gab5|>"]
-   
+    print(f"Using custom tokenizer from {tokenizer_dir}")
+    vocab_file = os.path.join(tokenizer_dir, "gabgpt-vocab.json")
+    merges_file = os.path.join(tokenizer_dir, "gabgpt-merges.txt")
+    print(f"vocab file: {vocab_file}")
+    print(f"merges file: {merges_file}")
     # Load the trained tokenizer
     tokenizer = ByteLevelBPETokenizer(
-        f"{tokenizer_dir}" + "gabgpt-vocab.json",
-        f"{tokenizer_dir}" + "gabgpt-merges.txt"
+        vocab_file,
+        merges_file
     )
     eot = tokenizer.token_to_id("<|endoftext|>")
-    print("Using custom tokenizer from {tokenizer_dir}")
     print(f"eot: {eot}")
 
     dataset = load_dataset("wikimedia/wikipedia", "20231101.fr")
