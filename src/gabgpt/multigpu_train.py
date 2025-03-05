@@ -157,7 +157,7 @@ class DataLoaderLite:
         self.shards = []
         self.process_rank = process_rank
         self.num_processes = num_processes
-        self.token_dir = token_dir 
+        self.token_dir = token_dir
         self.update_shard_list()
         self.reset()
 

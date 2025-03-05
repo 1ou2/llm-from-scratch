@@ -143,8 +143,16 @@ On pourrait prendre ses paires` [input tokens] --> predicted_token`, les utilise
 Dans la pratique on crée des batchs de X jeux de données, et on va en parallèle les charger, faire la forward pass, calculer la fonction de perte, et faire la backward pass.
 La taille optimale d'un batch dépend de la mémoire disponible sur le GPU. Mais en simplifiant, tant qu'on peut charger la mémoire du GPU en augmentant la taille du batch il faut le faire car le temps de traitement du batch et donc de X jeu de données est constant et le même que pour une unique entrée.
  
+# Dataset en français
+## Reddit
+https://www.kaggle.com/datasets/breandan/french-reddit-discussion/data
 
-# FSQUAD
+## Allociné
+a new dataset for sentiment analysis, scraped from Allociné.fr user reviews. It contains 100k positive and 100k negative reviews divided into 3 balanced splits: train (160k reviews), val (20k) and test (20k)
+https://github.com/TheophileBlard/french-sentiment-analysis-with-bert
+
+
+## FSQUAD
 
 https://fquad.illuin.tech/
 Questions / réponses en français.
