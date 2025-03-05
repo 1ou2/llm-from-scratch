@@ -28,6 +28,11 @@ You can suppress this exception and fall back to eager by setting:
     import torch._dynamo
     torch._dynamo.config.suppress_errors = True
 
+# Bfloat16
+Changement du format pour
+ with torch.autocast(device_type=device_type, dtype=torch.bfloat16):
+    logits, loss = model(xgen)
+
 # Tokenizer
 # tiktoken gpt-2
 Premier essai, utilisation du tokenizer de GPT-2
@@ -69,3 +74,31 @@ def train():
 Alors qu'on a un plus petit nombre de tokens à notre disposition, le pre-processing va donner 1892 shards.
 On a donc un gain de `28.9%` !
 L'explication est que le tokenizer de gpt-2 n'a pas été optimisé pour le français contrairement à celui qu'on a mis en place
+
+# Performance
+Amazon g4dn.xlarge
+GPU T4 : 
+Tesla T4 does not support bfloat16 compilation natively,
+step   100 | loss: 9.018543 | lr: 0.0000026 | norm: 6.0303 | dt: 195185.89ms | tok/sec: 4197.02
+step   200 | loss: 8.389067 | lr: 0.0000052 | norm: 3.5643 | dt: 165684.37ms | tok/sec: 4944.34
+(.venv) ubuntu@ip-172-31-2-164:~/llm-from-scratch$ nvidia-smi 
+Tue Mar  4 19:45:04 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 570.86.10              Driver Version: 570.86.10      CUDA Version: 12.8     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  Tesla T4                       Off |   00000000:00:1E.0 Off |                    0 |
+| N/A   29C    P0             27W /   70W |       1MiB /  15360MiB |      9%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+

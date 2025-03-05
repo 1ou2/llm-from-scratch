@@ -361,7 +361,6 @@ else:
         device = "mps"
     print(f"using device: {device}")
 
-# added after video, pytorch can be serious about it's device vs. device_type distinction
 device_type = "cuda" if device.startswith("cuda") else "cpu"
 
 from util import load_config, LogPrinter
