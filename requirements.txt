@@ -2,7 +2,6 @@ matplotlib
 numpy
 graphviz
 torch
-
 mkdocs
 mkdocs-material
 mkdocstrings
@@ -16,5 +15,7 @@ chardet
 huggingface_hub
 datasets
 transformers
+lxml
+
 # for plotting in ubuntu
 #pyside2
