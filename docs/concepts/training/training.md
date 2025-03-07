@@ -1,3 +1,12 @@
+# Training steps
+À partir de notre dataset on crée des shards contenant 2^20 tokens.
+On va avoir un batch size de taille fixe 524288 (2^19).
+Or ce batch size nécessite beaucoup de RAM. On va faire une série de micro batch, accumuler le gradient, et ne mettre à jour les poids que quand on aura atteint la taille voulue de notre batch.
+Concrètement, avec une 1070 Ti, on a un 
+- micro_batch = 2
+- sequence_length = 1024
+On aura besoin de faire 2^19/(2*1024) = 2^8 = 256 steps 
+
 # GPU
 Location de GPU
 https://app.hyperbolic.xyz/compute

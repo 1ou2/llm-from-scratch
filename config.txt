@@ -16,24 +16,28 @@ beta2 = 0.95
 eps = 1e-8
 weight_decay = 0.1
 grad_clip = 1.0
-tokens_per_shard = 1000000
+
 
 [training]
-batch_size = 2
-max_steps = 50
+tokens_per_shard = 1048576
+n_shards = 1917
+batch_size = 524288
+micro_batch_size = 2
+max_steps = 10
 validation_steps = 2
 num_generation_sequences = 1
 use_checkpoint = True
-log_interval = 200
+log_interval = 1
 gen_text_interval = 5
 eval_interval = 500
-checkpoint_interval = 500
+checkpoint_interval = 6
 use_compile = False
+
 
 [files]
 log_dir = logs/
 log_file = logs.txt
 stat_file = stats.txt
-checkpoint_dir = hyperbolic/
-token_dir = data/tokenized/gabwikifr/
+checkpoint_dir = checkpoints/
+token_dir = data/shards/
 tokenizer_dir = data/tokenizer/

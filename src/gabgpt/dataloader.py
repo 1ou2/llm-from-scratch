@@ -144,13 +144,17 @@ class IndexedDataLoader:
             "token_index": self.current_token_index,
             "processed_shards": self.processed_shards
         }
+    
+    def get_shard_index(self)->int:
+        """Returns the current shard index"""
+        return self.current_shard_index
 
-    def get_shard_name(self, shard_index):
+    def get_shard_name(self, shard_index)->str:
         index = f"{shard_index:06d}"
         sname = f"shard_{index}.npy"
         return os.path.join(self.token_dir, sname)
 
-    def get_index(self, shard_name):
+    def get_index(self, shard_name)->int:
         index = shard_name.split("_")[1].split(".")[0]
         return int(index)
 

@@ -238,7 +238,7 @@ class DataLoaderLite:
 # Checkpoints
 # ----------------------------------------------------------------------
 
-def save_checkpoint(model, optimizer, scheduler, train_loader, config, epoch, step, loss, save_dir):
+def save_checkpoint(model, train_loader,epoch, step, loss, save_dir):
     """
     Save the model, optimizer, scheduler, and epoch to a file.
     """
@@ -248,16 +248,13 @@ def save_checkpoint(model, optimizer, scheduler, train_loader, config, epoch, st
         'epoch': epoch,
         'step': step,
         'model_state_dict': model.state_dict(),
-        'optimizer_state_dict': optimizer.state_dict(),
-        'scheduler_state_dict': scheduler.state_dict(),
         'loss': loss,
-        'config': config,
         'train_loader_state': train_loader.get_state()
     }
     torch.save(checkpoint, path)
 
 
-def load_checkpoint(path, model, optimizer=None, scheduler=None, device="cpu"):
+def load_checkpoint(path, model, device="cpu"):
     """
     Load the model, optimizer, scheduler, from a file.
     Returns (epoch, step, loss, train_loader_state,stats)
@@ -286,23 +283,8 @@ def load_checkpoint(path, model, optimizer=None, scheduler=None, device="cpu"):
             print(f"Key {key} not found in model state dict")
 
     model.load_state_dict(fixed_state_dict)
-
-    if optimizer is not None and 'optimizer_state_dict' in checkpoint:
-        optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-        # move optimezer state to gpu
-        if device == 'cuda' or (isinstance(device, torch.device) and device.type == 'cuda'):
-            for state in optimizer.state.values():
-                for k, v in state.items():
-                    if isinstance(v, torch.Tensor):
-                        state[k] = v.cuda()
-    else:
-        raise ValueError("Optimizer state dict not found in checkpoint. Unable to load optimizer.")
-    if scheduler is not None and 'scheduler_state_dict' in checkpoint:
-        scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
-    else:
-        raise ValueError("Scheduler state dict not found in checkpoint. Unable to load scheduler.")
     
-    return checkpoint['epoch'], checkpoint['step'], checkpoint['loss'], checkpoint['train_loader_state']
+    return checkpoint['train_loader_state'], checkpoint['epoch'], checkpoint['step'], checkpoint['loss']
 
 def get_last_checkpoint(save_dir):
     """
@@ -393,28 +375,18 @@ stats_file = open(FILES["log_dir"] + FILES["stat_file"], "a")
 if stats_file.tell() == 0:
     stats_file.write("epoch,step,loss,learning_rate\n")
 
-B = TRAINING["batch_size"]
+B = TRAINING["micro_batch_size"]
 T = GPT_CONFIG["context_length"]
 
-valid_token_dir = FILES["token_dir"] + "valid/"
-train_token_dir = FILES["token_dir"] + "train/"
-#val_loader = DataLoaderLite(B, T, split="valid",token_dir=valid_token_dir, process_rank=ddp_rank, num_processes=ddp_world_size)
-#train_loader = DataLoaderLite(B, T, split="train", token_dir=train_token_dir, process_rank=ddp_rank, num_processes=ddp_world_size)
-#nb_train_steps = (HYPERS["tokens_per_shard"] // (B * T * ddp_world_size)) * (len(train_loader.shards)-train_loader.current_shard_index)
-#total_steps = nb_train_steps * HYPERS["epochs"]
-#warmup_steps = total_steps // 10 
 
-
-from dataloader import IndexedDataLoader
-val_loader = IndexedDataLoader(B, T, split="valid", token_dir=valid_token_dir, process_rank=ddp_rank, num_processes=ddp_world_size)
-train_loader = IndexedDataLoader(B, T, split="train", token_dir=train_token_dir, process_rank=ddp_rank, num_processes=ddp_world_size)
-
-NB_SHARDS = 1892
-epoch_train_steps = (HYPERS["tokens_per_shard"] // (B * T * ddp_world_size)) * NB_SHARDS
-warmup_steps = epoch_train_steps // 10 # 10% of one epoch
-
-
-
+nb_shards = TRAINING["n_shards"]
+# each step we process a fixed sized batch
+batch_size = TRAINING["batch_size"]
+# this batch size will probably not fit in memory
+# we will use gradient accumulation to simulate this batch
+grad_accum_steps = batch_size // (B * T * ddp_world_size)
+epoch_train_steps = (TRAINING["tokens_per_shard"] // (batch_size)) * nb_shards
+warmup_steps = epoch_train_steps // 20 # 5% of one epoch
 
 # Big optimization here !
 # change format from float32 to tf32 (tensor float32)
@@ -436,93 +408,70 @@ tokenizer = ByteLevelBPETokenizer(
 # Add special tokens to the loaded tokenizer
 tokenizer.add_special_tokens(special_tokens)
 
+# Token loader
+valid_token_dir = FILES["token_dir"] + "valid/"
+train_token_dir = FILES["token_dir"] + "train/"
+
+from dataloader import IndexedDataLoader
+val_loader = IndexedDataLoader(B, T, split="valid", token_dir=valid_token_dir, process_rank=ddp_rank, num_processes=ddp_world_size)
+train_loader = IndexedDataLoader(B, T, split="train", token_dir=train_token_dir, process_rank=ddp_rank, num_processes=ddp_world_size)
+
+
+# custom learning rate function
+from util import get_lr
+
 # 1. create model
 model = GPT(GPTConfig())
-   
-from transformers import get_linear_schedule_with_warmup
-from torch.optim.lr_scheduler import LambdaLR
-
-# fused = True -> performance improvement
-optimizer = torch.optim.AdamW(model.parameters(), lr=HYPERS["lr"],fused=True)
-scheduler = get_linear_schedule_with_warmup(optimizer=optimizer, num_warmup_steps=warmup_steps, 
-                                            num_training_steps=epoch_train_steps*HYPERS["epochs"],last_epoch=-1)
-
 # 2. move to the correct GPU
 model.to(device)
 
-# 3. load checkpoint
-start_epoch = 0
-start_step = 0
-checkpoint = get_last_checkpoint(FILES["checkpoint_dir"])
-if checkpoint is not None:
-    start_epoch, start_step, loss, train_state = load_checkpoint(checkpoint, model, optimizer, scheduler,device=device)
-    if scheduler.get_last_lr()[0] == 0:
-        if master_process:
-            logger.log_print("Scheduler has no learning rate, setting to default")
-        # Set fixed learning rate - min rate
-        fixed_lr = HYPERS["lr"]*0.1
-
-        # Create optimizer with your desired fixed rate
-        optimizer = torch.optim.AdamW(model.parameters(), lr=fixed_lr)
-
-        # Create a constant scheduler (returns multiplier of 1.0)
-        scheduler = LambdaLR(optimizer, lr_lambda=lambda _: 1.0)
-
-    shard_index = train_state["shard_index"]
-    # assume shards were processed in order
-    start_step = (HYPERS["tokens_per_shard"] // (B * T * ddp_world_size)) * shard_index
-    if master_process:
-        logger.log_print(f"Loaded checkpoint: epoch {start_epoch}, step {start_step}, loss {loss} - shard: {shard_index}")
-    train_loader.set_state(train_state,fill_processed=True)
-
-
-# remaining training steps
-nb_train_steps = (HYPERS["tokens_per_shard"] // (B * T * ddp_world_size)) * (len(train_loader.shard_pool))
-total_steps = nb_train_steps + epoch_train_steps * (HYPERS["epochs"]-1)
-
-
-# 4. Wrap model in DDP to enable synchronization
 if ddp:
     model = DDP(model, device_ids=[ddp_local_rank])
+raw_model = model.module if ddp else model # always contains the "raw" unwrapped model
 
-# 5. compile
+# 3. load checkpoint
+checkpoint = get_last_checkpoint(FILES["checkpoint_dir"])
+if checkpoint is None:
+    start_epoch = 0
+    start_step = 0
+    shard_index = 0
+    # fused = True -> performance improvement
+    learning_rate = HYPERS["lr"]
+else:
+    train_loader_state, start_epoch, start_step, saved_loss = load_checkpoint(checkpoint)
+    learning_rate = get_lr(start_step,start_epoch)
+    train_loader.set_state(train_loader_state,fill_processed=True)
+    shard_index = train_loader.get_shard_index()
+    if master_process:
+        logger.log_print(f"Checkpoint loaded : {checkpoint}")
+        logger.log_print(f"| epoch: {start_epoch} | step: {start_step} | shard: {shard_index} | loss: {saved_loss} |")
+
+optimizer = raw_model.configure_optimizers(weight_decay=0.1, learning_rate=learning_rate, device_type=device_type)
+
+# 4. compile
 use_compile = TRAINING["use_compile"] 
 if use_compile:
     model = torch.compile(model)
 
 
 if master_process:
-    logger.log_print(f"total_steps: {total_steps}")
-    logger.log_print(f"nb_train_steps: {nb_train_steps}")
-    logger.log_print(f"warmup_steps: {warmup_steps}")
+    logger.log_print(f"start_epoch: {start_epoch}")
     logger.log_print(f"start_step: {start_step}")
+    logger.log_print(f"shard index: {shard_index}")
+    logger.log_print(f"epoch steps: {epoch_train_steps}")
+    logger.log_print(f"total steps: {epoch_train_steps * HYPERS['epochs']}")
+    logger.log_print(f"grad accum steps: {grad_accum_steps}")
+    logger.log_print(f"warmup_steps: {warmup_steps}")
     logger.log_print(f"B: {B} | T: {T} | W: {ddp_world_size} : {B * T * ddp_world_size} tokens")
 
-assert start_step < nb_train_steps, f"start_step {start_step} >= nb_train_steps {nb_train_steps}"
-assert start_step + TRAINING["max_steps"] <= nb_train_steps, f"start_step {start_step} + max_steps {TRAINING['max_steps']} > nb_train_steps {nb_train_steps}"
+assert start_step < epoch_train_steps, f"start_step {start_step} >= nb_train_steps {epoch_train_steps}"
 
-continue_epoch = True
 step = start_step
 # Training Loop
 start_time = time.time()
 t0 = time.time()
 for epoch in range(start_epoch,HYPERS["epochs"]):
-    while continue_epoch:
-        step = step +1
-        # last step
-        if step == (nb_train_steps-1):
-            old_shard_count = len(train_loader.shards)
-            train_loader.update_shard_list()
-            # no new shards available
-            if len(train_loader.shards) == old_shard_count:
-                continue_epoch = False
-                break
-
-            nb_train_steps = (HYPERS["tokens_per_shard"] // (B * T * ddp_world_size)) * (len(train_loader.shards)-train_loader.current_shard_index)
-            if nb_train_steps -1 <= step:
-                continue_epoch = False
-                break
-        
+    for step in range(start_step, epoch_train_steps):
         if step > start_step + TRAINING["max_steps"]:
             break
 
@@ -532,10 +481,10 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
             tokens_processed = B * T * ddp_world_size * TRAINING["log_interval"]
             tokens_per_sec = tokens_processed / dt
 
-            logger.log_print(f"step {step:5d} | loss: {loss.item():.6f} | lr: {scheduler.get_last_lr()[0]:.7f} | norm: {norm:.4f} | dt: {dt*1000:.2f}ms | tok/sec: {tokens_per_sec:.2f}")
+            logger.log_print(f"step {step:5d} | loss: {loss.item():.6f} | lr: {get_lr(step,epoch):.7f} | norm: {norm:.4f} | dt: {dt*1000:.2f}ms | tok/sec: {tokens_per_sec:.2f}")
             
             # Write stats in CSV format for easy parsing
-            stats_msg = f"{epoch},{step},{loss.item()},{scheduler.get_last_lr()[0]}\n"
+            stats_msg = f"{epoch},{step},{loss.item()},{get_lr(step,epoch)}\n"
             stats_file.write(stats_msg)
             stats_file.flush()
             t0 = time.time()
@@ -594,45 +543,44 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
                 logger.log_print(f"validation loss: {val_loss_accum.item():.4f}")
 
         if (step > start_step) and master_process and step %  TRAINING["checkpoint_interval"]  == 0 and step > 0:
-            save_checkpoint(model, optimizer, scheduler, train_loader, GPT_CONFIG, epoch, step, loss.item(), FILES["checkpoint_dir"])
+            save_checkpoint(model, train_loader, epoch, step, loss.item(), FILES["checkpoint_dir"])
 
         # do one step of the optimization
         model.train()
         optimizer.zero_grad()
-    
-        x, y = train_loader.next_batch()
-        x, y = x.to(device), y.to(device)
+        loss_accum = 0.0
 
-
-        # use bfloat16 when possible
-        # for optimization
-        # we are using mixed precision
-        if ddp:
+        for micro_step in range(grad_accum_steps):
+            x, y = train_loader.next_batch()
+            x, y = x.to(device), y.to(device)
+            if ddp:
+                model.require_backward_grad_sync = (micro_step == grad_accum_steps - 1)
             with torch.autocast(device_type=device_type, dtype=torch.bfloat16):
                 logits, loss = model(x, y)
-        else:
-            logits, loss = model(x, y)
-        # we have to scale the loss to account for gradient accumulation,
-        # because the gradients just add on each successive backward().
-        # addition of gradients corresponds to a SUM in the objective, but
-        # instead of a SUM we want MEAN. Scale the loss here so it comes out right
-        loss.backward()
-
+            loss = loss / grad_accum_steps
+            loss_accum += loss.detach()
+            loss.backward()
+        if ddp:
+            dist.all_reduce(loss_accum, op=dist.ReduceOp.AVG)
+    
         norm = torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+        lr = get_lr(step, epoch_train_steps)
+        for param_group in optimizer.param_groups:
+            param_group['lr'] = lr
         optimizer.step()
-        scheduler.step()
+        if device_type == "cuda":
+            torch.cuda.synchronize() # wait for the GPU to finish work
 
 # save final checkpoint
 if master_process:
-    save_checkpoint(model, optimizer, scheduler, train_loader, GPT_CONFIG, epoch, step, loss.item(), FILES["checkpoint_dir"])
     end_time = time.time()
     wrapup_message = f"""
     Time: {end_time - start_time }
-    Processed Tokens: {B}*{T}*{step - start_step} = {B*T*(step - start_step)}
-    Tokens/s: {(B*T*(step - start_step))/(end_time - start_time)}
+    Processed Tokens: {B}*{T}*{step - start_step} * {ddp_world_size}= {B*T*(step - start_step)*ddp_world_size}
+    Tokens/s: {(B*T*(step - start_step)*ddp_world_size)/(end_time - start_time)}
     Loss: {loss.item()}
     Total Tokens: {B}*{T}*{step} = {B*T*step}
-    Shard index: {train_loader.current_shard_index}
+    Shard index: {train_loader.get_index()}
     """
     logger.log_print(wrapup_message)
     logger.close()
