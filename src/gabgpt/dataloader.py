@@ -142,7 +142,7 @@ class IndexedDataLoader:
         return {
             "shard_index": self.current_shard_index,
             "token_index": self.current_token_index,
-            "processed_shard": self.processed_shards
+            "processed_shards": self.processed_shards
         }
 
     def get_shard_name(self, shard_index):
@@ -155,16 +155,23 @@ class IndexedDataLoader:
         return int(index)
 
     def set_state(self, state,fill_processed=False):
+        """ Set the state of the dataloader
+        Used to resume after a checkpoint
+        state : dict of the state 
+        fill_processed : if the processed shards we not saved, assume we processed all shards up until current shard index
+        """
         self.reset()
         # if key exists
         if "shard_index" in state:
             self.current_shard_index = state["shard_index"]
         if "token_index" in state:
             self.current_token_index = state["token_index"]
-        if "processed_shard" in state:
-            self.processed_shards = state["processed_shard"]
+        # the ids of the processed shards we saved
+        if "processed_shards" in state:
+            self.processed_shards = state["processed_shards"]
+        # assume shards were processed in order
         else:
-            if self.current_shard_index > 0:
+            if fill_processed and self.current_shard_index > 0:
                 self.processed_shards = list(range(self.current_shard_index))
 
 
