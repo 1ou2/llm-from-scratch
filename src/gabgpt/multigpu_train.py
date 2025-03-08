@@ -254,6 +254,20 @@ def save_checkpoint(model, optimizer, train_loader,epoch, step, loss, save_dir):
     }
     torch.save(checkpoint, path)
 
+    # remove old checkpoints
+    checkpoints = sorted([f for f in os.listdir(save_dir) if f.startswith("checkpoint_") and f.endswith(".pt")])
+    if len(checkpoints) > 3:
+        for f in checkpoints[:-3]:
+            os.remove(f"{save_dir}/{f}")
+
+def load_parameters(path,device="cpu"):
+    """
+    Load the model, optimizer, scheduler, from a file.
+    Returns (epoch, step, loss, train_loader_state, stats)
+    Raises ValueError in case of error
+    """
+    checkpoint = torch.load(path, map_location=device,weights_only=True)
+    return checkpoint['train_loader_state'], checkpoint['epoch'], checkpoint['step'], checkpoint['loss']
 
 def load_checkpoint(path, model, optimizer, device="cpu"):
     """
@@ -270,6 +284,9 @@ def load_checkpoint(path, model, optimizer, device="cpu"):
         if key.startswith('_orig_mod.module.'):
             new_key = key.replace('_orig_mod.module.', '')
             fixed_state_dict[new_key] = value
+        elif key.startswith('_orig_mod.'):
+            new_key = key.replace('_orig_mod.', '')
+            fixed_state_dict[new_key] = value
         else:
             fixed_state_dict[key] = value
 
@@ -284,11 +301,8 @@ def load_checkpoint(path, model, optimizer, device="cpu"):
             print(f"Key {key} not found in model state dict")
 
     model.load_state_dict(fixed_state_dict)
-    for key,value in checkpoint['optimizer_state_dict'].items():
-        print(f"optimizer {key} : {value.shape}")
     optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-    
-    return checkpoint['train_loader_state'], checkpoint['epoch'], checkpoint['step'], checkpoint['loss']
+    #return checkpoint['train_loader_state'], checkpoint['epoch'], checkpoint['step'], checkpoint['loss']
 
 def get_last_checkpoint(save_dir):
     """
@@ -369,6 +383,9 @@ else:
     print(f"using device: {device}")
 
 device_type = "cuda" if device.startswith("cuda") else "cpu"
+device_name = device
+if torch.cuda.is_available():
+    device_name = torch.cuda.get_device_name(0)  # 0 is the GPU index
 
 from util import load_config, LogPrinter
 GPT_CONFIG, HYPERS, FILES, TRAINING = load_config()
@@ -378,6 +395,16 @@ stats_file = open(FILES["log_dir"] + FILES["stat_file"], "a")
 # Write header for stats file (if it's empty)
 if stats_file.tell() == 0:
     stats_file.write("epoch,step,loss,learning_rate\n")
+
+from datetime import datetime
+
+# Get current date/time and format it
+current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+
+logger.log_print(f"--------------------------------------------")
+logger.log_print(f"Training started at {current_time}")
+logger.log_print(f"GPU: {device_name}")
 
 B = TRAINING["micro_batch_size"]
 T = GPT_CONFIG["context_length"]
@@ -389,7 +416,9 @@ batch_size = TRAINING["batch_size"]
 # this batch size will probably not fit in memory
 # we will use gradient accumulation to simulate this batch
 grad_accum_steps = batch_size // (B * T * ddp_world_size)
-epoch_train_steps = (TRAINING["tokens_per_shard"] // (batch_size)) * nb_shards
+# we are sample +1 token for y
+# tokens_per_shard = 1048577 = 2^20+1
+epoch_train_steps = ((TRAINING["tokens_per_shard"]-1) // (batch_size)) * nb_shards
 warmup_steps = epoch_train_steps // 20 # 5% of one epoch
 
 # Big optimization here !
@@ -442,7 +471,9 @@ if checkpoint is None:
     # fused = True -> performance improvement
     learning_rate = HYPERS["lr"]
 else:
-    train_loader_state, start_epoch, start_step, saved_loss = load_checkpoint(checkpoint)
+    train_loader_state, start_epoch, start_step, saved_loss = load_parameters(checkpoint)
+    # the step saved was finished, so we need to increment it
+    start_step += 1
     learning_rate = get_lr(start_step,start_epoch)
     train_loader.set_state(train_loader_state,fill_processed=True)
     shard_index = train_loader.get_shard_index()
@@ -451,6 +482,10 @@ else:
         logger.log_print(f"| epoch: {start_epoch} | step: {start_step} | shard: {shard_index} | loss: {saved_loss} |")
 
 optimizer = raw_model.configure_optimizers(weight_decay=0.1, learning_rate=learning_rate, device_type=device_type)
+if checkpoint is not None:
+    load_checkpoint(checkpoint, model, optimizer, device=device)
+
+
 
 # 4. compile
 use_compile = TRAINING["use_compile"] 
@@ -459,17 +494,12 @@ if use_compile:
 
 
 if master_process:
-    logger.log_print(f"start_epoch: {start_epoch}")
-    logger.log_print(f"start_step: {start_step}")
-    logger.log_print(f"shard index: {shard_index}")
-    logger.log_print(f"epoch steps: {epoch_train_steps}")
-    logger.log_print(f"total steps: {epoch_train_steps * HYPERS['epochs']}")
-    logger.log_print(f"grad accum steps: {grad_accum_steps}")
-    logger.log_print(f"warmup_steps: {warmup_steps}")
-    logger.log_print(f"B: {B} | T: {T} | W: {ddp_world_size} : {B * T * ddp_world_size} tokens")
+    logger.log_print(f"epoch: {start_epoch} | step: {start_step} | shard: {shard_index}")
+    logger.log_print(f"total steps: {epoch_train_steps * HYPERS['epochs']} | grad accum steps: {grad_accum_steps} | warmup_steps: {warmup_steps}")
+    logger.log_print(f"B: {B} | T: {T} | W: {ddp_world_size} : {B * T * ddp_world_size} tokens | Batch per shards: {(TRAINING["tokens_per_shard"]-1)// TRAINING["batch_size"]}")
 
 assert start_step < epoch_train_steps, f"start_step {start_step} >= nb_train_steps {epoch_train_steps}"
-
+assert TRAINING["checkpoint_interval"] % ((TRAINING["tokens_per_shard"]-1)// TRAINING["batch_size"]) == 0, f"checkpoint_interval {TRAINING['checkpoint_interval']} not divisible by number of batch per shards"
 loss_accum = 0.0
 step = start_step
 # Training Loop
@@ -547,9 +577,6 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
             if master_process:
                 logger.log_print(f"validation loss: {val_loss_accum.item():.4f}")
 
-        if (step > start_step) and master_process and step %  TRAINING["checkpoint_interval"]  == 0 and step > 0:
-            save_checkpoint(model, optimizer, train_loader, epoch, step, loss_accum.item(), FILES["checkpoint_dir"])
-
         # do one step of the optimization
         model.train()
         optimizer.zero_grad()
@@ -576,14 +603,19 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
         if device_type == "cuda":
             torch.cuda.synchronize() # wait for the GPU to finish work
 
+        if (step > start_step) and master_process and (step +1) %  TRAINING["checkpoint_interval"]  == 0:
+            save_checkpoint(model, optimizer, train_loader, epoch, step, loss_accum.item(), FILES["checkpoint_dir"])
+
 # save final checkpoint
 if master_process:
     end_time = time.time()
     wrapup_message = f"""
+    
+    #######
     Time: {end_time - start_time }
     Processed Tokens: {B}*{T}*{step - start_step} * {ddp_world_size}= {B*T*(step - start_step)*ddp_world_size}
     Tokens/s: {(B*T*(step - start_step)*ddp_world_size)/(end_time - start_time)}
-    Loss: {loss.item()}
+    Loss: {loss_accum.item()}
     Total Tokens: {B}*{T}*{step} = {B*T*step}
     Shard index: {train_loader.get_index()}
     """

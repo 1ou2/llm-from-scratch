@@ -77,16 +77,18 @@ def get_lr(step, epoch_steps):
     coefficient = 0.5 * (1 + math.cos(math.pi * decay_ratio))
     return min_lr + (max_lr - min_lr) * coefficient
 
-epoch_steps = 4000
-x = []
-y = []
-for step in range(epoch_steps + 1):
-    if step % 10 == 0:
-        x.append(step)
-        y.append(get_lr(step, epoch_steps))
-import matplotlib.pyplot as plt
-plt.plot(x, y)
-plt.savefig("learning-rate.png")
-# print first 20 values of y
-print(y[:20])
+if __name__ == "__main__":
+    
+    epoch_steps = 4000
+    x = []
+    y = []
+    for step in range(epoch_steps + 1):
+        if step % 10 == 0:
+            x.append(step)
+            y.append(get_lr(step, epoch_steps))
+    import matplotlib.pyplot as plt
+    plt.plot(x, y)
+    plt.savefig("learning-rate.png")
+    # print first 20 values of y
+    print(y[:20])
 
