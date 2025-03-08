@@ -387,6 +387,10 @@ device_name = device
 if torch.cuda.is_available():
     device_name = torch.cuda.get_device_name(0)  # 0 is the GPU index
 
+torch.manual_seed(4321) # seed for CPU
+if torch.cuda.is_available():
+    torch.cuda.manual_seed(4321 + ddp_rank) # seed for GPU
+
 from util import load_config, LogPrinter
 GPT_CONFIG, HYPERS, FILES, TRAINING = load_config()
 logger = LogPrinter(FILES["log_dir"] + FILES["log_file"])
@@ -557,7 +561,7 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
             for i in range(num_return_sequences):
                 tokens = xgen[i, :max_length].tolist()
                 decoded = tokenizer.decode(tokens)
-                print(f"rank {ddp_rank} sample {i}: {decoded}")
+                logger.log_print(f"rank {ddp_rank} sample {i}: {decoded}")
 
         if (step > start_step) and step % TRAINING["eval_interval"] == 0 and step > 0:
             model.eval()
