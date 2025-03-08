@@ -80,11 +80,11 @@ class DataLoaderLite:
         return x, y
     
 class IndexedDataLoader:
-    def __init__(self, B, T, split, token_dir, process_rank =0, num_processes=1):
+    def __init__(self, B, T, split, nb_shards, token_dir, process_rank =0, num_processes=1):
         assert split in ["train", "valid"]
         self.B = B
         self.T = T
-        self.total_shards = 1892 # hardcoded for our dataset
+        self.total_shards = nb_shards
         self.split = split
         self.process_rank = process_rank
         self.num_processes = num_processes

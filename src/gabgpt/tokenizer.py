@@ -7,6 +7,8 @@ import multiprocess as mp
 import os
 import numpy as np
 from tqdm import tqdm
+import lxml.etree as ET
+import random
 
 def train():
     # Define special tokens
@@ -35,7 +37,7 @@ def train():
     tokenizer.save_model("wiki_tokenizer",prefix="gabgpt")
 
 def use_special_tokens():
-        # Define special tokens
+    # Define special tokens
     special_tokens = ["<|endoftext|>", "<|user|>", "<|bot|>", "<|sys|>","<|gab1|>", "<|gab2|>", "<|gab3|>","<|gab4|>", "<|gab5|>"]
 
     # Load the trained tokenizer
@@ -111,8 +113,31 @@ def use_tokenizer(dir):
     for token, id in list(vocab.items())[-10:]:
         print(f"Token: {token:20} ID: {id}")
 
-def tokenize_wikipedia(tokenizer_dir, output_dir,shard_size=1048576):
+def reddit_dataset():
+    file_path="data/raw/spf.xml"
 
+    parser = ET.XMLParser(recover=True)
+    #Parses the file
+    tree = ET.parse(file_path, parser=parser)
+    xroot = tree.getroot()
+    dataset = []
+
+    for node in xroot:
+        for j in range(len(node.getchildren())):
+            text = node.getchildren()[j].text
+            dataset.append({"text":text})
+    random.shuffle(dataset)
+    print(f"Reddit dataset size: {len(dataset)}")
+    return dataset
+
+def tokenize_corpus(dataset, tokenizer_dir, output_dir,shard_size=1048577):
+    """
+    Tokenize the corpus using the trained tokenizer and save the tokens to disk.
+    data_set : data to tokenizer
+    tokenizer_dir = location of vocab.json mand merges.txt
+    output_dir
+    shard_size : 2^20+1
+    """
     # Define special tokens
     special_tokens = ["<|endoftext|>", "<|user|>", "<|bot|>", "<|sys|>","<|gab1|>", "<|gab2|>", "<|gab3|>","<|gab4|>", "<|gab5|>"]
     print(f"Using custom tokenizer from {tokenizer_dir}")
@@ -128,7 +153,7 @@ def tokenize_wikipedia(tokenizer_dir, output_dir,shard_size=1048576):
     eot = tokenizer.token_to_id("<|endoftext|>")
     print(f"eot: {eot}")
 
-    dataset = load_dataset("wikimedia/wikipedia", "20231101.fr")
+    
     os.makedirs(output_dir, exist_ok=True)
 
 
@@ -150,7 +175,7 @@ def tokenize_wikipedia(tokenizer_dir, output_dir,shard_size=1048576):
         token_count = 0
         progress_bar = None
 
-        for tokens in pool.imap(tokenize, dataset["train"].shuffle(),chunksize=16):
+        for tokens in pool.imap(tokenize, dataset,chunksize=16):
             if token_count + len(tokens) < shard_size:
                 # add tokens to current shard
                 all_tokens_np[token_count:token_count + len(tokens)] = tokens
@@ -172,11 +197,34 @@ def tokenize_wikipedia(tokenizer_dir, output_dir,shard_size=1048576):
                 token_count = len(tokens) - remainder
         
         # write the last shard
-        if token_count > 0:
-            filename = os.path.join(output_dir, f"shard_{shard_index:06d}.npy")
-            np.save(filename, all_tokens_np[:token_count])
+        #if token_count > 0:
+        #    filename = os.path.join(output_dir, f"shard_{shard_index:06d}.npy")
+        #    np.save(filename, all_tokens_np[:token_count])
 
 if __name__ == "__main__":
-    tokenize_wikipedia("data/tokenizer", "data/tokenized/gabwikifr", shard_size=1048576)
+    #r_dataset = reddit_dataset()
+    #tokenize_corpus(r_dataset, "data/tokenizer", "data/tokenized/reddit", shard_size=1048577)
 
+    #w_dataset = load_dataset("wikimedia/wikipedia", "20231101.fr")["train"].shuffle() 
+    #tokenize_corpus(w_dataset, "data/tokenizer", "data/tokenized/wikipedia", shard_size=1048577)
 
+    from dataloader import IndexedDataLoader, load_tokens
+
+    red_valid = IndexedDataLoader(1, 64, "valid", "data/tokenized/reddit/valid", process_rank=0, num_processes=1)
+
+    x,y = red_valid.next_batch()
+    print(x.shape)
+    print(y.shape)
+    print(x[0].tolist())
+    special_tokens = ["<|endoftext|>", "<|user|>", "<|bot|>", "<|sys|>","<|gab1|>", "<|gab2|>", "<|gab3|>","<|gab4|>", "<|gab5|>"]
+
+    # Load the trained tokenizer
+    tokenizer = ByteLevelBPETokenizer(
+        "french_tokenizer/gabgpt-vocab.json",
+        "french_tokenizer/gabgpt-merges.txt"
+    )
+
+    # Add special tokens to the loaded tokenizer
+    tokenizer.add_special_tokens(special_tokens)
+    text = tokenizer.decode(x[0].tolist())
+    print(text)

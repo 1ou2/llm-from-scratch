@@ -238,7 +238,7 @@ class DataLoaderLite:
 # Checkpoints
 # ----------------------------------------------------------------------
 
-def save_checkpoint(model, train_loader,epoch, step, loss, save_dir):
+def save_checkpoint(model, optimizer, train_loader,epoch, step, loss, save_dir):
     """
     Save the model, optimizer, scheduler, and epoch to a file.
     """
@@ -248,13 +248,14 @@ def save_checkpoint(model, train_loader,epoch, step, loss, save_dir):
         'epoch': epoch,
         'step': step,
         'model_state_dict': model.state_dict(),
+        'optimizer_state_dict': optimizer.state_dict(),
         'loss': loss,
         'train_loader_state': train_loader.get_state()
     }
     torch.save(checkpoint, path)
 
 
-def load_checkpoint(path, model, device="cpu"):
+def load_checkpoint(path, model, optimizer, device="cpu"):
     """
     Load the model, optimizer, scheduler, from a file.
     Returns (epoch, step, loss, train_loader_state,stats)
@@ -283,6 +284,9 @@ def load_checkpoint(path, model, device="cpu"):
             print(f"Key {key} not found in model state dict")
 
     model.load_state_dict(fixed_state_dict)
+    for key,value in checkpoint['optimizer_state_dict'].items():
+        print(f"optimizer {key} : {value.shape}")
+    optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
     
     return checkpoint['train_loader_state'], checkpoint['epoch'], checkpoint['step'], checkpoint['loss']
 
@@ -413,8 +417,8 @@ valid_token_dir = FILES["token_dir"] + "valid/"
 train_token_dir = FILES["token_dir"] + "train/"
 
 from dataloader import IndexedDataLoader
-val_loader = IndexedDataLoader(B, T, split="valid", token_dir=valid_token_dir, process_rank=ddp_rank, num_processes=ddp_world_size)
-train_loader = IndexedDataLoader(B, T, split="train", token_dir=train_token_dir, process_rank=ddp_rank, num_processes=ddp_world_size)
+val_loader = IndexedDataLoader(B, T, split="valid", nb_shards=nb_shards, token_dir=valid_token_dir, process_rank=ddp_rank, num_processes=ddp_world_size)
+train_loader = IndexedDataLoader(B, T, split="train", nb_shards=nb_shards, token_dir=train_token_dir, process_rank=ddp_rank, num_processes=ddp_world_size)
 
 
 # custom learning rate function
@@ -466,6 +470,7 @@ if master_process:
 
 assert start_step < epoch_train_steps, f"start_step {start_step} >= nb_train_steps {epoch_train_steps}"
 
+loss_accum = 0.0
 step = start_step
 # Training Loop
 start_time = time.time()
@@ -481,10 +486,10 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
             tokens_processed = B * T * ddp_world_size * TRAINING["log_interval"]
             tokens_per_sec = tokens_processed / dt
 
-            logger.log_print(f"step {step:5d} | loss: {loss.item():.6f} | lr: {get_lr(step,epoch):.7f} | norm: {norm:.4f} | dt: {dt*1000:.2f}ms | tok/sec: {tokens_per_sec:.2f}")
+            logger.log_print(f"step {step:5d} | loss: {loss_accum.item():.6f} | lr: {get_lr(step,epoch):.7f} | norm: {norm:.4f} | dt: {dt*1000:.2f}ms | tok/sec: {tokens_per_sec:.2f}")
             
             # Write stats in CSV format for easy parsing
-            stats_msg = f"{epoch},{step},{loss.item()},{get_lr(step,epoch)}\n"
+            stats_msg = f"{epoch},{step},{loss_accum.item()},{get_lr(step,epoch)}\n"
             stats_file.write(stats_msg)
             stats_file.flush()
             t0 = time.time()
@@ -543,7 +548,7 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
                 logger.log_print(f"validation loss: {val_loss_accum.item():.4f}")
 
         if (step > start_step) and master_process and step %  TRAINING["checkpoint_interval"]  == 0 and step > 0:
-            save_checkpoint(model, train_loader, epoch, step, loss.item(), FILES["checkpoint_dir"])
+            save_checkpoint(model, optimizer, train_loader, epoch, step, loss_accum.item(), FILES["checkpoint_dir"])
 
         # do one step of the optimization
         model.train()
