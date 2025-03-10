@@ -6,6 +6,7 @@ from dataclasses import dataclass
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
+import random
 
 # ----------------------------------------------------------------------
 # GPT Model
@@ -147,12 +148,7 @@ class GPT(nn.Module):
             {'params': decay_params, 'weight_decay': weight_decay},
             {'params': nodecay_params, 'weight_decay': 0.0}
         ]
-        num_decay_params = sum(p.numel() for p in decay_params)
-        num_nodecay_params = sum(p.numel() for p in nodecay_params)
-        if master_process:
-            print(f"num decayed parameter tensors: {len(decay_params)}, with {num_decay_params:,} parameters")
-            print(f"num non-decayed parameter tensors: {len(nodecay_params)}, with {num_nodecay_params:,} parameters")
-
+        
         optimizer = torch.optim.AdamW(optim_groups, lr=learning_rate, fused=True)
         return optimizer
     
@@ -241,6 +237,7 @@ class DataLoaderLite:
 def save_checkpoint(model, optimizer, train_loader,epoch, step, loss, save_dir):
     """
     Save the model, optimizer, scheduler, and epoch to a file.
+    only keep last checkpoints (TRAINING["n_checkpoint_files"])
     """
     os.makedirs(save_dir, exist_ok=True)
     path = f"{save_dir}/checkpoint_{epoch}_{step:07d}_{loss:.2f}.pt"
@@ -256,8 +253,8 @@ def save_checkpoint(model, optimizer, train_loader,epoch, step, loss, save_dir):
 
     # remove old checkpoints
     checkpoints = sorted([f for f in os.listdir(save_dir) if f.startswith("checkpoint_") and f.endswith(".pt")])
-    if len(checkpoints) > 3:
-        for f in checkpoints[:-3]:
+    if len(checkpoints) > TRAINING["n_checkpoint_files"]:
+        for f in checkpoints[:TRAINING["n_checkpoint_files"]]:
             os.remove(f"{save_dir}/{f}")
 
 def load_parameters(path,device="cpu"):
@@ -302,7 +299,6 @@ def load_checkpoint(path, model, optimizer, device="cpu"):
 
     model.load_state_dict(fixed_state_dict)
     optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-    #return checkpoint['train_loader_state'], checkpoint['epoch'], checkpoint['step'], checkpoint['loss']
 
 def get_last_checkpoint(save_dir):
     """
@@ -388,6 +384,7 @@ if torch.cuda.is_available():
     device_name = torch.cuda.get_device_name(0)  # 0 is the GPU index
 
 torch.manual_seed(4321) # seed for CPU
+random.seed(4321) # seed for Python random module
 if torch.cuda.is_available():
     torch.cuda.manual_seed(4321 + ddp_rank) # seed for GPU
 

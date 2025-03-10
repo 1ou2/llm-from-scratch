@@ -102,3 +102,40 @@ Tue Mar  4 19:45:04 2025
 |=========================================================================================|
 |  No running processes found                                                             |
 +-----------------------------------------------------------------------------------------+
+
+# Hyperbolic
+## Préparation des tokens pour transfert
+La vitesse d'upload étant limitée à 1Mb/s, une façon d'optimiser et de lancer des upload de tokens en parallèle. Pour cela, on prépare des archives de 200M qu'on va uploader en parallèle.
+On installe le package parallel:
+`sudo apt install parallel`
+
+Aller dans le répertoire contenant les tokens de training
+```bash
+tar -cvf training.tar train/
+split -b 200M training.tar tokens_part
+```
+
+## Configuration initiale
+Connection en SSH, exemple:
+`ssh ubuntu@horrible-lilyofthevalley-clam.1.cricket.hyperbolic.xyz -p 31553`
+
+
+```bash
+sudo apt update
+supo apt install python3-pip
+git clone https://github.com/1ou2/llm-from-scratch.git
+cd llm-from-scratch
+python3 -m venv .venv
+pip install -r requirements
+```
+## Copy des tokens
+Copie des données de validation
+scp -P 31553 data/shards/valid/shard_000000.npy /home/ubuntu/llm-from-scratch/data/shards/valid
+
+Copie des données d'entrainements, 20 fichiers dans le répertoire transfer
+```bash
+parallel -j 20 scp -P 31553 transfer/{} ubuntu@horrible-lilyofthevalley-clam.1.cricket.hyperbolic.xyz:~/llm-from-scratch/data/shards/train ::: token_part_*
+```
+
+
+
