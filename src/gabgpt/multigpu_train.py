@@ -398,7 +398,7 @@ stats_file = open(FILES["log_dir"] + FILES["stat_file"], "a")
 
 # Write header for stats file (if it's empty)
 if stats_file.tell() == 0:
-    stats_file.write("epoch,step,loss,learning_rate\n")
+    stats_file.write("epoch,step,loss,learning_rate,validation\n")
 
 from datetime import datetime
 
@@ -523,7 +523,7 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
             logger.log_print(f"step {step:5d} | loss: {loss_accum.item():.6f} | lr: {get_lr(step,epoch):.7f} | norm: {norm:.4f} | dt: {dt*1000:.2f}ms | tok/sec: {tokens_per_sec:.2f}")
             
             # Write stats in CSV format for easy parsing
-            stats_msg = f"{epoch},{step},{loss_accum.item()},{get_lr(step,epoch)}\n"
+            stats_msg = f"{epoch},{step},{loss_accum.item()},{get_lr(step,epoch)},0\n"
             stats_file.write(stats_msg)
             stats_file.flush()
             t0 = time.time()
@@ -579,7 +579,11 @@ for epoch in range(start_epoch,HYPERS["epochs"]):
             if ddp:
                 dist.all_reduce(val_loss_accum, op=dist.ReduceOp.AVG)
             if master_process:
-                logger.log_print(f"validation loss: {val_loss_accum.item():.4f}")
+                logger.log_print(f"step {step:5d} | validation loss: {val_loss_accum.item():.4f} |")
+                # Write stats in CSV format for easy parsing
+                stats_msg = f"{epoch},{step},{val_loss_accum.item()},{get_lr(step,epoch)},1\n"
+                stats_file.write(stats_msg)
+                stats_file.flush()
 
         # do one step of the optimization
         model.train()
