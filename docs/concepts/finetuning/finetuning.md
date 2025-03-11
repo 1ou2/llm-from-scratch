@@ -87,8 +87,20 @@ Pour deepseek R1, le principe utilisé est
 # Quantization
 on convertit les floats de 4 octets en 2 octets par exemple
 
-# Lora
+# PEFT
+Parameter efficient fine-tuning, l’idée c’est de ne pas re-entrainer tout le modèle lors de la phase de fine-tuning.
+On va figer les poids du modèle et faire de la "chirurgie" pour limiter le nombre de paramètres à entrainer. Cela va nous permettre de faire du fine-tuning de "gros modèle" sans avoir d’avoir l’infrastructure associée.
+
+## Lora
 On utilise deux matrices de taille plus petites 
+Low Rank decomposition.
+On ne touche pas au réseau, mais on ajoute deux matrices entrainables. Ces matrices sont beaucoup plus petites. La sortie de ces matrices est ajoutée à la sortie du modèle pré-entrainé.
+
+Avantages
+- on peut garder le même modèle de base et avoir différentes matrices LoRA suivant notre cas d’usage
+- on n’entraine qu’un nombre réduit de paramètres -> pas besoin d’énormes GPU
+- fine-tuning avec LoRA estplus rapide qu’un fine-tuning complet
+
 
 # Supervised fine tuning
 ## links
