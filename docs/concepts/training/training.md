@@ -51,3 +51,7 @@ The λw term constantly pulls the weights toward zero during training. The stren
 - The current value of the weight w: larger weights experience stronger decay
 
 This is why it's called "weight decay" - the weights literally decay towards zero unless the training signal is strong enough to counteract this effect. The quadratic nature of the penalty (w²) means it particularly discourages large weight values while having less effect on smaller weights.
+
+# Loss
+Voici la courbe présentant l’évolution de la fonction de perte calculée sur l’epoch 0. On a passé toutes nos données une fois et on voit qu’à la fois la fonction de perte durant l’entrainement et sur nos données de validation diminue.
+[![](images/loss-epoch-0.png)](images/loss-epoch-0.png)
