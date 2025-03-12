@@ -5,6 +5,7 @@ import configparser
 import ast
 import os
 import math
+import matplotlib.pyplot as plt
 
 def load_config(config_file="config.txt"):
     config = configparser.ConfigParser()
@@ -77,8 +78,39 @@ def get_lr(step, epoch_steps):
     coefficient = 0.5 * (1 + math.cos(math.pi * decay_ratio))
     return min_lr + (max_lr - min_lr) * coefficient
 
-if __name__ == "__main__":
+
+def plot_loss(stat_file):
+    """Plot loss from stat file"""
+    with open(stat_file, "r") as f:
+        lines = f.readlines()
     
+    train_losses = []
+    train_steps = []
+    validation_losses = []
+    validation_steps = []
+    
+    for line in lines[1:]:  # Skip header line
+        epoch, step, loss, lr, is_validation = line.strip().split(",")
+        step = int(step)
+        loss = float(loss)
+        
+        if is_validation == "1":
+            validation_losses.append(loss)
+            validation_steps.append(step)
+        else:
+            train_losses.append(loss)
+            train_steps.append(step)
+    
+    plt.plot(train_steps, train_losses, label="train")
+    plt.plot(validation_steps, validation_losses, label="validation")
+    plt.xlabel("Step")
+    plt.ylabel("Loss")
+    plt.legend()
+    plt.show()
+    plt.savefig("loss-epoch-0.png")
+
+def plot_lr(stat_file):
+    """Plot learning rate """
     epoch_steps = 4000
     x = []
     y = []
@@ -91,4 +123,8 @@ if __name__ == "__main__":
     plt.savefig("learning-rate.png")
     # print first 20 values of y
     print(y[:20])
+
+if __name__ == "__main__":
+    
+    plot_loss("docs/concepts/training/e0-stats.txt")
 
