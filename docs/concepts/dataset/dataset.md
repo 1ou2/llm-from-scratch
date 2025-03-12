@@ -151,6 +151,9 @@ https://www.kaggle.com/datasets/breandan/french-reddit-discussion/data
 a new dataset for sentiment analysis, scraped from Allociné.fr user reviews. It contains 100k positive and 100k negative reviews divided into 3 balanced splits: train (160k reviews), val (20k) and test (20k)
 https://github.com/TheophileBlard/french-sentiment-analysis-with-bert
 
+## PIAF
+PIAFv1.2 contient 9225 pairs des questions/réponses. Il s'agit d'un fichier type JSON.
+https://www.data.gouv.fr/fr/datasets/piaf-le-dataset-francophone-de-questions-reponses/
 
 ## FSQUAD
 
