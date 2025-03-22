@@ -23,6 +23,17 @@ On a des jeux de données de questions et de réponses contenant ces tokens spé
 ```<|im_start|>system<|im_sep|>You are a helpful assistant<|im_end|><|im_start|>user<|im_sep|>what is 2+2 ?<|im_end|><|im_start|>assistant<|im_sep|>```
 Le modèle va donc compléter en s'inspirant du style de réponse avec lequel il a été entrainé.
 
+## finetuning dataset
+On a un jeu de données : prompt utilisateur / réponse du modèle.
+Il faut pour ce dataset:
+- des réponses exactes et pertinentes
+- de la diversité, différents types de questions, dans différents domaines
+- complexité : fournir des réponses longues, précises
+Cela ne va drastiquement augmenter les connaissances du modèles. Si le modèle n’a pas vu de code en pre-training il ne sera pas bon même s’il voit des exemples ici. Par contre on peut lui instiller de la connaissance comme par exemple commet répondre sur quel est son nom, quelle compagnie l’a créé.
+
+# Fine-tuning - alignment
+C’est souvent la dernière étape. il s’agit cette fois de modifier le modèle pour qu’il donne des réponses détaillées. Avec chat-gpt ou claude on s’est habitué a avoir des réponses longues, détaillées, des intros, un format markdown. Mais c’est indépendant de la justesse de la réponse. C’est plus une préférence stylistique qu’on met en place via fine-tuning.
+
 # Fine-tuning - gestion des hallucinations
 On doit entrainer le modèle à répondre "je ne sais pas" quand il n'a pas la réponse.
 Pour cela:
@@ -101,6 +112,9 @@ Avantages
 - on n’entraine qu’un nombre réduit de paramètres -> pas besoin d’énormes GPU
 - fine-tuning avec LoRA estplus rapide qu’un fine-tuning complet
 
+## QLora
+Quantized lora. On travaille sur un modèle "quantized" - c’est à dire un modèle dont on a réduit la précisino pour gagner en taille mémoire.
+Donc si on a assez de VRAM, il vaut mieux utiliser Lora. Sinon partir sur qlora.
 
 # Supervised fine tuning
 ## links
@@ -112,3 +126,9 @@ https://cameronrwolfe.substack.com/p/understanding-and-using-supervised
 
 finetuning with hugging face
 https://huggingface.co/blog/dvgodoy/fine-tuning-llm-hugging-face
+
+# DPO
+Direct preference optimisation
+On donne des tokens "bonne réponse" vs tokens "mauvaise réponse" et le but c’est d’augmenter la probabilité des bonnes réponses. On essaie d’augmenter cet écart de probabilité.
+Given a context (a prompt) + bad response -> lower probability
+

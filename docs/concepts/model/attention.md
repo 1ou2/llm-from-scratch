@@ -150,6 +150,9 @@ On a effectué un calcul d'attention, mais ce qui a été réalisé doit être r
 Notre embedding a été initialisé au hasard dans cet exemple.
 embedding_layer = torch.nn.Embedding(vocab_size, embedding_dim)
 Il faut maintenant arriver à apprendre à partir des données. Pour cela, les paramètres query, key et value seront issus de matrice Q,K et V avec des paramètres entrainables via descente de gradient.
+Cela revient à utiliser ces matrices pour projeter les valeurs inputs dans une autre dimension.
+Si on a un embedding de taille 3 et qu’on veut travailler sur une taille de vecteur de contexte de taille 2, on prendra une taille de matrice [3,2] pour Q,K et V
+et on aura par exemple input@V : [1,3] x [3,2] -> [1,2] 
 
 # Causal attention
 L'objectif ici est de masquer les tokens suivants afin que le vecteur de contexte ne connaisse que les informations venant des tokens précédents. En effet comme on veut prédire le prochain il ne faut pas que cette information soit présente.
@@ -174,3 +177,20 @@ Ensuite dans la matrice des scores on va remplacer les valeurs des tokens futurs
 attn_scores.masked_fill_(self.mask.bool()[:num_tokens, :num_tokens], float('-inf'))
 ```
 
+# Multihead attention
+On empile les têtes d’attention. Disons qu’on a 3 têtes d’attention att1, att2, et att3 - `n_head=3`. Alors on va juste enchainer ces 3 blocs, on va passer notre input value dans chacune de ses têtes d’attention.
+Chaque tête d’attention est initialisée avec des poids différents. Les têtes d’attention vont chacune "capter" des contextes différents et des subtilités différentes sur les relations entre les tokens d’entrée.
+On aura au final n_head vecteurs de contextes générés.
+Algorithmique on pourrait écrire
+```python
+class Multihead
+    def __init__(self, n_head):
+        self.heads = [AttentionHead() for _ in n_head()]
+
+    def forward(self,x):
+        global_context = torch.empty()
+        for head in self.heads:
+            global_context = torch.cat(head(x),global_context)
+        return global_context
+```
+Dans la pratique, on concateène les matrices Q,K,V de toutes les têtes d’attention en une grosse matrice, et on fait une seule passe pour profiter du calcul parallèle des matrices sur le GPU.

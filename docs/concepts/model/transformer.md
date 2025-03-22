@@ -96,3 +96,23 @@ class TransformerBlock(nn.Module):
         return x
 ```
 
+# Encoder/decoder
+Dans `attention is all you need`, l’archictecture proposée est un modèle transformer encoder/decoder appliqué au cas d’usage de la traduction.
+Le premier bloc l’encoder a pour but de créer une représentation riche des entrées. La sortie de l’encoder est un embedding.
+La seconde partie est celle qui génère des tokens.
+Il existe des modèles qui sont encoder-only comme par exemple BERT.
+Puis on a eu l’architecture GPT qui est un modèle decoder only.
+
+## token -> embedding -> attention
+Token : faire correspondre un identifiant à un bout de texte. Numériser notre entrée textuelle
+Embedding : projeter dans un espcae vectoriel riche un token. Pouvoir représenter des nuances
+Attention : trouver les relations entre les tokens dans la phrase entre des éléments. Certains sont liés. "i walked near the bank" vs "i robbed a bank"
+bank -> dépend du contexte.
+Tout est dynamique, on calcule les relations entre tous les tokens.
+prompt = article wikipedia napoleon + question (quand est-il né)
+Le mécanisme d’attention va calculer la relation entre les tokens de la question et les tokens de l’article. Et trouver quels sont les tokens importants par rapport à cette quesiton.
+
+## alternative
+Flash attention : mécanisme d’attention optimisé en tereme de mémoire.
+SSM
+Mamba
