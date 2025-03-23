@@ -9,7 +9,7 @@ def self_attention():
     input_sentence = "For sale: baby shoes, never worn"
 
     # for reproducibility
-    torch.manual_seed(1234)
+    torch.manual_seed(123)
     # print options : use 2 digits only 
     torch.set_printoptions(precision=2, sci_mode=False)
     # tokenizer

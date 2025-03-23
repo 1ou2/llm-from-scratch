@@ -27,7 +27,7 @@ class LayerNorm(nn.Module):
 
 On entrée cette couche prend un tensor de dimension `emb_dim` qui est l'embedding dimension de nos entrées. Cette valeur est de 768 pour GPT-2.
 
-On a scale et shift qui sont deux paramètres entrainables de même dimension que l'input que le LLM va ajuster et permettre que la normalisation fluctue.
+On a scale et shift qui sont deux paramètres entrainables de même dimension que l'input que le LLM va ajuster et permettre que la normalisation fluctue. Le réseau va pouvoir apprendre à partir des données et dans certains cas vouloir que la valeur soit plus grande que 1 par exemple. Si on n'avait pas un réseau au aurait toujours une distribution normale.
 
 # Feed Forward
 Il s'agit d'un petit réseau de neurones, entrainable par le réseau, composé de 3 couches :
@@ -116,3 +116,21 @@ Le mécanisme d’attention va calculer la relation entre les tokens de la quest
 Flash attention : mécanisme d’attention optimisé en tereme de mémoire.
 SSM
 Mamba
+
+# self-attention vs cross attention
+Dans une architecture encoder/ decoder on parle de cross attention. Le score d'attention de l'encodere est passé en paramètre du décoder.
+Dans GPT qui est une architecture decoder only, on parle de self attention.
+
+# Multi-head attention
+Chaque tête d'attention prend en entrée l'ensemble des tokens d'input, mais la dimension de l'embedding est répartie entre les têtes d'attention.
+Par exemple
+- vocab_size = 50256 nombre de tokens dans notre vocabulaire
+- embedding_size = 768 dimesion de l'input embedding.
+- d_model = 512 c'est la dimension de notre attention
+- n_head = 4 : c'est notre nombre de têtes d'attention
+- seq_length = 6 : nombre de tokens qu'on trait dans la séquence
+
+Il faut absolument que d_model soit divisible par n_head, car c'est comme cela qu'est découpée la matrice d'embedding d'attention.
+Pour chaque matrice Q (c'est pareil pour K,V )
+- on aura comme dimension Q (6,512)
+- Q est la fusion de Q1,Q2,Q3,Q4 avec chacune de taille (6,512/4) = (6,128)
