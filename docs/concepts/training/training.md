@@ -55,3 +55,22 @@ This is why it's called "weight decay" - the weights literally decay towards zer
 # Loss
 Voici la courbe présentant l’évolution de la fonction de perte calculée sur l’epoch 0. On a passé toutes nos données une fois et on voit qu’à la fois la fonction de perte durant l’entrainement et sur nos données de validation diminue.
 [![](images/loss-epoch-0.png)](images/loss-epoch-0.png)
+
+# Normalisation
+Si dans nos batch d’entrées on a des valeurs qui fluctuent grandement. Par exemple
+x1 = [0.7,1, -1.02]
+et x2 = [71, 34,-55]
+on aura grand changement en input -> grand changement dans la valeur de sortie -> grand changement dans le calcul de la loss function -> grand changement dans le calcul du gradient -> grande fluctuation dans la mise à jour des poids.
+Pour que le modèles convergent plus rapidement on applique de la normalisation. Sinon l’apprentissage va osciller et le processus sera plus lent.
+Supponsons qu’on a un modèle de classificatino d’images : cat, dog, zebra, tree etc..
+
+La normalisation consiste à avoir une moyenne de 0 et une variance de 1.
+
+## batch normalization
+On normalise colonne par colonne.
+Le problème c’est qu’on mélange la dimension 1 d’un chat avec celle d’un chien etc...
+Pour que cela fasse du sens on a besoin d’avoir de très grand batch permettant de mixer toutes les catégories afin que la valeur soit pertinente
+
+## layer normalization
+Cela revient à normaliser sur les lignes, on prend tous les features d’un chat et c’est ça qu’on normalise.
+On peut donc avoir dans un même batch des images complètement différentes et cela n’aura pas d’impact.
