@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 from typing import Tuple
 
-class SigLipVisionConfig:
+class SiglipVisionConfig:
     def __init__(self,hidden_size=768,intermediate_size=3072,num_hidden_layers=12,
                  num_attention_heads=12,num_channels=3, image_size=224,
                  patch_size=16,layer_norm_eps=1e-6,attention_dropout=0.0,
@@ -19,9 +19,9 @@ class SigLipVisionConfig:
         self.attention_dropout = attention_dropout
         self.num_image_tokens = num_image_tokens
 
-class SigLipVisionEmbeddings(nn.Module):
+class SiglipVisionEmbeddings(nn.Module):
     # convert a raw image into embeddings
-    def __init__(self, config:SigLipVisionConfig):
+    def __init__(self, config:SiglipVisionConfig):
         super().__init__()
         self.config = config
         self.embed_dim = config.hidden_size
@@ -55,22 +55,56 @@ class SigLipVisionEmbeddings(nn.Module):
         # we want the network to learn the spatial position of the patch
         embeddings = embedding + self.position_embedding(self.position_ids)
         return embeddings
-class SigLipEncoder():
-    # list of transformer layers
-    def __init__(self, config:SigLipVisionConfig):
+
+class SiglipMLP(nn.Module):
+    def __init__(self, config):
         super().__init__()
         self.config = config
+        self.fc1 = nn.Linear(config.hidden_size, config.intermediate_size)
+        self.fc2 = nn.Linear(config.intermediate_size, config.hidden_size)
     
-    def forward(self, input_embeds):
-        return input_embeds
+    def forward(self, hidden_states: torch.Tensor) -> torch.Tensor:
+        hidden_states = self.fc1(hidden_states)
+        hidden_states = nn.functional.gelu(hidden_states,approximate="tanh")
+        hidden_states = self.fc2(hidden_states)
+        hidden_states = nn.functional.gelu(hidden_states,approximate="tanh")
+        return hidden_states
 
-class SigLipVisionTransformer(nn.Module):
-    def __init__(self,config:SigLipVisionConfig):
+class SiglipEncoder():
+    # list of transformer layers
+    def __init__(self, config:SiglipVisionConfig):
+        super().__init__()
+        self.config = config
+        self.embed_dim = config.hidden_size
+        self.self_attn = SiglipAttention(config)
+        self.layer_norm1 = nn.LayerNorm(self.embed_dim, eps=config.layer_norm_eps)
+        self.mlp = SiglipMLP(config)
+        self.layer_norm2 = nn.LayerNorm(self.embed_dim, eps=config.layer_norm_eps)
+        
+    
+    def forward(self, hidden_states):
+        # save residual connection
+        # [batch_size, num_patches, embed_dim]
+        residual = hidden_states
+        
+        # normalize values
+        hidden_states = self.layer_norm1(hidden_states)
+        hidden_states, _ = self.self_attn(hidden_states=hidden_states)
+        hidden_states = residual + hidden_states
+        residual = hidden_states
+        hidden_states = self.layer_norm2(hidden_states)
+        hidden_states = self.mlp(hidden_states)
+        hidden_states = residual + hidden_states
+        # [batch_size, num_patches, embed_dim]
+        return hidden_states
+
+class SiglipVisionTransformer(nn.Module):
+    def __init__(self,config:SiglipVisionConfig):
         super().__init__()
         self.config = config
         embed_dim = config.hidden_size
-        self.embeddings = SigLipVisionEmbeddings(config)
-        self.encoder = SigLipEncoder(config)
+        self.embeddings = SiglipVisionEmbeddings(config)
+        self.encoder = SiglipEncoder(config)
         self.post_layernorm = nn.LayerNorm(embed_dim, eps=config.layer_norm_eps)
 
     def forward(self, pixel_values) ->Tuple:
@@ -80,11 +114,11 @@ class SigLipVisionTransformer(nn.Module):
         return self.post_layernorm(hidden_states)
 
 
-class SigLipVisionModel(nn.Module):
-    def __init__(self, config:SigLipVisionConfig):
+class SiglipVisionModel(nn.Module):
+    def __init__(self, config:SiglipVisionConfig):
         super().__init__()
         self.config = config
-        self.vision_transformer = SigLipVisionTransformer(config)
+        self.vision_transformer = SiglipVisionTransformer(config)
 
     def forward(self, pixel_values) ->Tuple:
         # [batch_size, channels, height,width] -> [batch_size, number_patches,embed_dim]
