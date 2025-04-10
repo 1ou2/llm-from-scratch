@@ -7,6 +7,8 @@ from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 import pickle
 import os
+from torchviz import make_dot
+import networkx as nx
 
 def sample_net():
     inputs = torch.tensor([[0.1, -0.2, 1.3,0.11], [-0.4, 0.5, -0.6, 0.7]])
@@ -142,12 +144,12 @@ class SimpleHouseNet(nn.Module):
         return x
     
 # Modified network with one more layer
-class SimpleHouseNet2(nn.Module):
+class House3Layers(nn.Module):
     def __init__(self):
-        super(SimpleHouseNet2, self).__init__()
-        self.layer1 = nn.Linear(4, 16)  # Increased first layer
-        self.layer2 = nn.Linear(16, 8)  # Added middle layer
-        self.layer3 = nn.Linear(8, 1)   # Output layer
+        super(House3Layers, self).__init__()
+        self.layer1 = nn.Linear(4, 5)  # Increased first layer
+        self.layer2 = nn.Linear(5, 4)  # Added middle layer
+        self.layer3 = nn.Linear(4, 1)   # Output layer
         self.relu = nn.ReLU()
         
     def forward(self, x):
@@ -201,7 +203,6 @@ def save_model(model, feature_scaler, price_scaler, folder_path='saved_model',pr
     # Save the model
     torch.save(model.state_dict(), os.path.join(folder_path, prefix+'house_model.pth'))
 
-    
     # Save the scalers
     with open(os.path.join(folder_path, prefix+ 'scalers.pkl'), 'wb') as f:
         pickle.dump({
@@ -211,9 +212,53 @@ def save_model(model, feature_scaler, price_scaler, folder_path='saved_model',pr
     
     print(f"Model and data saved in folder: {folder_path}")
 
-def save_data(x_train,y_train,folder_path="saved_model"):
+def load_model(model_class, folder_path='saved_model', prefix=""):
+    """
+    Load the trained model and scalers
+    
+    Args:
+        model_class: The model class (SimpleHouseNet or SimpleHouseNet2)
+        folder_path: Path to the folder containing saved model files
+        prefix: Prefix used when saving the model (e.g., "trained" or "untrained")
+    
+    Returns:
+        model: The loaded PyTorch model
+        feature_scaler: The loaded feature scaler
+        price_scaler: The loaded price scaler
+    """
+    # Initialize a new model instance
+    model = model_class()
+    
+    # Load the model state dictionary
+    model_path = os.path.join(folder_path, prefix + 'house_model.pth')
+    model.load_state_dict(torch.load(model_path))
+    model.eval()  # Set the model to evaluation mode
+    
+    # Load the scalers
+    scalers_path = os.path.join(folder_path, prefix + 'scalers.pkl')
+    with open(scalers_path, 'rb') as f:
+        scalers = pickle.load(f)
+        
+    feature_scaler = scalers['feature_scaler']
+    price_scaler = scalers['price_scaler']
+    
+    return model, feature_scaler, price_scaler
+
+
+def save_data(X,y,folder_path="saved_model"):
+    # Y and y contains dataframe values
+    # X = df[['distance', 'area', 'bedrooms', 'age']].values
+    # y = df[['price']].values
     # save to file the synthetic data generated
-    pass
+    # Save both arrays in a single compressed file
+    np.savez_compressed(os.path.join(folder_path, "training_data.npz"), X=X, y=y)
+    
+def load_data(file_path="saved_model/training_data.npz"):
+    data = np.load(file_path)
+    X = data['X']
+    y = data['y']
+    return X, y
+
 
 # Test the model with some sample data
 def predict_price(model, distance, area, bedrooms, age, feature_scaler, price_scaler):
@@ -249,10 +294,7 @@ def run_test_cases(model,feature_scaler,price_scaler):
         print(f"House: {distance}km from city,area {area}sqft, {bedrooms} beds, {age} years old")
         print(f"Predicted price: ${price:.2f}k\n")
 
-
-if __name__ == "__main__":
-    #visualize_synthetic_data()
-
+def pretraining():
     # Create model
     model = SimpleHouseNet()
 
@@ -268,6 +310,7 @@ if __name__ == "__main__":
 
         # Generate data
     X_train, y_train,feature_scaler, price_scaler = generate_synthetic_house_data(n_samples=10000)
+    save_data(X_train, y_train)
 
     run_test_cases(model,feature_scaler,price_scaler)
     save_model(model,feature_scaler,price_scaler,prefix="untrained")
@@ -279,3 +322,78 @@ if __name__ == "__main__":
     model, losses = train_model(model, learning_rate, n_epochs, X_train, y_train)
     run_test_cases(model,feature_scaler,price_scaler)
     save_model(model,feature_scaler,price_scaler,prefix="trained")
+
+def visualize_network(model):
+    # Create graph
+    G = nx.DiGraph()
+    
+    # Add input nodes
+    input_features = ['Distance', 'Area', 'Bedrooms', 'Age']
+    for i in range(4):
+        G.add_node(f'i{i}', pos=(0, i), layer='input', label=input_features[i])
+    
+    # Add hidden layer nodes
+    for i in range(8):
+        G.add_node(f'h{i}', pos=(1, i-1.5), layer='hidden', label=f'H{i}')
+    
+    # Add output node
+    G.add_node('o0', pos=(2, 2), layer='output', label='Price')
+    
+    # Add edges
+    # Input to hidden
+    for i in range(4):
+        for h in range(8):
+            G.add_edge(f'i{i}', f'h{h}')
+    
+    # Hidden to output
+    for h in range(8):
+        G.add_edge(f'h{h}', 'o0')
+    
+    # Draw the network
+    plt.figure(figsize=(12, 8))
+    pos = nx.get_node_attributes(G, 'pos')
+    
+    # Draw nodes
+    nx.draw_networkx_nodes(G, pos, 
+                          node_color=['lightblue' if layer=='input' else 'lightgreen' if layer=='hidden' else 'lightpink' 
+                                    for layer in nx.get_node_attributes(G, 'layer').values()],
+                          node_size=1000)
+    
+    # Draw edges
+    nx.draw_networkx_edges(G, pos)
+    
+    # Add labels
+    labels = nx.get_node_attributes(G, 'label')
+    nx.draw_networkx_labels(G, pos, labels)
+    
+    plt.title('Neural Network Architecture')
+    plt.axis('off')
+    plt.savefig("houses_network.png")
+
+if __name__ == "__main__":
+    #visualize_synthetic_data()
+    #pretraining()
+
+    # Example usage
+    try:
+        # Load the trained model
+        model, feature_scaler, price_scaler = load_model(
+            model_class=SimpleHouseNet,  # or SimpleHouseNet2
+            folder_path='saved_model',
+            prefix="trained"  # or "untrained"
+        )
+        
+        # Now you can use the model for predictions
+        # Example test case
+        distance, area, bedrooms, age = 1, 4000, 6, 1
+        price = predict_price(model, distance, area, bedrooms, age, 
+                             feature_scaler, price_scaler)
+        print(f"Predicted price: ${price:.2f}k")
+        
+    except FileNotFoundError:
+        print("Error: Model files not found. Please ensure the model has been saved first.")
+    except Exception as e:
+        print(f"Error loading model: {str(e)}")
+
+    # Call the visualization
+    visualize_network(model)
