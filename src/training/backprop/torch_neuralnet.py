@@ -132,7 +132,7 @@ class SimpleHouseNet(nn.Module):
     def __init__(self):
         super(SimpleHouseNet, self).__init__()
         # Input layer: 4 features (distance, area, bedrooms, age)
-        # Hidden layer: 8 neurons (twice the input size is a common rule of thumb)
+        # Hidden layer: 8 neurons 
         # Output layer: 1 (price)
         self.layer1 = nn.Linear(4, 8)
         self.layer2 = nn.Linear(8, 1)
@@ -284,6 +284,9 @@ def run_test_cases(model,feature_scaler,price_scaler):
         # Example predictions
     test_cases = [
         (1, 4000, 6, 1),    # New house close to city
+        (1, 3000, 6, 1),    # New house close to city
+        (10, 8000, 10, 5),    # New house close to city
+        (20, 8000, 10, 5),    # New house close to city
         (20, 2000, 3, 5),   # older house far from city
         (20, 2000, 3, 8),   # even older
         (20, 2000, 3, 100),    # very old house
@@ -370,6 +373,26 @@ def visualize_network(model):
     plt.axis('off')
     plt.savefig("houses_network.png")
 
+
+def print_model_params(model):
+    # First layer (4 inputs -> 8 neurons)
+    print("Layer 1:")
+    print("Weights shape:", model.layer1.weight.shape)
+    print("Weights:\n", model.layer1.weight.data)
+    print("Biases shape:", model.layer1.bias.shape)
+    print("Biases:\n", model.layer1.bias.data)
+    
+    print("\nLayer 2:")
+    # Second layer (8 neurons -> 1 output)
+    print("Weights shape:", model.layer2.weight.shape)
+    print("Weights:\n", model.layer2.weight.data)
+    print("Biases shape:", model.layer2.bias.shape)
+    print("Biases:\n", model.layer2.bias.data)
+
+
+
+
+
 if __name__ == "__main__":
     #visualize_synthetic_data()
     #pretraining()
@@ -382,13 +405,19 @@ if __name__ == "__main__":
             folder_path='saved_model',
             prefix="trained"  # or "untrained"
         )
-        
+        #run_test_cases(model, feature_scaler, price_scaler)
         # Now you can use the model for predictions
         # Example test case
-        distance, area, bedrooms, age = 1, 4000, 6, 1
+        distance, area, bedrooms, age = 5, 2000, 3, 15
         price = predict_price(model, distance, area, bedrooms, age, 
                              feature_scaler, price_scaler)
-        print(f"Predicted price: ${price:.2f}k")
+        #print(f"Predicted price: ${price:.2f}k")
+
+        # Usage example:
+        
+        print_model_params(model)
+        model = SimpleHouseNet()
+        print_model_params(model)
         
     except FileNotFoundError:
         print("Error: Model files not found. Please ensure the model has been saved first.")
@@ -396,4 +425,4 @@ if __name__ == "__main__":
         print(f"Error loading model: {str(e)}")
 
     # Call the visualization
-    visualize_network(model)
+    #visualize_network(model)
