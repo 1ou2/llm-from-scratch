@@ -155,6 +155,10 @@ https://github.com/TheophileBlard/french-sentiment-analysis-with-bert
 PIAFv1.2 contient 9225 pairs des questions/réponses. Il s'agit d'un fichier type JSON.
 https://www.data.gouv.fr/fr/datasets/piaf-le-dataset-francophone-de-questions-reponses/
 
+## OSCAR
+The OSCAR project (Open Super-large Crawled Aggregated coRpus) is an Open Source project aiming to provide web-based multilingual resources
+https://huggingface.co/datasets/oscar-corpus/oscar
+
 ## FSQUAD
 
 https://fquad.illuin.tech/
