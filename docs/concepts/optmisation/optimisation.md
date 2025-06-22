@@ -139,6 +139,8 @@ Copie des données d'entrainements, 20 fichiers dans le répertoire transfer
 ```bash
 parallel -j 20 scp -P 31553 transfer/{} ubuntu@horrible-lilyofthevalley-clam.1.cricket.hyperbolic.xyz:~/llm-from-scratch/data/shards/train ::: token_part_*
 ```
-
-
+Récupération du fichier tar initial
+```bash
+cat tokens_part* > training.tar
+```
 
