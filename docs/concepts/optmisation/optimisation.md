@@ -144,3 +144,40 @@ Récupération du fichier tar initial
 cat tokens_part* > training.tar
 ```
 
+# Fonctionnement des GPU
+Cours de stanford : https://www.youtube.com/watch?v=6OBtO9niT00
+
+## Fused kernel
+Les GPU sont limités par la mémoire et pas par le cpu
+Si on fait l’approche naive, on va pour chaque opérationner repasser par la mémoire.
+Dans cet exemple on a carré [■] qui est transformé en triangle [▲] puis rond [●] puis rectangle [▌].
+
+Naïve (non-fused)
+=================
+
+Memory                         Compute
+----------------------         ----------------
+[■■■■■■■■]   --->              [■]
+[▲▲▲▲▲▲▲▲]   <---              ↓
+[▲▲▲▲▲▲▲▲]   --->              [▲]
+[●●●●●●●●]   <---              ↓
+[●●●●●●●●]   --->              [●]
+[▌▌▌▌▌▌▌▌]   <---              ↓
+[▩▩▩▩▩▩▩▩]   --->              [▌]
+
+
+Avec un fused kernel, on execute toutes les opérations avant de repasser par la mémoire.
+
+Fused kernel
+============
+
+Memory                         Compute
+----------------------         ----------------
+[■■▲▲●●▌▌▩▩]   --->            [■]
+                               ↓
+                              [▲]
+                               ↓
+                              [●]
+                               ↓
+                              [▌]
+[▌▌▌▌▌▌▌▌]   <---     
